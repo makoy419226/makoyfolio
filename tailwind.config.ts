@@ -13,6 +13,9 @@ export default {
       },
     },
     extend: {
+      fontFamily: {
+        sans: ['Inter', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
@@ -47,22 +50,26 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        navy: {
-          dark: "hsl(var(--navy-dark))",
-          mid: "hsl(var(--navy-mid))",
-          light: "hsl(var(--navy-light))",
+        google: {
+          blue: "hsl(var(--google-blue))",
+          red: "hsl(var(--google-red))",
+          yellow: "hsl(var(--google-yellow))",
+          green: "hsl(var(--google-green))",
         },
-        cyan: {
-          bright: "hsl(var(--cyan-bright))",
+        neutral: {
+          50: "hsl(var(--neutral-50))",
+          100: "hsl(var(--neutral-100))",
+          200: "hsl(var(--neutral-200))",
+          300: "hsl(var(--neutral-300))",
+          600: "hsl(var(--neutral-600))",
+          900: "hsl(var(--neutral-900))",
         },
-      },
-      backgroundImage: {
-        'gradient-hero': 'var(--gradient-hero)',
-        'gradient-card': 'var(--gradient-card)',
       },
       boxShadow: {
-        'card': 'var(--shadow-card)',
-        'glow': 'var(--shadow-glow)',
+        'google-sm': 'var(--shadow-sm)',
+        'google-md': 'var(--shadow-md)',
+        'google-lg': 'var(--shadow-lg)',
+        'google-xl': 'var(--shadow-xl)',
       },
       borderRadius: {
         lg: "var(--radius)",

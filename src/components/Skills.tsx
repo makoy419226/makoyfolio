@@ -7,28 +7,42 @@ const Skills = () => {
     {
       icon: Code,
       title: "Development",
-      skills: ["Web Development", "Python Programming", "Computer Programming"]
+      skills: ["Web Development", "Python Programming", "Computer Programming"],
+      color: "google-blue"
     },
     {
       icon: Server,
       title: "IT & Systems",
-      skills: ["IT Systems Administration", "Troubleshooting", "Process Coordination"]
+      skills: ["IT Systems Administration", "Troubleshooting", "Process Coordination"],
+      color: "google-red"
     },
     {
       icon: Briefcase,
       title: "Management",
-      skills: ["Project Management", "Account Management", "Vendor and Client Coordination"]
+      skills: ["Project Management", "Account Management", "Vendor and Client Coordination"],
+      color: "google-green"
     }
   ];
 
+  const colorClasses = {
+    "google-blue": "bg-google-blue/10 group-hover:bg-google-blue/20 text-google-blue",
+    "google-red": "bg-google-red/10 group-hover:bg-google-red/20 text-google-red",
+    "google-green": "bg-google-green/10 group-hover:bg-google-green/20 text-google-green"
+  };
+
   return (
-    <section id="skills" className="py-20 px-4 bg-black/20">
+    <section id="skills" className="py-20 px-4 bg-white">
       <div className="max-w-6xl mx-auto space-y-12">
         {/* Section Header */}
         <div className="text-center space-y-4 animate-fade-in">
-          <h2 className="text-4xl md:text-5xl font-bold text-white">Skills & Expertise</h2>
-          <div className="w-20 h-1 bg-cyan-bright mx-auto rounded-full"></div>
-          <p className="text-white/70 text-lg max-w-2xl mx-auto">
+          <h2 className="text-4xl md:text-5xl font-bold text-neutral-900">Skills & Expertise</h2>
+          <div className="flex gap-1 justify-center">
+            <div className="w-4 h-1 bg-google-blue rounded-full"></div>
+            <div className="w-4 h-1 bg-google-red rounded-full"></div>
+            <div className="w-4 h-1 bg-google-yellow rounded-full"></div>
+            <div className="w-4 h-1 bg-google-green rounded-full"></div>
+          </div>
+          <p className="text-neutral-600 text-lg max-w-2xl mx-auto">
             Technical and management skills from education and training
           </p>
         </div>
@@ -38,15 +52,15 @@ const Skills = () => {
           {skillCategories.map((category, index) => (
             <Card 
               key={category.title}
-              className="bg-gradient-card border-white/10 p-6 shadow-card backdrop-blur-sm hover:scale-105 transition-transform duration-300 animate-slide-up"
+              className="border-neutral-200 p-6 shadow-google-lg hover:shadow-google-xl transition-all duration-300 hover:-translate-y-1 animate-slide-up bg-white group"
               style={{ animationDelay: `${index * 0.1}s` }}
             >
               <div className="flex items-start gap-4 mb-4">
-                <div className="w-12 h-12 bg-cyan-bright/20 rounded-lg flex items-center justify-center flex-shrink-0">
-                  <category.icon className="w-6 h-6 text-cyan-bright" />
+                <div className={`w-12 h-12 rounded-2xl flex items-center justify-center flex-shrink-0 transition-colors ${colorClasses[category.color as keyof typeof colorClasses]}`}>
+                  <category.icon className="w-6 h-6" />
                 </div>
                 <div>
-                  <h3 className="text-2xl font-bold text-white">{category.title}</h3>
+                  <h3 className="text-2xl font-bold text-neutral-900">{category.title}</h3>
                 </div>
               </div>
               <div className="flex flex-wrap gap-2">
@@ -54,7 +68,7 @@ const Skills = () => {
                   <Badge 
                     key={skill}
                     variant="secondary"
-                    className="bg-white/10 text-white border-white/20 hover:bg-white/20 transition-colors"
+                    className="bg-neutral-100 text-neutral-900 border-neutral-200 hover:bg-neutral-200 transition-colors"
                   >
                     {skill}
                   </Badge>

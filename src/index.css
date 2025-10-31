@@ -8,81 +8,85 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    --background: 220 40% 96%;
-    --foreground: 220 20% 15%;
+    --background: 0 0% 99%;
+    --foreground: 220 10% 20%;
 
     --card: 0 0% 100%;
-    --card-foreground: 220 20% 15%;
+    --card-foreground: 220 10% 20%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 220 20% 15%;
+    --popover-foreground: 220 10% 20%;
 
-    --primary: 217 91% 60%;
+    --primary: 221 83% 53%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 220 15% 25%;
-    --secondary-foreground: 0 0% 100%;
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 220 10% 20%;
 
-    --muted: 220 15% 90%;
+    --muted: 210 40% 96%;
     --muted-foreground: 220 10% 45%;
 
-    --accent: 217 91% 60%;
-    --accent-foreground: 0 0% 100%;
+    --accent: 210 40% 96%;
+    --accent-foreground: 220 10% 20%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 220 20% 85%;
-    --input: 220 20% 85%;
-    --ring: 217 91% 60%;
+    --border: 220 13% 91%;
+    --input: 220 13% 91%;
+    --ring: 221 83% 53%;
 
-    --radius: 0.75rem;
+    --radius: 1rem;
 
-    /* Portfolio specific tokens */
-    --navy-dark: 220 45% 15%;
-    --navy-mid: 217 35% 25%;
-    --navy-light: 215 30% 35%;
-    --cyan-bright: 190 95% 55%;
-    --text-primary: 0 0% 100%;
-    --text-secondary: 220 15% 75%;
+    /* Google-inspired colors */
+    --google-blue: 221 83% 53%;
+    --google-red: 4 90% 58%;
+    --google-yellow: 45 100% 51%;
+    --google-green: 142 71% 45%;
     
-    /* Gradients */
-    --gradient-hero: linear-gradient(180deg, hsl(220, 45%, 15%) 0%, hsl(217, 35%, 25%) 50%, hsl(215, 30%, 35%) 100%);
-    --gradient-card: linear-gradient(135deg, hsl(220, 40%, 20%) 0%, hsl(217, 35%, 22%) 100%);
+    /* Neutral palette */
+    --neutral-50: 210 20% 98%;
+    --neutral-100: 220 14% 96%;
+    --neutral-200: 220 13% 91%;
+    --neutral-300: 216 12% 84%;
+    --neutral-600: 220 9% 46%;
+    --neutral-900: 220 10% 20%;
     
-    /* Shadows */
-    --shadow-card: 0 8px 32px rgba(0, 0, 0, 0.3);
-    --shadow-glow: 0 0 30px rgba(59, 130, 246, 0.3);
+    /* Shadows - subtle and elevated */
+    --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+    --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
   }
 
   .dark {
-    --background: 220 45% 15%;
-    --foreground: 0 0% 100%;
+    --background: 220 10% 20%;
+    --foreground: 0 0% 98%;
 
-    --card: 220 40% 20%;
-    --card-foreground: 0 0% 100%;
+    --card: 220 15% 15%;
+    --card-foreground: 0 0% 98%;
 
-    --popover: 220 40% 20%;
-    --popover-foreground: 0 0% 100%;
+    --popover: 220 15% 15%;
+    --popover-foreground: 0 0% 98%;
 
-    --primary: 217 91% 60%;
+    --primary: 221 83% 53%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 220 35% 25%;
-    --secondary-foreground: 0 0% 100%;
+    --secondary: 220 15% 25%;
+    --secondary-foreground: 0 0% 98%;
 
-    --muted: 220 35% 25%;
-    --muted-foreground: 220 15% 65%;
+    --muted: 220 15% 25%;
+    --muted-foreground: 220 10% 65%;
 
-    --accent: 217 91% 60%;
-    --accent-foreground: 0 0% 100%;
+    --accent: 220 15% 25%;
+    --accent-foreground: 0 0% 98%;
 
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 220 35% 30%;
-    --input: 220 35% 30%;
-    --ring: 217 91% 60%;
+    --border: 220 15% 30%;
+    --input: 220 15% 30%;
+    --ring: 221 83% 53%;
   }
 }
 
@@ -93,8 +97,10 @@ All colors MUST be HSL.
 
   body {
     @apply bg-background text-foreground;
-    background: var(--gradient-hero);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
     min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
   
   html {
@@ -105,5 +111,13 @@ All colors MUST be HSL.
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+  
+  .animate-float-slow {
+    animation: float 6s ease-in-out infinite;
+  }
+  
+  .animate-float-delayed {
+    animation: float 6s ease-in-out infinite 2s;
   }
 }

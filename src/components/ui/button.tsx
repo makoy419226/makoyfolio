@@ -9,14 +9,16 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default: "bg-primary text-primary-foreground hover:bg-primary/90",
+        default: "bg-google-blue text-white hover:bg-google-blue/90 shadow-google-md hover:shadow-google-lg transition-all duration-200",
         destructive: "bg-destructive text-destructive-foreground hover:bg-destructive/90",
-        outline: "border border-input bg-background hover:bg-accent hover:text-accent-foreground",
-        secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/80",
-        ghost: "hover:bg-accent hover:text-accent-foreground",
-        link: "text-primary underline-offset-4 hover:underline",
-        hero: "bg-cyan-bright text-white hover:bg-cyan-bright/90 shadow-lg hover:shadow-glow transition-all duration-300",
-        heroOutline: "border-2 border-white/30 text-white hover:bg-white/10 backdrop-blur-sm transition-all duration-300",
+        outline: "border-2 border-neutral-300 bg-white hover:bg-neutral-50 hover:border-google-blue text-foreground transition-all duration-200",
+        secondary: "bg-neutral-100 text-foreground hover:bg-neutral-200 transition-all duration-200",
+        ghost: "hover:bg-neutral-100 hover:text-foreground transition-all duration-200",
+        link: "text-google-blue underline-offset-4 hover:underline",
+        google: "bg-google-blue text-white hover:bg-google-blue/90 shadow-google-md hover:shadow-google-lg transition-all duration-200",
+        red: "bg-google-red text-white hover:bg-google-red/90 shadow-google-md hover:shadow-google-lg transition-all duration-200",
+        yellow: "bg-google-yellow text-neutral-900 hover:bg-google-yellow/90 shadow-google-md hover:shadow-google-lg transition-all duration-200",
+        green: "bg-google-green text-white hover:bg-google-green/90 shadow-google-md hover:shadow-google-lg transition-all duration-200",
       },
       size: {
         default: "h-10 px-4 py-2",
