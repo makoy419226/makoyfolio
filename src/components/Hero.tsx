@@ -47,8 +47,8 @@ const Hero = () => {
 
         {/* Description */}
         <p className="text-lg md:text-xl text-white/70 max-w-2xl mx-auto leading-relaxed">
-          Dynamic fresh graduate specializing in web development, Python programming, and IT systems administration. 
-          Passionate about building innovative solutions and contributing to organizational growth.
+          Dynamic and detail-oriented fresh graduate with a strong interest in project management and information technology. 
+          Skilled in systems organization, troubleshooting, and customer resolution, with excellent communication and problem-solving abilities.
         </p>
 
         {/* CTA Buttons */}

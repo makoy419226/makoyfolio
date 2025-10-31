@@ -67,7 +67,7 @@ const Contact = () => {
                 </div>
                 <div>
                   <h3 className="text-xl font-bold text-white mb-2">Location</h3>
-                  <p className="text-white/70">Abu Dhabi, UAE</p>
+                  <p className="text-white/70">Airport Road Building, Abu Dhabi, UAE</p>
                 </div>
               </div>
             </Card>

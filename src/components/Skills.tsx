@@ -1,28 +1,23 @@
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Code, Server, Briefcase, Users } from "lucide-react";
+import { Code, Server, Briefcase } from "lucide-react";
 
 const Skills = () => {
   const skillCategories = [
     {
       icon: Code,
       title: "Development",
-      skills: ["Web Development", "Python Programming", "Computer Programming", "HTML/CSS", "JavaScript"]
+      skills: ["Web Development", "Python Programming", "Computer Programming"]
     },
     {
       icon: Server,
       title: "IT & Systems",
-      skills: ["IT Systems Administration", "Troubleshooting", "Process Coordination", "Network Management"]
+      skills: ["IT Systems Administration", "Troubleshooting", "Process Coordination"]
     },
     {
       icon: Briefcase,
       title: "Management",
-      skills: ["Project Management", "Team Collaboration", "Agile Methodologies", "Documentation"]
-    },
-    {
-      icon: Users,
-      title: "Soft Skills",
-      skills: ["Communication", "Problem Solving", "Adaptability", "Customer Service", "Time Management"]
+      skills: ["Project Management", "Account Management", "Vendor and Client Coordination"]
     }
   ];
 
@@ -34,12 +29,12 @@ const Skills = () => {
           <h2 className="text-4xl md:text-5xl font-bold text-white">Skills & Expertise</h2>
           <div className="w-20 h-1 bg-cyan-bright mx-auto rounded-full"></div>
           <p className="text-white/70 text-lg max-w-2xl mx-auto">
-            A comprehensive skill set combining technical expertise with strong interpersonal abilities
+            Technical and management skills from education and training
           </p>
         </div>
 
         {/* Skills Grid */}
-        <div className="grid md:grid-cols-2 gap-6">
+        <div className="grid md:grid-cols-3 gap-6">
           {skillCategories.map((category, index) => (
             <Card 
               key={category.title}
