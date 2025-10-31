@@ -78,45 +78,7 @@ const Contact = () => {
             </Card>
           </div>
 
-          {/* Contact Form */}
-          <Card className="border-neutral-200 p-8 shadow-google-lg hover:shadow-google-xl transition-shadow duration-300 animate-slide-up bg-white" style={{ animationDelay: '0.2s' }}>
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div>
-                <label htmlFor="name" className="text-neutral-900 font-medium mb-2 block">Name</label>
-                <Input 
-                  id="name"
-                  placeholder="Your name"
-                  className="border-neutral-200 focus:border-google-blue focus:ring-google-blue"
-                  required
-                />
-              </div>
-              <div>
-                <label htmlFor="email" className="text-neutral-900 font-medium mb-2 block">Email</label>
-                <Input 
-                  id="email"
-                  type="email"
-                  placeholder="your.email@example.com"
-                  className="border-neutral-200 focus:border-google-blue focus:ring-google-blue"
-                  required
-                />
-              </div>
-              <div>
-                <label htmlFor="message" className="text-neutral-900 font-medium mb-2 block">Message</label>
-                <Textarea 
-                  id="message"
-                  placeholder="Your message..."
-                  rows={5}
-                  className="border-neutral-200 focus:border-google-blue focus:ring-google-blue resize-none"
-                  required
-                />
-              </div>
-              <Button type="submit" variant="google" size="lg" className="w-full group rounded-full">
-                Send Message
-                <Send className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
-              </Button>
-            </form>
-          </Card>
-        </div>
+         
       </div>
     </section>
   );
