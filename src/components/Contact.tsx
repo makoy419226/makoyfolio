@@ -1,16 +1,7 @@
 import { Card } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { Mail, Phone, MapPin, Send } from "lucide-react";
+import { Mail, Phone, MapPin } from "lucide-react";
 
 const Contact = () => {
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    // Handle form submission
-    console.log("Form submitted");
-  };
-
   return (
     <section id="contact" className="py-20 px-4 bg-white">
       <div className="max-w-6xl mx-auto space-y-12">
@@ -28,57 +19,56 @@ const Contact = () => {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-8">
-          {/* Contact Info */}
-          <div className="space-y-6 animate-slide-up">
-            <Card className="border-neutral-200 p-6 shadow-google-lg hover:shadow-google-xl transition-shadow duration-300 bg-white">
-              <div className="flex items-start gap-4">
-                <div className="w-12 h-12 bg-google-blue/10 rounded-2xl flex items-center justify-center flex-shrink-0">
-                  <Mail className="w-6 h-6 text-google-blue" />
-                </div>
-                <div>
-                  <h3 className="text-xl font-bold text-neutral-900 mb-2">Email</h3>
-                  <a 
-                    href="mailto:Idusma0010@gmail.com" 
-                    className="text-neutral-600 hover:text-google-blue transition-colors"
-                  >
-                    Idusma0010@gmail.com
-                  </a>
-                </div>
+        {/* Contact Info */}
+        <div className="grid md:grid-cols-3 gap-8 animate-slide-up">
+          <Card className="border-neutral-200 p-6 shadow-google-lg hover:shadow-google-xl transition-shadow duration-300 bg-white">
+            <div className="flex items-start gap-4">
+              <div className="w-12 h-12 bg-google-blue/10 rounded-2xl flex items-center justify-center flex-shrink-0">
+                <Mail className="w-6 h-6 text-google-blue" />
               </div>
-            </Card>
-
-            <Card className="border-neutral-200 p-6 shadow-google-lg hover:shadow-google-xl transition-shadow duration-300 bg-white">
-              <div className="flex items-start gap-4">
-                <div className="w-12 h-12 bg-google-red/10 rounded-2xl flex items-center justify-center flex-shrink-0">
-                  <Phone className="w-6 h-6 text-google-red" />
-                </div>
-                <div>
-                  <h3 className="text-xl font-bold text-neutral-900 mb-2">Phone</h3>
-                  <a 
-                    href="tel:+971568235238" 
-                    className="text-neutral-600 hover:text-google-blue transition-colors"
-                  >
-                    +971 56 823 5238
-                  </a>
-                </div>
+              <div>
+                <h3 className="text-xl font-bold text-neutral-900 mb-2">Email</h3>
+                <a
+                  href="mailto:Idusma0010@gmail.com"
+                  className="text-neutral-600 hover:text-google-blue transition-colors"
+                >
+                  Idusma0010@gmail.com
+                </a>
               </div>
-            </Card>
+            </div>
+          </Card>
 
-            <Card className="border-neutral-200 p-6 shadow-google-lg hover:shadow-google-xl transition-shadow duration-300 bg-white">
-              <div className="flex items-start gap-4">
-                <div className="w-12 h-12 bg-google-green/10 rounded-2xl flex items-center justify-center flex-shrink-0">
-                  <MapPin className="w-6 h-6 text-google-green" />
-                </div>
-                <div>
-                  <h3 className="text-xl font-bold text-neutral-900 mb-2">Location</h3>
-                  <p className="text-neutral-600">Airport Road Building, Abu Dhabi, UAE</p>
-                </div>
+          <Card className="border-neutral-200 p-6 shadow-google-lg hover:shadow-google-xl transition-shadow duration-300 bg-white">
+            <div className="flex items-start gap-4">
+              <div className="w-12 h-12 bg-google-red/10 rounded-2xl flex items-center justify-center flex-shrink-0">
+                <Phone className="w-6 h-6 text-google-red" />
               </div>
-            </Card>
-          </div>
+              <div>
+                <h3 className="text-xl font-bold text-neutral-900 mb-2">Phone</h3>
+                <a
+                  href="tel:+971568235238"
+                  className="text-neutral-600 hover:text-google-blue transition-colors"
+                >
+                  +971 56 823 5238
+                </a>
+              </div>
+            </div>
+          </Card>
 
-         
+          <Card className="border-neutral-200 p-6 shadow-google-lg hover:shadow-google-xl transition-shadow duration-300 bg-white">
+            <div className="flex items-start gap-4">
+              <div className="w-12 h-12 bg-google-green/10 rounded-2xl flex items-center justify-center flex-shrink-0">
+                <MapPin className="w-6 h-6 text-google-green" />
+              </div>
+              <div>
+                <h3 className="text-xl font-bold text-neutral-900 mb-2">Location</h3>
+                <p className="text-neutral-600">
+                  Airport Road Building, Abu Dhabi, UAE
+                </p>
+              </div>
+            </div>
+          </Card>
+        </div>
       </div>
     </section>
   );
