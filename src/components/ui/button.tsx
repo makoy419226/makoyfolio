@@ -9,16 +9,16 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default: "bg-google-blue text-white hover:bg-google-blue/90 shadow-google-md hover:shadow-google-lg transition-all duration-200",
-        destructive: "bg-destructive text-destructive-foreground hover:bg-destructive/90",
-        outline: "border-2 border-neutral-300 bg-white hover:bg-neutral-50 hover:border-google-blue text-foreground transition-all duration-200",
-        secondary: "bg-neutral-100 text-foreground hover:bg-neutral-200 transition-all duration-200",
-        ghost: "hover:bg-neutral-100 hover:text-foreground transition-all duration-200",
+        default: "bg-google-blue text-white hover:bg-google-blue/80 shadow-google-md hover:shadow-google-lg transition-all duration-300",
+        destructive: "bg-destructive text-destructive-foreground hover:bg-destructive/90 shadow-google-md",
+        outline: "border border-neutral-200 bg-card hover:bg-secondary hover:border-google-blue text-foreground transition-all duration-300",
+        secondary: "bg-secondary text-foreground hover:bg-secondary/80 transition-all duration-300",
+        ghost: "hover:bg-secondary hover:text-foreground transition-all duration-300",
         link: "text-google-blue underline-offset-4 hover:underline",
-        google: "bg-google-blue text-white hover:bg-google-blue/90 shadow-google-md hover:shadow-google-lg transition-all duration-200",
-        red: "bg-google-red text-white hover:bg-google-red/90 shadow-google-md hover:shadow-google-lg transition-all duration-200",
-        yellow: "bg-google-yellow text-neutral-900 hover:bg-google-yellow/90 shadow-google-md hover:shadow-google-lg transition-all duration-200",
-        green: "bg-google-green text-white hover:bg-google-green/90 shadow-google-md hover:shadow-google-lg transition-all duration-200",
+        google: "bg-google-blue text-white hover:bg-google-blue/80 shadow-google-md hover:shadow-google-lg transition-all duration-300",
+        red: "bg-google-red text-white hover:bg-google-red/80 shadow-google-md hover:shadow-google-lg transition-all duration-300",
+        yellow: "bg-google-yellow text-neutral-900 hover:bg-google-yellow/80 shadow-google-md hover:shadow-google-lg transition-all duration-300",
+        green: "bg-google-green text-white hover:bg-google-green/80 shadow-google-md hover:shadow-google-lg transition-all duration-300",
       },
       size: {
         default: "h-10 px-4 py-2",

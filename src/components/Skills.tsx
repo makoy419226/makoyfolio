@@ -31,18 +31,18 @@ const Skills = () => {
   };
 
   return (
-    <section id="skills" className="py-20 px-4 bg-white">
+    <section id="skills" className="py-20 px-4">
       <div className="max-w-6xl mx-auto space-y-12">
         {/* Section Header */}
         <div className="text-center space-y-4 animate-fade-in">
-          <h2 className="text-4xl md:text-5xl font-bold text-neutral-900">Skills & Expertise</h2>
+          <h2 className="text-4xl md:text-5xl font-bold text-foreground">Skills & Expertise</h2>
           <div className="flex gap-1 justify-center">
             <div className="w-4 h-1 bg-google-blue rounded-full"></div>
             <div className="w-4 h-1 bg-google-red rounded-full"></div>
             <div className="w-4 h-1 bg-google-yellow rounded-full"></div>
             <div className="w-4 h-1 bg-google-green rounded-full"></div>
           </div>
-          <p className="text-neutral-600 text-lg max-w-2xl mx-auto">
+          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
             Technical and management skills from education and training
           </p>
         </div>
@@ -52,7 +52,7 @@ const Skills = () => {
           {skillCategories.map((category, index) => (
             <Card 
               key={category.title}
-              className="border-neutral-200 p-6 shadow-google-lg hover:shadow-google-xl transition-all duration-300 hover:-translate-y-1 animate-slide-up bg-white group"
+              className="border-border p-6 shadow-google-lg hover:shadow-google-xl transition-all duration-300 hover:-translate-y-1 animate-slide-up group"
               style={{ animationDelay: `${index * 0.1}s` }}
             >
               <div className="flex items-start gap-4 mb-4">
@@ -60,7 +60,7 @@ const Skills = () => {
                   <category.icon className="w-6 h-6" />
                 </div>
                 <div>
-                  <h3 className="text-2xl font-bold text-neutral-900">{category.title}</h3>
+                  <h3 className="text-2xl font-bold text-foreground">{category.title}</h3>
                 </div>
               </div>
               <div className="flex flex-wrap gap-2">
@@ -68,7 +68,7 @@ const Skills = () => {
                   <Badge 
                     key={skill}
                     variant="secondary"
-                    className="bg-neutral-100 text-neutral-900 border-neutral-200 hover:bg-neutral-200 transition-colors"
+                    className="bg-secondary text-foreground border-border hover:bg-secondary/80 transition-colors"
                   >
                     {skill}
                   </Badge>
