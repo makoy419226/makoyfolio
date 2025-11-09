@@ -3,32 +3,18 @@ import { Badge } from "@/components/ui/badge";
 import { Code, Server, Briefcase } from "lucide-react";
 
 const Skills = () => {
-  const skillCategories = [
-    {
-      icon: Code,
-      title: "Development",
-      skills: ["Web Development", "Python Programming"],
-      color: "google-blue"
-    },
-    {
-      icon: Server,
-      title: "IT & Systems",
-      skills: ["IT Systems Administration", "Hardware & Software Installation", "IT Support", "Troubleshooting", "Process Coordination"],
-      color: "google-red"
-    },
-    {
-      icon: Briefcase,
-      title: "Management",
-      skills: ["Project Management", "Account Management", "Vendor and Client Coordination"],
-      color: "google-green"
-    }
+  const allSkills = [
+    "Web Development",
+    "Python Programming",
+    "Account Management",
+    "Troubleshooting",
+    "IT Support",
+    "Vendor and Client Coordination",
+    "Project Management",
+    "IT Systems Administration",
+    "Process Coordination",
+    "Hardware & Software Installation"
   ];
-
-  const colorClasses = {
-    "google-blue": "bg-google-blue/10 group-hover:bg-google-blue/20 text-google-blue",
-    "google-red": "bg-google-red/10 group-hover:bg-google-red/20 text-google-red",
-    "google-green": "bg-google-green/10 group-hover:bg-google-green/20 text-google-green"
-  };
 
   return (
     <section id="skills" className="py-20 px-4">
@@ -47,36 +33,22 @@ const Skills = () => {
           </p>
         </div>
 
-        {/* Skills Grid */}
-        <div className="grid md:grid-cols-3 gap-6">
-          {skillCategories.map((category, index) => (
-            <Card 
-              key={category.title}
-              className="border-border p-6 shadow-google-lg hover:shadow-google-xl transition-all duration-300 hover:-translate-y-1 animate-slide-up group"
-              style={{ animationDelay: `${index * 0.1}s` }}
-            >
-              <div className="flex items-start gap-4 mb-4">
-                <div className={`w-12 h-12 rounded-2xl flex items-center justify-center flex-shrink-0 transition-colors ${colorClasses[category.color as keyof typeof colorClasses]}`}>
-                  <category.icon className="w-6 h-6" />
-                </div>
-                <div>
-                  <h3 className="text-2xl font-bold text-foreground">{category.title}</h3>
-                </div>
-              </div>
-              <div className="flex flex-wrap gap-2">
-                {category.skills.map((skill) => (
-                  <Badge 
-                    key={skill}
-                    variant="secondary"
-                    className="bg-secondary text-foreground border-border hover:bg-secondary/80 transition-colors"
-                  >
-                    {skill}
-                  </Badge>
-                ))}
-              </div>
-            </Card>
-          ))}
-        </div>
+        {/* Skills Card */}
+        <Card 
+          className="border-border p-8 shadow-google-lg hover:shadow-google-xl transition-all duration-300 animate-fade-in"
+        >
+          <div className="flex flex-wrap gap-3 justify-center">
+            {allSkills.map((skill) => (
+              <Badge 
+                key={skill}
+                variant="secondary"
+                className="bg-secondary text-foreground border-border hover:bg-secondary/80 transition-colors text-sm px-4 py-2"
+              >
+                {skill}
+              </Badge>
+            ))}
+          </div>
+        </Card>
       </div>
     </section>
   );
