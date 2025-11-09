@@ -63,7 +63,7 @@ const Contact = () => {
               <div>
                 <h3 className="text-xl font-bold text-foreground mb-2">Location</h3>
                 <p className="text-muted-foreground">
-                  Airport Road Building, Abu Dhabi, UAE
+                  Airport Road, Shakeel Studio Building, Abu Dhabi, UAE
                 </p>
               </div>
             </div>
