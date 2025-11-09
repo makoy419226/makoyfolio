@@ -7,13 +7,13 @@ const Skills = () => {
     {
       icon: Code,
       title: "Development",
-      skills: ["Web Development", "Python Programming", "Computer Programming"],
+      skills: ["Web Development", "Python Programming"],
       color: "google-blue"
     },
     {
       icon: Server,
       title: "IT & Systems",
-      skills: ["IT Systems Administration","Hardware and Software Installation","Process Coordination", "Troubleshooting", "Process Coordination"],
+      skills: ["IT Systems Administration", "Hardware & Software Installation", "IT Support", "Troubleshooting", "Process Coordination"],
       color: "google-red"
     },
     {
