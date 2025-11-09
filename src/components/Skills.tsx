@@ -13,7 +13,7 @@ const Skills = () => {
     {
       icon: Server,
       title: "IT & Systems",
-      skills: ["IT Systems Administration", "Troubleshooting", "Process Coordination"],
+      skills: ["IT Systems Administration","Hardware and Software Installation","Process Coordination", "Troubleshooting", "Process Coordination"],
       color: "google-red"
     },
     {
