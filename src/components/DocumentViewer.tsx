@@ -73,11 +73,13 @@ const DocumentViewer = () => {
                 </div>
                 
                 {/* Document Image Container with Watermark */}
-                <div className="relative rounded-lg overflow-hidden bg-muted group aspect-[8.5/11]">
+                <div className="relative rounded-lg overflow-hidden bg-muted group aspect-[8.5/11] select-none">
                   <img 
                     src={doc.image} 
                     alt={doc.title}
-                    className="w-full h-full object-contain"
+                    className="w-full h-full object-contain select-none pointer-events-none"
+                    draggable="false"
+                    onContextMenu={(e) => e.preventDefault()}
                   />
                   
                   {/* Blur overlays for sensitive information */}
