@@ -30,7 +30,8 @@ const Education = () => {
   const certifications = [
     "Computer Literacy Training (Module 2)",
     "Technical Vocational Livelihood Track at ICT strand with specialization in Computer Programming",
-    "Bachelor of Science in Computer Engineering"
+    "Bachelor of Science in Computer Engineering",
+    "Certificate of Recognition - Research Assistant"
   ];
 
   const colorClasses = {
