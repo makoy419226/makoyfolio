@@ -72,12 +72,13 @@ const DocumentViewer = () => {
                   <p className="text-sm text-muted-foreground">{doc.institution}</p>
                 </div>
                 
-                {/* Document Image Container with Watermark */}
-                <div className="relative rounded-lg overflow-hidden bg-muted group aspect-[8.5/11] select-none">
+                {/* Document Image Container with Watermark - Rotated 90 degrees */}
+                <div className="relative rounded-lg overflow-hidden bg-muted group aspect-[11/8.5] select-none">
                   <img 
                     src={doc.image} 
                     alt={doc.title}
-                    className="w-full h-full object-contain select-none pointer-events-none"
+                    className="w-full h-full object-contain select-none pointer-events-none rotate-90"
+                    style={{ transform: 'rotate(90deg) scale(0.85)' }}
                     draggable="false"
                     onContextMenu={(e) => e.preventDefault()}
                   />
