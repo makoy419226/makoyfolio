@@ -68,13 +68,13 @@ const DocumentViewer = () => {
                     onContextMenu={(e) => e.preventDefault()}
                   />
 
-                  {/* Watermark */}
-                  <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                    <div className="rotate-[-25deg] opacity-30 select-none">
-                      <p className="text-4xl md:text-6xl font-bold text-foreground tracking-wider">
+                  {/* Centered, more visible transparent watermark */}
+                  <div className="absolute inset-0 flex flex-col items-center justify-center text-center pointer-events-none select-none">
+                    <div className="rotate-[-25deg] opacity-60">
+                      <p className="text-6xl md:text-8xl font-extrabold text-foreground/70 tracking-widest">
                         FOR PORTFOLIO
                       </p>
-                      <p className="text-2xl md:text-4xl font-bold text-foreground text-center tracking-wider mt-2">
+                      <p className="text-4xl md:text-6xl font-extrabold text-foreground/70 tracking-widest mt-4">
                         USE ONLY
                       </p>
                     </div>
