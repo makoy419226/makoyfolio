@@ -11,36 +11,25 @@ const DocumentViewer = () => {
       title: "Bachelor of Science in Computer Engineering",
       institution: "Bohol Island State University",
       image: diplomaBisu,
-      blurAreas: [
-        { top: "10%", left: "5%", width: "8%", height: "35%" }, // Signatures (rotated)
-        { top: "50%", left: "5%", width: "8%", height: "35%" }, // Signatures (rotated)
-      ]
+    
     },
     {
       title: "Senior High School Diploma",
       institution: "Cristal e-College",
       image: diplomaHighschool,
-      blurAreas: [
-        { top: "30%", left: "55%", width: "3%", height: "40%" }, // LRN (rotated)
-        { top: "5%", left: "5%", width: "8%", height: "90%" }, // Signatures (rotated)
-      ]
+     
     },
     {
       title: "Computer Literacy Training Certificate",
       institution: "ComTech Resources & Cristal e-College",
       image: certComtech,
-      blurAreas: [
-        { top: "10%", left: "5%", width: "10%", height: "80%" }, // Signatures (rotated)
-        { top: "5%", left: "92%", width: "3%", height: "20%" }, // Serial number (rotated)
-      ]
+    
     },
     {
       title: "Certificate of Recognition - Research Assistant",
       institution: "Totolan Elementary School",
       image: recognitionSama,
-      blurAreas: [
-        { top: "10%", left: "5%", width: "10%", height: "80%" }, // Signatures (rotated)
-      ]
+    
     }
   ];
 
