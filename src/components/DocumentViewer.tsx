@@ -7,21 +7,23 @@ import recognitionSama from "@/assets/recognition-sama.jpg";
 
 const DocumentViewer = () => {
   const documents = [
+      {
+      title: "Computer Literacy Training Certificate",
+      institution: "ComTech Resources & Cristal e-College",
+      image: certComtech,
+    },
+     {
+      title: "Senior High School Diploma",
+      institution: "Cristal e-College",
+      image: diplomaHighschool,
+    },
+    
     {
       title: "Bachelor of Science in Computer Engineering",
       institution: "Bohol Island State University",
       image: diplomaBisu,
     },
-    {
-      title: "Senior High School Diploma",
-      institution: "Cristal e-College",
-      image: diplomaHighschool,
-    },
-    {
-      title: "Computer Literacy Training Certificate",
-      institution: "ComTech Resources & Cristal e-College",
-      image: certComtech,
-    },
+   
     {
       title: "Certificate of Recognition - Research Assistant",
       institution: "Totolan Elementary School",
