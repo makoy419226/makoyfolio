@@ -12,8 +12,8 @@ const DocumentViewer = () => {
       institution: "Bohol Island State University",
       image: diplomaBisu,
       blurAreas: [
-        { top: "85%", left: "10%", width: "35%", height: "8%" }, // Signatures
-        { top: "85%", left: "50%", width: "35%", height: "8%" }, // Signatures
+        { top: "10%", left: "5%", width: "8%", height: "35%" }, // Signatures (rotated)
+        { top: "50%", left: "5%", width: "8%", height: "35%" }, // Signatures (rotated)
       ]
     },
     {
@@ -21,8 +21,8 @@ const DocumentViewer = () => {
       institution: "Cristal e-College",
       image: diplomaHighschool,
       blurAreas: [
-        { top: "42%", left: "30%", width: "40%", height: "3%" }, // LRN
-        { top: "85%", left: "5%", width: "90%", height: "8%" }, // Signatures
+        { top: "30%", left: "55%", width: "3%", height: "40%" }, // LRN (rotated)
+        { top: "5%", left: "5%", width: "8%", height: "90%" }, // Signatures (rotated)
       ]
     },
     {
@@ -30,8 +30,8 @@ const DocumentViewer = () => {
       institution: "ComTech Resources & Cristal e-College",
       image: certComtech,
       blurAreas: [
-        { top: "85%", left: "10%", width: "80%", height: "10%" }, // Signatures
-        { top: "96%", left: "5%", width: "20%", height: "3%" }, // Serial number
+        { top: "10%", left: "5%", width: "10%", height: "80%" }, // Signatures (rotated)
+        { top: "5%", left: "92%", width: "3%", height: "20%" }, // Serial number (rotated)
       ]
     },
     {
@@ -39,7 +39,7 @@ const DocumentViewer = () => {
       institution: "Totolan Elementary School",
       image: recognitionSama,
       blurAreas: [
-        { top: "85%", left: "10%", width: "80%", height: "10%" }, // Signatures
+        { top: "10%", left: "5%", width: "10%", height: "80%" }, // Signatures (rotated)
       ]
     }
   ];
