@@ -11,26 +11,22 @@ const DocumentViewer = () => {
       title: "Bachelor of Science in Computer Engineering",
       institution: "Bohol Island State University",
       image: diplomaBisu,
-    
     },
     {
       title: "Senior High School Diploma",
       institution: "Cristal e-College",
       image: diplomaHighschool,
-     
     },
     {
       title: "Computer Literacy Training Certificate",
       institution: "ComTech Resources & Cristal e-College",
       image: certComtech,
-    
     },
     {
       title: "Certificate of Recognition - Research Assistant",
       institution: "Totolan Elementary School",
       image: recognitionSama,
-    
-    }
+    },
   ];
 
   return (
@@ -43,14 +39,14 @@ const DocumentViewer = () => {
             <h3 className="text-3xl font-bold text-foreground">Official Documents</h3>
           </div>
           <p className="text-muted-foreground">
-            View certificates and diplomas (sensitive information redacted)
+            View certificates and diplomas
           </p>
         </div>
 
-        {/* Documents Grid - Single column for portrait certificates */}
+        {/* Documents Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-5xl mx-auto">
           {documents.map((doc, index) => (
-            <Card 
+            <Card
               key={index}
               className="border-border p-6 shadow-google-lg hover:shadow-google-xl transition-all duration-300 animate-slide-up overflow-hidden"
               style={{ animationDelay: `${index * 0.1}s` }}
@@ -60,32 +56,18 @@ const DocumentViewer = () => {
                   <h4 className="text-lg font-bold text-foreground">{doc.title}</h4>
                   <p className="text-sm text-muted-foreground">{doc.institution}</p>
                 </div>
-                
-                {/* Document Image Container with Watermark - Rotated 90 degrees */}
+
+                {/* Document Image */}
                 <div className="relative rounded-lg overflow-hidden bg-muted group aspect-[11/8.5] select-none">
-                  <img 
-                    src={doc.image} 
+                  <img
+                    src={doc.image}
                     alt={doc.title}
                     className="w-full h-full object-contain select-none pointer-events-none rotate-90"
-                    style={{ transform: 'rotate(90deg) scale(0.85)' }}
+                    style={{ transform: "rotate(90deg) scale(0.85)" }}
                     draggable="false"
                     onContextMenu={(e) => e.preventDefault()}
                   />
-                  
-                  {/* Blur overlays for sensitive information */}
-                  {doc.blurAreas.map((area, i) => (
-                    <div
-                      key={i}
-                      className="absolute backdrop-blur-md bg-background/20"
-                      style={{
-                        top: area.top,
-                        left: area.left,
-                        width: area.width,
-                        height: area.height,
-                      }}
-                    />
-                  ))}
-                  
+
                   {/* Watermark */}
                   <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
                     <div className="rotate-[-25deg] opacity-30 select-none">
