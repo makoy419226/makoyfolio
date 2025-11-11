@@ -58,26 +58,26 @@ const DocumentViewer = () => {
           </p>
         </div>
 
-        {/* Documents Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {/* Documents Grid - Single column for portrait certificates */}
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-5xl mx-auto">
           {documents.map((doc, index) => (
             <Card 
               key={index}
-              className="border-border p-4 shadow-google-lg hover:shadow-google-xl transition-all duration-300 animate-slide-up overflow-hidden"
+              className="border-border p-6 shadow-google-lg hover:shadow-google-xl transition-all duration-300 animate-slide-up overflow-hidden"
               style={{ animationDelay: `${index * 0.1}s` }}
             >
-              <div className="space-y-3">
+              <div className="space-y-4">
                 <div>
                   <h4 className="text-lg font-bold text-foreground">{doc.title}</h4>
                   <p className="text-sm text-muted-foreground">{doc.institution}</p>
                 </div>
                 
                 {/* Document Image Container with Watermark */}
-                <div className="relative rounded-lg overflow-hidden bg-muted group">
+                <div className="relative rounded-lg overflow-hidden bg-muted group aspect-[8.5/11]">
                   <img 
                     src={doc.image} 
                     alt={doc.title}
-                    className="w-full h-auto"
+                    className="w-full h-full object-contain"
                   />
                   
                   {/* Blur overlays for sensitive information */}
