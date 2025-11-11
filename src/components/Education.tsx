@@ -1,5 +1,6 @@
 import { Card } from "@/components/ui/card";
 import { Calendar, GraduationCap, Award } from "lucide-react";
+import DocumentViewer from "./DocumentViewer";
 
 const Education = () => {
   const education = [
@@ -111,6 +112,9 @@ const Education = () => {
             </ul>
           </Card>
         </div>
+
+        {/* Documents Viewer */}
+        <DocumentViewer />
       </div>
     </section>
   );
