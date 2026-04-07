@@ -78,11 +78,11 @@ const Hero = () => {
         {/* Contact Info */}
         <div className="flex flex-col sm:flex-row gap-6 justify-center items-center pt-8 text-muted-foreground">
           <a 
-            href="tel:+971568235238" 
+            href="tel:+971509317400" 
             className="flex items-center gap-2 hover:text-google-blue transition-colors"
           >
             <Phone className="w-4 h-4" />
-            <span>+971 56 823 5238</span>
+            <span>+971 50 931 7400</span>
           </a>
           <a 
             href="mailto:Idusma0010@gmail.com" 
