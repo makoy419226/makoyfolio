@@ -1,9 +1,19 @@
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { ExternalLink, Github, Smartphone, Globe } from "lucide-react";
+import { ExternalLink, Github, Smartphone, Globe, Monitor } from "lucide-react";
 
 const projects = [
+  {
+    title: "LWL — Laundry Management System",
+    description:
+      "A full-stack laundry management system built with Node.js, Vite, and PostgreSQL. Features include order tracking, customer management, service scheduling, and real-time status updates for streamlined laundry operations.",
+    tech: ["TypeScript", "Node.js", "Vite", "PostgreSQL"],
+    github: "https://github.com/makoy419226/lwl",
+    icon: <Monitor className="w-6 h-6" />,
+    color: "google-red",
+    stars: 1,
+  },
   {
     title: "SAMA-CEBU Translator",
     description:
