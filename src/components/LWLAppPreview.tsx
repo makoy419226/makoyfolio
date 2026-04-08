@@ -606,7 +606,7 @@ const LWLAppPreview = () => {
               variant="outline"
               size="sm"
               className="gap-2 rounded-full"
-              onClick={() => setShowPreview(!showPreview)}
+              onClick={() => { setShowPreview(!showPreview); if (!showPreview) setIsFullscreen(true); }}
             >
               <Monitor className="w-4 h-4" />
               {showPreview ? "Hide Preview" : "View Live App Preview"}
