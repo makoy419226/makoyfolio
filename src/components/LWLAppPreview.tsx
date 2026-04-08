@@ -522,6 +522,8 @@ const sidebarGroups = [
 const LWLAppPreview = () => {
   const [activeScreen, setActiveScreen] = useState<Screen>("dashboard");
   const [showPreview, setShowPreview] = useState(false);
+  const [viewMode, setViewMode] = useState<"desktop" | "mobile">("desktop");
+  const [isFullscreen, setIsFullscreen] = useState(false);
 
   return (
     <div className="space-y-6">
