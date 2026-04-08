@@ -1,19 +1,10 @@
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { ExternalLink, Github, Smartphone, Globe, Monitor } from "lucide-react";
+import { ExternalLink, Github, Smartphone, Globe } from "lucide-react";
+import LWLAppPreview from "./LWLAppPreview";
 
-const projects = [
-  {
-    title: "LWL — Laundry Management System",
-    description:
-      "A full-stack laundry management system built with Node.js, Vite, and PostgreSQL. Features include order tracking, customer management, service scheduling, and real-time status updates for streamlined laundry operations.",
-    tech: ["TypeScript", "Node.js", "Vite", "PostgreSQL"],
-    github: "https://github.com/makoy419226/lwl",
-    icon: <Monitor className="w-6 h-6" />,
-    color: "google-red",
-    stars: 1,
-  },
+const otherProjects = [
   {
     title: "SAMA-CEBU Translator",
     description:
@@ -52,19 +43,27 @@ const Projects = () => {
             <div className="w-4 h-1 bg-google-green rounded-full"></div>
           </div>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            Development projects showcasing mobile and cross-platform expertise
+            Development projects showcasing full-stack, mobile, and cross-platform expertise
           </p>
         </div>
 
-        {/* Project Cards */}
+        {/* Featured Project — LWL */}
+        <div className="animate-slide-up">
+          <div className="text-sm font-semibold text-google-blue mb-3 flex items-center gap-2">
+            <span className="w-2 h-2 bg-google-blue rounded-full animate-pulse" />
+            Featured Project
+          </div>
+          <LWLAppPreview />
+        </div>
+
+        {/* Other Project Cards */}
         <div className="grid md:grid-cols-2 gap-8 animate-slide-up">
-          {projects.map((project, index) => (
+          {otherProjects.map((project, index) => (
             <Card
               key={index}
               className="border-border p-6 shadow-google-lg hover:shadow-google-xl transition-all duration-300 group"
             >
               <div className="space-y-4">
-                {/* Header */}
                 <div className="flex items-start gap-4">
                   <div
                     className={`w-12 h-12 bg-${project.color}/20 rounded-2xl flex items-center justify-center flex-shrink-0 text-${project.color}`}
@@ -83,12 +82,10 @@ const Projects = () => {
                   </div>
                 </div>
 
-                {/* Description */}
                 <p className="text-muted-foreground leading-relaxed">
                   {project.description}
                 </p>
 
-                {/* Tech Stack */}
                 <div className="flex flex-wrap gap-2">
                   {project.tech.map((tech) => (
                     <Badge
@@ -101,7 +98,6 @@ const Projects = () => {
                   ))}
                 </div>
 
-                {/* GitHub Link */}
                 <a
                   href={project.github}
                   target="_blank"
