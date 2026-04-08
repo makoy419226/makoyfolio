@@ -632,122 +632,213 @@ const LWLAppPreview = () => {
 
       {/* ──────────── INTERACTIVE TRUE REPLICA PREVIEW ──────────── */}
       {showPreview && (
-        <Card className="border-border shadow-google-xl overflow-hidden animate-fade-in">
-          {/* Browser Chrome */}
-          <div className="bg-secondary/80 border-b border-border px-4 py-2 flex items-center justify-between">
-            <div className="flex items-center gap-2">
-              <div className="flex gap-1.5">
-                <div className="w-3 h-3 rounded-full bg-google-red" />
-                <div className="w-3 h-3 rounded-full bg-google-yellow" />
-                <div className="w-3 h-3 rounded-full bg-google-green" />
-              </div>
-              <div className="ml-3 bg-background/50 border border-border rounded-md px-3 py-0.5 text-[10px] text-muted-foreground flex items-center gap-1">
-                🔒 lwl-laundry.app/dashboard
-              </div>
-            </div>
-            <div className="flex items-center gap-2">
-              <Bell className="w-3.5 h-3.5 text-muted-foreground" />
-              <div className="w-6 h-6 rounded-full bg-google-blue/30 flex items-center justify-center">
-                <Shield className="w-3 h-3 text-google-blue" />
-              </div>
-            </div>
-          </div>
-
-          <div className="flex min-h-[500px] md:min-h-[550px]">
-            {/* TRUE REPLICA SIDEBAR */}
-            <div className="w-12 md:w-48 bg-card border-r border-border shrink-0 flex flex-col">
-              {/* Logo Area */}
-              <div className="p-2 md:p-3 border-b border-border">
-                <div className="hidden md:block">
-                  <h3 className="text-sm font-bold text-google-blue">Liquid Washes</h3>
-                  <p className="text-[9px] text-muted-foreground">Laundry Management</p>
-                </div>
-                <div className="md:hidden flex justify-center">
-                  <span className="text-sm font-bold text-google-blue">LW</span>
-                </div>
-              </div>
-
-              {/* User Info */}
-              <div className="hidden md:flex items-center gap-2 p-3 border-b border-border">
-                <div className="w-7 h-7 rounded-full bg-google-blue/20 flex items-center justify-center">
-                  <Shield className="w-3.5 h-3.5 text-google-blue" />
-                </div>
-                <div>
-                  <p className="text-[10px] font-semibold text-foreground">Admin User</p>
-                  <p className="text-[9px] text-muted-foreground">admin</p>
-                </div>
-              </div>
-
-              {/* Nav Groups */}
-              <div className="flex-1 overflow-y-auto py-2">
-                {sidebarGroups.map((group, gi) => (
-                  <div key={gi} className="mb-2">
-                    <p className="hidden md:block text-[8px] uppercase tracking-widest text-muted-foreground px-3 py-1 font-semibold">
-                      {group.label}
-                    </p>
-                    {group.items.map((item, ii) => (
-                      <button
-                        key={`${gi}-${ii}`}
-                        onClick={() => setActiveScreen(item.key)}
-                        className={`w-full flex items-center gap-2 px-2 md:px-3 py-1.5 text-[10px] transition-colors ${
-                          activeScreen === item.key && item.label === screens[item.key].title
-                            ? "bg-google-blue/15 text-google-blue border-r-2 border-google-blue font-semibold"
-                            : "text-muted-foreground hover:bg-secondary/60 hover:text-foreground"
-                        }`}
-                      >
-                        {item.icon}
-                        <span className="hidden md:inline">{item.label}</span>
-                      </button>
-                    ))}
-                  </div>
-                ))}
-              </div>
-
-              {/* Footer */}
-              <div className="hidden md:block p-3 border-t border-border">
-                <button className="w-full flex items-center gap-2 text-[10px] text-google-red hover:bg-google-red/10 px-2 py-1.5 rounded transition-colors">
-                  <LogOut className="w-3.5 h-3.5" />
-                  Logout
-                </button>
-                <div className="mt-2 text-[8px] text-muted-foreground text-center">
-                  <p>Liquid Washes Laundry</p>
-                  <p>Al Dhanna City, Al Ruwais · Abu Dhabi</p>
-                  <p>© 2024</p>
-                </div>
-              </div>
-            </div>
-
-            {/* MAIN CONTENT */}
-            <div className="flex-1 p-3 md:p-4 overflow-y-auto bg-background">
-              {/* Top Bar */}
-              <div className="flex items-center justify-between mb-4 pb-3 border-b border-border">
-                <div>
-                  <h3 className="text-sm font-bold text-foreground">{screens[activeScreen].title}</h3>
-                  <p className="text-[10px] text-muted-foreground">
-                    {activeScreen === "dashboard" && "Overview of today's operations"}
-                    {activeScreen === "orders" && "Track and manage all orders"}
-                    {activeScreen === "clients" && "Manage customer accounts"}
-                    {activeScreen === "bills" && "Invoices and payment tracking"}
-                    {activeScreen === "delivery" && "Dispatch and delivery management"}
-                    {activeScreen === "products" && "Product catalog and pricing"}
-                    {activeScreen === "sales" && "Revenue analytics and reports"}
-                  </p>
-                </div>
+        <div className={`${isFullscreen ? "fixed inset-0 z-50 bg-background/95 backdrop-blur-sm flex items-center justify-center p-4" : ""} animate-fade-in`}>
+          <div className={`${isFullscreen ? "w-full h-full max-w-[1400px] flex flex-col" : ""} ${viewMode === "mobile" && !isFullscreen ? "max-w-[375px] mx-auto" : ""}`}>
+            <Card className={`border-border shadow-google-xl overflow-hidden flex flex-col ${isFullscreen ? "flex-1 h-full" : ""}`}>
+              {/* Browser Chrome */}
+              <div className="bg-secondary/80 border-b border-border px-4 py-2 flex items-center justify-between shrink-0">
                 <div className="flex items-center gap-2">
-                  <Bell className="w-4 h-4 text-muted-foreground" />
-                  <Settings className="w-4 h-4 text-muted-foreground" />
+                  <div className="flex gap-1.5">
+                    <button onClick={() => { setShowPreview(false); setIsFullscreen(false); }} className="w-3 h-3 rounded-full bg-google-red hover:brightness-75 transition" />
+                    <div className="w-3 h-3 rounded-full bg-google-yellow" />
+                    <div className="w-3 h-3 rounded-full bg-google-green" />
+                  </div>
+                  <div className="ml-3 bg-background/50 border border-border rounded-md px-3 py-0.5 text-[10px] text-muted-foreground flex items-center gap-1">
+                    🔒 lwl-laundry.app/{activeScreen === "dashboard" ? "dashboard" : activeScreen}
+                  </div>
+                </div>
+                <div className="flex items-center gap-1.5">
+                  {/* View Mode Toggle */}
+                  <button
+                    onClick={() => setViewMode("desktop")}
+                    className={`p-1 rounded transition-colors ${viewMode === "desktop" ? "bg-google-blue/20 text-google-blue" : "text-muted-foreground hover:text-foreground"}`}
+                    title="Desktop view"
+                  >
+                    <Monitor className="w-3.5 h-3.5" />
+                  </button>
+                  <button
+                    onClick={() => setViewMode("mobile")}
+                    className={`p-1 rounded transition-colors ${viewMode === "mobile" ? "bg-google-blue/20 text-google-blue" : "text-muted-foreground hover:text-foreground"}`}
+                    title="Mobile view"
+                  >
+                    <Smartphone className="w-3.5 h-3.5" />
+                  </button>
+                  <div className="w-px h-4 bg-border mx-1" />
+                  {/* Fullscreen Toggle */}
+                  <button
+                    onClick={() => setIsFullscreen(!isFullscreen)}
+                    className="p-1 rounded text-muted-foreground hover:text-foreground transition-colors"
+                    title={isFullscreen ? "Exit fullscreen" : "Fullscreen"}
+                  >
+                    {isFullscreen ? <Minimize2 className="w-3.5 h-3.5" /> : <Maximize2 className="w-3.5 h-3.5" />}
+                  </button>
+                  <button
+                    onClick={() => { setShowPreview(false); setIsFullscreen(false); }}
+                    className="p-1 rounded text-muted-foreground hover:text-google-red transition-colors"
+                    title="Close"
+                  >
+                    <X className="w-3.5 h-3.5" />
+                  </button>
                 </div>
               </div>
-              {screens[activeScreen].component}
-            </div>
-          </div>
 
-          {/* Status Bar */}
-          <div className="bg-secondary/40 border-t border-border px-4 py-1.5 flex items-center justify-between">
-            <span className="text-[10px] text-muted-foreground">✨ Interactive UI Replica · Click sidebar to navigate</span>
-            <span className="text-[10px] text-muted-foreground">React + TypeScript + Express + PostgreSQL</span>
+              {/* App Content */}
+              <div className={`flex flex-1 overflow-hidden ${!isFullscreen ? "min-h-[500px] md:min-h-[550px]" : ""}`}>
+                {viewMode === "mobile" ? (
+                  /* ───── MOBILE VIEW ───── */
+                  <div className={`flex flex-col w-full ${isFullscreen ? "max-w-[375px] mx-auto border-x border-border" : ""}`}>
+                    {/* Mobile Top Bar */}
+                    <div className="bg-card border-b border-border px-3 py-2 flex items-center justify-between shrink-0">
+                      <div className="flex items-center gap-2">
+                        <Menu className="w-4 h-4 text-muted-foreground" />
+                        <span className="text-xs font-bold text-google-blue">LWL</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <Search className="w-3.5 h-3.5 text-muted-foreground" />
+                        <Bell className="w-3.5 h-3.5 text-muted-foreground" />
+                        <div className="w-6 h-6 rounded-full bg-google-blue/20 flex items-center justify-center">
+                          <Shield className="w-3 h-3 text-google-blue" />
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Mobile Content */}
+                    <div className="flex-1 overflow-y-auto p-3 bg-background">
+                      <h3 className="text-sm font-bold text-foreground mb-1">{screens[activeScreen].title}</h3>
+                      <p className="text-[10px] text-muted-foreground mb-3">
+                        {activeScreen === "dashboard" && "Overview of today's operations"}
+                        {activeScreen === "orders" && "Track and manage all orders"}
+                        {activeScreen === "clients" && "Manage customer accounts"}
+                        {activeScreen === "bills" && "Invoices and payment tracking"}
+                        {activeScreen === "delivery" && "Dispatch and delivery management"}
+                        {activeScreen === "products" && "Product catalog and pricing"}
+                        {activeScreen === "sales" && "Revenue analytics and reports"}
+                      </p>
+                      {screens[activeScreen].component}
+                    </div>
+
+                    {/* Mobile Bottom Navigation */}
+                    <div className="bg-card border-t border-border px-2 py-1.5 flex items-center justify-around shrink-0">
+                      {[
+                        { key: "dashboard" as Screen, icon: <LayoutDashboard className="w-4 h-4" />, label: "Home" },
+                        { key: "orders" as Screen, icon: <ClipboardList className="w-4 h-4" />, label: "Orders" },
+                        { key: "clients" as Screen, icon: <Users className="w-4 h-4" />, label: "Clients" },
+                        { key: "bills" as Screen, icon: <FileText className="w-4 h-4" />, label: "Bills" },
+                        { key: "sales" as Screen, icon: <BarChart3 className="w-4 h-4" />, label: "More" },
+                      ].map((tab) => (
+                        <button
+                          key={tab.key}
+                          onClick={() => setActiveScreen(tab.key)}
+                          className={`flex flex-col items-center gap-0.5 px-2 py-1 rounded-lg transition-colors ${
+                            activeScreen === tab.key
+                              ? "text-google-blue"
+                              : "text-muted-foreground"
+                          }`}
+                        >
+                          {tab.icon}
+                          <span className="text-[8px] font-medium">{tab.label}</span>
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                ) : (
+                  /* ───── DESKTOP VIEW ───── */
+                  <>
+                    {/* Sidebar */}
+                    <div className="w-12 md:w-48 bg-card border-r border-border shrink-0 flex flex-col">
+                      <div className="p-2 md:p-3 border-b border-border">
+                        <div className="hidden md:block">
+                          <h3 className="text-sm font-bold text-google-blue">Liquid Washes</h3>
+                          <p className="text-[9px] text-muted-foreground">Laundry Management</p>
+                        </div>
+                        <div className="md:hidden flex justify-center">
+                          <span className="text-sm font-bold text-google-blue">LW</span>
+                        </div>
+                      </div>
+
+                      <div className="hidden md:flex items-center gap-2 p-3 border-b border-border">
+                        <div className="w-7 h-7 rounded-full bg-google-blue/20 flex items-center justify-center">
+                          <Shield className="w-3.5 h-3.5 text-google-blue" />
+                        </div>
+                        <div>
+                          <p className="text-[10px] font-semibold text-foreground">Admin User</p>
+                          <p className="text-[9px] text-muted-foreground">admin</p>
+                        </div>
+                      </div>
+
+                      <div className="flex-1 overflow-y-auto py-2">
+                        {sidebarGroups.map((group, gi) => (
+                          <div key={gi} className="mb-2">
+                            <p className="hidden md:block text-[8px] uppercase tracking-widest text-muted-foreground px-3 py-1 font-semibold">
+                              {group.label}
+                            </p>
+                            {group.items.map((item, ii) => (
+                              <button
+                                key={`${gi}-${ii}`}
+                                onClick={() => setActiveScreen(item.key)}
+                                className={`w-full flex items-center gap-2 px-2 md:px-3 py-1.5 text-[10px] transition-colors ${
+                                  activeScreen === item.key && item.label === screens[item.key].title
+                                    ? "bg-google-blue/15 text-google-blue border-r-2 border-google-blue font-semibold"
+                                    : "text-muted-foreground hover:bg-secondary/60 hover:text-foreground"
+                                }`}
+                              >
+                                {item.icon}
+                                <span className="hidden md:inline">{item.label}</span>
+                              </button>
+                            ))}
+                          </div>
+                        ))}
+                      </div>
+
+                      <div className="hidden md:block p-3 border-t border-border">
+                        <button className="w-full flex items-center gap-2 text-[10px] text-google-red hover:bg-google-red/10 px-2 py-1.5 rounded transition-colors">
+                          <LogOut className="w-3.5 h-3.5" />
+                          Logout
+                        </button>
+                        <div className="mt-2 text-[8px] text-muted-foreground text-center">
+                          <p>Liquid Washes Laundry</p>
+                          <p>Al Dhanna City, Al Ruwais · Abu Dhabi</p>
+                          <p>© 2024</p>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Main Content */}
+                    <div className="flex-1 p-3 md:p-4 overflow-y-auto bg-background">
+                      <div className="flex items-center justify-between mb-4 pb-3 border-b border-border">
+                        <div>
+                          <h3 className="text-sm font-bold text-foreground">{screens[activeScreen].title}</h3>
+                          <p className="text-[10px] text-muted-foreground">
+                            {activeScreen === "dashboard" && "Overview of today's operations"}
+                            {activeScreen === "orders" && "Track and manage all orders"}
+                            {activeScreen === "clients" && "Manage customer accounts"}
+                            {activeScreen === "bills" && "Invoices and payment tracking"}
+                            {activeScreen === "delivery" && "Dispatch and delivery management"}
+                            {activeScreen === "products" && "Product catalog and pricing"}
+                            {activeScreen === "sales" && "Revenue analytics and reports"}
+                          </p>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <Bell className="w-4 h-4 text-muted-foreground" />
+                          <Settings className="w-4 h-4 text-muted-foreground" />
+                        </div>
+                      </div>
+                      {screens[activeScreen].component}
+                    </div>
+                  </>
+                )}
+              </div>
+
+              {/* Status Bar */}
+              <div className="bg-secondary/40 border-t border-border px-4 py-1.5 flex items-center justify-between shrink-0">
+                <span className="text-[10px] text-muted-foreground">
+                  ✨ Interactive UI Replica · {viewMode === "mobile" ? "Mobile View" : "Desktop View"}
+                </span>
+                <span className="text-[10px] text-muted-foreground">React + TypeScript + Express + PostgreSQL</span>
+              </div>
+            </Card>
           </div>
-        </Card>
+        </div>
       )}
     </div>
   );
