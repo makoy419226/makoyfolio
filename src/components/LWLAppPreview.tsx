@@ -2,58 +2,91 @@ import { useState } from "react";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Smartphone, Maximize2, Minimize2, X,
-
-  Monitor,
-  LayoutDashboard,
-  ShoppingCart,
-  Users,
-  FileText,
-  Truck,
-  BarChart3,
-  Package,
-  Settings,
-  Search,
-  Bell,
-  ChevronRight,
-  TrendingUp,
-  Clock,
-  CheckCircle,
-  DollarSign,
-  Shirt,
-  ExternalLink,
-  Github,
-  ClipboardList,
-  AlertTriangle,
-  HardHat,
-  Phone,
-  List,
-  CircleDollarSign,
-  Plus,
-  Eye,
-  Printer,
-  Edit,
-  Trash2,
-  ChevronDown,
-  LogOut,
-  Shield,
-  ArrowUpDown,
-  Menu,
+import {
+  Smartphone, Maximize2, Minimize2, X, Monitor,
+  LayoutDashboard, ShoppingCart, Users, FileText, Truck,
+  BarChart3, Package, Settings, Search, Bell,
+  ChevronRight, TrendingUp, Clock, CheckCircle,
+  DollarSign, Shirt, ExternalLink, Github,
+  ClipboardList, AlertTriangle, HardHat, Phone, List,
+  CircleDollarSign, Plus, Eye, Printer, Edit, Trash2,
+  ChevronDown, LogOut, Shield, ArrowUpDown, Menu,
+  Lock, User, Droplets, Tag, Home, MoreHorizontal,
 } from "lucide-react";
 
-type Screen = "dashboard" | "orders" | "clients" | "bills" | "delivery" | "products" | "sales";
+type Screen = "login" | "dashboard" | "orders" | "clients" | "bills" | "delivery" | "products" | "sales" | "inventory";
 
-/* ──────────────────────── TRUE REPLICA SCREENS ──────────────────────── */
+/* ──────────────────────── LOGIN SCREEN — TRUE REPLICA ──────────────────────── */
+
+const LoginScreen = ({ onLogin }: { onLogin: () => void }) => (
+  <div className="flex items-center justify-center h-full bg-gradient-to-br from-[hsl(var(--google-blue)/0.05)] to-background p-4">
+    <div className="w-full max-w-sm space-y-6">
+      {/* Laundry Animation / Logo area */}
+      <div className="text-center space-y-3">
+        <div className="w-20 h-20 mx-auto rounded-2xl bg-google-blue/10 border-2 border-google-blue/20 flex items-center justify-center">
+          <Droplets className="w-10 h-10 text-google-blue animate-pulse" />
+        </div>
+        <div>
+          <h2 className="text-xl font-bold text-foreground">Liquid Washes Laundry</h2>
+          <p className="text-xs text-muted-foreground">Management System</p>
+        </div>
+      </div>
+
+      {/* Login Card */}
+      <div className="border border-border rounded-xl bg-card p-5 shadow-lg space-y-4">
+        <div className="space-y-1">
+          <h3 className="text-sm font-semibold text-foreground">Sign In</h3>
+          <p className="text-[10px] text-muted-foreground">Enter your credentials to access the system</p>
+        </div>
+
+        {/* Username field */}
+        <div className="space-y-1.5">
+          <label className="text-[10px] font-medium text-foreground">Username</label>
+          <div className="flex items-center gap-2 border border-border rounded-lg px-3 py-2 bg-background focus-within:border-google-blue transition-colors">
+            <User className="w-3.5 h-3.5 text-muted-foreground" />
+            <span className="text-xs text-foreground">admin</span>
+          </div>
+        </div>
+
+        {/* Password field */}
+        <div className="space-y-1.5">
+          <label className="text-[10px] font-medium text-foreground">Password</label>
+          <div className="flex items-center gap-2 border border-border rounded-lg px-3 py-2 bg-background focus-within:border-google-blue transition-colors">
+            <Lock className="w-3.5 h-3.5 text-muted-foreground" />
+            <span className="text-xs text-muted-foreground">••••••••</span>
+          </div>
+        </div>
+
+        {/* Login Button */}
+        <button
+          onClick={onLogin}
+          className="w-full bg-google-blue text-white text-xs font-medium py-2.5 rounded-lg hover:bg-google-blue/90 transition-colors shadow-md"
+        >
+          Sign In
+        </button>
+      </div>
+
+      {/* Footer */}
+      <div className="text-center space-y-1">
+        <p className="text-[9px] text-muted-foreground">Al Dhanna City, Al Ruwais · Abu Dhabi</p>
+        <p className="text-[9px] text-muted-foreground">Tel: 026 815 824 · Phone: +971 56 338 0001</p>
+        <p className="text-[8px] text-muted-foreground">© 2024 Liquid Washes Laundry</p>
+      </div>
+    </div>
+  </div>
+);
+
+/* ──────────────────────── STAFF DASHBOARD — TRUE REPLICA ──────────────────────── */
 
 const DashboardScreen = () => (
   <div className="space-y-4">
-    {/* Company Header - true replica */}
+    {/* Company Header — exact replica */}
     <div className="bg-google-blue/10 border border-google-blue/20 rounded-lg p-3 flex items-center justify-between">
       <div>
         <p className="text-[10px] text-muted-foreground">Tel: 026 815 824 · Phone: +971 56 338 0001</p>
         <p className="text-[10px] text-muted-foreground">Email: info@lwl.ae</p>
       </div>
-      <a className="text-[10px] text-google-blue font-medium">www.lwl.ae</a>
+      <a className="text-[10px] text-google-blue font-medium cursor-pointer">www.lwl.ae</a>
     </div>
 
     {/* Staff Dashboard Header */}
@@ -62,43 +95,47 @@ const DashboardScreen = () => (
       <p className="text-[10px] text-muted-foreground">Order Progress Overview</p>
     </div>
 
-    {/* Status Cards - matches real app's 4 status cards */}
+    {/* 4 Status Cards — exact replica from Dashboard.tsx */}
     <div className="grid grid-cols-2 lg:grid-cols-4 gap-2">
       {[
-        { label: "Pending", count: 12, icon: <Clock className="w-4 h-4" />, color: "text-google-yellow", bg: "bg-google-yellow/10" },
-        { label: "Tagging", count: 8, icon: <ClipboardList className="w-4 h-4" />, color: "text-google-blue", bg: "bg-google-blue/10" },
-        { label: "Packing", count: 5, icon: <Package className="w-4 h-4" />, color: "text-google-red", bg: "bg-google-red/10" },
-        { label: "Delivered Today", count: 19, icon: <CheckCircle className="w-4 h-4" />, color: "text-google-green", bg: "bg-google-green/10" },
+        { label: "Pending", count: 12, icon: <Clock className="w-4 h-4" />, color: "text-google-yellow", bg: "bg-google-yellow/10", border: "border-google-yellow/20" },
+        { label: "Tagging", count: 8, icon: <Tag className="w-4 h-4" />, color: "text-google-blue", bg: "bg-google-blue/10", border: "border-google-blue/20" },
+        { label: "Packing", count: 5, icon: <Package className="w-4 h-4" />, color: "text-google-red", bg: "bg-google-red/10", border: "border-google-red/20" },
+        { label: "Delivered Today", count: 19, icon: <CheckCircle className="w-4 h-4" />, color: "text-google-green", bg: "bg-google-green/10", border: "border-google-green/20" },
       ].map((s, i) => (
-        <div key={i} className={`${s.bg} border border-border rounded-lg p-3 text-center`}>
-          <div className={`${s.color} mx-auto mb-1`}>{s.icon}</div>
-          <p className="text-[10px] text-muted-foreground">{s.label}</p>
-          <p className={`text-xl font-bold ${s.color}`}>{s.count}</p>
+        <div key={i} className={`${s.bg} border ${s.border} rounded-xl p-4 text-center transition-transform hover:scale-[1.02]`}>
+          <div className={`${s.color} mx-auto mb-1.5`}>{s.icon}</div>
+          <p className="text-[10px] text-muted-foreground font-medium">{s.label}</p>
+          <p className={`text-2xl font-bold ${s.color}`}>{s.count}</p>
         </div>
       ))}
     </div>
 
-    {/* Orders Needing Attention - true replica table */}
-    <div className="border border-border rounded-lg overflow-hidden">
-      <div className="bg-secondary/50 px-3 py-2 border-b border-border">
+    {/* Orders Needing Attention — exact replica table */}
+    <div className="border border-border rounded-xl overflow-hidden">
+      <div className="bg-secondary/50 px-4 py-2.5 border-b border-border flex items-center justify-between">
         <h4 className="text-xs font-semibold text-foreground">Orders Needing Attention</h4>
+        <span className="text-[9px] text-muted-foreground">Showing 5 of 25</span>
       </div>
       <div className="divide-y divide-border">
         {[
-          { num: "ORD-2024-1247", customer: "Maria Santos", status: "Pending", statusColor: "bg-google-yellow/20 text-google-yellow" },
-          { num: "ORD-2024-1246", customer: "Golden Hotel (Corp)", status: "Tagging", statusColor: "bg-google-blue/20 text-google-blue" },
-          { num: "ORD-2024-1245", customer: "Ana Reyes", status: "Packing", statusColor: "bg-google-red/20 text-google-red" },
-          { num: "ORD-2024-1244", customer: "Juan Cruz", status: "Pending", statusColor: "bg-google-yellow/20 text-google-yellow" },
-          { num: "ORD-2024-1243", customer: "Pedro Lim", status: "Tagging", statusColor: "bg-google-blue/20 text-google-blue" },
+          { num: "ORD-2024-1247", customer: "Maria Santos", status: "Pending", statusColor: "bg-google-yellow/20 text-google-yellow", time: "2 hrs ago" },
+          { num: "ORD-2024-1246", customer: "Golden Hotel (Corp)", status: "Tagging", statusColor: "bg-google-blue/20 text-google-blue", time: "3 hrs ago" },
+          { num: "ORD-2024-1245", customer: "Ana Reyes", status: "Packing", statusColor: "bg-google-red/20 text-google-red", time: "4 hrs ago" },
+          { num: "ORD-2024-1244", customer: "Juan Cruz", status: "Pending", statusColor: "bg-google-yellow/20 text-google-yellow", time: "5 hrs ago" },
+          { num: "ORD-2024-1243", customer: "Pedro Lim", status: "Tagging", statusColor: "bg-google-blue/20 text-google-blue", time: "6 hrs ago" },
         ].map((order, i) => (
-          <div key={i} className="px-3 py-2 flex items-center justify-between hover:bg-secondary/30 transition-colors">
+          <div key={i} className="px-4 py-2.5 flex items-center justify-between hover:bg-secondary/30 transition-colors cursor-pointer">
             <div className="flex items-center gap-3">
               <span className="text-[10px] font-mono font-bold text-foreground">{order.num}</span>
               <span className="text-[10px] text-muted-foreground">{order.customer}</span>
             </div>
-            <span className={`text-[9px] px-2 py-0.5 rounded-full font-medium ${order.statusColor}`}>
-              {order.status}
-            </span>
+            <div className="flex items-center gap-2">
+              <span className="text-[8px] text-muted-foreground">{order.time}</span>
+              <span className={`text-[9px] px-2 py-0.5 rounded-full font-medium ${order.statusColor}`}>
+                {order.status}
+              </span>
+            </div>
           </div>
         ))}
       </div>
@@ -106,9 +143,74 @@ const DashboardScreen = () => (
   </div>
 );
 
+/* ──────────────────────── INVENTORY / DASHBOARD (Admin) — TRUE REPLICA ──────────────────────── */
+
+const InventoryScreen = () => (
+  <div className="space-y-3">
+    {/* TopBar replica — search + sort + add product */}
+    <div className="flex items-center gap-2 flex-wrap">
+      <div className="flex-1 min-w-[200px] bg-secondary/50 border border-border rounded-lg px-3 py-1.5 flex items-center gap-2">
+        <Search className="w-3.5 h-3.5 text-muted-foreground" />
+        <span className="text-[10px] text-muted-foreground">Search inventory...</span>
+      </div>
+      <div className="flex items-center gap-1.5">
+        <Button variant="outline" size="sm" className="h-7 text-[10px] gap-1 rounded-lg">
+          <ArrowUpDown className="w-3 h-3" /> Sort
+        </Button>
+        <Button variant="default" size="sm" className="h-7 text-[10px] gap-1 rounded-lg">
+          <Plus className="w-3 h-3" /> Add Product
+        </Button>
+      </div>
+    </div>
+
+    <div className="text-[10px] text-muted-foreground">
+      Monitor your stock levels. · Total Items: <span className="text-foreground font-semibold">24</span>
+    </div>
+
+    {/* Product Cards Grid — replica of ProductCard component */}
+    <div className="grid grid-cols-2 lg:grid-cols-3 gap-2">
+      {[
+        { name: "T-Shirt", price: "AED 15", category: "Laundry", stock: 150, allocated: 12 },
+        { name: "Blanket (Large)", price: "AED 35", category: "Bedding", stock: 45, allocated: 5 },
+        { name: "Suit (Dry Clean)", price: "AED 80", category: "Dry Clean", stock: 20, allocated: 3 },
+        { name: "Curtain / sqm", price: "AED 20", category: "Specialty", stock: 0, allocated: 0 },
+        { name: "Bed Sheet", price: "AED 25", category: "Bedding", stock: 65, allocated: 8 },
+        { name: "Uniform Set", price: "AED 22", category: "Laundry", stock: 30, allocated: 4 },
+      ].map((p, i) => (
+        <div key={i} className="border border-border rounded-xl p-3 hover:border-google-blue/40 hover:shadow-md transition-all group bg-card">
+          <div className="flex items-start justify-between mb-2">
+            <div className="w-8 h-8 rounded-lg bg-google-blue/10 flex items-center justify-center">
+              <Shirt className="w-4 h-4 text-google-blue" />
+            </div>
+            <span className="text-[8px] bg-secondary text-muted-foreground px-1.5 py-0.5 rounded-full">{p.category}</span>
+          </div>
+          <p className="text-xs font-semibold text-foreground">{p.name}</p>
+          <p className="text-sm font-bold text-google-green mt-0.5">{p.price}</p>
+          <div className="flex items-center justify-between mt-2 pt-2 border-t border-border">
+            <div className="space-y-0.5">
+              <span className={`text-[9px] block ${p.stock === 0 ? "text-google-red font-medium" : "text-muted-foreground"}`}>
+                Stock: {p.stock === 0 ? "Out of stock" : p.stock}
+              </span>
+              {p.allocated > 0 && (
+                <span className="text-[8px] text-google-blue block">Allocated: {p.allocated}</span>
+              )}
+            </div>
+            <div className="flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+              <Edit className="w-3 h-3 text-muted-foreground hover:text-google-blue cursor-pointer" />
+              <Trash2 className="w-3 h-3 text-muted-foreground hover:text-google-red cursor-pointer" />
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+);
+
+/* ──────────────────────── ORDERS — TRUE REPLICA ──────────────────────── */
+
 const OrdersScreen = () => (
   <div className="space-y-3">
-    {/* Top Bar - true replica search + filters */}
+    {/* TopBar — search + filters */}
     <div className="flex items-center gap-2">
       <div className="flex-1 bg-secondary/50 border border-border rounded-lg px-3 py-1.5 flex items-center gap-2">
         <Search className="w-3.5 h-3.5 text-muted-foreground" />
@@ -119,8 +221,8 @@ const OrdersScreen = () => (
       </Button>
     </div>
 
-    {/* Status Filter Tabs - true replica */}
-    <div className="flex gap-1 overflow-x-auto">
+    {/* Status Filter Tabs — exact replica */}
+    <div className="flex gap-1 overflow-x-auto pb-1">
       {[
         { label: "All", count: 44, active: true },
         { label: "Pending", count: 12, active: false },
@@ -128,12 +230,12 @@ const OrdersScreen = () => (
         { label: "Packing", count: 5, active: false },
         { label: "Ready", count: 7, active: false },
         { label: "Delivered", count: 12, active: false },
-      ].map((tab, i) => (
+      ].map((tab) => (
         <button
           key={tab.label}
           className={`px-2.5 py-1 rounded-full text-[10px] font-medium whitespace-nowrap flex items-center gap-1 transition-colors ${
             tab.active
-              ? "bg-google-blue text-white"
+              ? "bg-google-blue text-white shadow-sm"
               : "bg-secondary text-muted-foreground hover:bg-secondary/80"
           }`}
         >
@@ -145,10 +247,9 @@ const OrdersScreen = () => (
       ))}
     </div>
 
-    {/* Orders Table - true replica */}
-    <div className="border border-border rounded-lg overflow-hidden">
-      {/* Table Header */}
-      <div className="grid grid-cols-12 bg-secondary/60 px-3 py-1.5 text-[9px] font-semibold text-muted-foreground uppercase tracking-wider border-b border-border">
+    {/* Orders Table — true replica with expanded columns */}
+    <div className="border border-border rounded-xl overflow-hidden">
+      <div className="grid grid-cols-12 bg-secondary/60 px-3 py-2 text-[9px] font-semibold text-muted-foreground uppercase tracking-wider border-b border-border">
         <span className="col-span-2">Order #</span>
         <span className="col-span-3">Client</span>
         <span className="col-span-2">Items</span>
@@ -156,22 +257,24 @@ const OrdersScreen = () => (
         <span className="col-span-2">Status</span>
         <span className="col-span-1">Actions</span>
       </div>
-      {/* Table Rows */}
       {[
-        { id: "ORD-1247", client: "Maria Santos", items: "5 pcs", amount: "₱850", status: "Ready", color: "bg-google-green/20 text-google-green", urgent: true },
-        { id: "ORD-1246", client: "Golden Hotel", items: "32 pcs", amount: "₱8,500", status: "Packing", color: "bg-google-red/20 text-google-red", urgent: false },
-        { id: "ORD-1245", client: "Ana Reyes", items: "3 pcs", amount: "₱350", status: "Tagging", color: "bg-google-blue/20 text-google-blue", urgent: false },
-        { id: "ORD-1244", client: "Pedro Lim", items: "8 pcs", amount: "₱2,100", status: "Pending", color: "bg-google-yellow/20 text-google-yellow", urgent: true },
-        { id: "ORD-1243", client: "Juan Cruz", items: "12 pcs", amount: "₱1,200", status: "Delivered", color: "bg-secondary text-muted-foreground", urgent: false },
+        { id: "ORD-1247", client: "Maria Santos", items: "5 pcs", amount: "AED 850", status: "Ready", color: "bg-google-green/20 text-google-green", urgent: true, delivery: "Pickup" },
+        { id: "ORD-1246", client: "Golden Hotel", items: "32 pcs", amount: "AED 8,500", status: "Packing", color: "bg-google-red/20 text-google-red", urgent: false, delivery: "Delivery" },
+        { id: "ORD-1245", client: "Ana Reyes", items: "3 pcs", amount: "AED 350", status: "Tagging", color: "bg-google-blue/20 text-google-blue", urgent: false, delivery: "Pickup" },
+        { id: "ORD-1244", client: "Pedro Lim", items: "8 pcs", amount: "AED 2,100", status: "Pending", color: "bg-google-yellow/20 text-google-yellow", urgent: true, delivery: "Delivery" },
+        { id: "ORD-1243", client: "Juan Cruz", items: "12 pcs", amount: "AED 1,200", status: "Delivered", color: "bg-secondary text-muted-foreground", urgent: false, delivery: "Delivery" },
       ].map((order, i) => (
-        <div key={i} className="grid grid-cols-12 px-3 py-2 items-center border-b border-border last:border-0 hover:bg-secondary/20 transition-colors text-[10px]">
+        <div key={i} className="grid grid-cols-12 px-3 py-2.5 items-center border-b border-border last:border-0 hover:bg-secondary/20 transition-colors text-[10px]">
           <div className="col-span-2 flex items-center gap-1">
             <span className="font-mono font-bold text-foreground">{order.id}</span>
             {order.urgent && (
-              <span className="text-[7px] bg-google-red text-white px-1 rounded font-bold">URGENT</span>
+              <span className="text-[7px] bg-google-red text-white px-1 rounded font-bold animate-pulse">URGENT</span>
             )}
           </div>
-          <span className="col-span-3 text-foreground">{order.client}</span>
+          <div className="col-span-3">
+            <span className="text-foreground block">{order.client}</span>
+            <span className="text-[8px] text-muted-foreground">{order.delivery}</span>
+          </div>
           <span className="col-span-2 text-muted-foreground">{order.items}</span>
           <span className="col-span-2 font-semibold text-foreground">{order.amount}</span>
           <div className="col-span-2">
@@ -180,8 +283,8 @@ const OrdersScreen = () => (
             </span>
           </div>
           <div className="col-span-1 flex gap-1">
-            <Eye className="w-3 h-3 text-muted-foreground hover:text-google-blue cursor-pointer" />
-            <Printer className="w-3 h-3 text-muted-foreground hover:text-google-blue cursor-pointer" />
+            <Eye className="w-3.5 h-3.5 text-muted-foreground hover:text-google-blue cursor-pointer transition-colors" />
+            <Printer className="w-3.5 h-3.5 text-muted-foreground hover:text-google-blue cursor-pointer transition-colors" />
           </div>
         </div>
       ))}
@@ -189,9 +292,10 @@ const OrdersScreen = () => (
   </div>
 );
 
+/* ──────────────────────── CLIENTS — TRUE REPLICA (ClientCard) ──────────────────────── */
+
 const ClientsScreen = () => (
   <div className="space-y-3">
-    {/* Search + Add Client */}
     <div className="flex items-center gap-2">
       <div className="flex-1 bg-secondary/50 border border-border rounded-lg px-3 py-1.5 flex items-center gap-2">
         <Search className="w-3.5 h-3.5 text-muted-foreground" />
@@ -202,18 +306,16 @@ const ClientsScreen = () => (
       </Button>
     </div>
 
-    {/* Client Cards - true replica with avatar, type badge, balance */}
     <div className="space-y-2">
       {[
-        { name: "Maria Santos", type: "VIP", phone: "+63 912 345 ****", orders: 42, balance: "₱0", lastOrder: "Apr 7, 2026" },
-        { name: "Golden Hotel", type: "Corporate", phone: "+63 933 222 ****", orders: 89, balance: "₱5,400", lastOrder: "Apr 8, 2026" },
-        { name: "Juan Cruz", type: "Regular", phone: "+63 917 111 ****", orders: 15, balance: "₱1,200", lastOrder: "Apr 5, 2026" },
-        { name: "Ana Reyes", type: "Walk-in", phone: "+63 921 888 ****", orders: 7, balance: "₱350", lastOrder: "Apr 3, 2026" },
+        { name: "Maria Santos", type: "VIP", phone: "+971 50 ***", orders: 42, balance: "AED 0", credit: 0, lastOrder: "Apr 7, 2026" },
+        { name: "Golden Hotel", type: "Corporate", phone: "+971 56 ***", orders: 89, balance: "AED 5,400", credit: 5400, lastOrder: "Apr 8, 2026" },
+        { name: "Juan Cruz", type: "Regular", phone: "+971 55 ***", orders: 15, balance: "AED 1,200", credit: 1200, lastOrder: "Apr 5, 2026" },
+        { name: "Ana Reyes", type: "Walk-in", phone: "+971 52 ***", orders: 7, balance: "AED 0", credit: 0, lastOrder: "Apr 3, 2026" },
       ].map((client, i) => (
-        <div key={i} className="border border-border rounded-lg p-3 hover:border-google-blue/40 transition-colors">
+        <div key={i} className="border border-border rounded-xl p-3 hover:border-google-blue/40 hover:shadow-sm transition-all bg-card">
           <div className="flex items-start gap-3">
-            {/* Avatar */}
-            <div className="w-9 h-9 rounded-full bg-google-blue/20 flex items-center justify-center text-google-blue text-xs font-bold shrink-0">
+            <div className="w-10 h-10 rounded-full bg-google-blue/15 flex items-center justify-center text-google-blue text-sm font-bold shrink-0">
               {client.name.charAt(0)}
             </div>
             <div className="flex-1 min-w-0">
@@ -228,7 +330,7 @@ const ClientsScreen = () => (
                   {client.type}
                 </span>
               </div>
-              <div className="flex items-center gap-3 mt-1 text-[10px] text-muted-foreground">
+              <div className="flex items-center gap-2 mt-1 text-[10px] text-muted-foreground flex-wrap">
                 <span>{client.phone}</span>
                 <span>·</span>
                 <span>{client.orders} orders</span>
@@ -238,12 +340,11 @@ const ClientsScreen = () => (
             </div>
             <div className="text-right shrink-0">
               <p className="text-[10px] text-muted-foreground">Balance</p>
-              <p className={`text-xs font-bold ${parseFloat(client.balance.replace(/[₱,]/g, '')) > 0 ? "text-google-red" : "text-google-green"}`}>
+              <p className={`text-xs font-bold ${client.credit > 0 ? "text-google-red" : "text-google-green"}`}>
                 {client.balance}
               </p>
             </div>
           </div>
-          {/* Actions */}
           <div className="flex gap-1 mt-2 pt-2 border-t border-border">
             {[
               { icon: <Eye className="w-3 h-3" />, label: "View" },
@@ -262,20 +363,20 @@ const ClientsScreen = () => (
   </div>
 );
 
+/* ──────────────────────── BILLS — TRUE REPLICA ──────────────────────── */
+
 const BillsScreen = () => (
   <div className="space-y-3">
-    {/* Filter Tabs */}
     <div className="flex gap-1">
       {["All", "Unpaid", "Partial", "Paid", "Overdue"].map((tab, i) => (
-        <button key={tab} className={`px-2.5 py-1 rounded-full text-[10px] font-medium ${i === 0 ? "bg-google-blue text-white" : "bg-secondary text-muted-foreground"}`}>
+        <button key={tab} className={`px-2.5 py-1 rounded-full text-[10px] font-medium transition-colors ${i === 0 ? "bg-google-blue text-white shadow-sm" : "bg-secondary text-muted-foreground hover:bg-secondary/80"}`}>
           {tab}
         </button>
       ))}
     </div>
 
-    {/* Bills Table */}
-    <div className="border border-border rounded-lg overflow-hidden">
-      <div className="grid grid-cols-12 bg-secondary/60 px-3 py-1.5 text-[9px] font-semibold text-muted-foreground uppercase tracking-wider border-b border-border">
+    <div className="border border-border rounded-xl overflow-hidden">
+      <div className="grid grid-cols-12 bg-secondary/60 px-3 py-2 text-[9px] font-semibold text-muted-foreground uppercase tracking-wider border-b border-border">
         <span className="col-span-3">Bill Ref</span>
         <span className="col-span-3">Client</span>
         <span className="col-span-2">Amount</span>
@@ -283,13 +384,13 @@ const BillsScreen = () => (
         <span className="col-span-2">Status</span>
       </div>
       {[
-        { ref: "BILL-0891", client: "Maria Santos", amount: "₱850", paid: "₱850", status: "Paid", color: "text-google-green" },
-        { ref: "BILL-0890", client: "Juan Cruz", amount: "₱1,200", paid: "₱600", status: "Partial", color: "text-google-yellow" },
-        { ref: "BILL-0889", client: "Golden Hotel", amount: "₱8,500", paid: "₱0", status: "Unpaid", color: "text-google-red" },
-        { ref: "BILL-0888", client: "Ana Reyes", amount: "₱350", paid: "₱350", status: "Paid", color: "text-google-green" },
-        { ref: "BILL-0887", client: "Pedro Lim", amount: "₱2,100", paid: "₱0", status: "Overdue", color: "text-google-red" },
+        { ref: "BILL-0891", client: "Maria Santos", amount: "AED 850", paid: "AED 850", status: "Paid", color: "text-google-green" },
+        { ref: "BILL-0890", client: "Juan Cruz", amount: "AED 1,200", paid: "AED 600", status: "Partial", color: "text-google-yellow" },
+        { ref: "BILL-0889", client: "Golden Hotel", amount: "AED 8,500", paid: "AED 0", status: "Unpaid", color: "text-google-red" },
+        { ref: "BILL-0888", client: "Ana Reyes", amount: "AED 350", paid: "AED 350", status: "Paid", color: "text-google-green" },
+        { ref: "BILL-0887", client: "Pedro Lim", amount: "AED 2,100", paid: "AED 0", status: "Overdue", color: "text-google-red" },
       ].map((bill, i) => (
-        <div key={i} className="grid grid-cols-12 px-3 py-2 items-center border-b border-border last:border-0 hover:bg-secondary/20 transition-colors text-[10px]">
+        <div key={i} className="grid grid-cols-12 px-3 py-2.5 items-center border-b border-border last:border-0 hover:bg-secondary/20 transition-colors text-[10px]">
           <span className="col-span-3 font-mono font-bold text-foreground">{bill.ref}</span>
           <span className="col-span-3 text-foreground">{bill.client}</span>
           <span className="col-span-2 font-semibold text-foreground">{bill.amount}</span>
@@ -301,25 +402,25 @@ const BillsScreen = () => (
   </div>
 );
 
+/* ──────────────────────── DELIVERY — TRUE REPLICA ──────────────────────── */
+
 const DeliveryScreen = () => (
   <div className="space-y-3">
-    {/* Status Summary */}
     <div className="grid grid-cols-3 gap-2">
       {[
         { label: "Pending Pickup", count: 5, color: "text-google-yellow", bg: "bg-google-yellow/10" },
         { label: "In Transit", count: 3, color: "text-google-blue", bg: "bg-google-blue/10" },
         { label: "Delivered Today", count: 12, color: "text-google-green", bg: "bg-google-green/10" },
       ].map((s, i) => (
-        <div key={i} className={`${s.bg} border border-border rounded-lg p-2 text-center`}>
-          <p className={`text-lg font-bold ${s.color}`}>{s.count}</p>
-          <p className="text-[9px] text-muted-foreground">{s.label}</p>
+        <div key={i} className={`${s.bg} border border-border rounded-xl p-3 text-center`}>
+          <p className={`text-xl font-bold ${s.color}`}>{s.count}</p>
+          <p className="text-[9px] text-muted-foreground font-medium">{s.label}</p>
         </div>
       ))}
     </div>
 
-    {/* Delivery Queue */}
-    <div className="border border-border rounded-lg overflow-hidden">
-      <div className="bg-secondary/50 px-3 py-2 border-b border-border">
+    <div className="border border-border rounded-xl overflow-hidden">
+      <div className="bg-secondary/50 px-4 py-2.5 border-b border-border">
         <h4 className="text-xs font-semibold text-foreground">Delivery Queue</h4>
       </div>
       {[
@@ -327,18 +428,18 @@ const DeliveryScreen = () => (
         { order: "ORD-1243", client: "Ana Reyes", address: "Al Ruwais, Villa 12", time: "3:00 PM", driver: "Unassigned", status: "Pending", color: "bg-google-yellow/20 text-google-yellow" },
         { order: "ORD-1240", client: "Pedro Lim", address: "Mirfa, Apt 3B", time: "4:15 PM", driver: "Unassigned", status: "Pending", color: "bg-google-yellow/20 text-google-yellow" },
       ].map((d, i) => (
-        <div key={i} className="px-3 py-2.5 border-b border-border last:border-0 hover:bg-secondary/20 transition-colors">
-          <div className="flex items-center justify-between mb-1">
+        <div key={i} className="px-4 py-3 border-b border-border last:border-0 hover:bg-secondary/20 transition-colors">
+          <div className="flex items-center justify-between mb-1.5">
             <div className="flex items-center gap-2">
               <span className="text-[10px] font-mono font-bold text-foreground">{d.order}</span>
-              <span className="text-[10px] text-foreground">{d.client}</span>
+              <span className="text-[10px] text-foreground font-medium">{d.client}</span>
             </div>
             <span className={`text-[9px] px-2 py-0.5 rounded-full font-medium ${d.color}`}>{d.status}</span>
           </div>
           <div className="flex items-center gap-3 text-[9px] text-muted-foreground">
             <span>📍 {d.address}</span>
             <span>🕐 {d.time}</span>
-            <span>🚗 {d.driver}</span>
+            <span className={d.driver === "Unassigned" ? "text-google-red" : ""}>🚗 {d.driver}</span>
           </div>
         </div>
       ))}
@@ -346,122 +447,71 @@ const DeliveryScreen = () => (
   </div>
 );
 
-const ProductsScreen = () => (
-  <div className="space-y-3">
-    {/* Search + Sort + Add */}
-    <div className="flex items-center gap-2">
-      <div className="flex-1 bg-secondary/50 border border-border rounded-lg px-3 py-1.5 flex items-center gap-2">
-        <Search className="w-3.5 h-3.5 text-muted-foreground" />
-        <span className="text-[10px] text-muted-foreground">Search products...</span>
-      </div>
-      <Button variant="outline" size="sm" className="h-7 text-[10px] gap-1 rounded-lg">
-        <ArrowUpDown className="w-3 h-3" /> Sort
-      </Button>
-      <Button variant="default" size="sm" className="h-7 text-[10px] gap-1 rounded-lg">
-        <Plus className="w-3 h-3" /> Add Product
-      </Button>
-    </div>
-
-    <div className="text-[10px] text-muted-foreground">
-      Monitor your stock levels. · Total Items: <span className="text-foreground font-semibold">24</span>
-    </div>
-
-    {/* Product Cards Grid - true replica */}
-    <div className="grid grid-cols-2 gap-2">
-      {[
-        { name: "T-Shirt", price: "₱65", category: "Laundry", stock: 150, icon: <Shirt className="w-5 h-5" /> },
-        { name: "Blanket (Large)", price: "₱150", category: "Bedding", stock: 45, icon: <Package className="w-5 h-5" /> },
-        { name: "Suit (Dry Clean)", price: "₱350", category: "Dry Clean", stock: 20, icon: <Shirt className="w-5 h-5" /> },
-        { name: "Curtain / sqm", price: "₱85", category: "Specialty", stock: 0, icon: <Package className="w-5 h-5" /> },
-        { name: "Bed Sheet", price: "₱120", category: "Bedding", stock: 65, icon: <Package className="w-5 h-5" /> },
-        { name: "Uniform Set", price: "₱95", category: "Laundry", stock: 30, icon: <Shirt className="w-5 h-5" /> },
-      ].map((p, i) => (
-        <div key={i} className="border border-border rounded-lg p-3 hover:border-google-blue/40 transition-colors group">
-          <div className="flex items-start justify-between mb-2">
-            <div className="text-google-blue">{p.icon}</div>
-            <span className="text-[8px] bg-secondary text-muted-foreground px-1.5 py-0.5 rounded">{p.category}</span>
-          </div>
-          <p className="text-xs font-semibold text-foreground">{p.name}</p>
-          <p className="text-sm font-bold text-google-green mt-0.5">{p.price}</p>
-          <div className="flex items-center justify-between mt-2 pt-2 border-t border-border">
-            <span className={`text-[9px] ${p.stock === 0 ? "text-google-red" : "text-muted-foreground"}`}>
-              Stock: {p.stock === 0 ? "Out of stock" : p.stock}
-            </span>
-            <div className="flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
-              <Edit className="w-3 h-3 text-muted-foreground hover:text-google-blue cursor-pointer" />
-              <Trash2 className="w-3 h-3 text-muted-foreground hover:text-google-red cursor-pointer" />
-            </div>
-          </div>
-        </div>
-      ))}
-    </div>
-  </div>
-);
+/* ──────────────────────── SALES — TRUE REPLICA ──────────────────────── */
 
 const SalesScreen = () => (
   <div className="space-y-3">
-    {/* Daily Summary Cards */}
     <div className="grid grid-cols-3 gap-2">
-      <div className="bg-google-green/10 border border-border rounded-lg p-3 text-center">
+      <div className="bg-google-green/10 border border-google-green/20 rounded-xl p-3 text-center">
         <p className="text-[9px] text-muted-foreground">Today's Revenue</p>
-        <p className="text-sm font-bold text-google-green">₱12,450</p>
-        <p className="text-[9px] text-google-green">+12% vs yesterday</p>
+        <p className="text-sm font-bold text-google-green">AED 12,450</p>
+        <p className="text-[9px] text-google-green flex items-center justify-center gap-0.5"><TrendingUp className="w-3 h-3" /> +12%</p>
       </div>
-      <div className="bg-google-blue/10 border border-border rounded-lg p-3 text-center">
+      <div className="bg-google-blue/10 border border-google-blue/20 rounded-xl p-3 text-center">
         <p className="text-[9px] text-muted-foreground">Orders Processed</p>
         <p className="text-sm font-bold text-google-blue">34</p>
         <p className="text-[9px] text-google-blue">+5 from yesterday</p>
       </div>
-      <div className="bg-google-yellow/10 border border-border rounded-lg p-3 text-center">
+      <div className="bg-google-yellow/10 border border-google-yellow/20 rounded-xl p-3 text-center">
         <p className="text-[9px] text-muted-foreground">Outstanding</p>
-        <p className="text-sm font-bold text-google-yellow">₱15,050</p>
+        <p className="text-sm font-bold text-google-yellow">AED 15,050</p>
         <p className="text-[9px] text-google-red">8 unpaid bills</p>
       </div>
     </div>
 
     {/* Weekly Revenue Chart */}
-    <div className="border border-border rounded-lg p-3 space-y-2">
+    <div className="border border-border rounded-xl p-4 space-y-2">
       <h4 className="text-xs font-semibold text-foreground">Weekly Revenue</h4>
-      <div className="flex items-end gap-1 h-24">
+      <div className="flex items-end gap-1.5 h-28">
         {[
-          { day: "Mon", val: 40, amount: "₱8.2k" },
-          { day: "Tue", val: 65, amount: "₱13.1k" },
-          { day: "Wed", val: 55, amount: "₱11.0k" },
-          { day: "Thu", val: 80, amount: "₱16.2k" },
-          { day: "Fri", val: 70, amount: "₱14.1k" },
-          { day: "Sat", val: 95, amount: "₱19.3k" },
-          { day: "Sun", val: 45, amount: "₱9.0k" },
+          { day: "Mon", val: 40, amount: "AED 8.2k" },
+          { day: "Tue", val: 65, amount: "AED 13.1k" },
+          { day: "Wed", val: 55, amount: "AED 11.0k" },
+          { day: "Thu", val: 80, amount: "AED 16.2k" },
+          { day: "Fri", val: 70, amount: "AED 14.1k" },
+          { day: "Sat", val: 95, amount: "AED 19.3k" },
+          { day: "Sun", val: 45, amount: "AED 9.0k" },
         ].map((d, i) => (
           <div key={i} className="flex-1 flex flex-col items-center gap-1 group relative">
-            <div className="absolute -top-4 opacity-0 group-hover:opacity-100 text-[7px] text-google-blue font-bold bg-secondary px-1 rounded transition-opacity">
+            <div className="absolute -top-5 opacity-0 group-hover:opacity-100 text-[7px] text-google-blue font-bold bg-card border border-border px-1.5 py-0.5 rounded shadow-sm transition-opacity z-10 whitespace-nowrap">
               {d.amount}
             </div>
             <div
-              className="w-full bg-google-blue/70 hover:bg-google-blue rounded-t transition-colors cursor-pointer"
+              className="w-full bg-google-blue/60 hover:bg-google-blue rounded-t-sm transition-colors cursor-pointer"
               style={{ height: `${d.val}%` }}
             />
-            <span className="text-[8px] text-muted-foreground">{d.day}</span>
+            <span className="text-[8px] text-muted-foreground font-medium">{d.day}</span>
           </div>
         ))}
       </div>
     </div>
 
     {/* Top Services */}
-    <div className="border border-border rounded-lg p-3 space-y-2">
+    <div className="border border-border rounded-xl p-4 space-y-2">
       <h4 className="text-xs font-semibold text-foreground">Top Services</h4>
       {[
-        { name: "Wash & Iron", pct: 45, revenue: "₱38,200" },
-        { name: "Dry Clean", pct: 25, revenue: "₱21,500" },
-        { name: "Iron Only", pct: 18, revenue: "₱15,100" },
-        { name: "Urgent Wash", pct: 12, revenue: "₱10,800" },
+        { name: "Wash & Iron", pct: 45, revenue: "AED 38,200" },
+        { name: "Dry Clean", pct: 25, revenue: "AED 21,500" },
+        { name: "Iron Only", pct: 18, revenue: "AED 15,100" },
+        { name: "Urgent Wash", pct: 12, revenue: "AED 10,800" },
       ].map((s, i) => (
-        <div key={i} className="space-y-0.5">
+        <div key={i} className="space-y-1">
           <div className="flex justify-between text-[10px]">
-            <span className="text-foreground">{s.name}</span>
+            <span className="text-foreground font-medium">{s.name}</span>
             <span className="text-muted-foreground">{s.revenue} · {s.pct}%</span>
           </div>
-          <div className="w-full bg-secondary rounded-full h-1.5">
-            <div className="bg-google-blue rounded-full h-1.5 transition-all" style={{ width: `${s.pct}%` }} />
+          <div className="w-full bg-secondary rounded-full h-2">
+            <div className="bg-google-blue rounded-full h-2 transition-all" style={{ width: `${s.pct}%` }} />
           </div>
         </div>
       ))}
@@ -469,50 +519,52 @@ const SalesScreen = () => (
   </div>
 );
 
-const screens: Record<Screen, { component: React.ReactNode; title: string }> = {
-  dashboard: { component: <DashboardScreen />, title: "Dashboard" },
-  orders: { component: <OrdersScreen />, title: "Order Tracking" },
-  clients: { component: <ClientsScreen />, title: "Clients" },
-  bills: { component: <BillsScreen />, title: "Bills & Payments" },
-  delivery: { component: <DeliveryScreen />, title: "Delivery Dashboard" },
-  products: { component: <ProductsScreen />, title: "Inventory" },
-  sales: { component: <SalesScreen />, title: "Sales Reports" },
+const screens: Record<Exclude<Screen, "login">, { component: React.ReactNode; title: string; subtitle: string }> = {
+  dashboard: { component: <DashboardScreen />, title: "Dashboard", subtitle: "Overview of today's operations" },
+  inventory: { component: <InventoryScreen />, title: "Inventory", subtitle: "Monitor your stock levels" },
+  orders: { component: <OrdersScreen />, title: "Order Tracking", subtitle: "Track and manage all orders" },
+  clients: { component: <ClientsScreen />, title: "Clients", subtitle: "Manage customer accounts" },
+  bills: { component: <BillsScreen />, title: "Bills & Payments", subtitle: "Invoices and payment tracking" },
+  delivery: { component: <DeliveryScreen />, title: "Delivery Dashboard", subtitle: "Dispatch and delivery management" },
+  products: { component: <InventoryScreen />, title: "New Order", subtitle: "Create a new order from price list" },
+  sales: { component: <SalesScreen />, title: "Sales Reports", subtitle: "Revenue analytics and reports" },
 };
 
-/* ──────────────────────── SIDEBAR - TRUE REPLICA ──────────────────────── */
+/* ──────────────────────── SIDEBAR — EXACT REPLICA from Sidebar.tsx ──────────────────────── */
 
-const sidebarGroups = [
+const sidebarGroups: { label: string; items: { key: Screen; label: string; icon: React.ReactNode; roles: string[] }[] }[] = [
   {
     label: "Operations",
     items: [
-      { key: "dashboard" as Screen, label: "Dashboard", icon: <LayoutDashboard className="w-3.5 h-3.5" /> },
-      { key: "delivery" as Screen, label: "Delivery Dashboard", icon: <Truck className="w-3.5 h-3.5" /> },
-      { key: "products" as Screen, label: "New Order", icon: <List className="w-3.5 h-3.5" /> },
-      { key: "orders" as Screen, label: "Order Tracking", icon: <ClipboardList className="w-3.5 h-3.5" /> },
+      { key: "dashboard", label: "Dashboard", icon: <LayoutDashboard className="w-4 h-4" />, roles: ["admin", "counter", "reception", "section", "staff"] },
+      { key: "delivery", label: "Delivery Dashboard", icon: <Truck className="w-4 h-4" />, roles: ["admin", "driver"] },
+      { key: "products", label: "New Order", icon: <List className="w-4 h-4" />, roles: ["admin", "counter", "reception", "driver"] },
+      { key: "orders", label: "Order Tracking", icon: <ClipboardList className="w-4 h-4" />, roles: ["admin", "counter", "reception", "section", "staff", "driver"] },
     ],
   },
   {
     label: "Business",
     items: [
-      { key: "products" as Screen, label: "Inventory", icon: <Package className="w-3.5 h-3.5" /> },
-      { key: "clients" as Screen, label: "Clients", icon: <Users className="w-3.5 h-3.5" /> },
-      { key: "bills" as Screen, label: "Bills", icon: <FileText className="w-3.5 h-3.5" /> },
-      { key: "bills" as Screen, label: "Due Customers", icon: <CircleDollarSign className="w-3.5 h-3.5" /> },
+      { key: "inventory", label: "Inventory", icon: <Package className="w-4 h-4" />, roles: ["admin", "counter", "reception"] },
+      { key: "clients", label: "Clients", icon: <Users className="w-4 h-4" />, roles: ["admin", "counter", "reception"] },
+      { key: "bills", label: "Bills", icon: <FileText className="w-4 h-4" />, roles: ["admin", "counter", "reception", "driver"] },
+      { key: "bills", label: "Due Customers", icon: <CircleDollarSign className="w-4 h-4" />, roles: ["admin", "counter", "reception"] },
     ],
   },
   {
     label: "Reports",
     items: [
-      { key: "sales" as Screen, label: "Sales Reports", icon: <BarChart3 className="w-3.5 h-3.5" /> },
-      { key: "orders" as Screen, label: "Incidents", icon: <AlertTriangle className="w-3.5 h-3.5" /> },
-      { key: "orders" as Screen, label: "Public Tracking", icon: <Search className="w-3.5 h-3.5" /> },
+      { key: "sales", label: "Sales Reports", icon: <BarChart3 className="w-4 h-4" />, roles: ["admin"] },
+      { key: "orders", label: "Incidents", icon: <AlertTriangle className="w-4 h-4" />, roles: ["admin", "counter", "reception", "section", "staff"] },
+      { key: "orders", label: "Public Tracking", icon: <Search className="w-4 h-4" />, roles: ["admin", "counter", "reception", "section", "staff"] },
+      { key: "dashboard", label: "Contact", icon: <Phone className="w-4 h-4" />, roles: ["admin", "counter", "reception", "section", "staff", "driver"] },
     ],
   },
   {
     label: "Settings",
     items: [
-      { key: "dashboard" as Screen, label: "Management", icon: <HardHat className="w-3.5 h-3.5" /> },
-      { key: "dashboard" as Screen, label: "Admin Settings", icon: <Settings className="w-3.5 h-3.5" /> },
+      { key: "dashboard", label: "Management", icon: <HardHat className="w-4 h-4" />, roles: ["admin"] },
+      { key: "dashboard", label: "Admin Settings", icon: <Settings className="w-4 h-4" />, roles: ["admin"] },
     ],
   },
 ];
@@ -520,10 +572,16 @@ const sidebarGroups = [
 /* ──────────────────────── MAIN COMPONENT ──────────────────────── */
 
 const LWLAppPreview = () => {
-  const [activeScreen, setActiveScreen] = useState<Screen>("dashboard");
+  const [activeScreen, setActiveScreen] = useState<Screen>("login");
   const [showPreview, setShowPreview] = useState(false);
   const [viewMode, setViewMode] = useState<"desktop" | "mobile">("desktop");
   const [isFullscreen, setIsFullscreen] = useState(false);
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
+
+  const handleLogin = () => setActiveScreen("dashboard");
+  const handleLogout = () => setActiveScreen("login");
+
+  const currentScreen = activeScreen === "login" ? null : screens[activeScreen];
 
   return (
     <div className="space-y-6">
@@ -531,8 +589,8 @@ const LWLAppPreview = () => {
       <Card className="border-border p-6 shadow-google-lg">
         <div className="space-y-4">
           <div className="flex items-start gap-4">
-            <div className="w-12 h-12 bg-google-red/20 rounded-2xl flex items-center justify-center flex-shrink-0 text-google-red">
-              <Monitor className="w-6 h-6" />
+            <div className="w-12 h-12 bg-google-blue/15 rounded-2xl flex items-center justify-center flex-shrink-0">
+              <Droplets className="w-6 h-6 text-google-blue" />
             </div>
             <div className="flex-1 min-w-0">
               <h3 className="text-xl font-bold text-foreground">
@@ -559,7 +617,7 @@ const LWLAppPreview = () => {
               { title: "Delivery System", desc: "Driver assignment, delivery scheduling, route management with address-based dispatch and real-time status updates" },
               { title: "Sales Analytics", desc: "Daily/weekly sales reports, revenue trends, service performance analytics, worker productivity tracking, and due customer reports" },
             ].map((feat, i) => (
-              <div key={i} className="bg-secondary/30 rounded-lg p-3 space-y-1">
+              <div key={i} className="bg-secondary/30 rounded-xl p-3 space-y-1 border border-border/50">
                 <h4 className="text-sm font-semibold text-foreground flex items-center gap-2">
                   <ChevronRight className="w-3 h-3 text-google-blue" />
                   {feat.title}
@@ -606,7 +664,7 @@ const LWLAppPreview = () => {
               variant="outline"
               size="sm"
               className="gap-2 rounded-full"
-              onClick={() => { setShowPreview(!showPreview); if (!showPreview) setIsFullscreen(true); }}
+              onClick={() => { setShowPreview(!showPreview); if (!showPreview) { setIsFullscreen(true); setActiveScreen("login"); } }}
             >
               <Monitor className="w-4 h-4" />
               {showPreview ? "Hide Preview" : "View Live App Preview"}
@@ -632,23 +690,22 @@ const LWLAppPreview = () => {
 
       {/* ──────────── INTERACTIVE TRUE REPLICA PREVIEW ──────────── */}
       {showPreview && (
-        <div className={`${isFullscreen ? "fixed inset-0 z-50 bg-background/95 backdrop-blur-sm flex items-center justify-center p-4" : ""} animate-fade-in`}>
+        <div className={`${isFullscreen ? "fixed inset-0 z-50 bg-background/95 backdrop-blur-sm flex items-center justify-center p-2 md:p-4" : ""} animate-fade-in`}>
           <div className={`${isFullscreen ? "w-full h-full max-w-[1400px] flex flex-col" : ""} ${viewMode === "mobile" && !isFullscreen ? "max-w-[375px] mx-auto" : ""}`}>
             <Card className={`border-border shadow-google-xl overflow-hidden flex flex-col ${isFullscreen ? "flex-1 h-full" : ""}`}>
-              {/* Browser Chrome */}
-              <div className="bg-secondary/80 border-b border-border px-4 py-2 flex items-center justify-between shrink-0">
+              {/* Browser Chrome Bar */}
+              <div className="bg-secondary/80 border-b border-border px-3 md:px-4 py-2 flex items-center justify-between shrink-0">
                 <div className="flex items-center gap-2">
                   <div className="flex gap-1.5">
                     <button onClick={() => { setShowPreview(false); setIsFullscreen(false); }} className="w-3 h-3 rounded-full bg-google-red hover:brightness-75 transition" />
                     <div className="w-3 h-3 rounded-full bg-google-yellow" />
                     <div className="w-3 h-3 rounded-full bg-google-green" />
                   </div>
-                  <div className="ml-3 bg-background/50 border border-border rounded-md px-3 py-0.5 text-[10px] text-muted-foreground flex items-center gap-1">
-                    🔒 lwl-laundry.app/{activeScreen === "dashboard" ? "dashboard" : activeScreen}
+                  <div className="ml-2 md:ml-3 bg-background/50 border border-border rounded-md px-2 md:px-3 py-0.5 text-[10px] text-muted-foreground flex items-center gap-1">
+                    🔒 lwl-laundry.app/{activeScreen === "login" ? "login" : activeScreen}
                   </div>
                 </div>
-                <div className="flex items-center gap-1.5">
-                  {/* View Mode Toggle */}
+                <div className="flex items-center gap-1">
                   <button
                     onClick={() => setViewMode("desktop")}
                     className={`p-1 rounded transition-colors ${viewMode === "desktop" ? "bg-google-blue/20 text-google-blue" : "text-muted-foreground hover:text-foreground"}`}
@@ -663,8 +720,7 @@ const LWLAppPreview = () => {
                   >
                     <Smartphone className="w-3.5 h-3.5" />
                   </button>
-                  <div className="w-px h-4 bg-border mx-1" />
-                  {/* Fullscreen Toggle */}
+                  <div className="w-px h-4 bg-border mx-0.5" />
                   <button
                     onClick={() => setIsFullscreen(!isFullscreen)}
                     className="p-1 rounded text-muted-foreground hover:text-foreground transition-colors"
@@ -683,56 +739,62 @@ const LWLAppPreview = () => {
               </div>
 
               {/* App Content */}
-              <div className={`flex flex-1 overflow-hidden ${!isFullscreen ? "min-h-[500px] md:min-h-[550px]" : ""}`}>
-                {viewMode === "mobile" ? (
+              <div className={`flex flex-1 overflow-hidden ${!isFullscreen ? "min-h-[500px] md:min-h-[600px]" : ""}`}>
+                {activeScreen === "login" ? (
+                  <div className={`w-full ${viewMode === "mobile" && isFullscreen ? "max-w-[375px] mx-auto border-x border-border" : ""}`}>
+                    <LoginScreen onLogin={handleLogin} />
+                  </div>
+                ) : viewMode === "mobile" ? (
                   /* ───── MOBILE VIEW ───── */
                   <div className={`flex flex-col w-full ${isFullscreen ? "max-w-[375px] mx-auto border-x border-border" : ""}`}>
                     {/* Mobile Top Bar */}
-                    <div className="bg-card border-b border-border px-3 py-2 flex items-center justify-between shrink-0">
+                    <div className="bg-card border-b border-border px-3 py-2.5 flex items-center justify-between shrink-0">
                       <div className="flex items-center gap-2">
-                        <Menu className="w-4 h-4 text-muted-foreground" />
-                        <span className="text-xs font-bold text-google-blue">LWL</span>
+                        <div className="w-7 h-7 rounded-lg bg-google-blue/10 flex items-center justify-center">
+                          <Droplets className="w-4 h-4 text-google-blue" />
+                        </div>
+                        <div>
+                          <span className="text-xs font-bold text-google-blue block leading-none">LWL</span>
+                          <span className="text-[8px] text-muted-foreground">Laundry System</span>
+                        </div>
                       </div>
                       <div className="flex items-center gap-2">
-                        <Search className="w-3.5 h-3.5 text-muted-foreground" />
-                        <Bell className="w-3.5 h-3.5 text-muted-foreground" />
-                        <div className="w-6 h-6 rounded-full bg-google-blue/20 flex items-center justify-center">
-                          <Shield className="w-3 h-3 text-google-blue" />
+                        <Search className="w-4 h-4 text-muted-foreground" />
+                        <div className="relative">
+                          <Bell className="w-4 h-4 text-muted-foreground" />
+                          <div className="absolute -top-1 -right-1 w-2 h-2 bg-google-red rounded-full" />
+                        </div>
+                        <div className="w-7 h-7 rounded-full bg-google-blue/20 flex items-center justify-center">
+                          <Shield className="w-3.5 h-3.5 text-google-blue" />
                         </div>
                       </div>
                     </div>
 
                     {/* Mobile Content */}
                     <div className="flex-1 overflow-y-auto p-3 bg-background">
-                      <h3 className="text-sm font-bold text-foreground mb-1">{screens[activeScreen].title}</h3>
-                      <p className="text-[10px] text-muted-foreground mb-3">
-                        {activeScreen === "dashboard" && "Overview of today's operations"}
-                        {activeScreen === "orders" && "Track and manage all orders"}
-                        {activeScreen === "clients" && "Manage customer accounts"}
-                        {activeScreen === "bills" && "Invoices and payment tracking"}
-                        {activeScreen === "delivery" && "Dispatch and delivery management"}
-                        {activeScreen === "products" && "Product catalog and pricing"}
-                        {activeScreen === "sales" && "Revenue analytics and reports"}
-                      </p>
-                      {screens[activeScreen].component}
+                      <div className="mb-3">
+                        <h3 className="text-sm font-bold text-foreground">{currentScreen?.title}</h3>
+                        <p className="text-[10px] text-muted-foreground">{currentScreen?.subtitle}</p>
+                      </div>
+                      {currentScreen?.component}
                     </div>
 
-                    {/* Mobile Bottom Navigation */}
-                    <div className="bg-card border-t border-border px-2 py-1.5 flex items-center justify-around shrink-0">
+                    {/* Mobile Bottom Navigation — true replica */}
+                    <div className="bg-card border-t border-border px-1 py-1.5 flex items-center justify-around shrink-0">
                       {[
-                        { key: "dashboard" as Screen, icon: <LayoutDashboard className="w-4 h-4" />, label: "Home" },
-                        { key: "orders" as Screen, icon: <ClipboardList className="w-4 h-4" />, label: "Orders" },
-                        { key: "clients" as Screen, icon: <Users className="w-4 h-4" />, label: "Clients" },
-                        { key: "bills" as Screen, icon: <FileText className="w-4 h-4" />, label: "Bills" },
-                        { key: "sales" as Screen, icon: <BarChart3 className="w-4 h-4" />, label: "More" },
+                        { key: "dashboard" as Screen, icon: <Home className="w-5 h-5" />, label: "Home" },
+                        { key: "orders" as Screen, icon: <ClipboardList className="w-5 h-5" />, label: "Orders" },
+                        { key: "clients" as Screen, icon: <Users className="w-5 h-5" />, label: "Clients" },
+                        { key: "bills" as Screen, icon: <FileText className="w-5 h-5" />, label: "Bills" },
+                        { key: "sales" as Screen, icon: <MoreHorizontal className="w-5 h-5" />, label: "More" },
                       ].map((tab) => (
                         <button
-                          key={tab.key}
+                          key={tab.label}
                           onClick={() => setActiveScreen(tab.key)}
-                          className={`flex flex-col items-center gap-0.5 px-2 py-1 rounded-lg transition-colors ${
+                          className={`flex flex-col items-center gap-0.5 px-3 py-1 rounded-xl transition-all ${
                             activeScreen === tab.key
-                              ? "text-google-blue"
-                              : "text-muted-foreground"
+                              ? "text-google-blue bg-google-blue/10"
+                              : "text-muted-foreground active:bg-secondary"
                           }`}
                         >
                           {tab.icon}
@@ -744,86 +806,99 @@ const LWLAppPreview = () => {
                 ) : (
                   /* ───── DESKTOP VIEW ───── */
                   <>
-                    {/* Sidebar */}
-                    <div className="w-12 md:w-48 bg-card border-r border-border shrink-0 flex flex-col">
-                      <div className="p-2 md:p-3 border-b border-border">
-                        <div className="hidden md:block">
-                          <h3 className="text-sm font-bold text-google-blue">Liquid Washes</h3>
-                          <p className="text-[9px] text-muted-foreground">Laundry Management</p>
-                        </div>
+                    {/* Sidebar — exact replica from Sidebar.tsx */}
+                    <div className={`${sidebarCollapsed ? "w-14" : "w-14 md:w-56"} bg-card border-r border-border shrink-0 flex flex-col transition-all duration-200`}>
+                      {/* Logo + Brand */}
+                      <div className="p-2.5 md:p-3 border-b border-border">
+                        {!sidebarCollapsed ? (
+                          <div className="hidden md:flex items-center gap-2">
+                            <div className="w-8 h-8 rounded-lg bg-google-blue/10 flex items-center justify-center shrink-0">
+                              <Droplets className="w-4 h-4 text-google-blue" />
+                            </div>
+                            <div>
+                              <h3 className="text-xs font-bold text-google-blue leading-none">Liquid Washes</h3>
+                              <p className="text-[8px] text-muted-foreground">Laundry Management</p>
+                            </div>
+                          </div>
+                        ) : null}
                         <div className="md:hidden flex justify-center">
-                          <span className="text-sm font-bold text-google-blue">LW</span>
+                          <Droplets className="w-5 h-5 text-google-blue" />
                         </div>
                       </div>
 
-                      <div className="hidden md:flex items-center gap-2 p-3 border-b border-border">
-                        <div className="w-7 h-7 rounded-full bg-google-blue/20 flex items-center justify-center">
-                          <Shield className="w-3.5 h-3.5 text-google-blue" />
+                      {/* User Profile */}
+                      <div className={`hidden ${sidebarCollapsed ? "" : "md:flex"} items-center gap-2 p-3 border-b border-border`}>
+                        <div className="w-8 h-8 rounded-full bg-google-blue/15 flex items-center justify-center shrink-0">
+                          <Shield className="w-4 h-4 text-google-blue" />
                         </div>
-                        <div>
-                          <p className="text-[10px] font-semibold text-foreground">Admin User</p>
+                        <div className="min-w-0">
+                          <p className="text-[10px] font-semibold text-foreground truncate">Admin User</p>
                           <p className="text-[9px] text-muted-foreground">admin</p>
                         </div>
                       </div>
 
+                      {/* Navigation Groups */}
                       <div className="flex-1 overflow-y-auto py-2">
                         {sidebarGroups.map((group, gi) => (
-                          <div key={gi} className="mb-2">
-                            <p className="hidden md:block text-[8px] uppercase tracking-widest text-muted-foreground px-3 py-1 font-semibold">
+                          <div key={gi} className="mb-1">
+                            <p className={`hidden ${sidebarCollapsed ? "" : "md:block"} text-[8px] uppercase tracking-widest text-muted-foreground px-3 py-1.5 font-semibold`}>
                               {group.label}
                             </p>
-                            {group.items.map((item, ii) => (
-                              <button
-                                key={`${gi}-${ii}`}
-                                onClick={() => setActiveScreen(item.key)}
-                                className={`w-full flex items-center gap-2 px-2 md:px-3 py-1.5 text-[10px] transition-colors ${
-                                  activeScreen === item.key && item.label === screens[item.key].title
-                                    ? "bg-google-blue/15 text-google-blue border-r-2 border-google-blue font-semibold"
-                                    : "text-muted-foreground hover:bg-secondary/60 hover:text-foreground"
-                                }`}
-                              >
-                                {item.icon}
-                                <span className="hidden md:inline">{item.label}</span>
-                              </button>
-                            ))}
+                            {group.items.map((item, ii) => {
+                              const isActive = activeScreen === item.key && item.label === (screens[item.key as Exclude<Screen, "login">]?.title || "");
+                              return (
+                                <button
+                                  key={`${gi}-${ii}`}
+                                  onClick={() => setActiveScreen(item.key)}
+                                  className={`w-full flex items-center gap-2.5 px-2 md:px-3 py-2 text-[11px] transition-all ${
+                                    isActive
+                                      ? "bg-google-blue/15 text-google-blue border-r-2 border-google-blue font-semibold"
+                                      : "text-muted-foreground hover:bg-secondary/60 hover:text-foreground"
+                                  }`}
+                                >
+                                  {item.icon}
+                                  <span className={`hidden ${sidebarCollapsed ? "" : "md:inline"} truncate`}>{item.label}</span>
+                                </button>
+                              );
+                            })}
                           </div>
                         ))}
                       </div>
 
-                      <div className="hidden md:block p-3 border-t border-border">
-                        <button className="w-full flex items-center gap-2 text-[10px] text-google-red hover:bg-google-red/10 px-2 py-1.5 rounded transition-colors">
-                          <LogOut className="w-3.5 h-3.5" />
+                      {/* Sidebar Footer */}
+                      <div className={`hidden ${sidebarCollapsed ? "" : "md:block"} p-3 border-t border-border`}>
+                        <button
+                          onClick={handleLogout}
+                          className="w-full flex items-center gap-2 text-[10px] text-google-red hover:bg-google-red/10 px-2 py-1.5 rounded-lg transition-colors"
+                        >
+                          <LogOut className="w-4 h-4" />
                           Logout
                         </button>
-                        <div className="mt-2 text-[8px] text-muted-foreground text-center">
-                          <p>Liquid Washes Laundry</p>
+                        <div className="mt-2.5 text-[8px] text-muted-foreground text-center space-y-0.5">
+                          <p className="font-medium">Liquid Washes Laundry</p>
                           <p>Al Dhanna City, Al Ruwais · Abu Dhabi</p>
                           <p>© 2024</p>
                         </div>
                       </div>
                     </div>
 
-                    {/* Main Content */}
-                    <div className="flex-1 p-3 md:p-4 overflow-y-auto bg-background">
+                    {/* Main Content Area */}
+                    <div className="flex-1 p-3 md:p-5 overflow-y-auto bg-background">
+                      {/* Content Header */}
                       <div className="flex items-center justify-between mb-4 pb-3 border-b border-border">
                         <div>
-                          <h3 className="text-sm font-bold text-foreground">{screens[activeScreen].title}</h3>
-                          <p className="text-[10px] text-muted-foreground">
-                            {activeScreen === "dashboard" && "Overview of today's operations"}
-                            {activeScreen === "orders" && "Track and manage all orders"}
-                            {activeScreen === "clients" && "Manage customer accounts"}
-                            {activeScreen === "bills" && "Invoices and payment tracking"}
-                            {activeScreen === "delivery" && "Dispatch and delivery management"}
-                            {activeScreen === "products" && "Product catalog and pricing"}
-                            {activeScreen === "sales" && "Revenue analytics and reports"}
-                          </p>
+                          <h3 className="text-sm font-bold text-foreground">{currentScreen?.title}</h3>
+                          <p className="text-[10px] text-muted-foreground">{currentScreen?.subtitle}</p>
                         </div>
                         <div className="flex items-center gap-2">
-                          <Bell className="w-4 h-4 text-muted-foreground" />
-                          <Settings className="w-4 h-4 text-muted-foreground" />
+                          <div className="relative">
+                            <Bell className="w-4 h-4 text-muted-foreground cursor-pointer hover:text-foreground transition-colors" />
+                            <div className="absolute -top-1 -right-1 w-2 h-2 bg-google-red rounded-full" />
+                          </div>
+                          <Settings className="w-4 h-4 text-muted-foreground cursor-pointer hover:text-foreground transition-colors" />
                         </div>
                       </div>
-                      {screens[activeScreen].component}
+                      {currentScreen?.component}
                     </div>
                   </>
                 )}
@@ -832,7 +907,7 @@ const LWLAppPreview = () => {
               {/* Status Bar */}
               <div className="bg-secondary/40 border-t border-border px-4 py-1.5 flex items-center justify-between shrink-0">
                 <span className="text-[10px] text-muted-foreground">
-                  ✨ Interactive UI Replica · {viewMode === "mobile" ? "Mobile View" : "Desktop View"}
+                  ✨ Interactive UI Replica · {viewMode === "mobile" ? "📱 Mobile" : "🖥️ Desktop"}
                 </span>
                 <span className="text-[10px] text-muted-foreground">React + TypeScript + Express + PostgreSQL</span>
               </div>
