@@ -4,6 +4,7 @@ import Skills from "@/components/Skills";
 import WorkExperience from "@/components/WorkExperience";
 import Projects from "@/components/Projects";
 import Education from "@/components/Education";
+import CVPreview from "@/components/CVPreview";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 
