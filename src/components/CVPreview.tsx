@@ -2,26 +2,70 @@ import { useState, useRef, useEffect } from "react";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Lock, Unlock, FileText, Upload, Download, Eye, X, Shield } from "lucide-react";
+import { Lock, Unlock, FileText, Upload, Download, Eye, EyeOff, X, Shield } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
 const CV_PASSWORD = "Defragkam01";
 const CV_STORAGE_KEY = "portfolio_cv_pdf";
+const CV_VISIBLE_KEY = "portfolio_cv_visible";
 
 const CVPreview = () => {
   const [isAdmin, setIsAdmin] = useState(false);
   const [showPasswordDialog, setShowPasswordDialog] = useState(false);
   const [password, setPassword] = useState("");
   const [pdfUrl, setPdfUrl] = useState<string | null>(null);
+  const [isVisible, setIsVisible] = useState(true);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const [error, setError] = useState("");
+  const [pdfPages, setPdfPages] = useState<string[]>([]);
   const fileInputRef = useRef<HTMLInputElement>(null);
+  const canvasContainerRef = useRef<HTMLDivElement>(null);
   const { toast } = useToast();
 
   useEffect(() => {
     const stored = localStorage.getItem(CV_STORAGE_KEY);
     if (stored) setPdfUrl(stored);
+    const vis = localStorage.getItem(CV_VISIBLE_KEY);
+    if (vis !== null) setIsVisible(vis === "true");
   }, []);
+
+  useEffect(() => {
+    if (!pdfUrl) { setPdfPages([]); return; }
+    renderPdfToImages(pdfUrl);
+  }, [pdfUrl]);
+
+  const renderPdfToImages = async (url: string) => {
+    try {
+      const pdfjsLib = await import("pdfjs-dist");
+      pdfjsLib.GlobalWorkerOptions.workerSrc = `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjsLib.version}/pdf.worker.min.mjs`;
+      
+      const pdf = await pdfjsLib.getDocument(url).promise;
+      const pages: string[] = [];
+      
+      for (let i = 1; i <= pdf.numPages; i++) {
+        const page = await pdf.getPage(i);
+        const scale = 2;
+        const viewport = page.getViewport({ scale });
+        const canvas = document.createElement("canvas");
+        canvas.width = viewport.width;
+        canvas.height = viewport.height;
+        const ctx = canvas.getContext("2d")!;
+        await page.render({ canvasContext: ctx, viewport }).promise;
+        pages.push(canvas.toDataURL("image/png"));
+      }
+      
+      setPdfPages(pages);
+    } catch {
+      setPdfPages([]);
+    }
+  };
+
+  const toggleVisibility = () => {
+    const newVal = !isVisible;
+    setIsVisible(newVal);
+    localStorage.setItem(CV_VISIBLE_KEY, String(newVal));
+    toast({ title: newVal ? "CV Visible" : "CV Hidden", description: newVal ? "CV is now visible to visitors." : "CV is hidden from visitors." });
+  };
 
   const handleUnlock = () => {
     if (password === CV_PASSWORD) {
@@ -29,7 +73,7 @@ const CVPreview = () => {
       setShowPasswordDialog(false);
       setPassword("");
       setError("");
-      toast({ title: "Admin Access Granted", description: "You can now upload or replace the CV." });
+      toast({ title: "Admin Access Granted", description: "You can now manage the CV." });
     } else {
       setError("Incorrect password");
     }
@@ -60,6 +104,29 @@ const CVPreview = () => {
     link.click();
   };
 
+  // If CV is hidden and not admin, don't render the section at all
+  if (!isVisible && !isAdmin) return null;
+
+  const renderPages = (containerClass?: string) => (
+    <div className={containerClass || "space-y-4"}>
+      {pdfPages.length > 0 ? (
+        pdfPages.map((src, i) => (
+          <img
+            key={i}
+            src={src}
+            alt={`CV page ${i + 1}`}
+            className="w-full rounded-lg border border-border shadow-sm"
+            draggable={false}
+          />
+        ))
+      ) : pdfUrl ? (
+        <div className="flex items-center justify-center py-20 text-muted-foreground">
+          <p>Loading CV...</p>
+        </div>
+      ) : null}
+    </div>
+  );
+
   return (
     <section className="py-12">
       <div className="max-w-4xl mx-auto px-4">
@@ -68,11 +135,12 @@ const CVPreview = () => {
             <FileText className="w-8 h-8 text-google-blue" />
             <h3 className="text-3xl font-bold text-foreground">Curriculum Vitae</h3>
           </div>
-          <p className="text-muted-foreground">View my CV below. Admin access required to manage.</p>
+          <p className="text-muted-foreground">
+            {isAdmin ? "Admin mode — manage your CV below." : "View my CV below."}
+          </p>
         </div>
 
         <Card className="p-6 border-border shadow-google-lg space-y-4">
-          {/* Action bar */}
           <div className="flex items-center justify-between flex-wrap gap-3">
             <div className="flex items-center gap-2">
               {isAdmin ? (
@@ -89,9 +157,15 @@ const CVPreview = () => {
             </div>
             <div className="flex gap-2 flex-wrap">
               {isAdmin && (
-                <Button size="sm" variant="outline" onClick={() => fileInputRef.current?.click()}>
-                  <Upload className="w-4 h-4 mr-1" /> Upload New CV
-                </Button>
+                <>
+                  <Button size="sm" variant={isVisible ? "outline" : "destructive"} onClick={toggleVisibility}>
+                    {isVisible ? <Eye className="w-4 h-4 mr-1" /> : <EyeOff className="w-4 h-4 mr-1" />}
+                    {isVisible ? "Visible" : "Hidden"}
+                  </Button>
+                  <Button size="sm" variant="outline" onClick={() => fileInputRef.current?.click()}>
+                    <Upload className="w-4 h-4 mr-1" /> Upload New CV
+                  </Button>
+                </>
               )}
               {pdfUrl && (
                 <>
@@ -113,19 +187,19 @@ const CVPreview = () => {
                 </Button>
               )}
             </div>
-            <input
-              ref={fileInputRef}
-              type="file"
-              accept="application/pdf"
-              className="hidden"
-              onChange={handleFileUpload}
-            />
+            <input ref={fileInputRef} type="file" accept="application/pdf" className="hidden" onChange={handleFileUpload} />
           </div>
 
-          {/* CV viewer - always visible */}
+          {!isVisible && isAdmin && (
+            <div className="bg-destructive/10 text-destructive text-sm rounded-lg p-3 flex items-center gap-2">
+              <EyeOff className="w-4 h-4" />
+              CV is currently hidden from visitors.
+            </div>
+          )}
+
           {pdfUrl ? (
-            <div className="rounded-lg overflow-hidden border border-border bg-muted" style={{ height: "70vh" }}>
-              <iframe src={pdfUrl} className="w-full h-full" title="CV Preview" />
+            <div ref={canvasContainerRef} className="rounded-lg overflow-y-auto bg-muted p-4" style={{ maxHeight: "70vh" }}>
+              {renderPages()}
             </div>
           ) : (
             <div className="flex flex-col items-center justify-center py-20 text-muted-foreground space-y-4">
@@ -180,7 +254,9 @@ const CVPreview = () => {
                 <X className="w-5 h-5" />
               </Button>
             </div>
-            <iframe src={pdfUrl} className="flex-1 w-full" title="CV Fullscreen" />
+            <div className="flex-1 overflow-y-auto p-4 bg-muted">
+              {renderPages("space-y-4 max-w-4xl mx-auto")}
+            </div>
           </div>
         )}
       </div>
