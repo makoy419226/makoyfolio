@@ -9,7 +9,8 @@ const CV_PASSWORD = "Defragkam01";
 const CV_STORAGE_KEY = "portfolio_cv_pdf";
 
 const CVPreview = () => {
-  const [isUnlocked, setIsUnlocked] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false);
+  const [showPasswordDialog, setShowPasswordDialog] = useState(false);
   const [password, setPassword] = useState("");
   const [pdfUrl, setPdfUrl] = useState<string | null>(null);
   const [isFullscreen, setIsFullscreen] = useState(false);
@@ -19,16 +20,16 @@ const CVPreview = () => {
 
   useEffect(() => {
     const stored = localStorage.getItem(CV_STORAGE_KEY);
-    if (stored) {
-      setPdfUrl(stored);
-    }
+    if (stored) setPdfUrl(stored);
   }, []);
 
   const handleUnlock = () => {
     if (password === CV_PASSWORD) {
-      setIsUnlocked(true);
+      setIsAdmin(true);
+      setShowPasswordDialog(false);
+      setPassword("");
       setError("");
-      toast({ title: "Access Granted", description: "CV viewer unlocked successfully." });
+      toast({ title: "Admin Access Granted", description: "You can now upload or replace the CV." });
     } else {
       setError("Incorrect password");
     }
@@ -67,87 +68,107 @@ const CVPreview = () => {
             <FileText className="w-8 h-8 text-google-blue" />
             <h3 className="text-3xl font-bold text-foreground">Curriculum Vitae</h3>
           </div>
-          <p className="text-muted-foreground">Password protected — enter credentials to view or manage</p>
+          <p className="text-muted-foreground">View my CV below. Admin access required to manage.</p>
         </div>
 
-        {!isUnlocked ? (
-          <Card className="max-w-md mx-auto p-8 border-border shadow-google-lg text-center space-y-6">
-            <div className="w-16 h-16 mx-auto rounded-full bg-muted flex items-center justify-center">
-              <Shield className="w-8 h-8 text-google-blue" />
+        <Card className="p-6 border-border shadow-google-lg space-y-4">
+          {/* Action bar */}
+          <div className="flex items-center justify-between flex-wrap gap-3">
+            <div className="flex items-center gap-2">
+              {isAdmin ? (
+                <>
+                  <Unlock className="w-4 h-4 text-google-green" />
+                  <span className="text-sm font-medium text-google-green">Admin Mode</span>
+                </>
+              ) : (
+                <>
+                  <Eye className="w-4 h-4 text-muted-foreground" />
+                  <span className="text-sm font-medium text-muted-foreground">View Only</span>
+                </>
+              )}
             </div>
-            <div>
-              <h4 className="text-xl font-semibold text-foreground">Protected Content</h4>
-              <p className="text-sm text-muted-foreground mt-1">Enter password to access the CV</p>
-            </div>
-            <form
-              onSubmit={(e) => {
-                e.preventDefault();
-                handleUnlock();
-              }}
-              className="space-y-4"
-            >
-              <Input
-                type="password"
-                placeholder="Enter password"
-                value={password}
-                onChange={(e) => {
-                  setPassword(e.target.value);
-                  setError("");
-                }}
-                className={error ? "border-destructive" : ""}
-              />
-              {error && <p className="text-sm text-destructive">{error}</p>}
-              <Button type="submit" className="w-full" variant="google">
-                <Unlock className="w-4 h-4 mr-2" /> Unlock CV
-              </Button>
-            </form>
-          </Card>
-        ) : (
-          <Card className="p-6 border-border shadow-google-lg space-y-4">
-            <div className="flex items-center justify-between flex-wrap gap-3">
-              <div className="flex items-center gap-2">
-                <Lock className="w-4 h-4 text-google-green" />
-                <span className="text-sm font-medium text-google-green">Unlocked</span>
-              </div>
-              <div className="flex gap-2 flex-wrap">
+            <div className="flex gap-2 flex-wrap">
+              {isAdmin && (
                 <Button size="sm" variant="outline" onClick={() => fileInputRef.current?.click()}>
                   <Upload className="w-4 h-4 mr-1" /> Upload New CV
                 </Button>
-                {pdfUrl && (
-                  <>
-                    <Button size="sm" variant="outline" onClick={handleDownload}>
-                      <Download className="w-4 h-4 mr-1" /> Download
-                    </Button>
-                    <Button size="sm" variant="google" onClick={() => setIsFullscreen(true)}>
-                      <Eye className="w-4 h-4 mr-1" /> Fullscreen
-                    </Button>
-                  </>
-                )}
-                <Button size="sm" variant="secondary" onClick={() => { setIsUnlocked(false); setPassword(""); }}>
+              )}
+              {pdfUrl && (
+                <>
+                  <Button size="sm" variant="outline" onClick={handleDownload}>
+                    <Download className="w-4 h-4 mr-1" /> Download
+                  </Button>
+                  <Button size="sm" variant="google" onClick={() => setIsFullscreen(true)}>
+                    <Eye className="w-4 h-4 mr-1" /> Fullscreen
+                  </Button>
+                </>
+              )}
+              {!isAdmin ? (
+                <Button size="sm" variant="secondary" onClick={() => setShowPasswordDialog(true)}>
+                  <Lock className="w-4 h-4 mr-1" /> Admin
+                </Button>
+              ) : (
+                <Button size="sm" variant="secondary" onClick={() => setIsAdmin(false)}>
                   <Lock className="w-4 h-4 mr-1" /> Lock
                 </Button>
-              </div>
-              <input
-                ref={fileInputRef}
-                type="file"
-                accept="application/pdf"
-                className="hidden"
-                onChange={handleFileUpload}
-              />
+              )}
             </div>
+            <input
+              ref={fileInputRef}
+              type="file"
+              accept="application/pdf"
+              className="hidden"
+              onChange={handleFileUpload}
+            />
+          </div>
 
-            {pdfUrl ? (
-              <div className="rounded-lg overflow-hidden border border-border bg-muted" style={{ height: "70vh" }}>
-                <iframe src={pdfUrl} className="w-full h-full" title="CV Preview" />
+          {/* CV viewer - always visible */}
+          {pdfUrl ? (
+            <div className="rounded-lg overflow-hidden border border-border bg-muted" style={{ height: "70vh" }}>
+              <iframe src={pdfUrl} className="w-full h-full" title="CV Preview" />
+            </div>
+          ) : (
+            <div className="flex flex-col items-center justify-center py-20 text-muted-foreground space-y-4">
+              <FileText className="w-16 h-16 opacity-40" />
+              <p className="text-lg font-medium">No CV uploaded yet</p>
+              {!isAdmin && <p className="text-sm">Admin access required to upload a CV</p>}
+              {isAdmin && <p className="text-sm">Click "Upload New CV" to add your PDF</p>}
+            </div>
+          )}
+        </Card>
+
+        {/* Password dialog */}
+        {showPasswordDialog && (
+          <div className="fixed inset-0 z-50 bg-background/80 backdrop-blur-sm flex items-center justify-center p-4">
+            <Card className="max-w-md w-full p-8 border-border shadow-google-lg text-center space-y-6">
+              <div className="w-16 h-16 mx-auto rounded-full bg-muted flex items-center justify-center">
+                <Shield className="w-8 h-8 text-google-blue" />
               </div>
-            ) : (
-              <div className="flex flex-col items-center justify-center py-20 text-muted-foreground space-y-4">
-                <FileText className="w-16 h-16 opacity-40" />
-                <p className="text-lg font-medium">No CV uploaded yet</p>
-                <p className="text-sm">Click "Upload New CV" to add your PDF</p>
+              <div>
+                <h4 className="text-xl font-semibold text-foreground">Admin Access</h4>
+                <p className="text-sm text-muted-foreground mt-1">Enter password to manage the CV</p>
               </div>
-            )}
-          </Card>
+              <form onSubmit={(e) => { e.preventDefault(); handleUnlock(); }} className="space-y-4">
+                <Input
+                  type="password"
+                  placeholder="Enter password"
+                  value={password}
+                  onChange={(e) => { setPassword(e.target.value); setError(""); }}
+                  className={error ? "border-destructive" : ""}
+                  autoFocus
+                />
+                {error && <p className="text-sm text-destructive">{error}</p>}
+                <div className="flex gap-2">
+                  <Button type="button" variant="outline" className="flex-1" onClick={() => { setShowPasswordDialog(false); setPassword(""); setError(""); }}>
+                    Cancel
+                  </Button>
+                  <Button type="submit" className="flex-1" variant="google">
+                    <Unlock className="w-4 h-4 mr-2" /> Unlock
+                  </Button>
+                </div>
+              </form>
+            </Card>
+          </div>
         )}
 
         {/* Fullscreen overlay */}
