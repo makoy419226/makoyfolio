@@ -108,8 +108,50 @@ const CVPreview = () => {
     link.click();
   };
 
-  // If CV is hidden and not admin, don't render the section at all
-  if (!isVisible && !isAdmin) return null;
+  // If CV is hidden and not admin, show a minimal placeholder so admin can still unlock on mobile
+  if (!isVisible && !isAdmin) {
+    return (
+      <section className="py-12">
+        <div className="max-w-4xl mx-auto px-4 text-center space-y-4">
+          <Button size="sm" variant="secondary" onClick={() => setShowPasswordDialog(true)}>
+            <Lock className="w-4 h-4 mr-1" /> Admin
+          </Button>
+          {showPasswordDialog && (
+            <div className="fixed inset-0 z-50 bg-background/80 backdrop-blur-sm flex items-center justify-center p-4">
+              <Card className="max-w-md w-full p-8 border-border shadow-google-lg text-center space-y-6">
+                <div className="w-16 h-16 mx-auto rounded-full bg-muted flex items-center justify-center">
+                  <Shield className="w-8 h-8 text-google-blue" />
+                </div>
+                <div>
+                  <h4 className="text-xl font-semibold text-foreground">Admin Access</h4>
+                  <p className="text-sm text-muted-foreground mt-1">Enter password to manage the CV</p>
+                </div>
+                <form onSubmit={(e) => { e.preventDefault(); handleUnlock(); }} className="space-y-4">
+                  <Input
+                    type="password"
+                    placeholder="Enter password"
+                    value={password}
+                    onChange={(e) => { setPassword(e.target.value); setError(""); }}
+                    className={error ? "border-destructive" : ""}
+                    autoFocus
+                  />
+                  {error && <p className="text-sm text-destructive">{error}</p>}
+                  <div className="flex gap-2">
+                    <Button type="button" variant="outline" className="flex-1" onClick={() => { setShowPasswordDialog(false); setPassword(""); setError(""); }}>
+                      Cancel
+                    </Button>
+                    <Button type="submit" className="flex-1" variant="google">
+                      <Unlock className="w-4 h-4 mr-2" /> Unlock
+                    </Button>
+                  </div>
+                </form>
+              </Card>
+            </div>
+          )}
+        </div>
+      </section>
+    );
+  }
 
   const renderPages = (containerClass?: string) => (
     <div className={containerClass || "space-y-4"}>
@@ -145,7 +187,7 @@ const CVPreview = () => {
         </div>
 
         <Card className="p-6 border-border shadow-google-lg space-y-4">
-          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
             <div className="flex items-center gap-2">
               {isAdmin ? (
                 <>
@@ -159,36 +201,36 @@ const CVPreview = () => {
                 </>
               )}
             </div>
-            <div className="flex gap-2 flex-wrap w-full sm:w-auto">
+            <div className="flex flex-wrap gap-2 w-full sm:w-auto">
               {isAdmin && (
                 <>
-                  <Button size="sm" variant={isVisible ? "outline" : "destructive"} onClick={toggleVisibility}>
+                  <Button size="sm" className="flex-1 sm:flex-none" variant={isVisible ? "outline" : "destructive"} onClick={toggleVisibility}>
                     {isVisible ? <Eye className="w-4 h-4 mr-1" /> : <EyeOff className="w-4 h-4 mr-1" />}
                     {isVisible ? "Visible" : "Hidden"}
                   </Button>
-                  <Button size="sm" variant="outline" onClick={() => fileInputRef.current?.click()}>
-                    <Upload className="w-4 h-4 mr-1" /> Upload New CV
+                  <Button size="sm" className="flex-1 sm:flex-none" variant="outline" onClick={() => fileInputRef.current?.click()}>
+                    <Upload className="w-4 h-4 mr-1" /> Upload
                   </Button>
                 </>
               )}
               {pdfUrl && (
                 <>
-                  <Button size="sm" variant="outline" onClick={handleDownload}>
+                  <Button size="sm" className="flex-1 sm:flex-none" variant="outline" onClick={handleDownload}>
                     <Download className="w-4 h-4 mr-1" /> Download
                   </Button>
                   {isAdmin && (
-                    <Button size="sm" variant="google" onClick={() => setIsFullscreen(true)}>
-                      <Eye className="w-4 h-4 mr-1" /> Fullscreen
+                    <Button size="sm" className="flex-1 sm:flex-none" variant="google" onClick={() => setIsFullscreen(true)}>
+                      <Eye className="w-4 h-4 mr-1" /> View
                     </Button>
                   )}
                 </>
               )}
               {!isAdmin ? (
-                <Button size="sm" variant="secondary" onClick={() => setShowPasswordDialog(true)}>
+                <Button size="sm" className="flex-1 sm:flex-none" variant="secondary" onClick={() => setShowPasswordDialog(true)}>
                   <Lock className="w-4 h-4 mr-1" /> Admin
                 </Button>
               ) : (
-                <Button size="sm" variant="secondary" onClick={() => setIsAdmin(false)}>
+                <Button size="sm" className="flex-1 sm:flex-none" variant="secondary" onClick={() => setIsAdmin(false)}>
                   <Lock className="w-4 h-4 mr-1" /> Lock
                 </Button>
               )}
