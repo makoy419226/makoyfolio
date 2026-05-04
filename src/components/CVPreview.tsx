@@ -214,16 +214,9 @@ const CVPreview = () => {
                 </>
               )}
               {pdfUrl && (
-                <>
-                  <Button size="sm" className="flex-1 sm:flex-none" variant="outline" onClick={handleDownload}>
-                    <Download className="w-4 h-4 mr-1" /> Download
-                  </Button>
-                  {isAdmin && (
-                    <Button size="sm" className="flex-1 sm:flex-none" variant="google" onClick={() => setIsFullscreen(true)}>
-                      <Eye className="w-4 h-4 mr-1" /> View
-                    </Button>
-                  )}
-                </>
+                <Button size="sm" className="flex-1 sm:flex-none" variant="outline" onClick={handleDownload}>
+                  <Download className="w-4 h-4 mr-1" /> Download
+                </Button>
               )}
               {!isAdmin ? (
                 <Button size="sm" className="flex-1 sm:flex-none" variant="secondary" onClick={() => setShowPasswordDialog(true)}>
