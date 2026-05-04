@@ -145,7 +145,7 @@ const CVPreview = () => {
         </div>
 
         <Card className="p-6 border-border shadow-google-lg space-y-4">
-          <div className="flex items-center justify-between flex-wrap gap-3">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
             <div className="flex items-center gap-2">
               {isAdmin ? (
                 <>
@@ -159,7 +159,7 @@ const CVPreview = () => {
                 </>
               )}
             </div>
-            <div className="flex gap-2 flex-wrap">
+            <div className="flex gap-2 flex-wrap w-full sm:w-auto">
               {isAdmin && (
                 <>
                   <Button size="sm" variant={isVisible ? "outline" : "destructive"} onClick={toggleVisibility}>
@@ -176,9 +176,11 @@ const CVPreview = () => {
                   <Button size="sm" variant="outline" onClick={handleDownload}>
                     <Download className="w-4 h-4 mr-1" /> Download
                   </Button>
-                  <Button size="sm" variant="google" onClick={() => setIsFullscreen(true)}>
-                    <Eye className="w-4 h-4 mr-1" /> Fullscreen
-                  </Button>
+                  {isAdmin && (
+                    <Button size="sm" variant="google" onClick={() => setIsFullscreen(true)}>
+                      <Eye className="w-4 h-4 mr-1" /> Fullscreen
+                    </Button>
+                  )}
                 </>
               )}
               {!isAdmin ? (
@@ -202,15 +204,53 @@ const CVPreview = () => {
           )}
 
           {pdfUrl ? (
-            <div ref={canvasContainerRef} className="rounded-lg overflow-y-auto bg-muted p-4" style={{ maxHeight: "70vh" }}>
-              {renderPages()}
-            </div>
+            isAdmin ? (
+              <div ref={canvasContainerRef} className="rounded-lg overflow-y-auto bg-muted p-2 sm:p-4" style={{ maxHeight: "70vh" }}>
+                {renderPages()}
+              </div>
+            ) : (
+              <div className="flex flex-col items-center justify-center py-12 sm:py-16 text-muted-foreground space-y-4 bg-muted/40 rounded-lg border border-dashed border-border">
+                <FileText className="w-14 h-14 text-google-blue opacity-80" />
+                <div className="text-center space-y-1 px-4">
+                  <p className="text-base sm:text-lg font-medium text-foreground">CV is available for download</p>
+                  <p className="text-sm">Preview is restricted. Download the PDF or unlock admin to view it inline.</p>
+                </div>
+                <Button size="sm" variant="google" onClick={handleDownload}>
+                  <Download className="w-4 h-4 mr-1" /> Download CV
+                </Button>
+              </div>
+            )
           ) : (
             <div className="flex flex-col items-center justify-center py-20 text-muted-foreground space-y-4">
               <FileText className="w-16 h-16 opacity-40" />
               <p className="text-lg font-medium">No CV uploaded yet</p>
               {!isAdmin && <p className="text-sm">Admin access required to upload a CV</p>}
               {isAdmin && <p className="text-sm">Click "Upload New CV" to add your PDF</p>}
+            </div>
+          )}
+
+          {isAdmin && (
+            <div
+              role="button"
+              tabIndex={0}
+              onClick={() => fileInputRef.current?.click()}
+              onKeyDown={(e) => { if (e.key === "Enter") fileInputRef.current?.click(); }}
+              onDragOver={(e) => e.preventDefault()}
+              onDrop={(e) => {
+                e.preventDefault();
+                const file = e.dataTransfer.files?.[0];
+                if (file && fileInputRef.current) {
+                  const dt = new DataTransfer();
+                  dt.items.add(file);
+                  fileInputRef.current.files = dt.files;
+                  fileInputRef.current.dispatchEvent(new Event("change", { bubbles: true }));
+                }
+              }}
+              className="cursor-pointer rounded-lg border-2 border-dashed border-border hover:border-google-blue hover:bg-google-blue/5 transition-colors p-6 text-center"
+            >
+              <Upload className="w-8 h-8 mx-auto text-google-blue mb-2" />
+              <p className="text-sm font-medium text-foreground">Click or drag a PDF here to upload</p>
+              <p className="text-xs text-muted-foreground mt-1">Replaces the current CV. PDF format only.</p>
             </div>
           )}
         </Card>
