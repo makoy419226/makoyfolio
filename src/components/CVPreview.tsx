@@ -5,7 +5,7 @@ import { Input } from "@/components/ui/input";
 import { Lock, Unlock, FileText, Upload, Download, Eye, EyeOff, X, Shield } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 
-const CV_PASSWORD = "Defragkam01";
+const CV_PASSWORD = "asteroid";
 const CV_STORAGE_KEY = "portfolio_cv_pdf";
 const CV_VISIBLE_KEY = "portfolio_cv_visible";
 
@@ -41,21 +41,25 @@ const CVPreview = () => {
       
       const pdf = await pdfjsLib.getDocument(url).promise;
       const pages: string[] = [];
-      
+
+      // Use a scale tuned to the viewport so mobile devices don't blow memory
+      const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
+      const scale = isMobile ? 1.25 : 1.75;
+
       for (let i = 1; i <= pdf.numPages; i++) {
         const page = await pdf.getPage(i);
-        const scale = 2;
         const viewport = page.getViewport({ scale });
         const canvas = document.createElement("canvas");
         canvas.width = viewport.width;
         canvas.height = viewport.height;
         const ctx = canvas.getContext("2d")!;
         await page.render({ canvasContext: ctx, viewport, canvas } as any).promise;
-        pages.push(canvas.toDataURL("image/png"));
+        pages.push(canvas.toDataURL("image/jpeg", 0.85));
       }
       
       setPdfPages(pages);
-    } catch {
+    } catch (err) {
+      console.error("PDF render failed", err);
       setPdfPages([]);
     }
   };
