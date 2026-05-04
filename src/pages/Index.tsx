@@ -7,18 +7,19 @@ import Education from "@/components/Education";
 import CVPreview from "@/components/CVPreview";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
+import ScrollReveal from "@/components/ScrollReveal";
 
 const Index = () => {
   return (
     <div className="min-h-screen">
       <Hero />
-      <About />
-      <Skills />
-      <WorkExperience />
-      <Projects />
-      <Education />
-      <CVPreview />
-      <Contact />
+      <ScrollReveal variant="fade-up"><About /></ScrollReveal>
+      <ScrollReveal variant="scale" delay={50}><Skills /></ScrollReveal>
+      <ScrollReveal variant="slide-left"><WorkExperience /></ScrollReveal>
+      <ScrollReveal variant="fade-up"><Projects /></ScrollReveal>
+      <ScrollReveal variant="slide-right"><Education /></ScrollReveal>
+      <ScrollReveal variant="scale"><CVPreview /></ScrollReveal>
+      <ScrollReveal variant="fade-up"><Contact /></ScrollReveal>
       <Footer />
     </div>
   );
