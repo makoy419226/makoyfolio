@@ -17,8 +17,8 @@ const Index = () => {
       <ScrollReveal variant="scale" delay={50}><Skills /></ScrollReveal>
       <ScrollReveal variant="slide-left"><WorkExperience /></ScrollReveal>
       <ScrollReveal variant="fade-up"><Projects /></ScrollReveal>
-      <ScrollReveal variant="slide-right"><Education /></ScrollReveal>
-      <ScrollReveal variant="scale"><CVPreview /></ScrollReveal>
+      <ScrollReveal variant="fade-up"><Education /></ScrollReveal>
+      <ScrollReveal variant="fade-up"><CVPreview /></ScrollReveal>
       <ScrollReveal variant="fade-up"><Contact /></ScrollReveal>
       <Footer />
     </div>
