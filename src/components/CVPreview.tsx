@@ -246,22 +246,16 @@ const CVPreview = () => {
           )}
 
           {pdfUrl ? (
-            isAdmin ? (
-              <div ref={canvasContainerRef} className="rounded-lg overflow-y-auto bg-muted p-2 sm:p-4" style={{ maxHeight: "70vh" }}>
-                {renderPages()}
+            <div className="flex flex-col items-center justify-center py-12 sm:py-16 text-muted-foreground space-y-4 bg-muted/40 rounded-lg border border-dashed border-border">
+              <FileText className="w-14 h-14 text-google-blue opacity-80" />
+              <div className="text-center space-y-1 px-4">
+                <p className="text-base sm:text-lg font-medium text-foreground">CV is available for download</p>
+                <p className="text-sm">Preview is disabled. Download the PDF to view it.</p>
               </div>
-            ) : (
-              <div className="flex flex-col items-center justify-center py-12 sm:py-16 text-muted-foreground space-y-4 bg-muted/40 rounded-lg border border-dashed border-border">
-                <FileText className="w-14 h-14 text-google-blue opacity-80" />
-                <div className="text-center space-y-1 px-4">
-                  <p className="text-base sm:text-lg font-medium text-foreground">CV is available for download</p>
-                  <p className="text-sm">Preview is restricted. Download the PDF or unlock admin to view it inline.</p>
-                </div>
-                <Button size="sm" variant="google" onClick={handleDownload}>
-                  <Download className="w-4 h-4 mr-1" /> Download CV
-                </Button>
-              </div>
-            )
+              <Button size="sm" variant="google" onClick={handleDownload}>
+                <Download className="w-4 h-4 mr-1" /> Download CV
+              </Button>
+            </div>
           ) : (
             <div className="flex flex-col items-center justify-center py-20 text-muted-foreground space-y-4">
               <FileText className="w-16 h-16 opacity-40" />
