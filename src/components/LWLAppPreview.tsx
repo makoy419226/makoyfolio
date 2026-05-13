@@ -14,7 +14,24 @@ import {
   Lock, User, Droplets, Tag, Home, MoreHorizontal,
 } from "lucide-react";
 
-type Screen = "login" | "dashboard" | "orders" | "clients" | "bills" | "delivery" | "products" | "sales" | "inventory";
+type Screen =
+  | "login"
+  | "dashboard"
+  | "orders"
+  | "clients"
+  | "bills"
+  | "delivery"
+  | "products"
+  | "sales"
+  | "inventory"
+  | "todaysWork"
+  | "workers"
+  | "incidents"
+  | "missingItems"
+  | "dueCustomers"
+  | "adminSettings"
+  | "trackOrder"
+  | "lockdown";
 
 /* ──────────────────────── LOGIN SCREEN — TRUE REPLICA ──────────────────────── */
 
