@@ -536,6 +536,296 @@ const SalesScreen = () => (
   </div>
 );
 
+/* ──────────────────────── TODAY'S WORK — REPLICA ──────────────────────── */
+const TodaysWorkScreen = () => (
+  <div className="space-y-3">
+    <div className="bg-google-blue text-white rounded-xl px-4 py-2 overflow-hidden">
+      <div className="flex gap-8 text-[10px] whitespace-nowrap animate-pulse">
+        <span>📞 +971 56 338 0001</span>
+        <span>✉ info@lwl.ae</span>
+        <span>🌐 www.lwl.ae</span>
+        <span>☎ 026 815 824</span>
+      </div>
+    </div>
+    <div className="border border-border rounded-2xl p-6 text-center bg-gradient-to-br from-google-blue/5 to-transparent">
+      <p className="text-4xl font-bold text-foreground tracking-tight">14:32<span className="text-2xl">:08</span></p>
+      <p className="text-[10px] text-muted-foreground mt-1">Wednesday, May 13 · UAE Time (GMT+4)</p>
+    </div>
+    <div className="flex items-center justify-between">
+      <h4 className="text-sm font-bold text-foreground">Today's Work</h4>
+      <Badge className="bg-google-blue/15 text-google-blue border border-google-blue/30 text-[9px]">
+        <Clock className="w-2.5 h-2.5 mr-1" />Live Updates
+      </Badge>
+    </div>
+    <div className="grid grid-cols-2 lg:grid-cols-4 gap-2">
+      {[
+        { label: "Pending", val: 12, color: "google-yellow" },
+        { label: "In Wash", val: 8, color: "google-blue" },
+        { label: "Packing", val: 5, color: "google-red" },
+        { label: "Ready", val: 14, color: "google-green" },
+      ].map((s) => (
+        <div key={s.label} className={`bg-${s.color}/10 border border-${s.color}/20 rounded-xl p-3`}>
+          <p className="text-[9px] text-muted-foreground">{s.label}</p>
+          <p className={`text-xl font-bold text-${s.color}`}>{s.val}</p>
+        </div>
+      ))}
+    </div>
+    <div className="border border-border rounded-xl p-3 space-y-1.5">
+      <h4 className="text-[11px] font-semibold text-foreground mb-2">Worker Productivity Today</h4>
+      {[
+        { name: "Ahmed K.", done: 18, target: 20 },
+        { name: "Maria S.", done: 15, target: 18 },
+        { name: "John P.", done: 22, target: 20 },
+      ].map((w) => (
+        <div key={w.name} className="space-y-1">
+          <div className="flex justify-between text-[10px]"><span className="text-foreground">{w.name}</span><span className="text-muted-foreground">{w.done}/{w.target}</span></div>
+          <div className="w-full bg-secondary rounded-full h-1.5"><div className="bg-google-green rounded-full h-1.5" style={{ width: `${(w.done/w.target)*100}%` }} /></div>
+        </div>
+      ))}
+    </div>
+  </div>
+);
+
+/* ──────────────────────── WORKERS — REPLICA ──────────────────────── */
+const WorkersScreen = () => (
+  <div className="space-y-3">
+    <div className="flex items-center justify-between">
+      <h4 className="text-sm font-bold text-foreground">Workers Roster</h4>
+      <button className="text-[10px] bg-google-blue text-white px-3 py-1.5 rounded-lg flex items-center gap-1"><Plus className="w-3 h-3" />Add Worker</button>
+    </div>
+    <div className="grid grid-cols-3 gap-2">
+      {[
+        { label: "Active", val: 14, color: "google-green" },
+        { label: "On Leave", val: 2, color: "google-yellow" },
+        { label: "Total Staff", val: 16, color: "google-blue" },
+      ].map((s) => (
+        <div key={s.label} className={`bg-${s.color}/10 border border-${s.color}/20 rounded-xl p-3 text-center`}>
+          <p className="text-[9px] text-muted-foreground">{s.label}</p>
+          <p className={`text-base font-bold text-${s.color}`}>{s.val}</p>
+        </div>
+      ))}
+    </div>
+    <div className="border border-border rounded-xl divide-y divide-border">
+      {[
+        { name: "Ahmed Khan", role: "Counter", shift: "Morning", status: "Active" },
+        { name: "Maria Santos", role: "Section", shift: "Morning", status: "Active" },
+        { name: "John Perez", role: "Driver", shift: "Full Day", status: "Active" },
+        { name: "Rashid Ali", role: "Reception", shift: "Evening", status: "On Leave" },
+        { name: "Liza Cruz", role: "Staff", shift: "Evening", status: "Active" },
+      ].map((w, i) => (
+        <div key={i} className="flex items-center justify-between p-2.5">
+          <div className="flex items-center gap-2">
+            <div className="w-7 h-7 rounded-full bg-google-blue/15 text-google-blue text-[10px] font-bold flex items-center justify-center">{w.name.split(" ").map((n) => n[0]).join("")}</div>
+            <div>
+              <p className="text-[11px] font-medium text-foreground">{w.name}</p>
+              <p className="text-[9px] text-muted-foreground">{w.role} · {w.shift}</p>
+            </div>
+          </div>
+          <Badge className={`text-[9px] ${w.status === "Active" ? "bg-google-green/15 text-google-green" : "bg-google-yellow/15 text-google-yellow"} border-0`}>{w.status}</Badge>
+        </div>
+      ))}
+    </div>
+  </div>
+);
+
+/* ──────────────────────── INCIDENTS — REPLICA ──────────────────────── */
+const IncidentsScreen = () => (
+  <div className="space-y-3">
+    <div className="flex items-center justify-between">
+      <h4 className="text-sm font-bold text-foreground flex items-center gap-2"><AlertTriangle className="w-4 h-4 text-google-red" />Incidents Log</h4>
+      <button className="text-[10px] bg-google-red text-white px-3 py-1.5 rounded-lg flex items-center gap-1"><Plus className="w-3 h-3" />Report</button>
+    </div>
+    <div className="space-y-2">
+      {[
+        { id: "INC-024", date: "May 12, 2026", severity: "High", title: "Damaged garment — silk shirt", who: "Maria S.", color: "google-red" },
+        { id: "INC-023", date: "May 11, 2026", severity: "Medium", title: "Wrong tag applied to ORD-1244", who: "Ahmed K.", color: "google-yellow" },
+        { id: "INC-022", date: "May 10, 2026", severity: "Low", title: "Late delivery — traffic delay", who: "John P.", color: "google-blue" },
+        { id: "INC-021", date: "May 09, 2026", severity: "Medium", title: "Misplaced bill receipt", who: "Liza C.", color: "google-yellow" },
+      ].map((i) => (
+        <div key={i.id} className="border border-border rounded-xl p-3 space-y-1">
+          <div className="flex items-center justify-between">
+            <span className="text-[10px] font-mono text-muted-foreground">{i.id}</span>
+            <Badge className={`text-[9px] bg-${i.color}/15 text-${i.color} border-0`}>{i.severity}</Badge>
+          </div>
+          <p className="text-[11px] font-medium text-foreground">{i.title}</p>
+          <div className="flex items-center justify-between text-[9px] text-muted-foreground"><span>Reported by {i.who}</span><span>{i.date}</span></div>
+        </div>
+      ))}
+    </div>
+  </div>
+);
+
+/* ──────────────────────── MISSING ITEMS — REPLICA ──────────────────────── */
+const MissingItemsScreen = () => (
+  <div className="space-y-3">
+    <div className="bg-google-yellow/10 border border-google-yellow/30 rounded-xl p-3 flex items-center gap-3">
+      <AlertTriangle className="w-5 h-5 text-google-yellow flex-shrink-0" />
+      <div>
+        <p className="text-[11px] font-semibold text-foreground">5 items currently flagged as missing</p>
+        <p className="text-[9px] text-muted-foreground">Cross-checked against intake checklists</p>
+      </div>
+    </div>
+    <div className="border border-border rounded-xl divide-y divide-border">
+      {[
+        { order: "ORD-1247", item: "1× Black trousers", reported: "Today", status: "Investigating" },
+        { order: "ORD-1241", item: "2× White shirts", reported: "Yesterday", status: "Investigating" },
+        { order: "ORD-1238", item: "1× Silk scarf", reported: "May 11", status: "Found" },
+        { order: "ORD-1235", item: "1× Children's jacket", reported: "May 10", status: "Investigating" },
+        { order: "ORD-1230", item: "1× Bedsheet set", reported: "May 09", status: "Refunded" },
+      ].map((m, i) => (
+        <div key={i} className="p-2.5 flex items-center justify-between">
+          <div>
+            <p className="text-[11px] font-medium text-foreground">{m.item}</p>
+            <p className="text-[9px] text-muted-foreground font-mono">{m.order} · {m.reported}</p>
+          </div>
+          <Badge className={`text-[9px] border-0 ${m.status === "Found" ? "bg-google-green/15 text-google-green" : m.status === "Refunded" ? "bg-google-blue/15 text-google-blue" : "bg-google-yellow/15 text-google-yellow"}`}>{m.status}</Badge>
+        </div>
+      ))}
+    </div>
+  </div>
+);
+
+/* ──────────────────────── DUE CUSTOMERS — REPLICA ──────────────────────── */
+const DueCustomersScreen = () => (
+  <div className="space-y-3">
+    <div className="grid grid-cols-2 gap-2">
+      <div className="bg-google-red/10 border border-google-red/20 rounded-xl p-3">
+        <p className="text-[9px] text-muted-foreground">Total Outstanding</p>
+        <p className="text-base font-bold text-google-red">AED 28,450</p>
+      </div>
+      <div className="bg-google-yellow/10 border border-google-yellow/20 rounded-xl p-3">
+        <p className="text-[9px] text-muted-foreground">Customers Due</p>
+        <p className="text-base font-bold text-google-yellow">17</p>
+      </div>
+    </div>
+    <div className="border border-border rounded-xl divide-y divide-border">
+      {[
+        { name: "Golden Hotel", phone: "+971 50 111 2222", due: "AED 8,500", days: 12 },
+        { name: "Pedro Lim", phone: "+971 55 333 4444", due: "AED 2,100", days: 8 },
+        { name: "Marina Tower", phone: "+971 52 555 6666", due: "AED 6,200", days: 21 },
+        { name: "Juan Cruz", phone: "+971 50 777 8888", due: "AED 1,200", days: 5 },
+        { name: "Royal Suites", phone: "+971 56 999 0000", due: "AED 4,800", days: 15 },
+      ].map((c, i) => (
+        <div key={i} className="p-2.5 flex items-center justify-between">
+          <div>
+            <p className="text-[11px] font-medium text-foreground">{c.name}</p>
+            <p className="text-[9px] text-muted-foreground">{c.phone}</p>
+          </div>
+          <div className="text-right">
+            <p className="text-[11px] font-bold text-google-red">{c.due}</p>
+            <p className="text-[9px] text-muted-foreground">{c.days}d overdue</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+);
+
+/* ──────────────────────── ADMIN SETTINGS — REPLICA ──────────────────────── */
+const AdminSettingsScreen = () => (
+  <div className="space-y-3">
+    <h4 className="text-sm font-bold text-foreground flex items-center gap-2"><Settings className="w-4 h-4" />Admin Settings</h4>
+    {[
+      { title: "System Lockdown", desc: "Block all non-admin access for maintenance", status: "Disabled", icon: <Shield className="w-4 h-4 text-google-red" /> },
+      { title: "Database Export", desc: "Backup all tables to JSON archive", status: "Last: May 12", icon: <Package className="w-4 h-4 text-google-blue" /> },
+      { title: "Order Cleanup", desc: "Bulk delete orders older than selected month", status: "Configure", icon: <Trash2 className="w-4 h-4 text-google-yellow" /> },
+      { title: "Reset Selections", desc: "Reset orders / clients / staff data", status: "Manage", icon: <ArrowUpDown className="w-4 h-4 text-google-green" /> },
+      { title: "Payroll Cutoff", desc: "End-of-day reconciliation and payroll period", status: "May 1 – May 15", icon: <CircleDollarSign className="w-4 h-4 text-google-blue" /> },
+    ].map((s, i) => (
+      <div key={i} className="border border-border rounded-xl p-3 flex items-center justify-between gap-3">
+        <div className="flex items-center gap-3 min-w-0">
+          <div className="w-9 h-9 rounded-lg bg-secondary flex items-center justify-center flex-shrink-0">{s.icon}</div>
+          <div className="min-w-0">
+            <p className="text-[11px] font-semibold text-foreground">{s.title}</p>
+            <p className="text-[9px] text-muted-foreground truncate">{s.desc}</p>
+          </div>
+        </div>
+        <span className="text-[9px] text-muted-foreground flex-shrink-0">{s.status}</span>
+      </div>
+    ))}
+  </div>
+);
+
+/* ──────────────────────── TRACK ORDER (PUBLIC) — REPLICA ──────────────────────── */
+const TrackOrderScreen = () => (
+  <div className="space-y-3">
+    <div className="text-center space-y-1">
+      <div className="w-12 h-12 mx-auto rounded-2xl bg-google-blue/10 border-2 border-google-blue/20 flex items-center justify-center">
+        <Search className="w-6 h-6 text-google-blue" />
+      </div>
+      <h4 className="text-sm font-bold text-foreground">Track Your Order</h4>
+      <p className="text-[10px] text-muted-foreground">Enter your order number below</p>
+    </div>
+    <div className="flex gap-2">
+      <div className="flex-1 border border-border rounded-lg px-3 py-2 bg-background text-[11px] text-foreground">ORD-1245</div>
+      <button className="bg-google-blue text-white text-[10px] px-3 py-2 rounded-lg">Search</button>
+    </div>
+    <div className="border border-border rounded-xl p-3 space-y-3">
+      <div className="flex items-center justify-between">
+        <div>
+          <p className="text-[10px] text-muted-foreground">Order</p>
+          <p className="text-[12px] font-bold text-foreground font-mono">ORD-1245</p>
+        </div>
+        <Badge className="bg-google-yellow/15 text-google-yellow border-0 text-[9px]">In Packing</Badge>
+      </div>
+      <div className="space-y-2">
+        {[
+          { label: "Tagged", done: true },
+          { label: "Washed", done: true },
+          { label: "Packed", done: false, current: true },
+          { label: "Delivered", done: false },
+        ].map((step, i) => (
+          <div key={i} className="flex items-center gap-2">
+            <div className={`w-5 h-5 rounded-full flex items-center justify-center ${step.done ? "bg-google-green text-white" : step.current ? "bg-google-yellow text-white animate-pulse" : "bg-secondary text-muted-foreground"}`}>
+              {step.done ? <CheckCircle className="w-3 h-3" /> : <span className="text-[9px] font-bold">{i + 1}</span>}
+            </div>
+            <span className={`text-[11px] ${step.done ? "text-foreground" : step.current ? "text-google-yellow font-semibold" : "text-muted-foreground"}`}>{step.label}</span>
+          </div>
+        ))}
+      </div>
+      <div className="border-t border-border pt-2 flex justify-between text-[10px]">
+        <span className="text-muted-foreground">Balance Due</span>
+        <span className="font-bold text-foreground">AED 240</span>
+      </div>
+    </div>
+    <div className="border border-border rounded-xl p-3 space-y-1.5">
+      <p className="text-[10px] font-semibold text-foreground">Rate Your Service</p>
+      <div className="flex gap-1">
+        {[1, 2, 3, 4, 5].map((n) => (
+          <span key={n} className={`text-base ${n <= 4 ? "text-google-yellow" : "text-muted-foreground/40"}`}>★</span>
+        ))}
+      </div>
+    </div>
+  </div>
+);
+
+/* ──────────────────────── LOCKDOWN — REPLICA ──────────────────────── */
+const LockdownScreen = () => (
+  <div className="flex items-center justify-center h-full p-4">
+    <div className="max-w-sm w-full space-y-4 text-center">
+      <div className="w-16 h-16 mx-auto rounded-2xl bg-google-red/10 border-2 border-google-red/30 flex items-center justify-center">
+        <Lock className="w-8 h-8 text-google-red" />
+      </div>
+      <div className="space-y-1">
+        <h4 className="text-base font-bold text-foreground">System Lockdown Active</h4>
+        <p className="text-[10px] text-muted-foreground">Scheduled maintenance in progress.<br />Locked May 13, 2026 · 09:30</p>
+      </div>
+      <div className="border border-border rounded-xl bg-card p-4 space-y-3 text-left">
+        <p className="text-[10px] font-semibold text-foreground">Admin Override</p>
+        <div className="flex items-center gap-2 border border-border rounded-lg px-3 py-2 bg-background">
+          <User className="w-3.5 h-3.5 text-muted-foreground" />
+          <span className="text-[11px] text-muted-foreground">admin</span>
+        </div>
+        <div className="flex items-center gap-2 border border-border rounded-lg px-3 py-2 bg-background">
+          <Lock className="w-3.5 h-3.5 text-muted-foreground" />
+          <span className="text-[11px] text-muted-foreground">••••••••</span>
+        </div>
+        <button className="w-full bg-google-red text-white text-[11px] font-medium py-2 rounded-lg">Unlock System</button>
+      </div>
+    </div>
+  </div>
+);
+
 const screens: Record<Exclude<Screen, "login">, { component: React.ReactNode; title: string; subtitle: string }> = {
   dashboard: { component: <DashboardScreen />, title: "Dashboard", subtitle: "Overview of today's operations" },
   inventory: { component: <InventoryScreen />, title: "Inventory", subtitle: "Monitor your stock levels" },
