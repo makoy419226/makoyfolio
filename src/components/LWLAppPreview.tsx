@@ -852,6 +852,7 @@ const sidebarGroups: { label: string; items: { key: Screen; label: string; icon:
     label: "Operations",
     items: [
       { key: "dashboard", label: "Dashboard", icon: <LayoutDashboard className="w-4 h-4" />, roles: ["admin", "counter", "reception", "section", "staff"] },
+      { key: "todaysWork", label: "Today's Work", icon: <Clock className="w-4 h-4" />, roles: ["admin", "section", "staff"] },
       { key: "delivery", label: "Delivery Dashboard", icon: <Truck className="w-4 h-4" />, roles: ["admin", "driver"] },
       { key: "products", label: "New Order", icon: <List className="w-4 h-4" />, roles: ["admin", "counter", "reception", "driver"] },
       { key: "orders", label: "Order Tracking", icon: <ClipboardList className="w-4 h-4" />, roles: ["admin", "counter", "reception", "section", "staff", "driver"] },
@@ -863,23 +864,25 @@ const sidebarGroups: { label: string; items: { key: Screen; label: string; icon:
       { key: "inventory", label: "Inventory", icon: <Package className="w-4 h-4" />, roles: ["admin", "counter", "reception"] },
       { key: "clients", label: "Clients", icon: <Users className="w-4 h-4" />, roles: ["admin", "counter", "reception"] },
       { key: "bills", label: "Bills", icon: <FileText className="w-4 h-4" />, roles: ["admin", "counter", "reception", "driver"] },
-      { key: "bills", label: "Due Customers", icon: <CircleDollarSign className="w-4 h-4" />, roles: ["admin", "counter", "reception"] },
+      { key: "dueCustomers", label: "Due Customers", icon: <CircleDollarSign className="w-4 h-4" />, roles: ["admin", "counter", "reception"] },
     ],
   },
   {
     label: "Reports",
     items: [
       { key: "sales", label: "Sales Reports", icon: <BarChart3 className="w-4 h-4" />, roles: ["admin"] },
-      { key: "orders", label: "Incidents", icon: <AlertTriangle className="w-4 h-4" />, roles: ["admin", "counter", "reception", "section", "staff"] },
-      { key: "orders", label: "Public Tracking", icon: <Search className="w-4 h-4" />, roles: ["admin", "counter", "reception", "section", "staff"] },
+      { key: "incidents", label: "Incidents", icon: <AlertTriangle className="w-4 h-4" />, roles: ["admin", "counter", "reception", "section", "staff"] },
+      { key: "missingItems", label: "Missing Items", icon: <Search className="w-4 h-4" />, roles: ["admin", "counter", "reception", "section", "staff"] },
+      { key: "trackOrder", label: "Public Tracking", icon: <Search className="w-4 h-4" />, roles: ["admin", "counter", "reception", "section", "staff"] },
       { key: "dashboard", label: "Contact", icon: <Phone className="w-4 h-4" />, roles: ["admin", "counter", "reception", "section", "staff", "driver"] },
     ],
   },
   {
     label: "Settings",
     items: [
-      { key: "dashboard", label: "Management", icon: <HardHat className="w-4 h-4" />, roles: ["admin"] },
-      { key: "dashboard", label: "Admin Settings", icon: <Settings className="w-4 h-4" />, roles: ["admin"] },
+      { key: "workers", label: "Workers", icon: <HardHat className="w-4 h-4" />, roles: ["admin"] },
+      { key: "adminSettings", label: "Admin Settings", icon: <Settings className="w-4 h-4" />, roles: ["admin"] },
+      { key: "lockdown", label: "Lockdown Mode", icon: <Lock className="w-4 h-4" />, roles: ["admin"] },
     ],
   },
 ];
