@@ -670,7 +670,7 @@ const LWLAppPreview = () => {
               {showPreview ? "Hide Preview" : "View Live App Preview"}
             </Button>
             <a
-              href="https://github.com/makoy419226/lwllegacy"
+              href="https://github.com/makoy419226/lwllegacyFINAL"
               target="_blank"
               rel="noopener noreferrer"
             >
