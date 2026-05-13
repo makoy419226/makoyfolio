@@ -616,6 +616,10 @@ const LWLAppPreview = () => {
               { title: "Product Catalog", desc: "Dynamic pricing for wash, dry clean, iron services with stock management, category sorting, and allocated stock tracking" },
               { title: "Delivery System", desc: "Driver assignment, delivery scheduling, route management with address-based dispatch and real-time status updates" },
               { title: "Sales Analytics", desc: "Daily/weekly sales reports, revenue trends, service performance analytics, worker productivity tracking, and due customer reports" },
+              { title: "Public Order Tracking", desc: "Customer-facing track-order portal — look up live status by order ID without needing a login" },
+              { title: "Admin Settings & Lockdown", desc: "Admin control panel with system lockdown mode for maintenance, payroll cutoffs, and end-of-day reconciliation" },
+              { title: "Workers & Incidents", desc: "Worker roster management with incident logging, missing-items reports, and accountability tracking per shift" },
+              { title: "Today's Work & Due Customers", desc: "At-a-glance daily work queue, daily sales totals, due-customer follow-up list, and delivery history archive" },
             ].map((feat, i) => (
               <div key={i} className="bg-secondary/30 rounded-xl p-3 space-y-1 border border-border/50">
                 <h4 className="text-sm font-semibold text-foreground flex items-center gap-2">
