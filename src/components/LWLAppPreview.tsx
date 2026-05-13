@@ -559,14 +559,14 @@ const TodaysWorkScreen = () => (
     </div>
     <div className="grid grid-cols-2 lg:grid-cols-4 gap-2">
       {[
-        { label: "Pending", val: 12, color: "google-yellow" },
-        { label: "In Wash", val: 8, color: "google-blue" },
-        { label: "Packing", val: 5, color: "google-red" },
-        { label: "Ready", val: 14, color: "google-green" },
+        { label: "Pending", val: 12, bg: "bg-google-yellow/10 border-google-yellow/20", text: "text-google-yellow" },
+        { label: "In Wash", val: 8, bg: "bg-google-blue/10 border-google-blue/20", text: "text-google-blue" },
+        { label: "Packing", val: 5, bg: "bg-google-red/10 border-google-red/20", text: "text-google-red" },
+        { label: "Ready", val: 14, bg: "bg-google-green/10 border-google-green/20", text: "text-google-green" },
       ].map((s) => (
-        <div key={s.label} className={`bg-${s.color}/10 border border-${s.color}/20 rounded-xl p-3`}>
+        <div key={s.label} className={`${s.bg} border rounded-xl p-3`}>
           <p className="text-[9px] text-muted-foreground">{s.label}</p>
-          <p className={`text-xl font-bold text-${s.color}`}>{s.val}</p>
+          <p className={`text-xl font-bold ${s.text}`}>{s.val}</p>
         </div>
       ))}
     </div>
@@ -595,13 +595,13 @@ const WorkersScreen = () => (
     </div>
     <div className="grid grid-cols-3 gap-2">
       {[
-        { label: "Active", val: 14, color: "google-green" },
-        { label: "On Leave", val: 2, color: "google-yellow" },
-        { label: "Total Staff", val: 16, color: "google-blue" },
+        { label: "Active", val: 14, bg: "bg-google-green/10 border-google-green/20", text: "text-google-green" },
+        { label: "On Leave", val: 2, bg: "bg-google-yellow/10 border-google-yellow/20", text: "text-google-yellow" },
+        { label: "Total Staff", val: 16, bg: "bg-google-blue/10 border-google-blue/20", text: "text-google-blue" },
       ].map((s) => (
-        <div key={s.label} className={`bg-${s.color}/10 border border-${s.color}/20 rounded-xl p-3 text-center`}>
+        <div key={s.label} className={`${s.bg} border rounded-xl p-3 text-center`}>
           <p className="text-[9px] text-muted-foreground">{s.label}</p>
-          <p className={`text-base font-bold text-${s.color}`}>{s.val}</p>
+          <p className={`text-base font-bold ${s.text}`}>{s.val}</p>
         </div>
       ))}
     </div>
@@ -637,15 +637,15 @@ const IncidentsScreen = () => (
     </div>
     <div className="space-y-2">
       {[
-        { id: "INC-024", date: "May 12, 2026", severity: "High", title: "Damaged garment — silk shirt", who: "Maria S.", color: "google-red" },
-        { id: "INC-023", date: "May 11, 2026", severity: "Medium", title: "Wrong tag applied to ORD-1244", who: "Ahmed K.", color: "google-yellow" },
-        { id: "INC-022", date: "May 10, 2026", severity: "Low", title: "Late delivery — traffic delay", who: "John P.", color: "google-blue" },
-        { id: "INC-021", date: "May 09, 2026", severity: "Medium", title: "Misplaced bill receipt", who: "Liza C.", color: "google-yellow" },
+        { id: "INC-024", date: "May 12, 2026", severity: "High", title: "Damaged garment — silk shirt", who: "Maria S.", badge: "bg-google-red/15 text-google-red" },
+        { id: "INC-023", date: "May 11, 2026", severity: "Medium", title: "Wrong tag applied to ORD-1244", who: "Ahmed K.", badge: "bg-google-yellow/15 text-google-yellow" },
+        { id: "INC-022", date: "May 10, 2026", severity: "Low", title: "Late delivery — traffic delay", who: "John P.", badge: "bg-google-blue/15 text-google-blue" },
+        { id: "INC-021", date: "May 09, 2026", severity: "Medium", title: "Misplaced bill receipt", who: "Liza C.", badge: "bg-google-yellow/15 text-google-yellow" },
       ].map((i) => (
         <div key={i.id} className="border border-border rounded-xl p-3 space-y-1">
           <div className="flex items-center justify-between">
             <span className="text-[10px] font-mono text-muted-foreground">{i.id}</span>
-            <Badge className={`text-[9px] bg-${i.color}/15 text-${i.color} border-0`}>{i.severity}</Badge>
+            <Badge className={`text-[9px] ${i.badge} border-0`}>{i.severity}</Badge>
           </div>
           <p className="text-[11px] font-medium text-foreground">{i.title}</p>
           <div className="flex items-center justify-between text-[9px] text-muted-foreground"><span>Reported by {i.who}</span><span>{i.date}</span></div>
