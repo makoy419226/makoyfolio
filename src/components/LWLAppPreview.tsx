@@ -545,6 +545,14 @@ const screens: Record<Exclude<Screen, "login">, { component: React.ReactNode; ti
   delivery: { component: <DeliveryScreen />, title: "Delivery Dashboard", subtitle: "Dispatch and delivery management" },
   products: { component: <InventoryScreen />, title: "New Order", subtitle: "Create a new order from price list" },
   sales: { component: <SalesScreen />, title: "Sales Reports", subtitle: "Revenue analytics and reports" },
+  todaysWork: { component: <TodaysWorkScreen />, title: "Today's Work", subtitle: "Live daily work queue (UAE time)" },
+  workers: { component: <WorkersScreen />, title: "Workers", subtitle: "Roster, shifts and productivity" },
+  incidents: { component: <IncidentsScreen />, title: "Incidents", subtitle: "Logged incidents and accountability" },
+  missingItems: { component: <MissingItemsScreen />, title: "Missing Items", subtitle: "Items reported missing per order" },
+  dueCustomers: { component: <DueCustomersScreen />, title: "Due Customers", subtitle: "Customers with outstanding balances" },
+  adminSettings: { component: <AdminSettingsScreen />, title: "Admin Settings", subtitle: "System configuration and lockdown controls" },
+  trackOrder: { component: <TrackOrderScreen />, title: "Public Tracking", subtitle: "Customer-facing order status lookup" },
+  lockdown: { component: <LockdownScreen />, title: "System Lockdown", subtitle: "Maintenance mode — admin override" },
 };
 
 /* ──────────────────────── SIDEBAR — EXACT REPLICA from Sidebar.tsx ──────────────────────── */
