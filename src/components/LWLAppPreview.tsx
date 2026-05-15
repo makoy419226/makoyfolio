@@ -992,7 +992,7 @@ const LWLAppPreview = () => {
               {showPreview ? "Hide Preview" : "View Live App Preview"}
             </Button>
             <a
-              href="https://github.com/makoy419226/lwllegacyFINAL"
+              href="https://github.com/mclasstourism/Liquid-Washes-Laundry"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -1004,6 +1004,20 @@ const LWLAppPreview = () => {
                 <Github className="w-4 h-4" />
                 View on GitHub
                 <ExternalLink className="w-3 h-3" />
+              </Button>
+            </a>
+            <a
+              href="http://77.37.44.92/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Button
+                variant="outline"
+                size="sm"
+                className="gap-2 rounded-full hover:border-google-green hover:text-google-green transition-colors"
+              >
+                <ExternalLink className="w-4 h-4" />
+                Open Live App
               </Button>
             </a>
           </div>
@@ -1024,7 +1038,7 @@ const LWLAppPreview = () => {
                     <div className="w-3 h-3 rounded-full bg-google-green" />
                   </div>
                   <div className="ml-2 md:ml-3 bg-background/50 border border-border rounded-md px-2 md:px-3 py-0.5 text-[10px] text-muted-foreground flex items-center gap-1">
-                    🔒 lwl-laundry.app/{activeScreen === "login" ? "login" : activeScreen}
+                    🌐 77.37.44.92
                   </div>
                 </div>
                 <div className="flex items-center gap-1">
@@ -1060,13 +1074,19 @@ const LWLAppPreview = () => {
                 </div>
               </div>
 
-              {/* App Content */}
-              <div className={`flex flex-1 overflow-hidden ${!isFullscreen ? "min-h-[500px] md:min-h-[600px]" : ""}`}>
-                {activeScreen === "login" ? (
-                  <div className={`w-full ${viewMode === "mobile" && isFullscreen ? "max-w-[375px] mx-auto border-x border-border" : ""}`}>
-                    <LoginScreen onLogin={handleLogin} />
-                  </div>
-                ) : viewMode === "mobile" ? (
+              {/* App Content — Live iframe */}
+              <div className={`flex flex-1 overflow-hidden bg-background ${!isFullscreen ? "min-h-[500px] md:min-h-[600px]" : ""}`}>
+                <div className={`w-full h-full ${viewMode === "mobile" ? "max-w-[375px] mx-auto border-x border-border" : ""}`}>
+                  <iframe
+                    src="http://77.37.44.92/"
+                    title="Liquid Washes Laundry — Live App"
+                    className="w-full h-full border-0"
+                    loading="lazy"
+                    sandbox="allow-forms allow-scripts allow-same-origin allow-popups allow-modals"
+                  />
+                </div>
+              </div>
+              {false && (viewMode === "mobile" ? (
                   /* ───── MOBILE VIEW ───── */
                   <div className={`flex flex-col w-full ${isFullscreen ? "max-w-[375px] mx-auto border-x border-border" : ""}`}>
                     {/* Mobile Top Bar */}
@@ -1223,13 +1243,12 @@ const LWLAppPreview = () => {
                       {currentScreen?.component}
                     </div>
                   </>
-                )}
-              </div>
+                ))}
 
               {/* Status Bar */}
               <div className="bg-secondary/40 border-t border-border px-4 py-1.5 flex items-center justify-between shrink-0">
                 <span className="text-[10px] text-muted-foreground">
-                  ✨ Interactive UI Replica · {viewMode === "mobile" ? "📱 Mobile" : "🖥️ Desktop"}
+                  🟢 Live App · {viewMode === "mobile" ? "📱 Mobile" : "🖥️ Desktop"} · 77.37.44.92
                 </span>
                 <span className="text-[10px] text-muted-foreground">React + TypeScript + Express + PostgreSQL</span>
               </div>
