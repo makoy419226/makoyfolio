@@ -992,7 +992,7 @@ const LWLAppPreview = () => {
               {showPreview ? "Hide Preview" : "View Live App Preview"}
             </Button>
             <a
-              href="https://github.com/makoy419226/lwllegacyFINAL"
+              href="https://github.com/mclasstourism/Liquid-Washes-Laundry"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -1004,6 +1004,20 @@ const LWLAppPreview = () => {
                 <Github className="w-4 h-4" />
                 View on GitHub
                 <ExternalLink className="w-3 h-3" />
+              </Button>
+            </a>
+            <a
+              href="http://77.37.44.92/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Button
+                variant="outline"
+                size="sm"
+                className="gap-2 rounded-full hover:border-google-green hover:text-google-green transition-colors"
+              >
+                <ExternalLink className="w-4 h-4" />
+                Open Live App
               </Button>
             </a>
           </div>
