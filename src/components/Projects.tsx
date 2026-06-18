@@ -1,8 +1,10 @@
-import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ExternalLink, Github, Smartphone, Globe } from "lucide-react";
+import { motion } from "framer-motion";
 import LWLAppPreview from "./LWLAppPreview";
+import SectionHeading from "./SectionHeading";
+import Reveal from "./Reveal";
 
 const otherProjects = [
   {
@@ -29,40 +31,31 @@ const otherProjects = [
 
 const Projects = () => {
   return (
-    <section id="projects" className="py-20 px-4">
-      <div className="max-w-6xl mx-auto space-y-12">
-        {/* Section Header */}
-        <div className="text-center space-y-4 animate-fade-in">
-          <h2 className="text-4xl md:text-5xl font-bold text-foreground">
-            Projects
-          </h2>
-          <div className="flex gap-1 justify-center">
-            <div className="w-4 h-1 bg-google-blue rounded-full"></div>
-            <div className="w-4 h-1 bg-google-red rounded-full"></div>
-            <div className="w-4 h-1 bg-google-yellow rounded-full"></div>
-            <div className="w-4 h-1 bg-google-green rounded-full"></div>
-          </div>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            Development projects showcasing full-stack, mobile, and cross-platform expertise
-          </p>
-        </div>
+    <section id="projects" className="relative py-32 px-4">
+      <div className="max-w-6xl mx-auto space-y-16">
+        <SectionHeading
+          eyebrow="04 · Projects"
+          title="Selected work, shipped and live."
+          description="Full-stack, mobile, and cross-platform builds — focused on usefulness over polish-for-its-own-sake."
+        />
 
-        {/* Featured Project — LWL */}
-        <div className="animate-slide-up">
-          <div className="text-sm font-semibold text-google-blue mb-3 flex items-center gap-2">
-            <span className="w-2 h-2 bg-google-blue rounded-full animate-pulse" />
-            Featured Project
+        <Reveal variant="up">
+          <div className="flex items-center gap-2 mb-4">
+            <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-primary">Featured</span>
+            <span className="h-px flex-1 bg-gradient-to-r from-primary/40 to-transparent" />
           </div>
           <LWLAppPreview />
-        </div>
+        </Reveal>
 
-        {/* Other Project Cards */}
-        <div className="grid md:grid-cols-2 gap-8 animate-slide-up">
+        <div className="grid md:grid-cols-2 gap-5">
           {otherProjects.map((project, index) => (
-            <Card
-              key={index}
-              className="border-border p-6 shadow-google-lg hover:shadow-google-xl transition-all duration-300 group"
-            >
+            <Reveal key={project.title} variant="up" delay={index * 0.08}>
+              <motion.div
+                whileHover={{ y: -6 }}
+                transition={{ type: "spring", stiffness: 220, damping: 20 }}
+                className="group relative glass rounded-3xl p-6 h-full overflow-hidden"
+              >
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-br from-primary/15 via-transparent to-google-yellow/10" />
               <div className="space-y-4">
                 <div className="flex items-start gap-4">
                   <div
@@ -71,7 +64,7 @@ const Projects = () => {
                     {project.icon}
                   </div>
                   <div className="flex-1 min-w-0">
-                    <h3 className="text-xl font-bold text-foreground">
+                    <h3 className="font-display text-xl font-semibold text-foreground">
                       {project.title}
                     </h3>
                     {project.stars > 0 && (
@@ -91,7 +84,7 @@ const Projects = () => {
                     <Badge
                       key={tech}
                       variant="secondary"
-                      className="bg-secondary text-secondary-foreground border border-border"
+                      className="bg-white/5 text-foreground/80 border border-white/10 backdrop-blur"
                     >
                       {tech}
                     </Badge>
@@ -106,7 +99,7 @@ const Projects = () => {
                   <Button
                     variant="outline"
                     size="sm"
-                    className="mt-2 gap-2 rounded-full group-hover:border-google-blue group-hover:text-google-blue transition-colors"
+                    className="mt-2 gap-2 rounded-full glass border-border/60 group-hover:border-primary group-hover:text-primary transition-colors"
                   >
                     <Github className="w-4 h-4" />
                     View on GitHub
@@ -114,7 +107,8 @@ const Projects = () => {
                   </Button>
                 </a>
               </div>
-            </Card>
+              </motion.div>
+            </Reveal>
           ))}
         </div>
       </div>

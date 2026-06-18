@@ -1,6 +1,7 @@
-import { Card } from "@/components/ui/card";
 import { Calendar, GraduationCap, Award } from "lucide-react";
 import DocumentViewer from "./DocumentViewer";
+import SectionHeading from "./SectionHeading";
+import Reveal from "./Reveal";
 
 const Education = () => {
   const education = [
@@ -41,29 +42,19 @@ const Education = () => {
   };
 
   return (
-    <section id="education" className="py-20 px-4">
-      <div className="max-w-6xl mx-auto space-y-12">
-        {/* Section Header */}
-        <div className="text-center space-y-4 animate-fade-in">
-          <h2 className="text-4xl md:text-5xl font-bold text-foreground">Education</h2>
-          <div className="flex gap-1 justify-center">
-            <div className="w-4 h-1 bg-google-blue rounded-full"></div>
-            <div className="w-4 h-1 bg-google-red rounded-full"></div>
-            <div className="w-4 h-1 bg-google-yellow rounded-full"></div>
-            <div className="w-4 h-1 bg-google-green rounded-full"></div>
-          </div>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            Academic background and professional certifications
-          </p>
-        </div>
+    <section id="education" className="relative py-32 px-4">
+      <div className="max-w-6xl mx-auto space-y-16">
+        <SectionHeading
+          eyebrow="05 · Education"
+          title="Studied long. Still learning."
+          description="Academic background and certifications backing the professional work."
+        />
 
-        {/* Education Timeline */}
-        <div className="space-y-6">
+        <div className="space-y-5">
           {education.map((edu, index) => (
-            <Card 
-              key={index}
-              className="border-border p-8 shadow-google-lg hover:shadow-google-xl transition-all duration-300 animate-slide-up group"
-              style={{ animationDelay: `${index * 0.1}s` }}
+            <Reveal key={index} variant="up" delay={index * 0.06}>
+            <div
+              className="glass rounded-3xl p-7 md:p-8 group transition-colors hover:border-primary/40"
             >
               <div className="flex flex-col md:flex-row md:items-start gap-6">
                 {/* Icon */}
@@ -74,45 +65,46 @@ const Education = () => {
                 {/* Content */}
                 <div className="flex-1 space-y-3">
                   <div>
-                    <h3 className="text-2xl font-bold text-foreground mb-2">{edu.degree}</h3>
-                    <p className="text-xl text-google-blue mb-3 font-medium">{edu.institution}</p>
+                    <h3 className="font-display text-xl md:text-2xl font-semibold text-foreground mb-2">{edu.degree}</h3>
+                    <p className="text-lg text-primary mb-3 font-medium">{edu.institution}</p>
                     <div className="flex flex-wrap gap-4 text-muted-foreground">
                       <span className="flex items-center gap-2">
                         <Calendar className="w-4 h-4" />
                         {edu.date}
                       </span>
-                      <span className="px-3 py-1 rounded-full bg-secondary text-sm border border-border font-medium">
+                      <span className="px-3 py-1 rounded-full bg-white/5 text-sm border border-white/10 font-medium">
                         {edu.type}
                       </span>
                     </div>
                   </div>
                 </div>
               </div>
-            </Card>
+            </div>
+            </Reveal>
           ))}
         </div>
 
         {/* Certifications */}
-        <div className="mt-12">
-          <Card className="border-border p-8 shadow-google-lg hover:shadow-google-xl transition-shadow duration-300 animate-slide-up" style={{ animationDelay: '0.4s' }}>
+        <Reveal variant="up">
+          <div className="glass-strong rounded-3xl p-8">
             <div className="flex items-start gap-4 mb-6">
               <div className="w-12 h-12 bg-google-yellow/20 rounded-2xl flex items-center justify-center flex-shrink-0">
                 <Award className="w-6 h-6 text-google-yellow" />
               </div>
               <div>
-                <h3 className="text-2xl font-bold text-foreground">Certifications</h3>
+                <h3 className="font-display text-2xl font-semibold text-foreground">Certifications</h3>
               </div>
             </div>
             <ul className="space-y-3 list-none">
               {certifications.map((cert, i) => (
                 <li key={i} className="text-muted-foreground leading-relaxed flex items-start gap-3">
-                  <span className="text-google-blue mt-1 font-bold">✓</span>
+                  <span className="text-primary mt-1 font-bold">✓</span>
                   <span>{cert}</span>
                 </li>
               ))}
             </ul>
-          </Card>
-        </div>
+          </div>
+        </Reveal>
 
         {/* Documents Viewer */}
         <DocumentViewer />

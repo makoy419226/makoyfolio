@@ -1,77 +1,72 @@
-import { Card } from "@/components/ui/card";
-import { Mail, Phone, MapPin } from "lucide-react";
+import { Mail, Phone, MapPin, ArrowUpRight } from "lucide-react";
+import { motion } from "framer-motion";
+import SectionHeading from "./SectionHeading";
+import Reveal from "./Reveal";
+import { Button } from "@/components/ui/button";
 
-const Contact = () => {
-  return (
-    <section id="contact" className="py-20 px-4">
-      <div className="max-w-6xl mx-auto space-y-12">
-        {/* Section Header */}
-        <div className="text-center space-y-4 animate-fade-in">
-          <h2 className="text-4xl md:text-5xl font-bold text-foreground">Get In Touch</h2>
-          <div className="flex gap-1 justify-center">
-            <div className="w-4 h-1 bg-google-blue rounded-full"></div>
-            <div className="w-4 h-1 bg-google-red rounded-full"></div>
-            <div className="w-4 h-1 bg-google-yellow rounded-full"></div>
-            <div className="w-4 h-1 bg-google-green rounded-full"></div>
+const channels = [
+  { icon: Mail, label: "Email", value: "Idusma0010@gmail.com", href: "mailto:Idusma0010@gmail.com", tone: "text-google-blue" },
+  { icon: Phone, label: "Phone", value: "+971 50 931 7400", href: "tel:+971509317400", tone: "text-google-red" },
+  { icon: MapPin, label: "Location", value: "Airport Road, Abu Dhabi, UAE", href: "#", tone: "text-google-green" },
+];
+
+const Contact = () => (
+  <section id="contact" className="relative py-32 px-4">
+    <div className="max-w-6xl mx-auto space-y-16">
+      <SectionHeading
+        eyebrow="06 · Contact"
+        title="Let's build something useful together."
+        description="Open to engineering, IT, and project coordination roles — and to interesting side work."
+      />
+
+      <Reveal variant="scale">
+        <div className="relative glass-strong rounded-[2.5rem] p-10 md:p-16 overflow-hidden">
+          <div className="absolute -top-20 -left-20 w-72 h-72 rounded-full bg-primary/40 blur-3xl" />
+          <div className="absolute -bottom-20 -right-20 w-72 h-72 rounded-full bg-google-yellow/30 blur-3xl" />
+
+          <div className="relative grid md:grid-cols-[1.2fr_1fr] gap-10 items-center">
+            <div>
+              <h3 className="font-display text-3xl md:text-4xl font-semibold leading-tight text-balance">
+                Have a role, a project, or a question? <span className="text-gradient">Say hello.</span>
+              </h3>
+              <p className="text-muted-foreground mt-4 max-w-md">
+                Replies usually arrive within a day. The fastest path is email.
+              </p>
+              <a href="mailto:Idusma0010@gmail.com" className="inline-block mt-6">
+                <Button size="lg" className="rounded-full bg-gradient-accent border-0 ring-glow hover:brightness-110">
+                  Send an email <ArrowUpRight />
+                </Button>
+              </a>
+            </div>
+
+            <div className="space-y-3">
+              {channels.map((c, i) => (
+                <motion.a
+                  key={c.label}
+                  href={c.href}
+                  whileHover={{ x: 6 }}
+                  className="flex items-center gap-4 glass rounded-2xl p-4 group"
+                  initial={{ opacity: 0, x: 20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.08, duration: 0.5 }}
+                >
+                  <div className={`w-11 h-11 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center ${c.tone}`}>
+                    <c.icon className="w-5 h-5" />
+                  </div>
+                  <div className="flex-1">
+                    <p className="text-[11px] font-mono uppercase tracking-[0.18em] text-muted-foreground">{c.label}</p>
+                    <p className="text-sm font-medium text-foreground">{c.value}</p>
+                  </div>
+                  <ArrowUpRight className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors" />
+                </motion.a>
+              ))}
+            </div>
           </div>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            Let's connect and discuss how we can work together
-          </p>
         </div>
-
-        {/* Contact Info */}
-        <div className="grid md:grid-cols-3 gap-8 animate-slide-up">
-          <Card className="border-border p-6 shadow-google-lg hover:shadow-google-xl transition-shadow duration-300">
-            <div className="flex items-start gap-4">
-              <div className="w-12 h-12 bg-google-blue/20 rounded-2xl flex items-center justify-center flex-shrink-0">
-                <Mail className="w-6 h-6 text-google-blue" />
-              </div>
-              <div>
-                <h3 className="text-xl font-bold text-foreground mb-2">Email</h3>
-                <a
-                  href="mailto:Idusma0010@gmail.com"
-                  className="text-muted-foreground hover:text-google-blue transition-colors"
-                >
-                  Idusma0010@gmail.com
-                </a>
-              </div>
-            </div>
-          </Card>
-
-          <Card className="border-border p-6 shadow-google-lg hover:shadow-google-xl transition-shadow duration-300">
-            <div className="flex items-start gap-4">
-              <div className="w-12 h-12 bg-google-red/20 rounded-2xl flex items-center justify-center flex-shrink-0">
-                <Phone className="w-6 h-6 text-google-red" />
-              </div>
-              <div>
-                <h3 className="text-xl font-bold text-foreground mb-2">Phone</h3>
-                <a
-                  href="tel:+971509317400"
-                  className="text-muted-foreground hover:text-google-blue transition-colors"
-                >
-                  +971 50 931 7400
-                </a>
-              </div>
-            </div>
-          </Card>
-
-          <Card className="border-border p-6 shadow-google-lg hover:shadow-google-xl transition-shadow duration-300">
-            <div className="flex items-start gap-4">
-              <div className="w-12 h-12 bg-google-green/20 rounded-2xl flex items-center justify-center flex-shrink-0">
-                <MapPin className="w-6 h-6 text-google-green" />
-              </div>
-              <div>
-                <h3 className="text-xl font-bold text-foreground mb-2">Location</h3>
-                <p className="text-muted-foreground">
-                  Airport Road, Shakeel Studio Building, Abu Dhabi, UAE
-                </p>
-              </div>
-            </div>
-          </Card>
-        </div>
-      </div>
-    </section>
-  );
-};
+      </Reveal>
+    </div>
+  </section>
+);
 
 export default Contact;

@@ -1,47 +1,51 @@
-import { Card } from "@/components/ui/card";
-import { Briefcase } from "lucide-react";
+import { Briefcase, MapPin } from "lucide-react";
+import SectionHeading from "./SectionHeading";
+import Reveal from "./Reveal";
 
-const WorkExperience = () => {
-  return (
-    <section id="experience" className="py-20 px-4 bg-background/50">
-      <div className="max-w-6xl mx-auto space-y-12">
-        {/* Section Header */}
-        <div className="text-center space-y-4 animate-fade-in">
-          <h2 className="text-4xl md:text-5xl font-bold text-foreground">Work Experience</h2>
-          <div className="flex gap-1 justify-center">
-            <div className="w-4 h-1 bg-google-blue rounded-full"></div>
-            <div className="w-4 h-1 bg-google-red rounded-full"></div>
-            <div className="w-4 h-1 bg-google-yellow rounded-full"></div>
-            <div className="w-4 h-1 bg-google-green rounded-full"></div>
-          </div>
-          <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
-            Professional experience and technical roles
-          </p>
-        </div>
+const WorkExperience = () => (
+  <section id="experience" className="relative py-32 px-4">
+    <div className="max-w-5xl mx-auto space-y-16">
+      <SectionHeading
+        eyebrow="03 · Experience"
+        title="Hands-on roles that shaped the craft."
+        description="Foundational work in technical operations — keeping people unblocked and systems running."
+      />
 
-        {/* Experience Card */}
-        <Card className="border-border p-8 shadow-google-lg hover:shadow-google-xl transition-all duration-300 animate-fade-in">
-          <div className="flex items-start gap-6">
-            <div className="w-16 h-16 rounded-2xl bg-google-blue/20 flex items-center justify-center flex-shrink-0">
-              <Briefcase className="w-8 h-8 text-google-blue" />
-            </div>
-            <div className="flex-1 space-y-3">
-              <div>
-                <h3 className="text-2xl font-bold text-foreground">Computer Technician</h3>
-                <p className="text-google-blue font-medium text-lg">B & J Computers</p>
-                <p className="text-muted-foreground">Totolan, Dauis, Bohol</p>
-              </div>
-              <p className="text-foreground leading-relaxed">
-                Assisted in computer repair, maintenance, and software troubleshooting. 
-                Supported daily technical operations and provided basic IT assistance to clients, 
-                enhancing practical skills in hardware and software systems.
+      <div className="relative">
+        {/* spine */}
+        <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-primary/50 to-transparent" aria-hidden />
+
+        <Reveal variant="up">
+          <div className="relative md:grid md:grid-cols-2 md:gap-12">
+            <div className="md:text-right md:pr-10 pl-12 md:pl-0">
+              <span className="font-mono text-xs uppercase tracking-[0.2em] text-primary">2020 — 2022</span>
+              <h3 className="font-display text-2xl font-semibold mt-2">Computer Technician</h3>
+              <p className="text-primary font-medium">B &amp; J Computers</p>
+              <p className="text-sm text-muted-foreground flex md:justify-end items-center gap-1.5 mt-1">
+                <MapPin className="w-3.5 h-3.5" /> Totolan, Dauis, Bohol
               </p>
             </div>
+
+            {/* node */}
+            <span className="absolute left-4 md:left-1/2 -translate-x-1/2 top-2 w-3 h-3 rounded-full bg-gradient-accent ring-4 ring-background" />
+
+            <div className="mt-4 md:mt-0 md:pl-10 pl-12">
+              <div className="glass rounded-2xl p-6">
+                <div className="w-10 h-10 rounded-xl bg-primary/15 flex items-center justify-center mb-3">
+                  <Briefcase className="w-5 h-5 text-primary" />
+                </div>
+                <p className="text-sm text-foreground/90 leading-relaxed">
+                  Assisted in computer repair, maintenance, and software troubleshooting.
+                  Supported daily technical operations and provided IT assistance to clients —
+                  sharpening practical skills across hardware and software systems.
+                </p>
+              </div>
+            </div>
           </div>
-        </Card>
+        </Reveal>
       </div>
-    </section>
-  );
-};
+    </div>
+  </section>
+);
 
 export default WorkExperience;

@@ -1,68 +1,75 @@
-import { Card } from "@/components/ui/card";
 import { Target, Heart, MapPin } from "lucide-react";
+import { motion } from "framer-motion";
+import SectionHeading from "./SectionHeading";
+import Reveal from "./Reveal";
 
-const About = () => {
-  return (
-    <section id="about" className="py-20 px-4">
-      <div className="max-w-6xl mx-auto space-y-12">
-        {/* Section Header */}
-        <div className="text-center space-y-4 animate-fade-in">
-          <h2 className="text-4xl md:text-5xl font-bold text-foreground">About Me</h2>
-          <div className="flex gap-1 justify-center">
-            <div className="w-4 h-1 bg-google-blue rounded-full"></div>
-            <div className="w-4 h-1 bg-google-red rounded-full"></div>
-            <div className="w-4 h-1 bg-google-yellow rounded-full"></div>
-            <div className="w-4 h-1 bg-google-green rounded-full"></div>
-          </div>
-        </div>
+const values = [
+  {
+    icon: Target,
+    title: "Career objective",
+    body:
+      "Eager to learn and contribute as part of a strong team — developing skills, gaining experience, and improving through hands-on work.",
+    tone: "text-google-blue",
+  },
+  {
+    icon: Heart,
+    title: "Commitment",
+    body:
+      "Committed to excellence and adaptability — a dependable team member who contributes positively to shared goals.",
+    tone: "text-google-red",
+  },
+  {
+    icon: MapPin,
+    title: "Based in Abu Dhabi",
+    body:
+      "Bringing technical fluency and steady communication to every project across the UAE and remote teams worldwide.",
+    tone: "text-google-green",
+  },
+];
 
-        {/* Professional Summary */}
-        <Card className="border-border p-8 shadow-google-lg hover:shadow-google-xl transition-shadow duration-300 animate-slide-up">
-          <h3 className="text-2xl font-bold text-foreground mb-4">Professional Summary</h3>
-          <p className="text-muted-foreground leading-relaxed text-lg">
-            Dynamic and detail-oriented fresh graduate with a strong interest in project management and information technology. 
-            Skilled in systems organization, troubleshooting, and customer resolution, with excellent communication and problem-solving abilities. 
-            Highly adaptable, motivated to learn, and committed to contributing effectively to team success and organizational growth.
+const About = () => (
+  <section id="about" className="relative py-32 px-4">
+    <div className="max-w-6xl mx-auto space-y-16">
+      <SectionHeading
+        eyebrow="01 · About"
+        title="Quietly precise. Genuinely curious."
+        description="Dynamic and detail-oriented Computer Engineer with a strong interest in project management and IT — skilled in systems organization, troubleshooting, and customer resolution."
+      />
+
+      <Reveal variant="up">
+        <div className="relative glass-strong rounded-3xl p-8 md:p-12 overflow-hidden">
+          <div className="absolute -top-24 -right-24 w-64 h-64 rounded-full bg-primary/30 blur-3xl" />
+          <h3 className="relative font-display text-2xl md:text-3xl font-semibold mb-4">
+            Professional summary
+          </h3>
+          <p className="relative text-muted-foreground leading-relaxed text-lg max-w-3xl">
+            Highly adaptable, motivated to learn, and committed to contributing effectively
+            to team success and organizational growth — with excellent communication and
+            problem-solving abilities built across study, support work, and self-driven projects.
           </p>
-        </Card>
-
-        {/* Values Grid */}
-        <div className="grid md:grid-cols-3 gap-6">
-          <Card className="border-border p-6 shadow-google-lg hover:shadow-google-xl transition-all duration-300 hover:-translate-y-1 animate-slide-up group" style={{ animationDelay: '0.1s' }}>
-            <div className="w-12 h-12 bg-google-blue/20 rounded-2xl flex items-center justify-center mb-4 group-hover:bg-google-blue/30 transition-colors">
-              <Target className="w-6 h-6 text-google-blue" />
-            </div>
-            <h4 className="text-xl font-bold text-foreground mb-3">Career Objective</h4>
-            <p className="text-muted-foreground leading-relaxed">
-              As a fresh graduate, I am eager to learn and grow as part of your team while contributing to the success of your organization. 
-              I am highly motivated to develop my skills, gain valuable experience, and continuously improve through hands-on learning.
-            </p>
-          </Card>
-
-          <Card className="border-border p-6 shadow-google-lg hover:shadow-google-xl transition-all duration-300 hover:-translate-y-1 animate-slide-up group" style={{ animationDelay: '0.2s' }}>
-            <div className="w-12 h-12 bg-google-red/20 rounded-2xl flex items-center justify-center mb-4 group-hover:bg-google-red/30 transition-colors">
-              <Heart className="w-6 h-6 text-google-red" />
-            </div>
-            <h4 className="text-xl font-bold text-foreground mb-3">Commitment</h4>
-            <p className="text-muted-foreground leading-relaxed">
-              With a strong commitment to excellence and adaptability, I look forward to becoming a dedicated and dependable team member 
-              who contributes positively to your goals.
-            </p>
-          </Card>
-
-          <Card className="border-border p-6 shadow-google-lg hover:shadow-google-xl transition-all duration-300 hover:-translate-y-1 animate-slide-up group" style={{ animationDelay: '0.3s' }}>
-            <div className="w-12 h-12 bg-google-green/20 rounded-2xl flex items-center justify-center mb-4 group-hover:bg-google-green/30 transition-colors">
-              <MapPin className="w-6 h-6 text-google-green" />
-            </div>
-            <h4 className="text-xl font-bold text-foreground mb-3">Location</h4>
-            <p className="text-muted-foreground leading-relaxed">
-              Based in Abu Dhabi, UAE, bringing technical expertise and interpersonal skills to every project and opportunity.
-            </p>
-          </Card>
         </div>
+      </Reveal>
+
+      <div className="grid md:grid-cols-3 gap-5">
+        {values.map((v, i) => (
+          <Reveal key={v.title} variant="up" delay={i * 0.08}>
+            <motion.div
+              whileHover={{ y: -6 }}
+              transition={{ type: "spring", stiffness: 250, damping: 20 }}
+              className="group relative h-full glass rounded-3xl p-6 overflow-hidden"
+            >
+              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-br from-primary/10 to-transparent" />
+              <div className={`relative w-11 h-11 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center mb-5 ${v.tone}`}>
+                <v.icon className="w-5 h-5" />
+              </div>
+              <h4 className="relative font-display text-lg font-semibold mb-2">{v.title}</h4>
+              <p className="relative text-sm text-muted-foreground leading-relaxed">{v.body}</p>
+            </motion.div>
+          </Reveal>
+        ))}
       </div>
-    </section>
-  );
-};
+    </div>
+  </section>
+);
 
 export default About;
