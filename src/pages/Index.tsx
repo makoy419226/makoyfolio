@@ -7,19 +7,28 @@ import Education from "@/components/Education";
 import CVPreview from "@/components/CVPreview";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
-import ScrollReveal from "@/components/ScrollReveal";
+import Navbar from "@/components/Navbar";
+import SmoothScroll from "@/components/SmoothScroll";
+import ScrollProgress from "@/components/ScrollProgress";
+import MorphBlobs from "@/components/MorphBlobs";
 
 const Index = () => {
   return (
-    <div className="min-h-screen">
-      <Hero />
-      <ScrollReveal variant="fade-up"><About /></ScrollReveal>
-      <ScrollReveal variant="scale" delay={50}><Skills /></ScrollReveal>
-      <ScrollReveal variant="slide-left"><WorkExperience /></ScrollReveal>
-      <ScrollReveal variant="fade-up"><Projects /></ScrollReveal>
-      <ScrollReveal variant="fade-up"><Education /></ScrollReveal>
-      <ScrollReveal variant="fade-up"><CVPreview /></ScrollReveal>
-      <ScrollReveal variant="fade-up"><Contact /></ScrollReveal>
+    <div id="top" className="min-h-screen relative">
+      <SmoothScroll />
+      <ScrollProgress />
+      <MorphBlobs />
+      <Navbar />
+      <main>
+        <Hero />
+        <About />
+        <Skills />
+        <WorkExperience />
+        <Projects />
+        <Education />
+        <CVPreview />
+        <Contact />
+      </main>
       <Footer />
     </div>
   );

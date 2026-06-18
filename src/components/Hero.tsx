@@ -1,107 +1,173 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Phone, Mail, Github } from "lucide-react";
+import { ArrowRight, Phone, Mail, Github, Sparkles } from "lucide-react";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
 import profileImage from "@/assets/profile.jpg";
 
-const Hero = () => {
-  const scrollToContact = () => {
-    document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
-  };
+const headlineWords = ["Mark", "Angelou", "Idusma"];
 
-  const scrollToAbout = () => {
-    document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' });
-  };
+const Hero = () => {
+  const ref = useRef<HTMLElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start start", "end start"],
+  });
+  const y = useTransform(scrollYProgress, [0, 1], [0, 180]);
+  const opacity = useTransform(scrollYProgress, [0, 0.6], [1, 0]);
+  const portraitY = useTransform(scrollYProgress, [0, 1], [0, -80]);
 
   return (
-    <section className="min-h-screen flex flex-col items-center justify-center px-4 py-20 relative overflow-hidden">
-      {/* Colorful Floating Shapes */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-20 left-10 w-64 h-64 bg-google-blue/20 rounded-full blur-3xl animate-float-slow"></div>
-        <div className="absolute top-40 right-20 w-48 h-48 bg-google-red/20 rounded-full blur-3xl animate-float-delayed"></div>
-        <div className="absolute bottom-32 left-1/4 w-56 h-56 bg-google-yellow/20 rounded-full blur-3xl animate-float-slow"></div>
-        <div className="absolute bottom-20 right-1/3 w-72 h-72 bg-google-green/20 rounded-full blur-3xl animate-float-delayed"></div>
-      </div>
+    <section
+      ref={ref}
+      className="relative min-h-[100svh] flex items-center px-4 pt-32 pb-24 overflow-hidden"
+    >
+      <motion.div
+        style={{ y, opacity }}
+        className="max-w-6xl mx-auto w-full grid lg:grid-cols-[1.4fr_1fr] gap-12 items-center relative z-10"
+      >
+        {/* Left — copy */}
+        <div className="space-y-8">
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full glass text-xs font-medium tracking-wide"
+          >
+            <span className="relative flex h-2 w-2">
+              <span className="absolute inline-flex h-full w-full rounded-full bg-google-green opacity-70 animate-ping" />
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-google-green" />
+            </span>
+            <Sparkles className="w-3.5 h-3.5 text-primary" />
+            Available for opportunities · Abu Dhabi, UAE
+          </motion.div>
 
-      <div className="max-w-4xl mx-auto text-center space-y-8 animate-fade-in relative z-10">
-        {/* Status Badge */}
-        <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-google-blue/20 border border-google-blue/30">
-          <div className="w-2 h-2 bg-google-green rounded-full animate-pulse"></div>
-          <span className="text-sm text-foreground font-medium">Available for Opportunities</span>
-        </div>
-
-        {/* Profile Image */}
-        <div className="relative inline-block animate-scale-in">
-          <div className="absolute inset-0 bg-google-blue/30 rounded-full blur-2xl"></div>
-          <img 
-            src={profileImage} 
-            alt="Mark Angelou Idusma" 
-            className="relative w-40 h-40 rounded-full object-cover border-4 border-border shadow-google-xl mx-auto"
-          />
-        </div>
-
-        {/* Name & Title */}
-        <div className="space-y-3">
-          <h1 className="text-5xl md:text-6xl lg:text-7xl font-bold text-foreground tracking-tight">
-            Mark Angelou Idusma
+          <h1 className="font-display text-[clamp(2.75rem,7vw,5.75rem)] leading-[0.95] font-semibold tracking-tight text-balance">
+            {headlineWords.map((word, i) => (
+              <span key={word} className="inline-block overflow-hidden align-bottom mr-3">
+                <motion.span
+                  initial={{ y: "110%" }}
+                  animate={{ y: 0 }}
+                  transition={{ duration: 0.9, delay: 0.15 + i * 0.08, ease: [0.22, 1, 0.36, 1] }}
+                  className={
+                    i === headlineWords.length - 1
+                      ? "inline-block text-gradient"
+                      : "inline-block text-foreground"
+                  }
+                >
+                  {word}
+                </motion.span>
+              </span>
+            ))}
           </h1>
-          <p className="text-xl md:text-2xl text-muted-foreground font-medium">
-            Computer Engineer, CpE
-          </p>
+
+          <motion.p
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.5 }}
+            className="text-lg md:text-xl text-muted-foreground max-w-xl leading-relaxed"
+          >
+            Computer Engineer crafting calm, reliable systems — blending IT support,
+            web development, and project coordination into work that just runs.
+          </motion.p>
+
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.65 }}
+            className="flex flex-col sm:flex-row gap-3 pt-2"
+          >
+            <a href="#contact">
+              <Button size="lg" className="group rounded-full bg-gradient-accent border-0 ring-glow hover:brightness-110">
+                Get in touch
+                <ArrowRight className="group-hover:translate-x-1 transition-transform" />
+              </Button>
+            </a>
+            <a href="#projects">
+              <Button size="lg" variant="outline" className="rounded-full glass border-border/60 hover:border-primary/60">
+                View work
+              </Button>
+            </a>
+          </motion.div>
+
+          {/* Contact rail */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.85 }}
+            className="flex flex-wrap gap-x-6 gap-y-2 pt-4 text-sm text-muted-foreground"
+          >
+            <a href="tel:+971509317400" className="flex items-center gap-2 hover:text-foreground transition-colors">
+              <Phone className="w-3.5 h-3.5 text-primary" />
+              +971 50 931 7400
+            </a>
+            <a href="mailto:Idusma0010@gmail.com" className="flex items-center gap-2 hover:text-foreground transition-colors">
+              <Mail className="w-3.5 h-3.5 text-primary" />
+              Idusma0010@gmail.com
+            </a>
+            <a
+              href="https://github.com/makoy419226"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-2 hover:text-foreground transition-colors"
+            >
+              <Github className="w-3.5 h-3.5 text-primary" />
+              @makoy419226
+            </a>
+          </motion.div>
         </div>
 
-        {/* Description */}
-        <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-          Dynamic and detail-oriented fresh graduate with a strong interest in project management and information technology. 
-          Skilled in systems organization, troubleshooting, and customer resolution, with excellent communication and problem-solving abilities.
-        </p>
+        {/* Right — portrait card */}
+        <motion.div
+          style={{ y: portraitY }}
+          initial={{ opacity: 0, scale: 0.92 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+          className="relative mx-auto w-full max-w-sm"
+        >
+          <div className="relative aspect-[4/5] rounded-[2rem] glass-strong ring-glow overflow-hidden noise">
+            <img
+              src={profileImage}
+              alt="Portrait of Mark Angelou Idusma"
+              className="absolute inset-0 w-full h-full object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-background via-background/10 to-transparent" />
+            <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between">
+              <div>
+                <p className="font-display text-sm font-semibold text-foreground">Computer Engineer, CpE</p>
+                <p className="text-[11px] text-muted-foreground">BS · Bohol Island State University</p>
+              </div>
+              <span className="text-[10px] font-mono uppercase tracking-widest text-primary">2025</span>
+            </div>
+          </div>
 
-        {/* CTA Buttons */}
-        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center pt-4">
-          <Button 
-            variant="google" 
-            size="lg" 
-            onClick={scrollToContact}
-            className="group rounded-full"
+          {/* floating tag */}
+          <motion.div
+            animate={{ y: [0, -10, 0] }}
+            transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+            className="absolute -left-4 top-10 glass rounded-2xl px-3 py-2 text-[11px] font-medium shadow-google-md"
           >
-            Get In Touch
-            <ArrowRight className="group-hover:translate-x-1 transition-transform" />
-          </Button>
-          <Button 
-            variant="outline" 
-            size="lg"
-            onClick={scrollToAbout}
-            className="rounded-full"
+            <span className="text-primary">●</span> IT Systems · Web · PM
+          </motion.div>
+          <motion.div
+            animate={{ y: [0, 10, 0] }}
+            transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+            className="absolute -right-3 bottom-16 glass rounded-2xl px-3 py-2 text-[11px] font-medium shadow-google-md"
           >
-            Learn More
-          </Button>
-        </div>
+            <span className="text-google-green">●</span> Open to roles
+          </motion.div>
+        </motion.div>
+      </motion.div>
 
-        {/* Contact Info */}
-        <div className="flex flex-col sm:flex-row gap-6 justify-center items-center pt-8 text-muted-foreground">
-          <a 
-            href="tel:+971509317400" 
-            className="flex items-center gap-2 hover:text-google-blue transition-colors"
-          >
-            <Phone className="w-4 h-4" />
-            <span>+971 50 931 7400</span>
-          </a>
-          <a 
-            href="mailto:Idusma0010@gmail.com" 
-            className="flex items-center gap-2 hover:text-google-blue transition-colors"
-          >
-            <Mail className="w-4 h-4" />
-            <span>Idusma0010@gmail.com</span>
-          </a>
-          <a 
-            href="https://github.com/makoy419226" 
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-2 hover:text-google-blue transition-colors"
-          >
-            <Github className="w-4 h-4" />
-            <span>@makoy419226</span>
-          </a>
-        </div>
-      </div>
+      {/* scroll cue */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 1.4, duration: 0.6 }}
+        className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-[10px] tracking-[0.3em] uppercase text-muted-foreground"
+      >
+        Scroll
+        <span className="block h-10 w-px bg-gradient-to-b from-primary to-transparent" />
+      </motion.div>
     </section>
   );
 };
