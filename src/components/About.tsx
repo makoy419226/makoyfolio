@@ -42,7 +42,7 @@ const About = () => (
           <h3 className="relative font-display text-2xl md:text-3xl font-semibold mb-4">
             Professional summary
           </h3>
-          <p className="relative text-muted-foreground leading-relaxed text-lg max-w-3xl">
+          <p className="relative text-muted-foreground leading-relaxed text-lg max-w-3xl text-justify">
             I am a BS Computer Engineering graduate with experience in software development,
             AI-assisted development workflows, data handling and business process automation.
             I have worked with technologies such as Python, TypeScript, Vue.js, Node.js, Next.js,
@@ -67,7 +67,7 @@ const About = () => (
                 <v.icon className="w-5 h-5" />
               </div>
               <h4 className="relative font-display text-lg font-semibold mb-2">{v.title}</h4>
-              <p className="relative text-sm text-muted-foreground leading-relaxed">{v.body}</p>
+              <p className="relative text-sm text-muted-foreground leading-relaxed text-justify">{v.body}</p>
             </motion.div>
           </Reveal>
         ))}

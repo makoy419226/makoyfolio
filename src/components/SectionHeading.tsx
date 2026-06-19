@@ -26,7 +26,7 @@ const SectionHeading = ({ eyebrow, title, description, align = "center" }: Props
     </Reveal>
     {description && (
       <Reveal variant="up" delay={0.1}>
-        <p className="mt-4 text-muted-foreground text-base md:text-lg leading-relaxed">
+        <p className="mt-4 text-muted-foreground text-base md:text-lg leading-relaxed text-justify">
           {description}
         </p>
       </Reveal>

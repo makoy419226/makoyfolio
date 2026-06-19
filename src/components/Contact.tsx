@@ -29,7 +29,7 @@ const Contact = () => (
               <h3 className="font-display text-3xl md:text-4xl font-semibold leading-tight text-balance">
                 Have a role, a project, or a question? <span className="text-gradient">Say hello.</span>
               </h3>
-              <p className="text-muted-foreground mt-4 max-w-md">
+              <p className="text-muted-foreground mt-4 max-w-md text-justify">
                 Replies usually arrive within a day. The fastest path is email.
               </p>
               <a href="mailto:Idusma0010@gmail.com" className="inline-block mt-6">
