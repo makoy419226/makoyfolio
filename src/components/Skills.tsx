@@ -4,16 +4,16 @@ import Reveal from "./Reveal";
 
 const skillGroups = [
   {
-    label: "Engineering",
-    items: ["Web Development", "Python Programming", "Hardware & Software Installation", "Troubleshooting"],
+    label: "Frontend",
+    items: ["React", "TypeScript", "Tailwind CSS", "Vite", "Responsive UI"],
   },
   {
-    label: "Operations",
-    items: ["IT Support", "IT Systems Administration", "Process Coordination"],
+    label: "Backend & Data",
+    items: ["Node.js", "Express.js", "REST APIs", "Zod", "PostgreSQL", "Drizzle ORM"],
   },
   {
-    label: "Collaboration",
-    items: ["Project Management", "Vendor & Client Coordination", "Account Management"],
+    label: "Tools & Support",
+    items: ["Git / GitHub", "Python", "IT Troubleshooting", "Excel & PDF Reporting", "Client Communication"],
   },
 ];
 
