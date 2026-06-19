@@ -6,57 +6,56 @@
 
 @layer base {
   :root {
-    --background: 240 47% 6%;
-    --foreground: 230 30% 96%;
+    --background: 240 40% 98%;
+    --foreground: 240 30% 12%;
 
-    --card: 240 46% 11%;
-    --card-foreground: 230 30% 96%;
+    --card: 0 0% 100%;
+    --card-foreground: 240 30% 12%;
 
-    --popover: 240 46% 11%;
-    --popover-foreground: 230 30% 96%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 30% 12%;
 
-    --primary: 244 76% 59%;
+    --primary: 244 76% 56%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 240 40% 16%;
-    --secondary-foreground: 230 30% 96%;
+    --secondary: 240 30% 94%;
+    --secondary-foreground: 240 30% 18%;
 
-    --muted: 240 35% 14%;
-    --muted-foreground: 232 18% 72%;
+    --muted: 240 30% 95%;
+    --muted-foreground: 235 14% 38%;
 
-    --accent: 244 76% 59%;
+    --accent: 244 76% 56%;
     --accent-foreground: 0 0% 100%;
 
-    --destructive: 348 83% 60%;
+    --destructive: 348 83% 56%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 240 40% 22%;
-    --input: 240 40% 16%;
-    --ring: 244 76% 65%;
+    --border: 240 24% 88%;
+    --input: 240 24% 90%;
+    --ring: 244 76% 60%;
 
     --radius: 1rem;
 
-    /* Legacy accent token names kept for backwards compatibility,
-       remapped to Midnight Indigo direction (indigo/violet/fuchsia/cyan). */
-    --google-blue: 244 76% 62%;
-    --google-red: 280 80% 65%;
-    --google-yellow: 320 85% 65%;
-    --google-green: 188 90% 55%;
+    /* Accent palette tuned for light surfaces */
+    --google-blue: 244 76% 56%;
+    --google-red: 280 70% 55%;
+    --google-yellow: 320 75% 58%;
+    --google-green: 188 80% 42%;
 
-    --neutral-50: 240 40% 16%;
-    --neutral-100: 240 40% 20%;
-    --neutral-200: 240 35% 26%;
-    --neutral-300: 235 20% 40%;
-    --neutral-600: 232 18% 72%;
-    --neutral-900: 230 30% 96%;
+    --neutral-50: 240 30% 96%;
+    --neutral-100: 240 28% 92%;
+    --neutral-200: 240 24% 86%;
+    --neutral-300: 235 18% 70%;
+    --neutral-600: 235 14% 38%;
+    --neutral-900: 240 30% 12%;
 
-    --shadow-sm: 0 1px 2px 0 rgba(2, 2, 12, 0.5);
-    --shadow-md: 0 6px 16px -6px rgba(2, 2, 12, 0.6), 0 2px 6px -2px rgba(2, 2, 12, 0.5);
-    --shadow-lg: 0 18px 40px -16px rgba(79, 70, 229, 0.35), 0 8px 20px -8px rgba(2, 2, 12, 0.6);
-    --shadow-xl: 0 30px 60px -20px rgba(79, 70, 229, 0.45), 0 16px 30px -12px rgba(2, 2, 12, 0.7);
+    --shadow-sm: 0 1px 2px 0 rgba(15, 23, 42, 0.06);
+    --shadow-md: 0 6px 16px -6px rgba(15, 23, 42, 0.12), 0 2px 6px -2px rgba(15, 23, 42, 0.08);
+    --shadow-lg: 0 18px 40px -16px rgba(79, 70, 229, 0.25), 0 8px 20px -8px rgba(15, 23, 42, 0.10);
+    --shadow-xl: 0 30px 60px -20px rgba(79, 70, 229, 0.30), 0 16px 30px -12px rgba(15, 23, 42, 0.12);
 
-    --gradient-accent: linear-gradient(135deg, hsl(244 76% 62%) 0%, hsl(280 80% 65%) 50%, hsl(188 90% 55%) 100%);
-    --gradient-text:   linear-gradient(120deg, hsl(230 30% 96%) 0%, hsl(244 76% 80%) 50%, hsl(188 90% 75%) 100%);
+    --gradient-accent: linear-gradient(135deg, hsl(244 76% 58%) 0%, hsl(280 75% 60%) 50%, hsl(188 80% 48%) 100%);
+    --gradient-text:   linear-gradient(120deg, hsl(244 76% 40%) 0%, hsl(280 70% 50%) 50%, hsl(188 80% 38%) 100%);
   }
 }
 
@@ -72,8 +71,8 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     background-image:
-      radial-gradient(circle at 15% 10%, rgba(79, 70, 229, 0.14) 0%, transparent 55%),
-      radial-gradient(circle at 85% 90%, rgba(139, 92, 246, 0.10) 0%, transparent 55%),
+      radial-gradient(circle at 15% 10%, rgba(79, 70, 229, 0.10) 0%, transparent 55%),
+      radial-gradient(circle at 85% 90%, rgba(217, 70, 239, 0.08) 0%, transparent 55%),
       radial-gradient(circle at 50% 60%, rgba(34, 211, 238, 0.06) 0%, transparent 60%);
     background-attachment: fixed;
   }
@@ -83,7 +82,7 @@
     letter-spacing: -0.02em;
   }
 
-  ::selection { background: hsl(244 76% 62% / 0.4); color: hsl(230 30% 98%); }
+  ::selection { background: hsl(244 76% 60% / 0.25); color: hsl(240 30% 12%); }
 }
 
 @layer utilities {
@@ -102,19 +101,21 @@
   .bg-gradient-accent { background: var(--gradient-accent); }
 
   .glass {
-    background: linear-gradient(145deg, hsl(240 46% 13% / 0.72), hsl(240 46% 9% / 0.55));
+    background: linear-gradient(145deg, hsl(0 0% 100% / 0.75), hsl(240 40% 98% / 0.55));
     backdrop-filter: blur(18px) saturate(140%);
     -webkit-backdrop-filter: blur(18px) saturate(140%);
-    border: 1px solid hsl(244 60% 70% / 0.12);
+    border: 1px solid hsl(240 24% 80% / 0.50);
+    box-shadow: 0 6px 24px -12px rgba(15, 23, 42, 0.10);
   }
   .glass-strong {
-    background: linear-gradient(145deg, hsl(240 46% 14% / 0.85), hsl(240 46% 9% / 0.72));
+    background: linear-gradient(145deg, hsl(0 0% 100% / 0.90), hsl(240 40% 98% / 0.78));
     backdrop-filter: blur(24px) saturate(160%);
     -webkit-backdrop-filter: blur(24px) saturate(160%);
-    border: 1px solid hsl(244 60% 70% / 0.18);
+    border: 1px solid hsl(240 24% 80% / 0.60);
+    box-shadow: 0 12px 40px -16px rgba(15, 23, 42, 0.12);
   }
   .ring-glow {
-    box-shadow: 0 0 0 1px hsl(244 76% 62% / 0.25), 0 20px 60px -20px hsl(244 76% 62% / 0.55);
+    box-shadow: 0 0 0 1px hsl(244 76% 56% / 0.30), 0 20px 60px -20px hsl(244 76% 56% / 0.45);
   }
 
   .noise::before {
