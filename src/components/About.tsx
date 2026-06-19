@@ -43,9 +43,13 @@ const About = () => (
             Professional summary
           </h3>
           <p className="relative text-muted-foreground leading-relaxed text-lg max-w-3xl">
-            Highly adaptable, motivated to learn, and committed to contributing effectively
-            to team success and organizational growth — with excellent communication and
-            problem-solving abilities built across study, support work, and self-driven projects.
+            I am a BS Computer Engineering graduate with experience in software development,
+            AI-assisted development workflows, data handling and business process automation.
+            I have worked with technologies such as Python, TypeScript, Vue.js, Node.js, Next.js,
+            Git/GitHub, APIs, and modern AI tools including Codex and Claude for feature
+            implementation and workflow optimization. In addition to my technical background,
+            I am highly adaptable, eager to learn, and capable of working across different
+            business and technical functions.
           </p>
         </div>
       </Reveal>
