@@ -982,15 +982,21 @@ const LWLAppPreview = () => {
 
           {/* Buttons */}
           <div className="flex flex-wrap gap-3">
-            <Button
-              variant="outline"
-              size="sm"
-              className="gap-2 rounded-full"
-              onClick={() => { setShowPreview(!showPreview); if (!showPreview) { setIsFullscreen(true); setActiveScreen("login"); } }}
+            <a
+              href="http://77.37.44.92/"
+              target="_blank"
+              rel="noopener noreferrer"
             >
-              <Monitor className="w-4 h-4" />
-              {showPreview ? "Hide Preview" : "View Live App Preview"}
-            </Button>
+              <Button
+                variant="default"
+                size="sm"
+                className="gap-2 rounded-full"
+              >
+                <Monitor className="w-4 h-4" />
+                Open Live App
+                <ExternalLink className="w-3 h-3" />
+              </Button>
+            </a>
             <a
               href="https://github.com/mclasstourism/Liquid-Washes-Laundry"
               target="_blank"
@@ -1006,20 +1012,15 @@ const LWLAppPreview = () => {
                 <ExternalLink className="w-3 h-3" />
               </Button>
             </a>
-            <a
-              href="http://77.37.44.92/"
-              target="_blank"
-              rel="noopener noreferrer"
+            <Button
+              variant="outline"
+              size="sm"
+              className="gap-2 rounded-full hover:border-google-green hover:text-google-green transition-colors"
+              onClick={() => { setShowPreview(!showPreview); if (!showPreview) { setIsFullscreen(true); setActiveScreen("login"); } }}
             >
-              <Button
-                variant="outline"
-                size="sm"
-                className="gap-2 rounded-full hover:border-google-green hover:text-google-green transition-colors"
-              >
-                <ExternalLink className="w-4 h-4" />
-                Open Live App
-              </Button>
-            </a>
+              <Smartphone className="w-4 h-4" />
+              {showPreview ? "Hide UI Replica" : "View UI Replica"}
+            </Button>
           </div>
         </div>
       </Card>
