@@ -14,7 +14,7 @@ const Footer = () => {
             Idusma.
           </a>
 
-          <p className="text-sm text-muted-foreground max-w-md">
+          <p className="text-sm text-muted-foreground max-w-md text-justify">
             Built with intent — Sora &amp; Manrope, Framer Motion, and a midnight indigo palette.
           </p>
 

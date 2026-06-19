@@ -34,7 +34,7 @@ const WorkExperience = () => (
                 <div className="w-10 h-10 rounded-xl bg-primary/15 flex items-center justify-center mb-3">
                   <Briefcase className="w-5 h-5 text-primary" />
                 </div>
-                <p className="text-sm text-foreground/90 leading-relaxed">
+                <p className="text-sm text-foreground/90 leading-relaxed text-justify">
                   Assisted in computer repair, maintenance, and software troubleshooting.
                   Supported daily technical operations and provided IT assistance to clients —
                   sharpening practical skills across hardware and software systems.
