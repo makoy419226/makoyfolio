@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight, Phone, Mail, Github, Sparkles } from "lucide-react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
-import profileImage from "@/assets/profile.jpg";
+import profileImage from "@/assets/profile.png";
 
 const headlineWords = ["Mark", "Angelou", "Idusma"];
 
@@ -128,9 +128,9 @@ const Hero = () => {
             <img
               src={profileImage}
               alt="Portrait of Mark Angelou Idusma"
-              className="absolute inset-0 w-full h-full object-cover"
+              className="absolute inset-0 w-full h-full object-contain"
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-background via-background/10 to-transparent" />
+            <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent pointer-events-none" />
             <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between">
               <div>
                 <p className="font-display text-sm font-semibold text-foreground">Computer Engineer, CpE</p>
