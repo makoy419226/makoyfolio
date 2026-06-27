@@ -79,7 +79,7 @@ const Projects = () => {
                       <img
                         src={project.logo}
                         alt={`${project.title} logo`}
-                        className="w-full h-full object-cover"
+                        className="w-full h-full object-contain"
                         loading="lazy"
                       />
                     </div>
