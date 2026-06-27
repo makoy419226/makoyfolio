@@ -6,6 +6,7 @@ import LWLAppPreview from "./LWLAppPreview";
 import SectionHeading from "./SectionHeading";
 import Reveal from "./Reveal";
 import samaCebuLogo from "@/assets/sama-cebu-logo.png";
+import almullaHoldingLogo from "@/assets/almulla-holding-logo.png.asset.json";
 
 const otherProjects = [
   {
