@@ -13,6 +13,7 @@ const otherProjects = [
       "A cross-platform mobile translation app built with Flutter that translates between Sama and Cebuano languages. Supports Android, iOS, Web, Windows, macOS, and Linux platforms.",
     tech: ["Flutter", "Dart", "C++", "Swift", "Python"],
     github: "https://github.com/makoy419226/SAMA-CEBU",
+    url: "https://github.com/makoy419226/SAMA-CEBU",
     icon: <Globe className="w-6 h-6" />,
     color: "google-blue",
     stars: 1,
@@ -23,8 +24,19 @@ const otherProjects = [
       "A native Android application built with Kotlin for recording and processing Bisaya-Cenama language content. Features audio recording capabilities and language documentation tools.",
     tech: ["Kotlin", "Android", "Gradle"],
     github: "https://github.com/makoy419226/RECORDER",
+    url: "https://github.com/makoy419226/RECORDER",
     icon: <Smartphone className="w-6 h-6" />,
     color: "google-green",
+    stars: 0,
+  },
+  {
+    title: "AlMulla Holding Group Website",
+    description:
+      "A premium corporate website for AlMulla Holding Group, a diversified Dubai-based holding company. Built with React, TypeScript, and Tailwind CSS for a responsive, accessible experience, and deployed on GoDaddy hosting (Apache) with a custom domain.",
+    tech: ["React", "TypeScript", "Tailwind CSS", "Vite", "GoDaddy"],
+    url: "https://almullaholding.com",
+    icon: <Globe className="w-6 h-6" />,
+    color: "google-red",
     stars: 0,
   },
 ];
