@@ -38,6 +38,7 @@ const otherProjects = [
       "A premium corporate website for AlMulla Holding Group, a diversified Dubai-based holding company. Built with React, TypeScript, and Tailwind CSS for a responsive, accessible experience, and deployed on GoDaddy hosting (Apache) with a custom domain.",
     tech: ["React", "TypeScript", "Tailwind CSS", "Vite", "GoDaddy"],
     url: "https://almullaholding.com",
+    logo: almullaHoldingLogo.url,
     icon: <Globe className="w-6 h-6" />,
     color: "google-red",
     stars: 0,
