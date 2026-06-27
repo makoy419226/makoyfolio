@@ -104,7 +104,7 @@ const Projects = () => {
                 </div>
 
                 <a
-                  href={project.github}
+                  href={project.url}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -113,8 +113,12 @@ const Projects = () => {
                     size="sm"
                     className="mt-2 gap-2 rounded-full glass border-border/60 group-hover:border-primary group-hover:text-primary transition-colors"
                   >
-                    <Github className="w-4 h-4" />
-                    View on GitHub
+                    {project.github ? (
+                      <Github className="w-4 h-4" />
+                    ) : (
+                      <ExternalLink className="w-4 h-4" />
+                    )}
+                    {project.github ? "View on GitHub" : "Visit Site"}
                     <ExternalLink className="w-3 h-3" />
                   </Button>
                 </a>
