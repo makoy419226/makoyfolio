@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import LWLAppPreview from "./LWLAppPreview";
 import SectionHeading from "./SectionHeading";
 import Reveal from "./Reveal";
+import samaCebuLogo from "@/assets/sama-cebu-logo.png";
 
 const otherProjects = [
   {
@@ -14,6 +15,7 @@ const otherProjects = [
     tech: ["Flutter", "Dart", "C++", "Swift", "Python"],
     github: "https://github.com/makoy419226/SAMA-CEBU",
     url: "https://github.com/makoy419226/SAMA-CEBU",
+    logo: samaCebuLogo,
     icon: <Globe className="w-6 h-6" />,
     color: "google-blue",
     stars: 1,
@@ -70,11 +72,22 @@ const Projects = () => {
                 <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-br from-primary/15 via-transparent to-google-yellow/10" />
               <div className="space-y-4">
                 <div className="flex items-start gap-4">
-                  <div
-                    className={`w-12 h-12 bg-${project.color}/20 rounded-2xl flex items-center justify-center flex-shrink-0 text-${project.color}`}
-                  >
-                    {project.icon}
-                  </div>
+                  {project.logo ? (
+                    <div className="w-12 h-12 rounded-2xl flex items-center justify-center flex-shrink-0 overflow-hidden bg-white/40 ring-1 ring-border/40">
+                      <img
+                        src={project.logo}
+                        alt={`${project.title} logo`}
+                        className="w-full h-full object-cover"
+                        loading="lazy"
+                      />
+                    </div>
+                  ) : (
+                    <div
+                      className={`w-12 h-12 bg-${project.color}/20 rounded-2xl flex items-center justify-center flex-shrink-0 text-${project.color}`}
+                    >
+                      {project.icon}
+                    </div>
+                  )}
                   <div className="flex-1 min-w-0">
                     <h3 className="font-display text-xl font-semibold text-foreground">
                       {project.title}
