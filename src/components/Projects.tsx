@@ -6,7 +6,7 @@ import LWLAppPreview from "./LWLAppPreview";
 import SectionHeading from "./SectionHeading";
 import Reveal from "./Reveal";
 import samaCebuLogo from "@/assets/sama-cebu-logo.png";
-import almullaHoldingLogo from "@/assets/almulla-holding-logo.png.asset.json";
+import almullaHoldingLogo from "@/assets/almulla-holding-logo.png";
 
 const otherProjects = [
   {
@@ -38,7 +38,7 @@ const otherProjects = [
       "A premium corporate website for AlMulla Holding Group, a diversified Dubai-based holding company. Built with React, TypeScript, and Tailwind CSS for a responsive, accessible experience, and deployed on GoDaddy hosting (Apache) with a custom domain.",
     tech: ["React", "TypeScript", "Tailwind CSS", "Vite", "GoDaddy"],
     url: "https://almullaholding.com",
-    logo: almullaHoldingLogo.url,
+    logo: almullaHoldingLogo,
     icon: <Globe className="w-6 h-6" />,
     color: "google-red",
     stars: 0,
