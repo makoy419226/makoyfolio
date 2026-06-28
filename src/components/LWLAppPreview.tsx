@@ -1,4 +1,5 @@
 import { useState } from "react";
+import lwlLogo from "@/assets/lwl-logo.png";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -907,8 +908,8 @@ const LWLAppPreview = () => {
       <Card className="border-border p-6 shadow-google-lg">
         <div className="space-y-4">
           <div className="flex items-start gap-4">
-            <div className="w-12 h-12 bg-google-blue/15 rounded-2xl flex items-center justify-center flex-shrink-0">
-              <Droplets className="w-6 h-6 text-google-blue" />
+            <div className="w-12 h-12 bg-google-blue/15 rounded-2xl flex items-center justify-center flex-shrink-0 overflow-hidden p-1.5">
+              <img src={lwlLogo} alt="LWL Logo" className="w-full h-full object-contain" />
             </div>
             <div className="flex-1 min-w-0">
               <h3 className="text-xl font-bold text-foreground">
