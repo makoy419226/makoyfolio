@@ -2,60 +2,60 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Design system — Midnight Indigo. All colors in HSL. */
+/* Design system — Royal Blue & Slate. All colors in HSL. */
 
 @layer base {
   :root {
-    --background: 240 40% 98%;
-    --foreground: 240 30% 12%;
+    --background: 220 25% 98%;
+    --foreground: 220 60% 12%;
 
     --card: 0 0% 100%;
-    --card-foreground: 240 30% 12%;
+    --card-foreground: 220 60% 12%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 240 30% 12%;
+    --popover-foreground: 220 60% 12%;
 
-    --primary: 244 76% 56%;
+    --primary: 220 85% 50%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 240 30% 94%;
-    --secondary-foreground: 240 30% 18%;
+    --secondary: 220 15% 94%;
+    --secondary-foreground: 220 40% 18%;
 
-    --muted: 240 30% 95%;
-    --muted-foreground: 235 14% 38%;
+    --muted: 220 15% 96%;
+    --muted-foreground: 220 10% 45%;
 
-    --accent: 244 76% 56%;
+    --accent: 220 85% 50%;
     --accent-foreground: 0 0% 100%;
 
-    --destructive: 348 83% 56%;
+    --destructive: 0 72% 51%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 240 24% 88%;
-    --input: 240 24% 90%;
-    --ring: 244 76% 60%;
+    --border: 220 15% 88%;
+    --input: 220 15% 92%;
+    --ring: 220 85% 55%;
 
     --radius: 1rem;
 
-    /* Accent palette tuned for light surfaces */
-    --google-blue: 244 76% 56%;
-    --google-red: 280 70% 55%;
-    --google-yellow: 320 75% 58%;
-    --google-green: 188 80% 42%;
+    /* Accent palette: dark blue, royal blue, white, grey */
+    --google-blue: 220 85% 50%;
+    --google-red: 220 70% 25%;
+    --google-yellow: 220 15% 55%;
+    --google-green: 220 85% 45%;
 
-    --neutral-50: 240 30% 96%;
-    --neutral-100: 240 28% 92%;
-    --neutral-200: 240 24% 86%;
-    --neutral-300: 235 18% 70%;
-    --neutral-600: 235 14% 38%;
-    --neutral-900: 240 30% 12%;
+    --neutral-50: 220 20% 97%;
+    --neutral-100: 220 15% 92%;
+    --neutral-200: 220 15% 86%;
+    --neutral-300: 220 10% 70%;
+    --neutral-600: 220 10% 45%;
+    --neutral-900: 220 60% 12%;
 
-    --shadow-sm: 0 1px 2px 0 rgba(15, 23, 42, 0.06);
-    --shadow-md: 0 6px 16px -6px rgba(15, 23, 42, 0.12), 0 2px 6px -2px rgba(15, 23, 42, 0.08);
-    --shadow-lg: 0 18px 40px -16px rgba(79, 70, 229, 0.25), 0 8px 20px -8px rgba(15, 23, 42, 0.10);
-    --shadow-xl: 0 30px 60px -20px rgba(79, 70, 229, 0.30), 0 16px 30px -12px rgba(15, 23, 42, 0.12);
+    --shadow-sm: 0 1px 2px 0 rgba(15, 30, 54, 0.06);
+    --shadow-md: 0 6px 16px -6px rgba(15, 30, 54, 0.12), 0 2px 6px -2px rgba(15, 30, 54, 0.08);
+    --shadow-lg: 0 18px 40px -16px rgba(26, 111, 238, 0.25), 0 8px 20px -8px rgba(15, 30, 54, 0.10);
+    --shadow-xl: 0 30px 60px -20px rgba(26, 111, 238, 0.30), 0 16px 30px -12px rgba(15, 30, 54, 0.12);
 
-    --gradient-accent: linear-gradient(135deg, hsl(244 76% 58%) 0%, hsl(280 75% 60%) 50%, hsl(188 80% 48%) 100%);
-    --gradient-text:   linear-gradient(120deg, hsl(244 76% 40%) 0%, hsl(280 70% 50%) 50%, hsl(188 80% 38%) 100%);
+    --gradient-accent: linear-gradient(135deg, hsl(220 85% 45%) 0%, hsl(220 70% 30%) 100%);
+    --gradient-text: linear-gradient(120deg, hsl(220 70% 25%) 0%, hsl(220 85% 50%) 100%);
   }
 }
 
@@ -71,9 +71,9 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     background-image:
-      radial-gradient(circle at 15% 10%, rgba(79, 70, 229, 0.10) 0%, transparent 55%),
-      radial-gradient(circle at 85% 90%, rgba(217, 70, 239, 0.08) 0%, transparent 55%),
-      radial-gradient(circle at 50% 60%, rgba(34, 211, 238, 0.06) 0%, transparent 60%);
+      radial-gradient(circle at 15% 10%, rgba(26, 111, 238, 0.10) 0%, transparent 55%),
+      radial-gradient(circle at 85% 90%, rgba(15, 46, 94, 0.08) 0%, transparent 55%),
+      radial-gradient(circle at 50% 60%, rgba(113, 130, 150, 0.06) 0%, transparent 60%);
     background-attachment: fixed;
   }
 
@@ -82,7 +82,7 @@
     letter-spacing: -0.02em;
   }
 
-  ::selection { background: hsl(244 76% 60% / 0.25); color: hsl(240 30% 12%); }
+  ::selection { background: hsl(220 85% 55% / 0.25); color: hsl(220 60% 12%); }
 }
 
 @layer utilities {
@@ -101,21 +101,21 @@
   .bg-gradient-accent { background: var(--gradient-accent); }
 
   .glass {
-    background: linear-gradient(145deg, hsl(0 0% 100% / 0.75), hsl(240 40% 98% / 0.55));
+    background: linear-gradient(145deg, hsl(0 0% 100% / 0.80), hsl(220 25% 98% / 0.60));
     backdrop-filter: blur(18px) saturate(140%);
     -webkit-backdrop-filter: blur(18px) saturate(140%);
-    border: 1px solid hsl(240 24% 80% / 0.50);
-    box-shadow: 0 6px 24px -12px rgba(15, 23, 42, 0.10);
+    border: 1px solid hsl(220 15% 80% / 0.50);
+    box-shadow: 0 6px 24px -12px rgba(15, 30, 54, 0.10);
   }
   .glass-strong {
-    background: linear-gradient(145deg, hsl(0 0% 100% / 0.90), hsl(240 40% 98% / 0.78));
+    background: linear-gradient(145deg, hsl(0 0% 100% / 0.90), hsl(220 25% 98% / 0.78));
     backdrop-filter: blur(24px) saturate(160%);
     -webkit-backdrop-filter: blur(24px) saturate(160%);
-    border: 1px solid hsl(240 24% 80% / 0.60);
-    box-shadow: 0 12px 40px -16px rgba(15, 23, 42, 0.12);
+    border: 1px solid hsl(220 15% 80% / 0.60);
+    box-shadow: 0 12px 40px -16px rgba(15, 30, 54, 0.12);
   }
   .ring-glow {
-    box-shadow: 0 0 0 1px hsl(244 76% 56% / 0.30), 0 20px 60px -20px hsl(244 76% 56% / 0.45);
+    box-shadow: 0 0 0 1px hsl(220 85% 50% / 0.30), 0 20px 60px -20px hsl(220 85% 50% / 0.45);
   }
 
   .noise::before {
