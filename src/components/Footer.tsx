@@ -15,7 +15,7 @@ const Footer = () => {
           </a>
 
           <p className="text-sm text-muted-foreground max-w-md text-justify">
-            Built with intent — Sora &amp; Manrope, Framer Motion, and a midnight indigo palette.
+            Built with intent — Sora &amp; Manrope, Framer Motion, and a dark blue palette.
           </p>
 
           <div className="flex items-center gap-3">

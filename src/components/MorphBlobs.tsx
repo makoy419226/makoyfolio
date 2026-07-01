@@ -22,8 +22,8 @@ const MorphBlobs = () => {
       >
         <defs>
           <radialGradient id="g1" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stopColor="hsl(244 80% 62%)" stopOpacity="0.9" />
-            <stop offset="100%" stopColor="hsl(244 80% 62%)" stopOpacity="0" />
+            <stop offset="0%" stopColor="hsl(220 85% 55%)" stopOpacity="0.9" />
+            <stop offset="100%" stopColor="hsl(220 85% 55%)" stopOpacity="0" />
           </radialGradient>
         </defs>
         <motion.path
@@ -46,8 +46,8 @@ const MorphBlobs = () => {
       >
         <defs>
           <radialGradient id="g2" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stopColor="hsl(280 85% 65%)" stopOpacity="0.9" />
-            <stop offset="100%" stopColor="hsl(188 90% 55%)" stopOpacity="0" />
+            <stop offset="0%" stopColor="hsl(220 60% 25%)" stopOpacity="0.9" />
+            <stop offset="100%" stopColor="hsl(220 15% 70%)" stopOpacity="0" />
           </radialGradient>
         </defs>
         <motion.path
@@ -68,7 +68,7 @@ const MorphBlobs = () => {
         className="absolute inset-0 opacity-[0.06]"
         style={{
           backgroundImage:
-            "linear-gradient(hsl(244 80% 70% / 1) 1px, transparent 1px), linear-gradient(90deg, hsl(244 80% 70% / 1) 1px, transparent 1px)",
+            "linear-gradient(hsl(220 15% 70% / 1) 1px, transparent 1px), linear-gradient(90deg, hsl(220 15% 70% / 1) 1px, transparent 1px)",
           backgroundSize: "64px 64px",
           maskImage: "radial-gradient(ellipse at center, black 30%, transparent 75%)",
           WebkitMaskImage: "radial-gradient(ellipse at center, black 30%, transparent 75%)",

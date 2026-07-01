@@ -39,10 +39,10 @@ const About = () => (
       <Reveal variant="up">
         <div className="relative glass-strong rounded-3xl p-8 md:p-12 overflow-hidden">
           <div className="absolute -top-24 -right-24 w-64 h-64 rounded-full bg-primary/30 blur-3xl" />
-          <h3 className="relative font-display text-2xl md:text-3xl font-semibold mb-4">
+          <h3 className="relative font-display text-2xl md:text-3xl font-semibold mb-4 text-center">
             Professional summary
           </h3>
-          <p className="relative text-muted-foreground leading-relaxed text-lg max-w-3xl text-justify">
+          <p className="relative text-muted-foreground leading-relaxed text-lg max-w-3xl mx-auto text-justify">
             I am a BS Computer Engineering graduate with experience in software development,
             AI-assisted development workflows, data handling and business process automation.
             I have worked with technologies such as Python, TypeScript, Vue.js, Node.js, Next.js,
