@@ -11,12 +11,14 @@ import Navbar from "@/components/Navbar";
 import SmoothScroll from "@/components/SmoothScroll";
 import ScrollProgress from "@/components/ScrollProgress";
 import MorphBlobs from "@/components/MorphBlobs";
+import CpuScene from "@/components/CpuScene";
 
 const Index = () => {
   return (
     <div id="top" className="min-h-screen relative">
       <SmoothScroll />
       <ScrollProgress />
+      <CpuScene />
       <MorphBlobs />
       <Navbar />
       <main>
