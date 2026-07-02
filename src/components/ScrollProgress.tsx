@@ -12,7 +12,7 @@ const ScrollProgress = () => {
     <motion.div
       aria-hidden
       style={{ scaleX }}
-      className="fixed top-0 left-0 right-0 z-[60] h-[3px] origin-left bg-gradient-accent shadow-[0_0_20px_hsl(220_85%_55%/0.6)]"
+      className="fixed top-0 left-0 right-0 z-[60] h-[3px] origin-left bg-gradient-accent shadow-[0_0_20px_hsl(220_90%_55%/0.7)]"
     />
   );
 };

@@ -18,12 +18,13 @@ const MorphBlobs = () => {
       <motion.svg
         style={{ y: y1, rotate: rot }}
         viewBox="0 0 600 600"
-        className="absolute -top-40 -left-40 w-[60rem] h-[60rem] opacity-60 blur-3xl"
+        className="absolute -top-40 -left-40 w-[60rem] h-[60rem] opacity-75 blur-3xl"
       >
         <defs>
           <radialGradient id="g1" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stopColor="hsl(220 85% 55%)" stopOpacity="0.9" />
-            <stop offset="100%" stopColor="hsl(220 85% 55%)" stopOpacity="0" />
+            <stop offset="0%" stopColor="hsl(220 90% 58%)" stopOpacity="0.95" />
+            <stop offset="55%" stopColor="hsl(220 85% 50%)" stopOpacity="0.55" />
+            <stop offset="100%" stopColor="hsl(220 85% 50%)" stopOpacity="0" />
           </radialGradient>
         </defs>
         <motion.path
@@ -42,12 +43,13 @@ const MorphBlobs = () => {
       <motion.svg
         style={{ y: y2, rotate: useTransform(rot, (r) => -r) }}
         viewBox="0 0 600 600"
-        className="absolute -bottom-60 -right-40 w-[55rem] h-[55rem] opacity-50 blur-3xl"
+        className="absolute -bottom-60 -right-40 w-[55rem] h-[55rem] opacity-70 blur-3xl"
       >
         <defs>
           <radialGradient id="g2" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stopColor="hsl(220 60% 25%)" stopOpacity="0.9" />
-            <stop offset="100%" stopColor="hsl(220 15% 70%)" stopOpacity="0" />
+            <stop offset="0%" stopColor="hsl(220 85% 48%)" stopOpacity="0.85" />
+            <stop offset="60%" stopColor="hsl(220 70% 35%)" stopOpacity="0.40" />
+            <stop offset="100%" stopColor="hsl(220 60% 25%)" stopOpacity="0" />
           </radialGradient>
         </defs>
         <motion.path
@@ -65,10 +67,10 @@ const MorphBlobs = () => {
 
       {/* fine grid for depth */}
       <div
-        className="absolute inset-0 opacity-[0.06]"
+        className="absolute inset-0 opacity-[0.08]"
         style={{
           backgroundImage:
-            "linear-gradient(hsl(220 15% 70% / 1) 1px, transparent 1px), linear-gradient(90deg, hsl(220 15% 70% / 1) 1px, transparent 1px)",
+            "linear-gradient(hsl(220 35% 72% / 1) 1px, transparent 1px), linear-gradient(90deg, hsl(220 35% 72% / 1) 1px, transparent 1px)",
           backgroundSize: "64px 64px",
           maskImage: "radial-gradient(ellipse at center, black 30%, transparent 75%)",
           WebkitMaskImage: "radial-gradient(ellipse at center, black 30%, transparent 75%)",
