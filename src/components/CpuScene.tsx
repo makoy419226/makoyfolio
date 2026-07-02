@@ -191,7 +191,6 @@ const CameraRig = ({ progress }: { progress: React.MutableRefObject<number> }) =
 const SceneContents = ({ progress }: { progress: React.MutableRefObject<number> }) => {
   return (
     <>
-      <color attach="background" args={["#eaf1fb"]} />
       <fog attach="fog" args={["#dfeaf8", 6, 18]} />
 
       <ambientLight intensity={0.55} />
@@ -245,7 +244,7 @@ const CpuScene = () => {
       <Canvas
         dpr={[1, 1.6]}
         camera={{ position: [5, 4, 5], fov: 42 }}
-        gl={{ antialias: true, alpha: false, powerPreference: "high-performance" }}
+        gl={{ antialias: true, alpha: true, powerPreference: "high-performance" }}
       >
         <Suspense fallback={null}>
           <SceneContents progress={progressRef} />
