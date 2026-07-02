@@ -22,8 +22,9 @@ const MorphBlobs = () => {
       >
         <defs>
           <radialGradient id="g1" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stopColor="hsl(220 85% 55%)" stopOpacity="0.9" />
-            <stop offset="100%" stopColor="hsl(220 85% 55%)" stopOpacity="0" />
+            <stop offset="0%" stopColor="hsl(220 90% 58%)" stopOpacity="0.95" />
+            <stop offset="55%" stopColor="hsl(220 85% 50%)" stopOpacity="0.55" />
+            <stop offset="100%" stopColor="hsl(220 85% 50%)" stopOpacity="0" />
           </radialGradient>
         </defs>
         <motion.path
