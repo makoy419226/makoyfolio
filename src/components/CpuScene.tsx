@@ -312,7 +312,6 @@ const Ram = () => {
               color={i % 2 ? "#3b82f6" : "#1e40af"}
               metalness={0.9}
               roughness={0.3}
-              // @ts-expect-error attach pulse marker
               userData={{ pulse: true }}
               emissive="#3b82f6"
               emissiveIntensity={0.4}
