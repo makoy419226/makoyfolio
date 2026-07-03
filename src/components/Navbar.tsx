@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
@@ -13,7 +13,13 @@ const links = [
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
-  const [active, setActive] = useState<string>(links[0].href);
+  const [active, setActive] = useState<string>("#top");
+  const activeLockUntil = useRef(0);
+
+  const holdActive = (hash: string) => {
+    activeLockUntil.current = performance.now() + 2200;
+    setActive(hash);
+  };
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -28,17 +34,44 @@ const Navbar = () => {
       .map((id) => document.getElementById(id))
       .filter((el): el is HTMLElement => !!el);
     if (!sections.length) return;
-    const observer = new IntersectionObserver(
-      (entries) => {
-        const visible = entries
-          .filter((e) => e.isIntersecting)
-          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
-        if (visible) setActive(`#${visible.target.id}`);
-      },
-      { rootMargin: "-40% 0px -50% 0px", threshold: [0, 0.25, 0.5, 0.75, 1] }
-    );
-    sections.forEach((s) => observer.observe(s));
-    return () => observer.disconnect();
+
+    let rafId = 0;
+    const updateActive = () => {
+      rafId = 0;
+      if (performance.now() < activeLockUntil.current) return;
+
+      if (window.scrollY < 160) {
+        setActive("#top");
+        return;
+      }
+
+      const marker = window.scrollY + 140;
+      const current = sections.reduce((match, section) => {
+        return section.offsetTop <= marker ? `#${section.id}` : match;
+      }, "#about");
+      setActive(current);
+    };
+
+    const scheduleUpdate = () => {
+      if (!rafId) rafId = requestAnimationFrame(updateActive);
+    };
+
+    const onSectionChange = (event: Event) => {
+      const hash = (event as CustomEvent<string>).detail;
+      if (hash) holdActive(hash);
+    };
+
+    updateActive();
+    window.addEventListener("scroll", scheduleUpdate, { passive: true });
+    window.addEventListener("resize", scheduleUpdate);
+    window.addEventListener("portfolio:section-change", onSectionChange);
+
+    return () => {
+      if (rafId) cancelAnimationFrame(rafId);
+      window.removeEventListener("scroll", scheduleUpdate);
+      window.removeEventListener("resize", scheduleUpdate);
+      window.removeEventListener("portfolio:section-change", onSectionChange);
+    };
   }, []);
 
   return (
@@ -58,7 +91,8 @@ const Navbar = () => {
       >
         <a
           href="#top"
-          className="font-display text-sm font-semibold tracking-tight px-3 py-1.5 rounded-full bg-gradient-accent text-white"
+          onClick={() => holdActive("#top")}
+          className="font-display text-sm font-semibold px-3 py-1.5 rounded-full bg-gradient-accent text-primary-foreground"
           aria-label="Home"
         >
           MA<span className="opacity-70">.</span>
@@ -70,10 +104,10 @@ const Navbar = () => {
               <li key={l.href} className="relative">
                 <a
                   href={l.href}
-                  onClick={() => setActive(l.href)}
+                  onClick={() => holdActive(l.href)}
                   className={cn(
                     "relative z-10 inline-block px-3 py-1.5 text-sm rounded-full transition-colors duration-300",
-                    isActive ? "text-white" : "text-muted-foreground hover:text-foreground"
+                    isActive ? "text-primary-foreground" : "text-muted-foreground hover:text-foreground"
                   )}
                 >
                   {isActive && (
@@ -91,7 +125,8 @@ const Navbar = () => {
         </ul>
         <a
           href="#contact"
-          className="ml-1 hidden sm:inline-flex items-center gap-1.5 text-xs font-medium px-3 py-1.5 rounded-full border border-border bg-background/40 hover:bg-primary hover:text-primary-foreground hover:border-primary transition-all"
+          onClick={() => holdActive("#contact")}
+          className="ml-1 hidden sm:inline-flex items-center gap-1.5 text-xs font-medium px-3 py-1.5 rounded-full border border-border bg-background/70 hover:bg-primary hover:text-primary-foreground hover:border-primary hover:shadow-[0_0_24px_hsl(var(--primary)/0.32)] transition-all"
         >
           Let's talk
           <span aria-hidden>→</span>

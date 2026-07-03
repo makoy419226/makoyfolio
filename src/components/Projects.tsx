@@ -102,7 +102,7 @@ const Projects = () => {
                   </div>
                 </div>
 
-                <p className="text-muted-foreground leading-relaxed text-justify">
+                <p className="text-muted-foreground leading-relaxed text-left">
                   {project.description}
                 </p>
 
@@ -111,7 +111,7 @@ const Projects = () => {
                     <Badge
                       key={tech}
                       variant="secondary"
-                      className="bg-white/5 text-foreground/80 border border-white/10 backdrop-blur"
+                      className="bg-background/70 text-foreground/80 border border-border/45 backdrop-blur"
                     >
                       {tech}
                     </Badge>

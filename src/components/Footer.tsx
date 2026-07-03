@@ -9,13 +9,13 @@ const Footer = () => {
         <div className="flex flex-col items-center text-center gap-6">
           <a
             href="#top"
-            className="font-display text-5xl md:text-7xl font-semibold tracking-tight text-gradient leading-none"
+            className="font-display text-5xl md:text-7xl font-semibold text-gradient leading-none"
           >
             Idusma.
           </a>
 
-          <p className="text-sm text-muted-foreground max-w-md text-justify">
-            Built with intent — Sora &amp; Manrope, Framer Motion, and a dark blue palette.
+          <p className="text-sm text-muted-foreground max-w-md text-center">
+            Built with Sora, Manrope, Framer Motion, and a clean light-blue interface system.
           </p>
 
           <div className="flex items-center gap-3">

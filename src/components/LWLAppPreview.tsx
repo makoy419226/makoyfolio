@@ -34,6 +34,8 @@ type Screen =
   | "trackOrder"
   | "lockdown";
 
+const USE_LEGACY_LWL_PREVIEW = false;
+
 /* ──────────────────────── LOGIN SCREEN — TRUE REPLICA ──────────────────────── */
 
 const LoginScreen = ({ onLogin }: { onLogin: () => void }) => (
@@ -549,7 +551,7 @@ const TodaysWorkScreen = () => (
       </div>
     </div>
     <div className="border border-border rounded-2xl p-6 text-center bg-gradient-to-br from-google-blue/5 to-transparent">
-      <p className="text-4xl font-bold text-foreground tracking-tight">14:32<span className="text-2xl">:08</span></p>
+      <p className="text-4xl font-bold text-foreground">14:32<span className="text-2xl">:08</span></p>
       <p className="text-[10px] text-muted-foreground mt-1">Wednesday, May 13 · UAE Time (GMT+4)</p>
     </div>
     <div className="flex items-center justify-between">
@@ -1088,7 +1090,7 @@ const LWLAppPreview = () => {
                   />
                 </div>
               </div>
-              {false && (viewMode === "mobile" ? (
+              {USE_LEGACY_LWL_PREVIEW && (viewMode === "mobile" ? (
                   /* ───── MOBILE VIEW ───── */
                   <div className={`flex flex-col w-full ${isFullscreen ? "max-w-[375px] mx-auto border-x border-border" : ""}`}>
                     {/* Mobile Top Bar */}

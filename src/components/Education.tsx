@@ -72,7 +72,7 @@ const Education = () => {
                         <Calendar className="w-4 h-4" />
                         {edu.date}
                       </span>
-                      <span className="px-3 py-1 rounded-full bg-white/5 text-sm border border-white/10 font-medium">
+                      <span className="px-3 py-1 rounded-full bg-background/70 text-sm border border-border/45 font-medium">
                         {edu.type}
                       </span>
                     </div>

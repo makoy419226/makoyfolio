@@ -37,12 +37,17 @@ const About = () => (
       />
 
       <Reveal variant="up">
-        <div className="relative glass-strong rounded-3xl p-8 md:p-12 overflow-hidden">
+        <motion.div
+          whileHover={{ y: -4, scale: 1.01 }}
+          transition={{ type: "spring", stiffness: 220, damping: 24 }}
+          className="group relative glass-strong clean-panel rounded-3xl p-8 md:p-12 overflow-hidden"
+        >
           <div className="absolute -top-24 -right-24 w-64 h-64 rounded-full bg-primary/30 blur-3xl" />
+          <div className="absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
           <h3 className="relative font-display text-2xl md:text-3xl font-semibold mb-4 text-center">
             Professional summary
           </h3>
-          <p className="relative text-muted-foreground leading-relaxed text-lg max-w-3xl mx-auto text-justify">
+          <p className="relative text-muted-foreground leading-relaxed text-lg max-w-3xl mx-auto text-left">
             I am a BS Computer Engineering graduate with experience in software development,
             AI-assisted development workflows, data handling and business process automation.
             I have worked with technologies such as Python, TypeScript, Vue.js, Node.js, Next.js,
@@ -51,23 +56,24 @@ const About = () => (
             I am highly adaptable, eager to learn, and capable of working across different
             business and technical functions.
           </p>
-        </div>
+        </motion.div>
       </Reveal>
 
       <div className="grid md:grid-cols-3 gap-5">
         {values.map((v, i) => (
           <Reveal key={v.title} variant="up" delay={i * 0.08}>
             <motion.div
-              whileHover={{ y: -6 }}
+              whileHover={{ y: -8, rotateX: 2, rotateY: i % 2 === 0 ? -2 : 2 }}
+              whileTap={{ scale: 0.98 }}
               transition={{ type: "spring", stiffness: 250, damping: 20 }}
-              className="group relative h-full glass rounded-3xl p-6 overflow-hidden"
+              className="group relative h-full glass clean-panel rounded-3xl p-6 overflow-hidden transform-gpu"
             >
-              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-br from-primary/10 to-transparent" />
-              <div className={`relative w-11 h-11 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center mb-5 ${v.tone}`}>
-                <v.icon className="w-5 h-5" />
+              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-br from-primary/10 via-background/55 to-transparent" />
+              <div className={`relative w-11 h-11 rounded-2xl bg-background/70 border border-border/45 flex items-center justify-center mb-5 transition-transform duration-300 group-hover:scale-110 ${v.tone}`}>
+                <v.icon className="w-5 h-5 transition-transform duration-300 group-hover:-translate-y-0.5" />
               </div>
               <h4 className="relative font-display text-lg font-semibold mb-2">{v.title}</h4>
-              <p className="relative text-sm text-muted-foreground leading-relaxed text-justify">{v.body}</p>
+              <p className="relative text-sm text-muted-foreground leading-relaxed text-left">{v.body}</p>
             </motion.div>
           </Reveal>
         ))}

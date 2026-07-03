@@ -2,7 +2,6 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight, Phone, Mail, Github, Sparkles } from "lucide-react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
-import profileImage from "@/assets/profile.png";
 
 const headlineWords = ["Mark", "Angelou", "Idusma"];
 
@@ -14,7 +13,6 @@ const Hero = () => {
   });
   const y = useTransform(scrollYProgress, [0, 1], [0, 180]);
   const opacity = useTransform(scrollYProgress, [0, 0.6], [1, 0]);
-  const portraitY = useTransform(scrollYProgress, [0, 1], [0, -80]);
 
   return (
     <section
@@ -23,25 +21,25 @@ const Hero = () => {
     >
       <motion.div
         style={{ y, opacity }}
-        className="max-w-6xl mx-auto w-full grid lg:grid-cols-[1.4fr_1fr] gap-12 items-center relative z-10"
+        className="max-w-6xl mx-auto w-full grid lg:grid-cols-[0.86fr_1.14fr] gap-6 items-center relative z-10"
       >
         {/* Left — copy */}
-        <div className="space-y-8">
+        <div className="space-y-8 max-w-[34rem]">
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full glass text-xs font-medium tracking-wide"
+            className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full glass text-xs font-medium uppercase"
           >
             <span className="relative flex h-2 w-2">
               <span className="absolute inline-flex h-full w-full rounded-full bg-google-green opacity-70 animate-ping" />
               <span className="relative inline-flex rounded-full h-2 w-2 bg-google-green" />
             </span>
             <Sparkles className="w-3.5 h-3.5 text-primary" />
-            Available for opportunities · Abu Dhabi, UAE
+            Abu Dhabi, UAE · Available for work
           </motion.div>
 
-          <h1 className="font-display text-[clamp(2.75rem,7vw,5.75rem)] leading-[0.95] font-semibold tracking-tight text-balance">
+          <h1 className="font-display text-[clamp(2.75rem,6vw,5rem)] leading-[0.95] font-semibold text-balance">
             {headlineWords.map((word, i) => (
               <span key={word} className="inline-block overflow-hidden align-bottom mr-3">
                 <motion.span
@@ -66,8 +64,8 @@ const Hero = () => {
             transition={{ duration: 0.7, delay: 0.5 }}
             className="text-lg md:text-xl text-muted-foreground max-w-xl leading-relaxed"
           >
-            Computer Engineer crafting calm, reliable systems — blending IT support,
-            web development, and project coordination into work that just runs.
+            Computer Engineer building resilient digital systems with IT support,
+            web development, and project coordination tuned for real-world operations.
           </motion.p>
 
           <motion.div
@@ -77,14 +75,14 @@ const Hero = () => {
             className="flex flex-col sm:flex-row gap-3 pt-2"
           >
             <a href="#contact">
-              <Button size="lg" className="group rounded-full bg-gradient-accent border-0 ring-glow hover:brightness-110">
-                Get in touch
+              <Button size="lg" className="group rounded-full bg-gradient-accent border-0 text-primary-foreground ring-glow hover:brightness-125">
+                Let's talk
                 <ArrowRight className="group-hover:translate-x-1 transition-transform" />
               </Button>
             </a>
             <a href="#projects">
               <Button size="lg" variant="outline" className="rounded-full glass border-border/60 hover:border-primary/60">
-                View work
+                View projects
               </Button>
             </a>
           </motion.div>
@@ -116,46 +114,14 @@ const Hero = () => {
           </motion.div>
         </div>
 
-        {/* Right — portrait card */}
+        {/* Right side leaves room for the static engineering background. */}
         <motion.div
-          style={{ y: portraitY }}
           initial={{ opacity: 0, scale: 0.92 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-          className="relative mx-auto w-full max-w-sm"
-        >
-          <div className="relative aspect-[4/5] rounded-[2rem] glass-strong ring-glow overflow-hidden noise">
-            <img
-              src={profileImage}
-              alt="Portrait of Mark Angelou Idusma"
-              className="absolute inset-0 w-full h-full object-contain"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent pointer-events-none" />
-            <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between">
-              <div>
-                <p className="font-display text-sm font-semibold text-foreground">Computer Engineer, CpE</p>
-                <p className="text-[11px] text-muted-foreground">BS · Bohol Island State University</p>
-              </div>
-              <span className="text-[10px] font-mono uppercase tracking-widest text-primary">2025</span>
-            </div>
-          </div>
-
-          {/* floating tag */}
-          <motion.div
-            animate={{ y: [0, -10, 0] }}
-            transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
-            className="absolute -left-4 top-10 glass rounded-2xl px-3 py-2 text-[11px] font-medium shadow-google-md"
-          >
-            <span className="text-primary">●</span> IT Systems · Web · PM
-          </motion.div>
-          <motion.div
-            animate={{ y: [0, 10, 0] }}
-            transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-            className="absolute -right-3 bottom-16 glass rounded-2xl px-3 py-2 text-[11px] font-medium shadow-google-md"
-          >
-            <span className="text-google-green">●</span> Open to roles
-          </motion.div>
-        </motion.div>
+          className="hidden lg:block min-h-[520px]"
+          aria-hidden
+        />
       </motion.div>
 
       {/* scroll cue */}
@@ -163,7 +129,7 @@ const Hero = () => {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.4, duration: 0.6 }}
-        className="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-[10px] tracking-[0.3em] uppercase text-muted-foreground"
+        className="absolute bottom-6 left-1/2 -translate-x-1/2 hidden md:flex flex-col items-center gap-2 text-[10px] tracking-[0.3em] uppercase text-muted-foreground"
       >
         Scroll
         <span className="block h-10 w-px bg-gradient-to-b from-primary to-transparent" />
