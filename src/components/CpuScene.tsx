@@ -329,8 +329,8 @@ const SceneContents = ({ targetRef }: { targetRef: React.MutableRefObject<Target
 );
 
 /* ---------------- section tracker ---------------- */
-const useActiveSection = (ids: string[]) => {
-  const [active, setActive] = useState<string>(ids[0]);
+const useActiveSection = (ids: string[], fallback: string) => {
+  const [active, setActive] = useState<string>(fallback);
   useEffect(() => {
     const els = ids.map((id) => document.getElementById(id)).filter((e): e is HTMLElement => !!e);
     if (!els.length) return;
@@ -338,20 +338,22 @@ const useActiveSection = (ids: string[]) => {
       (entries) => {
         const vis = entries.filter((e) => e.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
         if (vis) setActive(vis.target.id);
+        else if (window.scrollY < 120) setActive(fallback);
       },
       { rootMargin: "-40% 0px -50% 0px", threshold: [0, 0.25, 0.5, 0.75, 1] }
     );
     els.forEach((el) => io.observe(el));
     return () => io.disconnect();
-  }, [ids.join("|")]);
+  }, [ids.join("|"), fallback]);
   return active;
 };
 
 const CpuScene = () => {
   const reduce = useReducedMotion();
-  const active = useActiveSection([
-    "top", "about", "skills", "experience", "projects", "education", "contact",
-  ]);
+  const active = useActiveSection(
+    ["about", "skills", "experience", "projects", "education", "contact"],
+    "top"
+  );
   const targetRef = useRef<Target>(TARGETS.top);
   useEffect(() => {
     targetRef.current = TARGETS[active] ?? TARGETS.top;
