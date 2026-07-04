@@ -10,6 +10,7 @@ import Navbar from "@/components/Navbar";
 import SmoothScroll from "@/components/SmoothScroll";
 import ScrollProgress from "@/components/ScrollProgress";
 import EngineeringBackground from "@/components/EngineeringBackground";
+import RunningTaskBot from "@/components/RunningTaskBot";
 
 const Index = () => {
   return (
@@ -17,6 +18,7 @@ const Index = () => {
       <SmoothScroll />
       <ScrollProgress />
       <EngineeringBackground />
+      <RunningTaskBot />
       <div className="relative z-10">
         <Navbar />
         <main>

@@ -89,19 +89,14 @@ const Navbar = () => {
             : "glass scale-[0.98]"
         )}
       >
-        <a
-          href="#top"
-          onClick={() => holdActive("#top")}
-          className="font-display text-sm font-semibold px-3 py-1.5 rounded-full bg-gradient-accent text-primary-foreground"
-          aria-label="Home"
-        >
-          MA<span className="opacity-70">.</span>
-        </a>
-        <ul className="hidden md:flex items-center">
-          {links.map((l) => {
+        <ul className="flex items-center">
+          {links.map((l, index) => {
             const isActive = active === l.href;
             return (
-              <li key={l.href} className="relative">
+              <li
+                key={l.href}
+                className={cn("relative", index > 1 && "hidden md:block")}
+              >
                 <a
                   href={l.href}
                   onClick={() => holdActive(l.href)}

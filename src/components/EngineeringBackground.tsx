@@ -1,86 +1,114 @@
-const traces = [
-  "M70 110 H210 V68 H360",
-  "M92 220 H260 V305 H430",
-  "M48 430 H188 V360 H318",
-  "M840 96 H710 V178 H590",
-  "M900 320 H740 V255 H620",
-  "M790 506 H610 V438 H470",
+const circuitPaths = [
+  "M48 118 H178 V74 H326",
+  "M78 252 H226 V326 H376",
+  "M64 430 H196 V374 H330",
+  "M886 94 H742 V164 H614",
+  "M918 284 H760 V226 H622",
+  "M830 470 H684 V414 H520",
+];
+
+const signalPaths = [
+  "M124 146 C246 92 344 198 468 142 S682 96 836 168",
+  "M96 402 C248 470 328 338 468 402 S676 468 846 364",
+  "M282 88 C338 184 410 214 482 272 S610 346 720 282",
 ];
 
 const nodes = [
-  [70, 110],
-  [210, 68],
-  [360, 68],
-  [92, 220],
-  [430, 305],
-  [48, 430],
-  [318, 360],
-  [840, 96],
-  [710, 178],
-  [900, 320],
-  [620, 255],
-  [790, 506],
-  [470, 438],
+  [48, 118],
+  [178, 74],
+  [326, 74],
+  [78, 252],
+  [226, 326],
+  [376, 326],
+  [64, 430],
+  [196, 374],
+  [330, 374],
+  [886, 94],
+  [742, 164],
+  [614, 164],
+  [918, 284],
+  [760, 226],
+  [622, 226],
+  [830, 470],
+  [684, 414],
+  [520, 414],
+];
+
+const binaryRows = [
+  { x: 82, y: 214, text: "0101 1100 1011 0010" },
+  { x: 650, y: 118, text: "1010 0111 0001 1101" },
+  { x: 610, y: 492, text: "0011 1001 0110 0101" },
 ];
 
 const EngineeringBackground = () => (
-  <div aria-hidden className="engineering-background pointer-events-none fixed inset-0 z-0 overflow-hidden">
-    <div className="engineering-grid" />
-    <div className="engineering-glow engineering-glow-primary" />
-    <div className="engineering-glow engineering-glow-secondary" />
+  <div aria-hidden className="computer-engineering-background pointer-events-none fixed inset-0 z-0 overflow-hidden">
+    <div className="ce-depth" />
+    <div className="ce-grid" />
+    <div className="ce-scanline" />
 
-    <svg className="engineering-schematic" viewBox="0 0 960 540" preserveAspectRatio="xMidYMid slice">
+    <svg className="ce-schematic" viewBox="0 0 960 540" preserveAspectRatio="xMidYMid slice">
       <defs>
-        <linearGradient id="engineering-line" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%" stopColor="hsl(225 73% 57%)" stopOpacity="0.24" />
-          <stop offset="100%" stopColor="hsl(224 88% 64%)" stopOpacity="0.12" />
+        <linearGradient id="ce-line" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stopColor="hsl(225 73% 57%)" stopOpacity="0.2" />
+          <stop offset="52%" stopColor="hsl(215 30% 44%)" stopOpacity="0.13" />
+          <stop offset="100%" stopColor="hsl(142 64% 42%)" stopOpacity="0.16" />
         </linearGradient>
+        <radialGradient id="ce-core" cx="50%" cy="50%" r="50%">
+          <stop offset="0%" stopColor="hsl(225 73% 57%)" stopOpacity="0.18" />
+          <stop offset="100%" stopColor="hsl(0 0% 100%)" stopOpacity="0.16" />
+        </radialGradient>
       </defs>
 
-      <g fill="none" stroke="url(#engineering-line)" strokeLinecap="round" strokeLinejoin="round">
-        {traces.map((trace) => (
-          <path key={trace} d={trace} strokeWidth="2" />
+      <g className="ce-circuit-lines" fill="none" stroke="url(#ce-line)" strokeLinecap="round" strokeLinejoin="round">
+        {circuitPaths.map((path) => (
+          <path key={path} d={path} />
         ))}
       </g>
 
-      <g fill="hsl(225 73% 57% / 0.18)">
+      <g className="ce-signal-lines" fill="none" stroke="url(#ce-line)" strokeLinecap="round">
+        {signalPaths.map((path) => (
+          <path key={path} d={path} />
+        ))}
+      </g>
+
+      <g className="ce-nodes">
         {nodes.map(([cx, cy]) => (
           <circle key={`${cx}-${cy}`} cx={cx} cy={cy} r="5" />
         ))}
       </g>
 
-      <g className="engineering-monitor" transform="translate(530 86)">
-        <rect x="0" y="0" width="300" height="190" rx="18" />
-        <rect x="24" y="24" width="252" height="128" rx="8" />
-        <path d="M150 190 V232 M96 232 H204" />
-      </g>
-
-      <g className="engineering-chip" transform="translate(120 126)">
-        <rect x="0" y="0" width="164" height="164" rx="18" />
-        <rect x="42" y="42" width="80" height="80" rx="10" />
-        {Array.from({ length: 6 }).map((_, i) => (
-          <path key={`left-${i}`} d={`M0 ${28 + i * 22} H-26`} />
-        ))}
-        {Array.from({ length: 6 }).map((_, i) => (
-          <path key={`right-${i}`} d={`M164 ${28 + i * 22} H190`} />
-        ))}
-        {Array.from({ length: 6 }).map((_, i) => (
-          <path key={`top-${i}`} d={`M${28 + i * 22} 0 V-26`} />
-        ))}
-        {Array.from({ length: 6 }).map((_, i) => (
-          <path key={`bottom-${i}`} d={`M${28 + i * 22} 164 V190`} />
+      <g className="ce-chip" transform="translate(380 154)">
+        <rect className="ce-chip-shell" x="0" y="0" width="206" height="206" rx="24" />
+        <rect className="ce-chip-core" x="50" y="50" width="106" height="106" rx="16" />
+        <path className="ce-chip-trace" d="M76 86 H130 M76 112 H112 V134 H138" />
+        {Array.from({ length: 7 }).map((_, index) => (
+          <g key={`pin-${index}`}>
+            <path className="ce-pin" d={`M0 ${35 + index * 23} H-34`} />
+            <path className="ce-pin" d={`M206 ${35 + index * 23} H240`} />
+            <path className="ce-pin" d={`M${35 + index * 23} 0 V-34`} />
+            <path className="ce-pin" d={`M${35 + index * 23} 206 V240`} />
+          </g>
         ))}
       </g>
 
-      <g className="engineering-keyboard" transform="translate(502 354)">
-        <rect x="0" y="0" width="310" height="92" rx="18" />
-        {Array.from({ length: 9 }).map((_, i) => (
-          <rect key={`row-a-${i}`} x={20 + i * 30} y="18" width="20" height="12" rx="3" />
+      <g className="ce-monitor" transform="translate(648 254)">
+        <rect className="ce-panel" x="0" y="0" width="230" height="150" rx="18" />
+        <path className="ce-detail" d="M24 38 H206 M72 150 V184 M42 184 H102" />
+        <path className="ce-wave" d="M32 94 H58 L72 66 L92 118 L112 78 L132 94 H194" />
+      </g>
+
+      <g className="ce-sensor" transform="translate(120 306)">
+        <rect className="ce-panel" x="0" y="0" width="178" height="112" rx="18" />
+        <path className="ce-detail" d="M26 34 H152 M26 78 H82 M104 78 H152" />
+        <path className="ce-wave" d="M38 56 C58 34 76 34 96 56 S134 78 154 56" />
+      </g>
+
+      <g className="ce-binary">
+        {binaryRows.map((row) => (
+          <text key={`${row.x}-${row.y}`} x={row.x} y={row.y}>
+            {row.text}
+          </text>
         ))}
-        {Array.from({ length: 8 }).map((_, i) => (
-          <rect key={`row-b-${i}`} x={36 + i * 30} y="42" width="20" height="12" rx="3" />
-        ))}
-        <rect x="92" y="66" width="118" height="12" rx="4" />
       </g>
     </svg>
   </div>

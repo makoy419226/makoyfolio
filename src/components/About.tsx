@@ -47,7 +47,7 @@ const About = () => (
           <h3 className="relative font-display text-2xl md:text-3xl font-semibold mb-4 text-center">
             Professional summary
           </h3>
-          <p className="relative text-muted-foreground leading-relaxed text-lg max-w-3xl mx-auto text-left">
+          <p className="professional-summary relative text-muted-foreground leading-relaxed text-lg max-w-3xl mx-auto">
             I am a BS Computer Engineering graduate with experience in software development,
             AI-assisted development workflows, data handling and business process automation.
             I have worked with technologies such as Python, TypeScript, Vue.js, Node.js, Next.js,

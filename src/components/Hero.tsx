@@ -2,6 +2,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight, Phone, Mail, Github, Sparkles } from "lucide-react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
+import profilePhoto from "@/assets/profile.jpg";
 
 const headlineWords = ["Mark", "Angelou", "Idusma"];
 
@@ -21,7 +22,7 @@ const Hero = () => {
     >
       <motion.div
         style={{ y, opacity }}
-        className="max-w-6xl mx-auto w-full grid lg:grid-cols-[0.86fr_1.14fr] gap-6 items-center relative z-10"
+        className="max-w-6xl mx-auto w-full grid lg:grid-cols-[0.86fr_1.14fr] gap-10 items-center relative z-10"
       >
         {/* Left — copy */}
         <div className="space-y-8 max-w-[34rem]">
@@ -114,14 +115,23 @@ const Hero = () => {
           </motion.div>
         </div>
 
-        {/* Right side leaves room for the static engineering background. */}
         <motion.div
           initial={{ opacity: 0, scale: 0.92 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-          className="hidden lg:block min-h-[520px]"
-          aria-hidden
-        />
+          className="relative order-first lg:order-none mx-auto w-full max-w-[18rem] sm:max-w-[22rem] lg:max-w-[30rem]"
+        >
+          <div className="absolute -inset-5 rounded-[2.25rem] bg-gradient-to-br from-primary/18 via-background/40 to-google-green/12 blur-2xl" />
+          <div className="relative overflow-hidden rounded-[2rem] border border-border/70 bg-background/72 p-2 shadow-google-xl backdrop-blur-xl">
+            <div className="relative overflow-hidden rounded-[1.5rem] bg-white aspect-[5/4]">
+              <img
+                src={profilePhoto}
+                alt="Mark Angelou Idusma"
+                className="h-full w-full object-cover object-[50%_42%]"
+              />
+            </div>
+          </div>
+        </motion.div>
       </motion.div>
 
       {/* scroll cue */}
