@@ -187,6 +187,39 @@
     border-radius: 1.2rem;
   }
 
+  .bot-target-active {
+    outline: 2px solid hsl(225 73% 57% / 0.52);
+    outline-offset: 0.42rem;
+    box-shadow: 0 0 0 0.42rem hsl(225 73% 57% / 0.07), 0 18px 34px -26px hsl(225 73% 35% / 0.36);
+    transition: outline-color 180ms ease, box-shadow 180ms ease;
+  }
+
+  .bot-target-action {
+    border-radius: 0.85rem;
+    outline-style: solid;
+  }
+
+  .bot-target-content {
+    border-radius: 1rem;
+    outline-style: dashed;
+  }
+
+  .bot-target-header {
+    outline-offset: 0.28rem;
+    box-shadow: 0 0 0 0.34rem hsl(225 73% 57% / 0.08), 0 14px 26px -22px hsl(225 73% 35% / 0.5);
+  }
+
+  .bot-target-button,
+  .bot-target-link {
+    outline-style: solid;
+  }
+
+  .bot-target-card,
+  .bot-target-section,
+  .bot-target-heading {
+    outline-style: dashed;
+  }
+
   .bot-task-bubble {
     position: relative;
     margin-bottom: 0.45rem;
