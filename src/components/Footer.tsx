@@ -14,8 +14,8 @@ const Footer = () => {
             Idusma.
           </a>
 
-          <p className="text-sm text-muted-foreground max-w-md text-center">
-            Built with Sora, Manrope, Framer Motion, and a clean light-blue interface system.
+          <p className="mobile-justify-text text-sm text-muted-foreground max-w-md text-center">
+            Mark Angelou Egam Idusma, CpE · Abu Dhabi, UAE · Available to join immediately.
           </p>
 
           <div className="flex items-center gap-3">
@@ -31,7 +31,7 @@ const Footer = () => {
           </div>
 
           <p className="text-xs text-muted-foreground/80 pt-4 border-t border-border/40 w-full">
-            © {currentYear} Mark Angelou Idusma · Abu Dhabi, UAE
+            © {currentYear} Mark Angelou Egam Idusma · Abu Dhabi, UAE
           </p>
         </div>
       </div>

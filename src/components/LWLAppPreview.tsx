@@ -48,7 +48,7 @@ const LoginScreen = ({ onLogin }: { onLogin: () => void }) => (
         </div>
         <div>
           <h2 className="text-xl font-bold text-foreground">Liquid Washes Laundry</h2>
-          <p className="text-xs text-muted-foreground">Management System</p>
+          <p className="text-xs text-muted-foreground">CRM & Operations</p>
         </div>
       </div>
 
@@ -915,46 +915,45 @@ const LWLAppPreview = () => {
             </div>
             <div className="flex-1 min-w-0">
               <h3 className="text-xl font-bold text-foreground">
-                LWL — Liquid Washes Laundry Management System
+                LWL — Custom CRM & Operations Management System
               </h3>
               <span className="text-sm text-google-yellow">⭐ Full-Stack Production App</span>
             </div>
           </div>
 
-          <p className="text-muted-foreground leading-relaxed">
-            A comprehensive full-stack laundry sales and management system built for real-world business operations
-            in Al Dhanna City, Al Ruwais, Abu Dhabi. This production-grade application handles the complete lifecycle
-            of a laundry business — from customer walk-in order entry to delivery tracking, billing, payment processing,
-            and sales analytics. Features role-based access for admin, counter, reception, section, staff, and driver users.
+          <p className="mobile-justify-text text-muted-foreground leading-relaxed">
+            Designed, developed, deployed, and maintained a production-ready custom CRM and operations management system for a UAE-based laundry
+            company using React, TypeScript, Node.js, Express.js, PostgreSQL, and Drizzle ORM. The system
+            streamlines daily business operations through custom web-based workflows for order handling, billing,
+            payments, inventory, reporting, incidents, delivery, and sales monitoring.
           </p>
 
           {/* Key Features */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             {[
-              { title: "Order Management", desc: "Full lifecycle — Pending → Tagging → Packing → Ready → Delivered with urgent order support, checklist stages, and order receipts" },
-              { title: "Client & CRM", desc: "Client profiles with VIP/Corporate/Walk-in tiers, credit/debit balance tracking, deposits, discounts, and transaction history" },
-              { title: "Billing & Payments", desc: "Automated billing with partial payments, multiple payment methods (cash/card/bank), receipt/invoice printing, and overdue tracking" },
-              { title: "Product Catalog", desc: "Dynamic pricing for wash, dry clean, iron services with stock management, category sorting, and allocated stock tracking" },
-              { title: "Delivery System", desc: "Driver assignment, delivery scheduling, route management with address-based dispatch and real-time status updates" },
-              { title: "Sales Analytics", desc: "Daily/weekly sales reports, revenue trends, service performance analytics, worker productivity tracking, and due customer reports" },
-              { title: "Public Order Tracking", desc: "Customer-facing track-order portal — look up live status by order ID without needing a login" },
-              { title: "Admin Settings & Lockdown", desc: "Admin control panel with system lockdown mode for maintenance, payroll cutoffs, and end-of-day reconciliation" },
-              { title: "Workers & Incidents", desc: "Worker roster management with incident logging, missing-items reports, and accountability tracking per shift" },
-              { title: "Today's Work & Due Customers", desc: "At-a-glance daily work queue, daily sales totals, due-customer follow-up list, and delivery history archive" },
+              { title: "Full-Stack Maintenance", desc: "Developed, deployed, and maintained the company web application, implementing new features, resolving bugs, integrating APIs, and supporting business-critical workflows." },
+              { title: "Billing & Payments", desc: "Implemented billing, payment recording, and sales monitoring functionalities for daily laundry operations." },
+              { title: "Inventory Management", desc: "Created inventory features to monitor supplies and operational resources across the business." },
+              { title: "Sales Reporting", desc: "Developed daily sales reporting and business analytics tools to support decision-making." },
+              { title: "Incident Tracking", desc: "Built incident tracking and reporting modules for improved operational transparency." },
+              { title: "Delivery Workflow", desc: "Implemented delivery workflow management to improve service coordination and tracking." },
+              { title: "Database & APIs", desc: "Integrated database operations and API endpoints to ensure reliable data flow across the system." },
+              { title: "Responsive UI", desc: "Applied modern UI/UX practices to create a responsive and user-friendly interface." },
+              { title: "Version Control", desc: "Used Git and GitHub for version control and project collaboration." },
             ].map((feat, i) => (
               <div key={i} className="bg-secondary/30 rounded-xl p-3 space-y-1 border border-border/50">
                 <h4 className="text-sm font-semibold text-foreground flex items-center gap-2">
                   <ChevronRight className="w-3 h-3 text-google-blue" />
                   {feat.title}
                 </h4>
-                <p className="text-xs text-muted-foreground leading-relaxed">{feat.desc}</p>
+                <p className="mobile-justify-text text-xs text-muted-foreground leading-relaxed">{feat.desc}</p>
               </div>
             ))}
           </div>
 
           {/* Tech Stack */}
           <div className="flex flex-wrap gap-2">
-            {["TypeScript", "React", "Node.js", "Express", "PostgreSQL", "Drizzle ORM", "Vite", "Tailwind CSS", "shadcn/ui", "Docker", "Google Cloud", "Wouter", "TanStack Query", "Framer Motion"].map((tech) => (
+            {["React", "TypeScript", "Node.js", "Express.js", "PostgreSQL", "Drizzle ORM", "RESTful APIs", "Git", "GitHub", "Tailwind CSS", "Vite"].map((tech) => (
               <Badge
                 key={tech}
                 variant="secondary"
@@ -971,15 +970,13 @@ const LWLAppPreview = () => {
               <Settings className="w-4 h-4 text-google-blue" />
               Architecture & Technical Highlights
             </h4>
-            <ul className="text-xs text-muted-foreground space-y-1.5 leading-relaxed">
-              <li>• <strong className="text-foreground">Full-Stack TypeScript Monorepo</strong> — Shared types between client and server with unified build system</li>
-              <li>• <strong className="text-foreground">RESTful API</strong> — Express.js backend with comprehensive route handling for all business entities</li>
-              <li>• <strong className="text-foreground">Database Schema</strong> — 10+ PostgreSQL tables with Drizzle ORM for type-safe queries and migrations</li>
-              <li>• <strong className="text-foreground">Role-Based Access</strong> — Admin, counter, reception, section, staff, and driver roles with permission management</li>
-              <li>• <strong className="text-foreground">Cloud Deployment</strong> — Dockerized for Google Cloud Run with CI/CD via Cloud Build</li>
-              <li>• <strong className="text-foreground">Credit Management</strong> — Client credit/debit system with running balance calculation and due customer reports</li>
-              <li>• <strong className="text-foreground">Incident Tracking</strong> — Missing items and incident report management for quality assurance</li>
-              <li>• <strong className="text-foreground">Invoice System</strong> — Auto-generated invoices with item descriptions, company branding, and thermal print support</li>
+            <ul className="mobile-justify-text text-xs text-muted-foreground space-y-1.5 leading-relaxed">
+              <li>• <strong className="text-foreground">Full-Stack Web Application</strong> — React and TypeScript frontend with Node.js and Express.js backend services</li>
+              <li>• <strong className="text-foreground">RESTful API Development</strong> — API endpoints supporting order, billing, payment, delivery, reporting, and incident workflows</li>
+              <li>• <strong className="text-foreground">Database Operations</strong> — PostgreSQL data handling with Drizzle ORM for reliable business data flow</li>
+              <li>• <strong className="text-foreground">Business Process Automation</strong> — Custom CRM and operations workflows for laundry operations, sales monitoring, inventory, and reporting</li>
+              <li>• <strong className="text-foreground">Production Maintenance</strong> — Feature implementation, bug resolution, deployment, and ongoing support for real users</li>
+              <li>• <strong className="text-foreground">Responsive Interface</strong> — Modern UI/UX practices applied for a usable interface across devices</li>
             </ul>
           </div>
 

@@ -6,23 +6,23 @@ import Reveal from "./Reveal";
 const values = [
   {
     icon: Target,
-    title: "Career objective",
+    title: "Target roles",
     body:
-      "Eager to learn and contribute as part of a strong team — developing skills, gaining experience, and improving through hands-on work.",
+      "Seeking an entry-level IT Support, Technical Support, Help Desk, or Junior IT role where practical problem-solving can support modern IT operations.",
     tone: "text-google-blue",
   },
   {
     icon: Heart,
-    title: "Commitment",
+    title: "Growth mindset",
     body:
-      "Committed to excellence and adaptability — a dependable team member who contributes positively to shared goals.",
+      "Strong willingness to learn and adapt to new technologies, with interest in infrastructure, networking, systems administration, and IT operations.",
     tone: "text-google-red",
   },
   {
     icon: MapPin,
-    title: "Based in Abu Dhabi",
+    title: "Availability",
     body:
-      "Bringing technical fluency and steady communication to every project across the UAE and remote teams worldwide.",
+      "Based in Abu Dhabi, UAE, available to join immediately, and currently under residence visa status.",
     tone: "text-google-green",
   },
 ];
@@ -32,8 +32,8 @@ const About = () => (
     <div className="max-w-6xl mx-auto space-y-16">
       <SectionHeading
         eyebrow="01 · About"
-        title="Quietly precise. Genuinely curious."
-        description="Dynamic and detail-oriented Computer Engineer with a strong interest in project management and IT — skilled in systems organization, troubleshooting, and customer resolution."
+        title="Fresh Computer Engineering graduate ready for IT support."
+        description="Hands-on experience across IT support, computer troubleshooting, web development, and business systems."
       />
 
       <Reveal variant="up">
@@ -47,14 +47,14 @@ const About = () => (
           <h3 className="relative font-display text-2xl md:text-3xl font-semibold mb-4 text-center">
             Professional summary
           </h3>
-          <p className="professional-summary relative text-muted-foreground leading-relaxed text-lg max-w-3xl mx-auto">
-            I am a BS Computer Engineering graduate with experience in software development,
-            AI-assisted development workflows, data handling and business process automation.
-            I have worked with technologies such as Python, TypeScript, Vue.js, Node.js, Next.js,
-            Git/GitHub, APIs, and modern AI tools including Codex and Claude for feature
-            implementation and workflow optimization. In addition to my technical background,
-            I am highly adaptable, eager to learn, and capable of working across different
-            business and technical functions.
+          <p className="professional-summary mobile-justify-text relative text-muted-foreground leading-relaxed text-lg max-w-3xl mx-auto">
+            Fresh Computer Engineering graduate with an exploratory mindset and hands-on
+            experience across IT support, computer troubleshooting, web development, and
+            business systems. Experienced in supporting users, diagnosing hardware and
+            software issues, maintaining digital systems, and developing full-stack web
+            applications for real business operations. Brings practical knowledge of React,
+            TypeScript, Node.js, PostgreSQL, Git, deployment, and basic network
+            troubleshooting.
           </p>
         </motion.div>
       </Reveal>
@@ -73,7 +73,7 @@ const About = () => (
                 <v.icon className="w-5 h-5 transition-transform duration-300 group-hover:-translate-y-0.5" />
               </div>
               <h4 className="relative font-display text-lg font-semibold mb-2">{v.title}</h4>
-              <p className="relative text-sm text-muted-foreground leading-relaxed text-left">{v.body}</p>
+              <p className="mobile-justify-text relative text-sm text-muted-foreground leading-relaxed text-left">{v.body}</p>
             </motion.div>
           </Reveal>
         ))}

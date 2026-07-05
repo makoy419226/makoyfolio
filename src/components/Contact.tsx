@@ -5,9 +5,9 @@ import Reveal from "./Reveal";
 import { Button } from "@/components/ui/button";
 
 const channels = [
-  { icon: Mail, label: "Email", value: "Idusma0010@gmail.com", href: "mailto:Idusma0010@gmail.com", tone: "text-google-blue" },
+  { icon: Mail, label: "Email", value: "idusma0010@gmail.com", href: "mailto:idusma0010@gmail.com", tone: "text-google-blue" },
   { icon: Phone, label: "Phone", value: "+971 50 931 7400", href: "tel:+971509317400", tone: "text-google-red" },
-  { icon: MapPin, label: "Location", value: "Airport Road, Abu Dhabi, UAE", href: "#", tone: "text-google-green" },
+  { icon: MapPin, label: "Location", value: "Abu Dhabi, UAE", href: "#", tone: "text-google-green" },
 ];
 
 const Contact = () => (
@@ -15,8 +15,8 @@ const Contact = () => (
     <div className="max-w-6xl mx-auto space-y-16">
       <SectionHeading
         eyebrow="06 · Contact"
-        title="Let's build something useful together."
-        description="Open to engineering, IT, and project coordination roles — and to interesting side work."
+        title="Available to join immediately."
+        description="Open to entry-level IT Support, Technical Support, Help Desk, Junior IT, and web support roles in the UAE."
       />
 
       <Reveal variant="scale">
@@ -27,12 +27,12 @@ const Contact = () => (
           <div className="relative grid md:grid-cols-[1.2fr_1fr] gap-10 items-center">
             <div>
               <h3 className="font-display text-3xl md:text-4xl font-semibold leading-tight text-balance">
-                Have a role, a project, or a question? <span className="text-gradient">Say hello.</span>
+                Need IT support, technical support, or junior web support? <span className="text-gradient">Say hello.</span>
               </h3>
-              <p className="text-muted-foreground mt-4 max-w-md text-left">
-                Replies usually arrive within a day. The fastest path is email.
+              <p className="mobile-justify-text text-muted-foreground mt-4 max-w-md text-left">
+                Available to join immediately and currently under residence visa status.
               </p>
-              <a href="mailto:Idusma0010@gmail.com" className="inline-block mt-6">
+              <a href="mailto:idusma0010@gmail.com" className="inline-block mt-6">
                 <Button size="lg" className="rounded-full bg-gradient-accent border-0 ring-glow hover:brightness-110">
                   Send an email <ArrowUpRight />
                 </Button>

@@ -4,7 +4,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import profilePhoto from "@/assets/profile.jpg";
 
-const headlineWords = ["Mark", "Angelou", "Idusma"];
+const headlineWords = ["Mark", "Angelou", "Egam", "Idusma, CpE"];
 
 const Hero = () => {
   const ref = useRef<HTMLElement>(null);
@@ -37,7 +37,7 @@ const Hero = () => {
               <span className="relative inline-flex rounded-full h-2 w-2 bg-google-green" />
             </span>
             <Sparkles className="w-3.5 h-3.5 text-primary" />
-            Abu Dhabi, UAE · Available for work
+            Abu Dhabi, UAE · Available immediately
           </motion.div>
 
           <h1 className="font-display text-[clamp(2.75rem,6vw,5rem)] leading-[0.95] font-semibold text-balance">
@@ -63,10 +63,10 @@ const Hero = () => {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.5 }}
-            className="text-lg md:text-xl text-muted-foreground max-w-xl leading-relaxed"
+            className="mobile-justify-text text-lg md:text-xl text-muted-foreground max-w-xl leading-relaxed"
           >
-            Computer Engineer building resilient digital systems with IT support,
-            web development, and project coordination tuned for real-world operations.
+            Fresh Computer Engineering graduate with hands-on experience in IT support,
+            troubleshooting, full-stack web development, and business systems.
           </motion.p>
 
           <motion.div
@@ -99,9 +99,9 @@ const Hero = () => {
               <Phone className="w-3.5 h-3.5 text-primary" />
               +971 50 931 7400
             </a>
-            <a href="mailto:Idusma0010@gmail.com" className="flex items-center gap-2 hover:text-foreground transition-colors">
+            <a href="mailto:idusma0010@gmail.com" className="flex items-center gap-2 hover:text-foreground transition-colors">
               <Mail className="w-3.5 h-3.5 text-primary" />
-              Idusma0010@gmail.com
+              idusma0010@gmail.com
             </a>
             <a
               href="https://github.com/makoy419226"
@@ -126,7 +126,7 @@ const Hero = () => {
             <div className="relative overflow-hidden rounded-[1.5rem] bg-white aspect-[5/4]">
               <img
                 src={profilePhoto}
-                alt="Mark Angelou Idusma"
+                alt="Mark Angelou Egam Idusma"
                 className="h-full w-full object-cover object-[50%_42%]"
               />
             </div>

@@ -4,16 +4,74 @@ import Reveal from "./Reveal";
 
 const skillGroups = [
   {
-    label: "Frontend",
-    items: ["React", "TypeScript", "Tailwind CSS", "Vite", "Responsive UI"],
+    label: "IT Support",
+    items: [
+      "Desktop and Laptop Support",
+      "Hardware Diagnostics",
+      "Software Troubleshooting",
+      "OS and Application Installation",
+      "System Configuration",
+      "Peripheral Support",
+      "Preventive Maintenance",
+      "End-User Assistance",
+    ],
   },
   {
-    label: "Backend & Data",
-    items: ["Node.js", "Express.js", "REST APIs", "Zod", "PostgreSQL", "Drizzle ORM"],
+    label: "Networking & Systems",
+    items: [
+      "TCP/IP Basics",
+      "LAN/Wi-Fi Troubleshooting",
+      "DNS Concepts",
+      "DHCP Concepts",
+      "Router and Connectivity Troubleshooting",
+      "Windows",
+      "Microsoft Office",
+      "Outlook",
+      "Google Workspace",
+      "File and Folder Management",
+    ],
   },
   {
-    label: "Tools & Support",
-    items: ["Git / GitHub", "Python", "IT Troubleshooting", "Excel & PDF Reporting", "Client Communication"],
+    label: "Frontend Development",
+    items: ["React", "TypeScript", "JavaScript (ES6+)", "HTML5", "CSS3", "Tailwind CSS", "Vite"],
+  },
+  {
+    label: "Backend & APIs",
+    items: ["Node.js", "Express.js", "RESTful API Development", "API Integration"],
+  },
+  {
+    label: "Database & Version Control",
+    items: ["PostgreSQL", "Drizzle ORM", "Database Design", "Data Modeling", "Git", "GitHub", "Branch Management"],
+  },
+  {
+    label: "Web Operations",
+    items: [
+      "VS Code",
+      "Postman",
+      "npm",
+      "Vercel",
+      "Hostinger",
+      "GoDaddy",
+      "ESLint",
+      "Application Deployment",
+      "Environment Configuration",
+      "Build Management",
+      "Domain and DNS Configuration",
+      "Production Maintenance",
+      "System Monitoring",
+      "Technical Troubleshooting",
+    ],
+  },
+  {
+    label: "Business Systems",
+    items: [
+      "Custom CRM & Operations Systems",
+      "Business Process Automation",
+      "Workflow Optimization",
+      "Reporting",
+      "Data Management",
+      "Technical Documentation",
+    ],
   },
 ];
 
@@ -22,11 +80,11 @@ const Skills = () => (
     <div className="max-w-6xl mx-auto space-y-16">
       <SectionHeading
         eyebrow="02 · Skills"
-        title="A toolkit built across systems, code, and people."
-        description="Technical fluency paired with operational discipline — shaped through education, training, and real client-facing work."
+        title="Technical skills across support, systems, and web operations."
+        description="IT troubleshooting, networking fundamentals, full-stack development, deployment, and business systems support."
       />
 
-      <div className="grid md:grid-cols-3 gap-5">
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
         {skillGroups.map((group, gi) => (
           <Reveal key={group.label} variant="up" delay={gi * 0.08}>
             <motion.div

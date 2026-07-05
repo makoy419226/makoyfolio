@@ -83,25 +83,25 @@ const Navbar = () => {
     >
       <nav
         className={cn(
-          "flex items-center gap-1 sm:gap-2 rounded-full px-3 sm:px-4 py-2 transition-all duration-500",
+          "flex w-max max-w-[calc(100vw-2rem)] items-center gap-1 overflow-x-auto overscroll-x-contain rounded-full px-3 py-2 transition-all duration-500 sm:gap-2 sm:px-4 md:max-w-none md:overflow-visible [scrollbar-width:none] [&::-webkit-scrollbar]:hidden",
           scrolled
             ? "glass-strong ring-glow scale-100"
             : "glass scale-[0.98]"
         )}
       >
-        <ul className="flex items-center">
-          {links.map((l, index) => {
+        <ul className="flex flex-none items-center">
+          {links.map((l) => {
             const isActive = active === l.href;
             return (
               <li
                 key={l.href}
-                className={cn("relative", index > 1 && "hidden md:block")}
+                className="relative"
               >
                 <a
                   href={l.href}
                   onClick={() => holdActive(l.href)}
                   className={cn(
-                    "relative z-10 inline-block px-3 py-1.5 text-sm rounded-full transition-colors duration-300",
+                    "relative z-10 inline-block whitespace-nowrap px-3 py-1.5 text-sm rounded-full transition-colors duration-300",
                     isActive ? "text-primary-foreground" : "text-muted-foreground hover:text-foreground"
                   )}
                 >

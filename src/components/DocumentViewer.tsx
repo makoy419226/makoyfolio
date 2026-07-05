@@ -9,12 +9,12 @@ const DocumentViewer = () => {
   const documents = [
       {
       title: "Computer Literacy Training Certificate",
-      institution: "ComTech Resources & Cristal e-College",
+      institution: "Computer Literacy Training (Module 2)",
       image: certComtech,
     },
      {
-      title: "Senior High School Diploma",
-      institution: "Cristal e-College",
+      title: "Technical-Vocational-Livelihood Track in ICT",
+      institution: "Computer Programming specialization",
       image: diplomaHighschool,
     },
     
@@ -23,10 +23,9 @@ const DocumentViewer = () => {
       institution: "Bohol Island State University",
       image: diplomaBisu,
     },
-   
     {
       title: "Certificate of Recognition - Research Assistant",
-      institution: "Totolan Elementary School",
+      institution: "Research Assistant recognition",
       image: recognitionSama,
     },
   ];

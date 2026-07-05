@@ -6,7 +6,7 @@
 
 @layer base {
   :root {
-    --background: 220 38% 98%;
+    --background: 220 46% 97%;
     --foreground: 222 47% 12%;
 
     --card: 0 0% 100%;
@@ -56,7 +56,7 @@
 
     --gradient-accent: linear-gradient(135deg, hsl(225 73% 57%) 0%, hsl(224 78% 50%) 58%, hsl(218 88% 62%) 100%);
     --gradient-text: linear-gradient(120deg, hsl(225 78% 30%) 0%, hsl(225 73% 57%) 52%, hsl(218 82% 45%) 100%);
-    --gradient-page: linear-gradient(180deg, hsl(220 38% 98%) 0%, hsl(214 40% 96%) 48%, hsl(0 0% 100%) 100%);
+    --gradient-page: linear-gradient(180deg, hsl(218 72% 97%) 0%, hsl(216 68% 95%) 48%, hsl(220 60% 98%) 100%);
   }
 }
 
@@ -77,10 +77,10 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     background-image:
-      linear-gradient(115deg, transparent 0%, transparent 54%, hsl(225 73% 57% / 0.035) 54%, transparent 82%),
-      linear-gradient(180deg, hsl(0 0% 100% / 0.78) 0%, hsl(220 38% 98% / 0.72) 42%, hsl(0 0% 100% / 0.9) 100%),
-      linear-gradient(hsl(218 24% 72% / 0.12) 1px, transparent 1px),
-      linear-gradient(90deg, hsl(218 24% 72% / 0.1) 1px, transparent 1px),
+      linear-gradient(115deg, transparent 0%, transparent 52%, hsl(225 73% 57% / 0.075) 52%, transparent 84%),
+      linear-gradient(180deg, hsl(218 80% 98% / 0.62) 0%, hsl(219 78% 96% / 0.68) 42%, hsl(0 0% 100% / 0.78) 100%),
+      linear-gradient(hsl(222 52% 66% / 0.18) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(222 52% 66% / 0.15) 1px, transparent 1px),
       var(--gradient-page);
     background-size: auto, auto, 88px 88px, 88px 88px, auto;
     background-position: center, center, top center, top center, center;
@@ -98,6 +98,14 @@
 @layer utilities {
   .text-balance { text-wrap: balance; }
   .font-display { font-family: 'Sora', 'Manrope', sans-serif; }
+
+  @media (max-width: 767px) {
+    .mobile-justify-text {
+      text-align: justify !important;
+      text-align-last: auto !important;
+      hyphens: auto;
+    }
+  }
 
   .animate-float-slow { animation: float 6s ease-in-out infinite; }
   .animate-float-delayed { animation: float 6s ease-in-out infinite 2s; }
@@ -154,7 +162,12 @@
   }
 
   .running-task-bot {
-    filter: drop-shadow(0 18px 32px hsl(225 73% 35% / 0.14));
+    --assistant-blue: 225 73% 57%;
+    --assistant-blue-light: 224 88% 64%;
+    --assistant-blue-accent: 218 88% 62%;
+    --assistant-blue-deep: 225 73% 35%;
+    --assistant-surface: 218 80% 97%;
+    filter: drop-shadow(0 18px 32px hsl(var(--assistant-blue-deep) / 0.14));
   }
 
   .bot-hit-area {
@@ -169,38 +182,25 @@
   }
 
   .bot-hit-area:focus-visible {
-    outline: 2px solid hsl(225 73% 57%);
+    outline: 2px solid hsl(var(--assistant-blue));
     outline-offset: 0.4rem;
     border-radius: 1.2rem;
   }
 
-  .ciel-target-active {
-    outline: 2px solid hsl(225 73% 57% / 0.58);
-    outline-offset: 0.35rem;
-    box-shadow: 0 0 0 0.55rem hsl(225 73% 57% / 0.08), 0 18px 34px -26px hsl(225 73% 35% / 0.48);
-    animation: ciel-target-pulse 1.8s ease-in-out infinite;
-  }
-
-  .ciel-content-active {
-    border-radius: 1rem;
-    outline: 1px dashed hsl(142 64% 42% / 0.5);
-    outline-offset: 0.45rem;
-    box-shadow: 0 0 0 0.55rem hsl(142 64% 42% / 0.055);
-    animation: ciel-content-scan 2.2s ease-in-out infinite;
-  }
-
   .bot-task-bubble {
     position: relative;
-    margin-bottom: 0.5rem;
-    border-radius: 0.875rem;
-    border: 1px solid hsl(218 28% 84% / 0.78);
+    margin-bottom: 0.45rem;
+    border-radius: 1rem;
+    border: 1px solid hsl(var(--assistant-blue) / 0.36);
     background:
-      linear-gradient(145deg, hsl(0 0% 100% / 0.92), hsl(220 44% 96% / 0.8)),
-      linear-gradient(90deg, hsl(225 73% 57% / 0.08), hsl(142 64% 42% / 0.06));
-    padding: 0.55rem 0.7rem;
-    box-shadow: 0 18px 44px -34px hsl(225 73% 35% / 0.42), inset 0 1px 0 hsl(0 0% 100% / 0.9);
-    backdrop-filter: blur(16px) saturate(160%);
-    -webkit-backdrop-filter: blur(16px) saturate(160%);
+      linear-gradient(145deg, hsl(0 0% 100% / 0.94), hsl(var(--assistant-surface) / 0.9)),
+      radial-gradient(circle at 14% 0%, hsl(var(--assistant-blue-light) / 0.28), transparent 38%),
+      radial-gradient(circle at 92% 10%, hsl(var(--assistant-blue-accent) / 0.13), transparent 34%),
+      linear-gradient(90deg, hsl(var(--assistant-blue) / 0.12), hsl(var(--assistant-blue-accent) / 0.06));
+    padding: 0.58rem 0.72rem;
+    box-shadow: 0 20px 48px -34px hsl(var(--assistant-blue) / 0.62), 0 12px 28px -26px hsl(var(--assistant-blue-accent) / 0.5), inset 0 1px 0 hsl(0 0% 100% / 0.92);
+    backdrop-filter: blur(18px) saturate(175%);
+    -webkit-backdrop-filter: blur(18px) saturate(175%);
   }
 
   .bot-task-bubble::after {
@@ -210,9 +210,9 @@
     bottom: -0.38rem;
     width: 0.75rem;
     height: 0.75rem;
-    border-right: 1px solid hsl(218 28% 84% / 0.78);
-    border-bottom: 1px solid hsl(218 28% 84% / 0.78);
-    background: hsl(0 0% 100% / 0.88);
+    border-right: 1px solid hsl(var(--assistant-blue) / 0.36);
+    border-bottom: 1px solid hsl(var(--assistant-blue) / 0.36);
+    background: hsl(var(--assistant-surface) / 0.92);
     transform: rotate(45deg);
   }
 
@@ -220,10 +220,11 @@
     display: flex;
     align-items: center;
     gap: 0.35rem;
-    color: hsl(225 73% 57%);
+    color: hsl(var(--assistant-blue-accent) / 0.9);
     font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
     font-size: 0.62rem;
     font-weight: 700;
+    letter-spacing: 0.04em;
     line-height: 1;
     text-transform: uppercase;
   }
@@ -239,32 +240,32 @@
 
   .bot-runner {
     position: relative;
-    width: 4.4rem;
-    height: 4.7rem;
-    margin-left: 1rem;
+    width: 5.35rem;
+    height: 4.4rem;
+    margin-left: 0.72rem;
     transform-origin: center;
   }
 
   .bot-shadow {
     position: absolute;
-    left: 0.5rem;
-    right: 0.1rem;
-    bottom: 0.05rem;
-    height: 0.72rem;
+    left: 0.82rem;
+    right: 0.58rem;
+    bottom: 0.08rem;
+    height: 0.58rem;
     border-radius: 9999px;
-    background: hsl(225 73% 24% / 0.12);
-    filter: blur(3px);
-    animation: bot-shadow-bounce 0.42s ease-in-out infinite alternate;
+    background: linear-gradient(90deg, hsl(var(--assistant-blue-deep) / 0.18), hsl(var(--assistant-blue) / 0.18));
+    filter: blur(4px);
+    animation: bot-shadow-drift 1.15s ease-in-out infinite alternate;
   }
 
   .bot-antenna {
     position: absolute;
-    left: 2.14rem;
-    top: 0;
+    left: 2.57rem;
+    top: 0.1rem;
     width: 0.12rem;
-    height: 0.68rem;
+    height: 0.74rem;
     border-radius: 9999px;
-    background: hsl(225 73% 57% / 0.58);
+    background: hsl(var(--assistant-blue) / 0.7);
   }
 
   .bot-antenna::after {
@@ -275,80 +276,102 @@
     width: 0.48rem;
     height: 0.48rem;
     border-radius: 9999px;
-    background: hsl(142 64% 42% / 0.74);
-    box-shadow: 0 0 18px hsl(142 64% 42% / 0.5);
+    background: hsl(var(--assistant-blue-accent) / 0.82);
+    box-shadow: 0 0 18px hsl(var(--assistant-blue-accent) / 0.54), 0 0 28px hsl(var(--assistant-blue) / 0.28);
     transform: translateX(-50%);
-    animation: bot-status-pulse 1.2s ease-in-out infinite;
+    animation: bot-status-pulse 1.4s ease-in-out infinite;
   }
 
   .bot-head {
     position: absolute;
-    left: 0.7rem;
-    top: 0.58rem;
+    left: 0.75rem;
+    top: 0.82rem;
+    z-index: 2;
     display: flex;
-    width: 3.4rem;
-    height: 2.55rem;
+    width: 3.85rem;
+    height: 2.9rem;
     align-items: center;
     justify-content: center;
-    border: 1px solid hsl(218 28% 84% / 0.84);
-    border-radius: 1.05rem;
-    background: linear-gradient(145deg, hsl(0 0% 100% / 0.96), hsl(220 44% 95% / 0.86));
-    color: hsl(225 73% 57%);
-    box-shadow: inset 0 1px 0 hsl(0 0% 100% / 0.92);
-    animation: bot-body-bounce 0.42s ease-in-out infinite alternate;
+    overflow: hidden;
+    border: 1px solid hsl(var(--assistant-blue) / 0.44);
+    border-radius: 1.22rem;
+    background:
+      linear-gradient(145deg, hsl(0 0% 100% / 0.96), hsl(var(--assistant-surface) / 0.9)),
+      radial-gradient(circle at 50% 28%, hsl(var(--assistant-blue-light) / 0.26), transparent 45%),
+      radial-gradient(circle at 75% 80%, hsl(var(--assistant-blue-accent) / 0.14), transparent 42%);
+    color: hsl(var(--assistant-blue) / 0.96);
+    box-shadow: 0 16px 34px -28px hsl(var(--assistant-blue-deep) / 0.5), 0 0 0 1px hsl(var(--assistant-blue) / 0.1), inset 0 1px 0 hsl(0 0% 100% / 0.94);
+    animation: bot-head-float 1.15s ease-in-out infinite alternate;
+  }
+
+  .bot-head > svg {
+    position: relative;
+    z-index: 2;
+    filter: drop-shadow(0 0 8px hsl(var(--assistant-blue) / 0.38));
   }
 
   .bot-eye {
     position: absolute;
-    top: 1.08rem;
-    width: 0.28rem;
-    height: 0.28rem;
+    z-index: 3;
+    top: 1.24rem;
+    width: 0.34rem;
+    height: 0.34rem;
     border-radius: 9999px;
-    background: hsl(142 64% 42% / 0.86);
-    box-shadow: 0 0 10px hsl(142 64% 42% / 0.46);
-    animation: bot-status-pulse 1.6s ease-in-out infinite;
+    background: hsl(var(--assistant-blue-accent) / 0.9);
+    box-shadow: 0 0 11px hsl(var(--assistant-blue-accent) / 0.58), 0 0 20px hsl(var(--assistant-blue) / 0.18);
+    animation: none;
   }
 
-  .bot-eye-left { left: 1.28rem; }
-  .bot-eye-right { right: 1.06rem; }
-
-  .bot-body {
-    position: absolute;
-    left: 1.25rem;
-    top: 3.05rem;
-    display: flex;
-    width: 2.55rem;
-    height: 1.36rem;
-    align-items: center;
-    justify-content: center;
-    border: 1px solid hsl(218 28% 84% / 0.78);
-    border-radius: 0.85rem;
-    background: linear-gradient(145deg, hsl(225 73% 57% / 0.16), hsl(0 0% 100% / 0.88));
-    color: hsl(215 30% 44% / 0.82);
-    animation: bot-body-bounce 0.42s ease-in-out infinite alternate;
+  .bot-eye-left { left: 1.38rem; }
+  .bot-eye-right {
+    right: 1.22rem;
   }
 
-  .bot-leg {
+  .bot-arm {
     position: absolute;
-    bottom: 0.35rem;
-    width: 0.85rem;
-    height: 0.2rem;
+    top: 2.42rem;
+    z-index: 1;
+    width: 1.38rem;
+    height: 0.24rem;
     border-radius: 9999px;
-    background: hsl(225 73% 57% / 0.58);
-    transform-origin: center left;
+    background: linear-gradient(90deg, hsl(var(--assistant-blue) / 0.62), hsl(var(--assistant-blue-light) / 0.5));
+    box-shadow: 0 6px 14px -9px hsl(var(--assistant-blue-deep) / 0.44);
   }
 
-  .bot-leg-left {
-    left: 1.32rem;
-    animation: bot-leg-run-left 0.42s ease-in-out infinite;
+  .bot-arm::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    width: 0.44rem;
+    height: 0.44rem;
+    border-radius: 9999px;
+    background: hsl(0 0% 100% / 0.88);
+    border: 1px solid hsl(var(--assistant-blue) / 0.34);
+    transform: translateY(-50%);
   }
 
-  .bot-leg-right {
-    left: 2.44rem;
-    animation: bot-leg-run-right 0.42s ease-in-out infinite;
+  .bot-arm-left {
+    left: 0;
+    transform-origin: right center;
+    animation: bot-arm-wave-left 1.35s ease-in-out infinite alternate;
   }
 
-  .ciel-popup-shell {
+  .bot-arm-left::after {
+    left: -0.2rem;
+  }
+
+  .bot-arm-right {
+    right: 0.18rem;
+    transform-origin: left center;
+    animation: bot-arm-wave-right 1.35s ease-in-out infinite alternate;
+    animation-delay: 0.16s;
+  }
+
+  .bot-arm-right::after {
+    right: -0.2rem;
+  }
+
+  .assistant-popup-shell {
     position: fixed;
     inset: 0;
     z-index: 80;
@@ -359,7 +382,7 @@
     pointer-events: auto;
   }
 
-  .ciel-popup-backdrop {
+  .assistant-popup-backdrop {
     position: absolute;
     inset: 0;
     appearance: none;
@@ -371,21 +394,27 @@
     cursor: pointer;
   }
 
-  .ciel-popup {
+  .assistant-popup {
+    --assistant-blue: 225 73% 57%;
+    --assistant-blue-light: 224 88% 64%;
+    --assistant-blue-accent: 218 88% 62%;
+    --assistant-blue-deep: 225 73% 35%;
+    --assistant-surface: 218 80% 97%;
     position: relative;
     width: min(100%, 25rem);
     border-radius: 1.4rem;
-    border: 1px solid hsl(218 28% 84% / 0.86);
+    border: 1px solid hsl(var(--assistant-blue) / 0.38);
     background:
-      linear-gradient(145deg, hsl(0 0% 100% / 0.94), hsl(220 44% 96% / 0.88)),
-      linear-gradient(120deg, hsl(225 73% 57% / 0.1), hsl(142 64% 42% / 0.06));
+      linear-gradient(145deg, hsl(0 0% 100% / 0.95), hsl(var(--assistant-surface) / 0.9)),
+      radial-gradient(circle at 18% 0%, hsl(var(--assistant-blue-light) / 0.22), transparent 34%),
+      radial-gradient(circle at 90% 12%, hsl(var(--assistant-blue-accent) / 0.12), transparent 36%);
     padding: 1.5rem;
-    box-shadow: 0 34px 90px -42px hsl(222 47% 12% / 0.46), inset 0 1px 0 hsl(0 0% 100% / 0.94);
+    box-shadow: 0 34px 90px -42px hsl(222 47% 12% / 0.46), 0 0 0 1px hsl(var(--assistant-blue) / 0.08), inset 0 1px 0 hsl(0 0% 100% / 0.94);
     backdrop-filter: blur(22px) saturate(170%);
     -webkit-backdrop-filter: blur(22px) saturate(170%);
   }
 
-  .ciel-popup-close {
+  .assistant-popup-close {
     position: absolute;
     right: 0.9rem;
     top: 0.9rem;
@@ -399,37 +428,50 @@
     background: hsl(0 0% 100% / 0.72);
     color: hsl(222 47% 12% / 0.7);
     transition: color 180ms ease, border-color 180ms ease, background 180ms ease;
+    z-index: 2;
   }
 
-  .ciel-popup-close:hover,
-  .ciel-popup-close:focus-visible {
-    border-color: hsl(225 73% 57% / 0.58);
-    background: hsl(225 73% 57% / 0.1);
-    color: hsl(225 73% 57%);
+  .assistant-popup-close:hover,
+  .assistant-popup-close:focus-visible {
+    border-color: hsl(var(--assistant-blue) / 0.58);
+    background: hsl(var(--assistant-blue) / 0.12);
+    color: hsl(var(--assistant-blue-accent));
     outline: none;
   }
 
-  .ciel-avatar {
+  .assistant-avatar {
+    position: relative;
     display: flex;
     width: 4rem;
     height: 4rem;
     align-items: center;
     justify-content: center;
-    border: 1px solid hsl(218 28% 84% / 0.74);
+    overflow: hidden;
+    border: 1px solid hsl(var(--assistant-blue) / 0.42);
     border-radius: 1.25rem;
-    background: linear-gradient(145deg, hsl(225 73% 57% / 0.16), hsl(0 0% 100% / 0.86));
-    color: hsl(225 73% 57%);
-    box-shadow: inset 0 1px 0 hsl(0 0% 100% / 0.9);
+    background:
+      linear-gradient(145deg, hsl(var(--assistant-blue) / 0.18), hsl(0 0% 100% / 0.9)),
+      radial-gradient(circle at 50% 28%, hsl(var(--assistant-blue-light) / 0.22), transparent 46%),
+      radial-gradient(circle at 74% 80%, hsl(var(--assistant-blue-accent) / 0.12), transparent 42%);
+    color: hsl(var(--assistant-blue));
+    box-shadow: 0 20px 42px -32px hsl(var(--assistant-blue-deep) / 0.48), 0 0 0 1px hsl(var(--assistant-blue) / 0.1), inset 0 1px 0 hsl(0 0% 100% / 0.9);
+    animation: none;
   }
 
-  .ciel-copy {
+  .assistant-avatar svg {
+    position: relative;
+    z-index: 2;
+    filter: drop-shadow(0 0 10px hsl(var(--assistant-blue) / 0.36));
+  }
+
+  .assistant-copy {
     margin-top: 1rem;
     color: hsl(220 18% 43%);
     font-size: 1rem;
     line-height: 1.55;
   }
 
-  .ciel-copy-primary {
+  .assistant-copy-primary {
     max-width: 18rem;
     color: hsl(222 47% 12%);
     font-family: 'Sora', 'Manrope', sans-serif;
@@ -438,13 +480,13 @@
     line-height: 1.15;
   }
 
-  .ciel-actions {
+  .assistant-actions {
     display: grid;
     gap: 0.7rem;
     margin-top: 1.25rem;
   }
 
-  .ciel-action {
+  .assistant-action {
     display: grid;
     grid-template-columns: auto 1fr;
     gap: 0.12rem 0.65rem;
@@ -458,44 +500,74 @@
     font-weight: 700;
     line-height: 1.2;
     text-decoration: none;
-    transition: transform 180ms ease, border-color 180ms ease, background 180ms ease, box-shadow 180ms ease;
+    transition: border-color 180ms ease, background 180ms ease, box-shadow 180ms ease;
   }
 
-  .ciel-action svg {
+  .assistant-action svg {
     grid-row: span 2;
-    color: hsl(225 73% 57%);
+    color: hsl(var(--assistant-blue));
   }
 
-  .ciel-action span {
+  .assistant-action span {
     color: hsl(220 18% 43%);
     font-size: 0.78rem;
     font-weight: 600;
   }
 
-  .ciel-action:hover,
-  .ciel-action:focus-visible {
-    border-color: hsl(225 73% 57% / 0.5);
-    background: hsl(225 73% 57% / 0.08);
-    box-shadow: 0 16px 34px -26px hsl(225 73% 35% / 0.44);
+  .assistant-action:hover,
+  .assistant-action:focus-visible {
+    border-color: hsl(var(--assistant-blue) / 0.52);
+    background: hsl(var(--assistant-blue) / 0.09);
+    box-shadow: 0 16px 34px -26px hsl(var(--assistant-blue-deep) / 0.42);
     outline: none;
-    transform: translateY(-1px);
+  }
+
+  @keyframes bot-arm-wave-left {
+    from { transform: rotate(16deg) translateY(0); }
+    to { transform: rotate(-18deg) translateY(-0.08rem); }
+  }
+
+  @keyframes bot-arm-wave-right {
+    from { transform: rotate(-16deg) translateY(0); }
+    to { transform: rotate(18deg) translateY(-0.08rem); }
+  }
+
+  @keyframes bot-head-float {
+    from { transform: translateY(0); }
+    to { transform: translateY(-0.22rem); }
+  }
+
+  @keyframes bot-shadow-drift {
+    from { opacity: 0.5; transform: scaleX(0.98); }
+    to { opacity: 0.28; transform: scaleX(0.78); }
+  }
+
+  @keyframes bot-status-pulse {
+    0%, 100% {
+      opacity: 0.68;
+      box-shadow: 0 0 12px hsl(var(--assistant-blue-accent) / 0.34), 0 0 22px hsl(var(--assistant-blue) / 0.18);
+    }
+    50% {
+      opacity: 1;
+      box-shadow: 0 0 18px hsl(var(--assistant-blue-accent) / 0.54), 0 0 28px hsl(var(--assistant-blue) / 0.28);
+    }
   }
 
   .computer-engineering-background {
     background:
-      linear-gradient(180deg, hsl(0 0% 100% / 0.2) 0%, transparent 48%, hsl(0 0% 100% / 0.32) 100%),
-      linear-gradient(118deg, transparent 0%, transparent 58%, hsl(225 73% 57% / 0.05) 58%, transparent 84%),
-      linear-gradient(42deg, transparent 0%, transparent 62%, hsl(142 64% 42% / 0.035) 62%, transparent 86%);
+      linear-gradient(180deg, hsl(0 0% 100% / 0.12) 0%, transparent 48%, hsl(0 0% 100% / 0.22) 100%),
+      linear-gradient(118deg, transparent 0%, transparent 58%, hsl(225 73% 57% / 0.085) 58%, transparent 84%),
+      linear-gradient(42deg, transparent 0%, transparent 62%, hsl(142 64% 42% / 0.04) 62%, transparent 86%);
   }
 
   .ce-depth {
     position: absolute;
     inset: -12%;
-    opacity: 0.68;
+    opacity: 0.78;
     background:
-      linear-gradient(90deg, hsl(0 0% 100% / 0.66) 0%, transparent 34%, transparent 100%),
-      linear-gradient(154deg, transparent 0%, transparent 56%, hsl(215 24% 46% / 0.065) 56%, transparent 74%),
-      linear-gradient(154deg, transparent 0%, transparent 66%, hsl(225 73% 57% / 0.045) 66%, transparent 86%);
+      linear-gradient(90deg, hsl(0 0% 100% / 0.5) 0%, transparent 34%, transparent 100%),
+      linear-gradient(154deg, transparent 0%, transparent 56%, hsl(218 56% 58% / 0.09) 56%, transparent 74%),
+      linear-gradient(154deg, transparent 0%, transparent 66%, hsl(225 73% 57% / 0.075) 66%, transparent 86%);
     background-size: 120% 120%, 140% 140%, 130% 130%;
     mask-image: linear-gradient(180deg, black 0%, black 72%, transparent 100%);
     -webkit-mask-image: linear-gradient(180deg, black 0%, black 72%, transparent 100%);
@@ -505,10 +577,10 @@
   .ce-grid {
     position: absolute;
     inset: 0;
-    opacity: 0.16;
+    opacity: 0.2;
     background-image:
-      linear-gradient(hsl(218 24% 64% / 0.22) 1px, transparent 1px),
-      linear-gradient(90deg, hsl(218 24% 64% / 0.16) 1px, transparent 1px);
+      linear-gradient(hsl(222 56% 60% / 0.24) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(222 56% 60% / 0.18) 1px, transparent 1px);
     background-size: 84px 84px;
     mask-image: linear-gradient(180deg, transparent 0%, black 14%, black 74%, transparent 100%);
     -webkit-mask-image: linear-gradient(180deg, transparent 0%, black 14%, black 74%, transparent 100%);
@@ -518,12 +590,12 @@
   .ce-scanline {
     position: absolute;
     inset: 0;
-    opacity: 0.16;
+    opacity: 0.2;
     background: linear-gradient(
       180deg,
       transparent 0%,
       transparent 42%,
-      hsl(225 73% 57% / 0.16) 50%,
+      hsl(225 73% 57% / 0.2) 50%,
       transparent 58%,
       transparent 100%
     );
@@ -536,7 +608,7 @@
     inset: 0;
     width: 100%;
     height: 100%;
-    opacity: 0.42;
+    opacity: 0.46;
     animation: ce-schematic-float 18s ease-in-out infinite alternate;
   }
 
@@ -646,56 +718,10 @@
     to { transform: translateX(18px); opacity: 0.42; }
   }
 
-  @keyframes bot-body-bounce {
-    from { transform: translateY(0); }
-    to { transform: translateY(-4px); }
-  }
-
-  @keyframes bot-shadow-bounce {
-    from { opacity: 0.48; transform: scaleX(0.92); }
-    to { opacity: 0.28; transform: scaleX(0.72); }
-  }
-
-  @keyframes bot-status-pulse {
-    0%, 100% { opacity: 0.62; }
-    50% { opacity: 1; }
-  }
-
-  @keyframes ciel-target-pulse {
-    0%, 100% {
-      outline-color: hsl(225 73% 57% / 0.48);
-      box-shadow: 0 0 0 0.4rem hsl(225 73% 57% / 0.06), 0 18px 34px -26px hsl(225 73% 35% / 0.38);
-    }
-    50% {
-      outline-color: hsl(142 64% 42% / 0.56);
-      box-shadow: 0 0 0 0.7rem hsl(142 64% 42% / 0.08), 0 20px 38px -24px hsl(225 73% 35% / 0.48);
-    }
-  }
-
-  @keyframes ciel-content-scan {
-    0%, 100% {
-      outline-color: hsl(142 64% 42% / 0.36);
-      box-shadow: 0 0 0 0.42rem hsl(142 64% 42% / 0.045);
-    }
-    50% {
-      outline-color: hsl(225 73% 57% / 0.36);
-      box-shadow: 0 0 0 0.7rem hsl(225 73% 57% / 0.055);
-    }
-  }
-
-  @keyframes bot-leg-run-left {
-    0%, 100% { transform: rotate(28deg) translateX(-0.08rem); }
-    50% { transform: rotate(-24deg) translateX(0.16rem); }
-  }
-
-  @keyframes bot-leg-run-right {
-    0%, 100% { transform: rotate(-24deg) translateX(0.16rem); }
-    50% { transform: rotate(28deg) translateX(-0.08rem); }
-  }
-
   @media (max-width: 767px) {
     .professional-summary {
-      text-align: center;
+      text-align: justify;
+      text-align-last: auto;
     }
 
     .ce-schematic {

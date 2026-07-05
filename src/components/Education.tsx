@@ -13,25 +13,17 @@ const Education = () => {
       color: "google-blue"
     },
     {
-      degree: "TVL Track in ICT (Computer Programming)",
+      degree: "TVL - Information and Communication Technology",
       institution: "Cristal-E College",
       date: "March 2020",
-      type: "Vocational",
+      type: "Computer Programming",
       color: "google-red"
-    },
-    {
-      degree: "Development Program in Computer Literacy Training (Module 2)",
-      institution: "ComTech Resources",
-      date: "February 2016",
-      type: "Training",
-      color: "google-green"
     }
   ];
 
   const certifications = [
     "Computer Literacy Training (Module 2)",
-    "Technical Vocational Livelihood Track at ICT strand with specialization in Computer Programming",
-    "Bachelor of Science in Computer Engineering",
+    "Technical-Vocational-Livelihood Track in ICT with specialization in Computer Programming",
     "Certificate of Recognition - Research Assistant"
   ];
 
@@ -46,40 +38,40 @@ const Education = () => {
       <div className="max-w-6xl mx-auto space-y-16">
         <SectionHeading
           eyebrow="05 · Education"
-          title="Studied long. Still learning."
-          description="Academic background and certifications backing the professional work."
+          title="Education and certifications."
+          description="Computer Engineering education with ICT and computer programming foundations."
         />
 
         <div className="space-y-5">
           {education.map((edu, index) => (
             <Reveal key={index} variant="up" delay={index * 0.06}>
-            <div
-              className="glass rounded-3xl p-7 md:p-8 group transition-colors hover:border-primary/40"
-            >
-              <div className="flex flex-col md:flex-row md:items-start gap-6">
-                {/* Icon */}
-                <div className={`w-14 h-14 rounded-2xl flex items-center justify-center flex-shrink-0 transition-colors ${colorClasses[edu.color as keyof typeof colorClasses]}`}>
-                  <GraduationCap className="w-7 h-7" />
-                </div>
+              <div
+                className="glass rounded-3xl p-7 md:p-8 group transition-colors hover:border-primary/40"
+              >
+                <div className="flex flex-col md:flex-row md:items-start gap-6">
+                  {/* Icon */}
+                  <div className={`w-14 h-14 rounded-2xl flex items-center justify-center flex-shrink-0 transition-colors ${colorClasses[edu.color as keyof typeof colorClasses]}`}>
+                    <GraduationCap className="w-7 h-7" />
+                  </div>
 
-                {/* Content */}
-                <div className="flex-1 space-y-3">
-                  <div>
-                    <h3 className="font-display text-xl md:text-2xl font-semibold text-foreground mb-2">{edu.degree}</h3>
-                    <p className="text-lg text-primary mb-3 font-medium">{edu.institution}</p>
-                    <div className="flex flex-wrap gap-4 text-muted-foreground">
-                      <span className="flex items-center gap-2">
-                        <Calendar className="w-4 h-4" />
-                        {edu.date}
-                      </span>
-                      <span className="px-3 py-1 rounded-full bg-background/70 text-sm border border-border/45 font-medium">
-                        {edu.type}
-                      </span>
+                  {/* Content */}
+                  <div className="flex-1 space-y-3">
+                    <div>
+                      <h3 className="font-display text-xl md:text-2xl font-semibold text-foreground mb-2">{edu.degree}</h3>
+                      <p className="text-lg text-primary mb-3 font-medium">{edu.institution}</p>
+                      <div className="flex flex-wrap gap-4 text-muted-foreground">
+                        <span className="flex items-center gap-2">
+                          <Calendar className="w-4 h-4" />
+                          {edu.date}
+                        </span>
+                        <span className="px-3 py-1 rounded-full bg-background/70 text-sm border border-border/45 font-medium">
+                          {edu.type}
+                        </span>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
             </Reveal>
           ))}
         </div>
@@ -99,7 +91,7 @@ const Education = () => {
               {certifications.map((cert, i) => (
                 <li key={i} className="text-muted-foreground leading-relaxed flex items-start gap-3">
                   <span className="text-primary mt-1 font-bold">✓</span>
-                  <span>{cert}</span>
+                  <span className="mobile-justify-text">{cert}</span>
                 </li>
               ))}
             </ul>

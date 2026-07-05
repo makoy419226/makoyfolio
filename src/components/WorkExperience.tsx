@@ -4,36 +4,58 @@ import Reveal from "./Reveal";
 
 const roles = [
   {
-    period: "Jan 2026 — Present",
+    period: "January 2026 - June 2026",
     title: "IT Support Specialist / Web Developer",
     company: "Middle Class Tourism",
-    location: "Abu Dhabi, UAE",
-    body:
-      "Provide day-to-day IT support and digital operations assistance. Built and maintain a full-stack company website, manage data entry and document workflows, and collaborate across departments to keep business processes running smoothly.",
+    location: "Al Ruwais, Abu Dhabi, UAE",
+    responsibilities: [
+      "Developed and maintained the company's web application, implementing new features, resolving bugs, and supporting day-to-day business operations.",
+      "Developed and maintained a full-stack company website to support business operations and improve online presence.",
+      "Managed business data entry, document processing, and administrative digital workflows.",
+      "Collaborated with different departments to support operational efficiency and technology-related initiatives.",
+    ],
   },
   {
-    period: "Sep 2024 — Present",
+    period: "September 2024 - Present",
     title: "Freelance Web Developer",
     company: "Self-Employed",
     location: "Remote",
-    body:
-      "Build responsive websites and custom web apps for small businesses using React, TypeScript, Tailwind, Node.js, Express, and PostgreSQL. Handle requirements, delivery, deployment, and post-launch support end-to-end.",
-  },
-  {
-    period: "Sep 2020 — Oct 2025",
-    title: "Sales Representative",
-    company: "Family-Owned General Merchandising & Construction Supplies",
-    location: "Bohol, PH",
-    body:
-      "Supported daily operations across sales, customer service, procurement, inventory, and supplier coordination. Built lasting relationships with customers, contractors, and suppliers while developing strong commercial judgement.",
+    responsibilities: [
+      "Develop responsive websites, blogs, and custom web solutions for small businesses and individual clients.",
+      "Build modern web applications using React, TypeScript, Tailwind CSS, Node.js, Express.js, and PostgreSQL.",
+      "Gather client requirements, translate business needs into technical solutions, and deliver projects within agreed timelines.",
+      "Integrate APIs, implement responsive user interfaces, and optimize website performance across devices.",
+      "Manage project communication, documentation, testing, deployment, and post-launch support.",
+      "Utilize Git and GitHub for version control and efficient project management.",
+    ],
   },
   {
     period: "6-Month Internship",
     title: "Computer Technician",
     company: "B & J Computers",
     location: "Totolan, Dauis, Bohol",
-    body:
-      "Diagnosed and repaired desktops, laptops, and peripherals. Handled hardware troubleshooting, software installation, system configuration, and routine maintenance while supporting customers with technical issues.",
+    responsibilities: [
+      "Assisted in diagnosing, repairing, and maintaining desktop computers, laptops, and peripheral devices.",
+      "Performed hardware troubleshooting, component replacement, software installation, and system configuration.",
+      "Conducted routine maintenance to improve system performance and reliability.",
+      "Provided technical assistance and support to customers regarding hardware and software issues.",
+      "Supported daily shop operations while developing practical experience in computer servicing and troubleshooting.",
+    ],
+  },
+  {
+    period: "September 2020 - October 2025",
+    title: "Sales Representative",
+    company: "Family-Owned General Merchandising & Construction Supplies Business",
+    location: "Bohol, Philippines",
+    responsibilities: [
+      "Supported daily business operations involving sales, customer service, procurement, inventory management, and supplier coordination.",
+      "Built and maintained strong relationships with customers, suppliers, contractors, and business partners.",
+      "Assisted in sales negotiations, pricing discussions, and order processing to support business growth and customer satisfaction.",
+      "Monitored inventory levels and coordinated stock replenishment to ensure product availability.",
+      "Developed strong communication, negotiation, and relationship-management skills through direct customer interaction.",
+      "Gained experience in business operations, procurement, logistics coordination, and commercial decision-making within the construction supplies industry.",
+      "Demonstrated adaptability, initiative, and an entrepreneurial mindset through active participation in a family-run business.",
+    ],
   },
 ];
 
@@ -42,8 +64,8 @@ const WorkExperience = () => (
     <div className="max-w-5xl mx-auto space-y-16">
       <SectionHeading
         eyebrow="03 · Experience"
-        title="Roles that shaped the craft."
-        description="A mix of web development, IT support, and business operations — across UAE and the Philippines."
+        title="Work experience across IT, web development, and operations."
+        description="Practical roles covering technical support, full-stack development, computer servicing, customer service, procurement, inventory, and business coordination."
       />
 
       <div className="relative">
@@ -71,9 +93,14 @@ const WorkExperience = () => (
                       <div className="w-10 h-10 rounded-xl bg-primary/15 flex items-center justify-center mb-3">
                         <Briefcase className="w-5 h-5 text-primary" />
                       </div>
-                      <p className="text-sm text-foreground/90 leading-relaxed text-left">
-                        {r.body}
-                      </p>
+                      <ul className="space-y-2 text-sm text-foreground/90 leading-relaxed">
+                        {r.responsibilities.map((item) => (
+                          <li key={item} className="flex items-start gap-2">
+                            <span className="mt-2 h-1.5 w-1.5 flex-none rounded-full bg-primary/70" />
+                            <span className="mobile-justify-text">{item}</span>
+                          </li>
+                        ))}
+                      </ul>
                     </div>
                   </div>
                 </div>
