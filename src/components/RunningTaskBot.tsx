@@ -3,6 +3,7 @@ import { Bot, Mail, MessageCircle, TerminalSquare, X } from "lucide-react";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
 const BOT_MOVE_SECONDS = 6.5;
+const BOT_RESUME_DELAY_MS = 10000;
 
 const randomTasks = [
   "Checking responsive header",
@@ -221,8 +222,13 @@ const placeBotNearTarget = (target: BotTarget): BotPosition => {
 
 const RunningTaskBot = () => {
   const reduceMotion = useReducedMotion();
+  const botRef = useRef<HTMLDivElement | null>(null);
   const activeTargetRef = useRef<HTMLElement | null>(null);
+  const resumeTimerRef = useRef<number | null>(null);
+  const ignoreNextClickRef = useRef(false);
   const [open, setOpen] = useState(false);
+  const [dragging, setDragging] = useState(false);
+  const [manualPause, setManualPause] = useState(false);
   const [position, setPosition] = useState<BotPosition>(fallbackPosition);
   const taskCode = useMemo(() => {
     const hash = Array.from(position.task).reduce((total, char) => {
@@ -267,20 +273,89 @@ const RunningTaskBot = () => {
   }, [clearActiveTarget]);
 
   const moveToTargetIfAvailable = useCallback(() => {
-    if (open) return;
+    if (open || dragging || manualPause) return;
     moveToContextTarget();
-  }, [moveToContextTarget, open]);
+  }, [dragging, manualPause, moveToContextTarget, open]);
+
+  const clearResumeTimer = useCallback(() => {
+    if (resumeTimerRef.current) {
+      window.clearTimeout(resumeTimerRef.current);
+      resumeTimerRef.current = null;
+    }
+  }, []);
+
+  const handleBotClick = useCallback(() => {
+    if (ignoreNextClickRef.current) {
+      ignoreNextClickRef.current = false;
+      return;
+    }
+
+    setOpen(true);
+  }, []);
+
+  const handleDragStart = useCallback(() => {
+    ignoreNextClickRef.current = true;
+    clearResumeTimer();
+    clearActiveTarget();
+    setDragging(true);
+    setManualPause(true);
+    setPosition((current) => ({
+      ...current,
+      task: "Dragging assistant",
+      context: "DRAG",
+    }));
+  }, [clearActiveTarget, clearResumeTimer]);
+
+  const handleDragEnd = useCallback(() => {
+    const rect = botRef.current?.getBoundingClientRect();
+
+    window.setTimeout(() => {
+      ignoreNextClickRef.current = false;
+    }, 200);
+
+    setDragging(false);
+    setManualPause(true);
+    clearActiveTarget();
+    setPosition((current) => {
+      if (!rect) {
+        return {
+          ...current,
+          task: "Placed here - resuming in 10s",
+          context: "DRAG",
+        };
+      }
+
+      const maxX = window.innerWidth - rect.width - 16;
+      const maxY = window.innerHeight - rect.height - 20;
+
+      return {
+        x: clamp(rect.left, 16, Math.max(16, maxX)),
+        y: clamp(rect.top, 72, Math.max(72, maxY)),
+        direction: current.direction,
+        task: "Placed here - resuming in 10s",
+        context: "DRAG",
+      };
+    });
+
+    resumeTimerRef.current = window.setTimeout(() => {
+      setManualPause(false);
+      resumeTimerRef.current = null;
+    }, BOT_RESUME_DELAY_MS);
+  }, [clearActiveTarget]);
 
   useEffect(() => {
     if (open || reduceMotion) clearActiveTarget();
   }, [clearActiveTarget, open, reduceMotion]);
 
   useEffect(() => {
-    return () => clearActiveTarget();
-  }, [clearActiveTarget]);
+    return () => {
+      clearResumeTimer();
+      clearActiveTarget();
+    };
+  }, [clearActiveTarget, clearResumeTimer]);
 
   useEffect(() => {
-    if (reduceMotion || open) return;
+    if (reduceMotion || open || dragging || manualPause) return;
 
     const initialTimer = window.setTimeout(moveToTargetIfAvailable, 500);
     const interval = window.setInterval(moveToTargetIfAvailable, BOT_MOVE_SECONDS * 1000);
@@ -294,21 +369,28 @@ const RunningTaskBot = () => {
       window.removeEventListener("resize", onResize);
       clearActiveTarget();
     };
-  }, [clearActiveTarget, moveToTargetIfAvailable, open, reduceMotion]);
+  }, [clearActiveTarget, dragging, manualPause, moveToTargetIfAvailable, open, reduceMotion]);
 
   return (
     <>
       <motion.div
+        ref={botRef}
         className="running-task-bot pointer-events-none fixed left-0 top-0 z-20 w-40 sm:w-48"
         animate={reduceMotion ? undefined : { x: position.x, y: position.y }}
+        drag={!open && !reduceMotion}
+        dragElastic={0.04}
+        dragMomentum={false}
         initial={false}
+        onDragEnd={handleDragEnd}
+        onDragStart={handleDragStart}
         transition={{ duration: 1.05, ease: [0.45, 0, 0.25, 1] }}
+        whileDrag={reduceMotion ? undefined : { scale: 1.03 }}
       >
         <button
           type="button"
           className="bot-hit-area pointer-events-auto"
           aria-label="Open portfolio assistant"
-          onClick={() => setOpen(true)}
+          onClick={handleBotClick}
         >
           <motion.div
             key={position.task}

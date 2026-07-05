@@ -168,6 +168,7 @@
     --assistant-blue-deep: 225 73% 35%;
     --assistant-surface: 218 80% 97%;
     filter: drop-shadow(0 18px 32px hsl(var(--assistant-blue-deep) / 0.14));
+    touch-action: none;
   }
 
   .bot-hit-area {
@@ -178,7 +179,11 @@
     background: transparent;
     padding: 0;
     text-align: left;
-    cursor: pointer;
+    cursor: grab;
+  }
+
+  .running-task-bot:active .bot-hit-area {
+    cursor: grabbing;
   }
 
   .bot-hit-area:focus-visible {
