@@ -2,6 +2,7 @@ import { Target, Heart, MapPin } from "lucide-react";
 import { motion } from "framer-motion";
 import SectionHeading from "./SectionHeading";
 import Reveal from "./Reveal";
+import StaggerReveal from "./StaggerReveal";
 
 const values = [
   {
@@ -28,7 +29,7 @@ const values = [
 ];
 
 const About = () => (
-  <section id="about" className="relative py-32 px-4">
+  <section id="about" className="section-atmosphere relative py-32 px-4">
     <div className="max-w-6xl mx-auto space-y-16">
       <SectionHeading
         eyebrow="01 · About"
@@ -40,7 +41,7 @@ const About = () => (
         <motion.div
           whileHover={{ y: -4, scale: 1.01 }}
           transition={{ type: "spring", stiffness: 220, damping: 24 }}
-          className="group relative glass-strong clean-panel rounded-3xl p-8 md:p-12 overflow-hidden"
+          className="group depth-card shine-card relative glass-strong clean-panel rounded-3xl p-8 md:p-12 overflow-hidden transform-gpu"
         >
           <div className="absolute -top-24 -right-24 w-64 h-64 rounded-full bg-primary/30 blur-3xl" />
           <div className="absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
@@ -59,25 +60,24 @@ const About = () => (
         </motion.div>
       </Reveal>
 
-      <div className="grid md:grid-cols-3 gap-5">
+      <StaggerReveal className="grid md:grid-cols-3 gap-5" childClassName="h-full">
         {values.map((v, i) => (
-          <Reveal key={v.title} variant="up" delay={i * 0.08}>
-            <motion.div
-              whileHover={{ y: -8, rotateX: 2, rotateY: i % 2 === 0 ? -2 : 2 }}
-              whileTap={{ scale: 0.98 }}
-              transition={{ type: "spring", stiffness: 250, damping: 20 }}
-              className="group relative h-full glass clean-panel rounded-3xl p-6 overflow-hidden transform-gpu"
-            >
-              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-br from-primary/10 via-background/55 to-transparent" />
-              <div className={`relative w-11 h-11 rounded-2xl bg-background/70 border border-border/45 flex items-center justify-center mb-5 transition-transform duration-300 group-hover:scale-110 ${v.tone}`}>
-                <v.icon className="w-5 h-5 transition-transform duration-300 group-hover:-translate-y-0.5" />
-              </div>
-              <h4 className="relative font-display text-lg font-semibold mb-2">{v.title}</h4>
-              <p className="mobile-justify-text relative text-sm text-muted-foreground leading-relaxed text-left">{v.body}</p>
-            </motion.div>
-          </Reveal>
+          <motion.div
+            key={v.title}
+            whileHover={{ y: -8, rotateX: 2, rotateY: i % 2 === 0 ? -2 : 2 }}
+            whileTap={{ scale: 0.98 }}
+            transition={{ type: "spring", stiffness: 250, damping: 20 }}
+            className="group depth-card shine-card relative h-full glass clean-panel rounded-3xl p-6 overflow-hidden transform-gpu"
+          >
+            <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-br from-primary/10 via-background/55 to-transparent" />
+            <div className={`soft-icon-pop relative w-11 h-11 rounded-2xl bg-background/70 border border-border/45 flex items-center justify-center mb-5 ${v.tone}`}>
+              <v.icon className="w-5 h-5 transition-transform duration-300 group-hover:-translate-y-0.5" />
+            </div>
+            <h4 className="relative font-display text-lg font-semibold mb-2">{v.title}</h4>
+            <p className="mobile-justify-text relative text-sm text-muted-foreground leading-relaxed text-left">{v.body}</p>
+          </motion.div>
         ))}
-      </div>
+      </StaggerReveal>
     </div>
   </section>
 );

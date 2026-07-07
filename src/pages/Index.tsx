@@ -10,6 +10,7 @@ import Navbar from "@/components/Navbar";
 import SmoothScroll from "@/components/SmoothScroll";
 import ScrollProgress from "@/components/ScrollProgress";
 import EngineeringBackground from "@/components/EngineeringBackground";
+import { motion } from "framer-motion";
 
 const Index = () => {
   return (
@@ -17,7 +18,12 @@ const Index = () => {
       <SmoothScroll />
       <ScrollProgress />
       <EngineeringBackground />
-      <div className="relative z-10">
+      <motion.div
+        initial={{ opacity: 0, y: 12 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.72 }}
+        className="relative z-10"
+      >
         <Navbar />
         <main>
           <Hero />
@@ -29,7 +35,7 @@ const Index = () => {
           <Contact />
         </main>
         <Footer />
-      </div>
+      </motion.div>
     </div>
   );
 };

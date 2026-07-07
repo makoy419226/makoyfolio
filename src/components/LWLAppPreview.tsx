@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import lwlLogo from "@/assets/lwl-logo.png";
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -907,7 +908,7 @@ const LWLAppPreview = () => {
   return (
     <div className="space-y-6">
       {/* Project Header Card */}
-      <Card className="border-border p-6 shadow-google-lg">
+      <Card className="group depth-card shine-card border-border p-6 shadow-google-lg overflow-hidden transform-gpu">
         <div className="space-y-4">
           <div className="flex items-start gap-4">
             <div className="w-12 h-12 bg-google-blue/15 rounded-2xl flex items-center justify-center flex-shrink-0 overflow-hidden p-1.5">
@@ -941,7 +942,7 @@ const LWLAppPreview = () => {
               { title: "Responsive UI", desc: "Applied modern UI/UX practices to create a responsive and user-friendly interface." },
               { title: "Version Control", desc: "Used Git and GitHub for version control and project collaboration." },
             ].map((feat, i) => (
-              <div key={i} className="bg-secondary/30 rounded-xl p-3 space-y-1 border border-border/50">
+              <div key={i} className="depth-card bg-secondary/30 rounded-xl p-3 space-y-1 border border-border/50">
                 <h4 className="text-sm font-semibold text-foreground flex items-center gap-2">
                   <ChevronRight className="w-3 h-3 text-google-blue" />
                   {feat.title}
@@ -965,7 +966,7 @@ const LWLAppPreview = () => {
           </div>
 
           {/* Architecture */}
-          <div className="bg-secondary/20 rounded-xl p-4 space-y-2 border border-border">
+          <div className="shine-card bg-secondary/20 rounded-xl p-4 space-y-2 border border-border overflow-hidden">
             <h4 className="text-sm font-semibold text-foreground flex items-center gap-2">
               <Settings className="w-4 h-4 text-google-blue" />
               Architecture & Technical Highlights
@@ -990,7 +991,7 @@ const LWLAppPreview = () => {
               <Button
                 variant="default"
                 size="sm"
-                className="gap-2 rounded-full"
+                className="premium-button gap-2 rounded-full"
               >
                 <Monitor className="w-4 h-4" />
                 Open Live App
@@ -1005,7 +1006,7 @@ const LWLAppPreview = () => {
               <Button
                 variant="outline"
                 size="sm"
-                className="gap-2 rounded-full hover:border-google-blue hover:text-google-blue transition-colors"
+                className="premium-button gap-2 rounded-full hover:border-google-blue hover:text-google-blue transition-colors"
               >
                 <Github className="w-4 h-4" />
                 View on GitHub
@@ -1015,7 +1016,7 @@ const LWLAppPreview = () => {
             <Button
               variant="outline"
               size="sm"
-              className="gap-2 rounded-full hover:border-google-green hover:text-google-green transition-colors"
+              className="premium-button gap-2 rounded-full hover:border-google-green hover:text-google-green transition-colors"
               onClick={() => { setShowPreview(!showPreview); if (!showPreview) { setIsFullscreen(true); setActiveScreen("login"); } }}
             >
               <Smartphone className="w-4 h-4" />
@@ -1026,67 +1027,79 @@ const LWLAppPreview = () => {
       </Card>
 
       {/* ──────────── INTERACTIVE TRUE REPLICA PREVIEW ──────────── */}
-      {showPreview && (
-        <div className={`${isFullscreen ? "fixed inset-0 z-50 bg-background/95 backdrop-blur-sm flex items-center justify-center p-2 md:p-4" : ""} animate-fade-in`}>
-          <div className={`${isFullscreen ? "w-full h-full max-w-[1400px] flex flex-col" : ""} ${viewMode === "mobile" && !isFullscreen ? "max-w-[375px] mx-auto" : ""}`}>
-            <Card className={`border-border shadow-google-xl overflow-hidden flex flex-col ${isFullscreen ? "flex-1 h-full" : ""}`}>
-              {/* Browser Chrome Bar */}
-              <div className="bg-secondary/80 border-b border-border px-3 md:px-4 py-2 flex items-center justify-between shrink-0">
-                <div className="flex items-center gap-2">
-                  <div className="flex gap-1.5">
-                    <button onClick={() => { setShowPreview(false); setIsFullscreen(false); }} className="w-3 h-3 rounded-full bg-google-red hover:brightness-75 transition" />
-                    <div className="w-3 h-3 rounded-full bg-google-yellow" />
-                    <div className="w-3 h-3 rounded-full bg-google-green" />
+      <AnimatePresence>
+        {showPreview && (
+          <motion.div
+            key="lwl-preview"
+            initial={{ opacity: 0, y: 26, scale: 0.985 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 18, scale: 0.985 }}
+            transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+            className={`${isFullscreen ? "fixed inset-0 z-50 bg-background/95 backdrop-blur-sm flex items-center justify-center p-2 md:p-4" : ""}`}
+          >
+            <div className={`${isFullscreen ? "w-full h-full max-w-[1400px] flex flex-col" : ""} ${viewMode === "mobile" && !isFullscreen ? "max-w-[375px] mx-auto" : ""}`}>
+              <Card className={`border-border shadow-google-xl overflow-hidden flex flex-col transform-gpu ${isFullscreen ? "flex-1 h-full" : "depth-card shine-card"}`}>
+                {/* Browser Chrome Bar */}
+                <div className="bg-secondary/80 border-b border-border px-3 md:px-4 py-2 flex items-center justify-between shrink-0">
+                  <div className="flex items-center gap-2">
+                    <div className="flex gap-1.5">
+                      <button onClick={() => { setShowPreview(false); setIsFullscreen(false); }} className="w-3 h-3 rounded-full bg-google-red hover:brightness-75 hover:scale-110 transition" />
+                      <div className="w-3 h-3 rounded-full bg-google-yellow" />
+                      <div className="w-3 h-3 rounded-full bg-google-green" />
+                    </div>
+                    <div className="ml-2 md:ml-3 bg-background/50 border border-border rounded-md px-2 md:px-3 py-0.5 text-[10px] text-muted-foreground flex items-center gap-1">
+                      🌐 77.37.44.92
+                    </div>
                   </div>
-                  <div className="ml-2 md:ml-3 bg-background/50 border border-border rounded-md px-2 md:px-3 py-0.5 text-[10px] text-muted-foreground flex items-center gap-1">
-                    🌐 77.37.44.92
+                  <div className="flex items-center gap-1">
+                    <button
+                      onClick={() => setViewMode("desktop")}
+                      className={`p-1 rounded transition-all ${viewMode === "desktop" ? "bg-google-blue/20 text-google-blue shadow-[0_0_18px_hsl(var(--primary)/0.16)]" : "text-muted-foreground hover:text-foreground hover:bg-background/60"}`}
+                      title="Desktop view"
+                    >
+                      <Monitor className="w-3.5 h-3.5" />
+                    </button>
+                    <button
+                      onClick={() => setViewMode("mobile")}
+                      className={`p-1 rounded transition-all ${viewMode === "mobile" ? "bg-google-blue/20 text-google-blue shadow-[0_0_18px_hsl(var(--primary)/0.16)]" : "text-muted-foreground hover:text-foreground hover:bg-background/60"}`}
+                      title="Mobile view"
+                    >
+                      <Smartphone className="w-3.5 h-3.5" />
+                    </button>
+                    <div className="w-px h-4 bg-border mx-0.5" />
+                    <button
+                      onClick={() => setIsFullscreen(!isFullscreen)}
+                      className="p-1 rounded text-muted-foreground hover:text-foreground hover:bg-background/60 transition-all"
+                      title={isFullscreen ? "Exit fullscreen" : "Fullscreen"}
+                    >
+                      {isFullscreen ? <Minimize2 className="w-3.5 h-3.5" /> : <Maximize2 className="w-3.5 h-3.5" />}
+                    </button>
+                    <button
+                      onClick={() => { setShowPreview(false); setIsFullscreen(false); }}
+                      className="p-1 rounded text-muted-foreground hover:text-google-red hover:bg-google-red/10 transition-all"
+                      title="Close"
+                    >
+                      <X className="w-3.5 h-3.5" />
+                    </button>
                   </div>
                 </div>
-                <div className="flex items-center gap-1">
-                  <button
-                    onClick={() => setViewMode("desktop")}
-                    className={`p-1 rounded transition-colors ${viewMode === "desktop" ? "bg-google-blue/20 text-google-blue" : "text-muted-foreground hover:text-foreground"}`}
-                    title="Desktop view"
-                  >
-                    <Monitor className="w-3.5 h-3.5" />
-                  </button>
-                  <button
-                    onClick={() => setViewMode("mobile")}
-                    className={`p-1 rounded transition-colors ${viewMode === "mobile" ? "bg-google-blue/20 text-google-blue" : "text-muted-foreground hover:text-foreground"}`}
-                    title="Mobile view"
-                  >
-                    <Smartphone className="w-3.5 h-3.5" />
-                  </button>
-                  <div className="w-px h-4 bg-border mx-0.5" />
-                  <button
-                    onClick={() => setIsFullscreen(!isFullscreen)}
-                    className="p-1 rounded text-muted-foreground hover:text-foreground transition-colors"
-                    title={isFullscreen ? "Exit fullscreen" : "Fullscreen"}
-                  >
-                    {isFullscreen ? <Minimize2 className="w-3.5 h-3.5" /> : <Maximize2 className="w-3.5 h-3.5" />}
-                  </button>
-                  <button
-                    onClick={() => { setShowPreview(false); setIsFullscreen(false); }}
-                    className="p-1 rounded text-muted-foreground hover:text-google-red transition-colors"
-                    title="Close"
-                  >
-                    <X className="w-3.5 h-3.5" />
-                  </button>
-                </div>
-              </div>
 
-              {/* App Content — Live iframe */}
-              <div className={`flex flex-1 overflow-hidden bg-background ${!isFullscreen ? "min-h-[500px] md:min-h-[600px]" : ""}`}>
-                <div className={`w-full h-full ${viewMode === "mobile" ? "max-w-[375px] mx-auto border-x border-border" : ""}`}>
-                  <iframe
-                    src="http://77.37.44.92/"
-                    title="Liquid Washes Laundry — Live App"
-                    className="w-full h-full border-0"
-                    loading="lazy"
-                    sandbox="allow-forms allow-scripts allow-same-origin allow-popups allow-modals"
-                  />
+                {/* App Content — Live iframe */}
+                <div className={`flex flex-1 overflow-hidden bg-background ${!isFullscreen ? "min-h-[500px] md:min-h-[600px]" : ""}`}>
+                  <motion.div
+                    layout
+                    transition={{ type: "spring", stiffness: 170, damping: 26 }}
+                    className={`w-full h-full ${viewMode === "mobile" ? "max-w-[375px] mx-auto border-x border-border shadow-[0_0_70px_-44px_hsl(var(--primary)/0.7)]" : ""}`}
+                  >
+                    <iframe
+                      src="http://77.37.44.92/"
+                      title="Liquid Washes Laundry — Live App"
+                      className="w-full h-full border-0"
+                      loading="lazy"
+                      sandbox="allow-forms allow-scripts allow-same-origin allow-popups allow-modals"
+                    />
+                  </motion.div>
                 </div>
-              </div>
               {USE_LEGACY_LWL_PREVIEW && (viewMode === "mobile" ? (
                   /* ───── MOBILE VIEW ───── */
                   <div className={`flex flex-col w-full ${isFullscreen ? "max-w-[375px] mx-auto border-x border-border" : ""}`}>
@@ -1253,10 +1266,11 @@ const LWLAppPreview = () => {
                 </span>
                 <span className="text-[10px] text-muted-foreground">React + TypeScript + Express + PostgreSQL</span>
               </div>
-            </Card>
-          </div>
-        </div>
-      )}
+              </Card>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 };

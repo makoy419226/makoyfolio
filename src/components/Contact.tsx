@@ -11,7 +11,7 @@ const channels = [
 ];
 
 const Contact = () => (
-  <section id="contact" className="relative py-32 px-4">
+  <section id="contact" className="section-atmosphere relative py-32 px-4">
     <div className="max-w-6xl mx-auto space-y-16">
       <SectionHeading
         eyebrow="06 · Contact"
@@ -20,7 +20,7 @@ const Contact = () => (
       />
 
       <Reveal variant="scale">
-        <div className="relative glass-strong rounded-[2.5rem] p-10 md:p-16 overflow-hidden">
+        <div className="group depth-card shine-card relative glass-strong rounded-[2.5rem] p-10 md:p-16 overflow-hidden transform-gpu">
           <div className="absolute -top-20 -left-20 w-72 h-72 rounded-full bg-primary/40 blur-3xl" />
           <div className="absolute -bottom-20 -right-20 w-72 h-72 rounded-full bg-google-yellow/30 blur-3xl" />
 
@@ -33,7 +33,7 @@ const Contact = () => (
                 Available to join immediately and currently under residence visa status.
               </p>
               <a href="mailto:idusma0010@gmail.com" className="inline-block mt-6">
-                <Button size="lg" className="rounded-full bg-gradient-accent border-0 ring-glow hover:brightness-110">
+                <Button size="lg" className="premium-button rounded-full bg-gradient-accent border-0 ring-glow hover:brightness-110">
                   Send an email <ArrowUpRight />
                 </Button>
               </a>
@@ -44,21 +44,22 @@ const Contact = () => (
                 <motion.a
                   key={c.label}
                   href={c.href}
-                  whileHover={{ x: 6 }}
-                  className="flex items-center gap-4 glass rounded-2xl p-4 group"
+                  whileHover={{ x: 6, y: -2 }}
+                  whileTap={{ scale: 0.985 }}
+                  className="group group/channel depth-card shine-card flex items-center gap-4 glass rounded-2xl p-4 overflow-hidden transform-gpu"
                   initial={{ opacity: 0, x: 20 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.08, duration: 0.5 }}
                 >
-                  <div className={`w-11 h-11 rounded-xl bg-background/70 border border-border/45 flex items-center justify-center ${c.tone}`}>
+                  <div className={`soft-icon-pop w-11 h-11 rounded-xl bg-background/70 border border-border/45 flex items-center justify-center ${c.tone}`}>
                     <c.icon className="w-5 h-5" />
                   </div>
                   <div className="flex-1">
                     <p className="text-[11px] font-mono uppercase tracking-[0.18em] text-muted-foreground">{c.label}</p>
                     <p className="text-sm font-medium text-foreground">{c.value}</p>
                   </div>
-                  <ArrowUpRight className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors" />
+                  <ArrowUpRight className="w-4 h-4 text-muted-foreground group-hover/channel:text-primary transition-colors" />
                 </motion.a>
               ))}
             </div>

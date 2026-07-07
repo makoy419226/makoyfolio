@@ -1,4 +1,5 @@
 import { Briefcase, MapPin } from "lucide-react";
+import { motion } from "framer-motion";
 import SectionHeading from "./SectionHeading";
 import Reveal from "./Reveal";
 
@@ -60,7 +61,7 @@ const roles = [
 ];
 
 const WorkExperience = () => (
-  <section id="experience" className="relative py-32 px-4">
+  <section id="experience" className="section-atmosphere relative py-32 px-4">
     <div className="max-w-5xl mx-auto space-y-16">
       <SectionHeading
         eyebrow="03 · Experience"
@@ -75,7 +76,7 @@ const WorkExperience = () => (
           {roles.map((r, i) => {
             const flip = i % 2 === 1;
             return (
-              <Reveal key={r.title + i} variant="up" delay={i * 0.05}>
+              <Reveal key={r.title + i} variant={flip ? "right" : "left"} delay={i * 0.05} amount={0.18}>
                 <div className="relative md:grid md:grid-cols-2 md:gap-12">
                   <div className={`${flip ? "md:order-2 md:text-left md:pl-10" : "md:text-right md:pr-10"} pl-12 md:pl-0`}>
                     <span className="font-mono text-xs uppercase tracking-[0.2em] text-primary">{r.period}</span>
@@ -86,11 +87,17 @@ const WorkExperience = () => (
                     </p>
                   </div>
 
-                  <span className="absolute left-4 md:left-1/2 -translate-x-1/2 top-2 w-3 h-3 rounded-full bg-gradient-accent ring-4 ring-background" />
+                  <motion.span
+                    className="absolute left-4 md:left-1/2 -translate-x-1/2 top-2 w-3 h-3 rounded-full bg-gradient-accent ring-4 ring-background shadow-[0_0_24px_hsl(var(--primary)/0.42)]"
+                    initial={{ scale: 0, opacity: 0 }}
+                    whileInView={{ scale: 1, opacity: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ type: "spring", stiffness: 320, damping: 22, delay: 0.08 }}
+                  />
 
                   <div className={`mt-4 md:mt-0 pl-12 ${flip ? "md:order-1 md:pr-10 md:pl-0" : "md:pl-10"}`}>
-                    <div className="glass rounded-2xl p-6">
-                      <div className="w-10 h-10 rounded-xl bg-primary/15 flex items-center justify-center mb-3">
+                    <div className="group depth-card shine-card glass rounded-2xl p-6 overflow-hidden transform-gpu">
+                      <div className="soft-icon-pop w-10 h-10 rounded-xl bg-primary/15 flex items-center justify-center mb-3">
                         <Briefcase className="w-5 h-5 text-primary" />
                       </div>
                       <ul className="space-y-2 text-sm text-foreground/90 leading-relaxed">

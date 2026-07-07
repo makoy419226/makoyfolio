@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import LWLAppPreview from "./LWLAppPreview";
 import SectionHeading from "./SectionHeading";
 import Reveal from "./Reveal";
+import StaggerReveal from "./StaggerReveal";
 import almullaHoldingLogo from "@/assets/almulla-holding-logo.png";
 import samaCebuLogo from "@/assets/sama-cebu-logo.png";
 
@@ -48,7 +49,7 @@ const otherProjects = [
 
 const Projects = () => {
   return (
-    <section id="projects" className="relative py-32 px-4">
+    <section id="projects" className="section-atmosphere relative py-32 px-4">
       <div className="max-w-6xl mx-auto space-y-16">
         <SectionHeading
           eyebrow="04 · Projects"
@@ -70,84 +71,83 @@ const Projects = () => {
             <span className="h-px flex-1 bg-gradient-to-r from-primary/30 to-transparent" />
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+          <StaggerReveal className="grid md:grid-cols-2 lg:grid-cols-3 gap-5" childClassName="h-full" stagger={0.08}>
             {otherProjects.map((project, index) => (
-              <Reveal key={project.title} variant="up" delay={index * 0.08}>
-                <motion.div
-                  whileHover={{ y: -6 }}
-                  transition={{ type: "spring", stiffness: 220, damping: 20 }}
-                  className="group relative glass rounded-3xl p-6 h-full overflow-hidden"
-                >
-                  <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-br from-primary/15 via-transparent to-google-yellow/10" />
-                  <div className="relative space-y-4">
-                    <div className="flex items-start gap-4">
-                      {project.logo ? (
-                        <div className="w-12 h-12 rounded-2xl flex items-center justify-center flex-shrink-0 overflow-hidden bg-white/70 ring-1 ring-border/50 p-1">
-                          <img
-                            src={project.logo}
-                            alt={`${project.title} logo`}
-                            className="w-full h-full object-contain"
-                            loading="lazy"
-                          />
-                        </div>
-                      ) : (
-                        <div className={`w-12 h-12 rounded-2xl flex items-center justify-center flex-shrink-0 ${project.iconClass}`}>
-                          {project.icon}
-                        </div>
-                      )}
-
-                      <div className="flex-1 min-w-0">
-                        <h3 className="font-display text-xl font-semibold text-foreground">
-                          {project.title}
-                        </h3>
-                        {project.stars > 0 && (
-                          <span className="text-sm text-google-yellow">
-                            ⭐ {project.stars} star
-                          </span>
-                        )}
+              <motion.div
+                key={project.title}
+                whileHover={{ y: -6, rotateX: 1.5 }}
+                transition={{ type: "spring", stiffness: 220, damping: 20 }}
+                className="group depth-card shine-card relative glass rounded-3xl p-6 h-full overflow-hidden transform-gpu"
+              >
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-br from-primary/15 via-transparent to-google-yellow/10" />
+                <div className="relative space-y-4">
+                  <div className="flex items-start gap-4">
+                    {project.logo ? (
+                      <div className="soft-icon-pop w-12 h-12 rounded-2xl flex items-center justify-center flex-shrink-0 overflow-hidden bg-white/70 ring-1 ring-border/50 p-1">
+                        <img
+                          src={project.logo}
+                          alt={`${project.title} logo`}
+                          className="w-full h-full object-contain"
+                          loading="lazy"
+                        />
                       </div>
+                    ) : (
+                      <div className={`soft-icon-pop w-12 h-12 rounded-2xl flex items-center justify-center flex-shrink-0 ${project.iconClass}`}>
+                        {project.icon}
+                      </div>
+                    )}
+
+                    <div className="flex-1 min-w-0">
+                      <h3 className="font-display text-xl font-semibold text-foreground">
+                        {project.title}
+                      </h3>
+                      {project.stars > 0 && (
+                        <span className="text-sm text-google-yellow">
+                          ⭐ {project.stars} star
+                        </span>
+                      )}
                     </div>
-
-                    <p className="mobile-justify-text text-muted-foreground leading-relaxed">
-                      {project.description}
-                    </p>
-
-                    <div className="flex flex-wrap gap-2">
-                      {project.tech.map((tech) => (
-                        <Badge
-                          key={tech}
-                          variant="secondary"
-                          className="bg-white/5 text-foreground/80 border border-white/10 backdrop-blur"
-                        >
-                          {tech}
-                        </Badge>
-                      ))}
-                    </div>
-
-                    <a
-                      href={project.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <Button
-                        variant="outline"
-                        size="sm"
-                        className="mt-2 gap-2 rounded-full glass border-border/60 group-hover:border-primary group-hover:text-primary transition-colors"
-                      >
-                        {project.github ? (
-                          <Github className="w-4 h-4" />
-                        ) : (
-                          <ExternalLink className="w-4 h-4" />
-                        )}
-                        {project.github ? "View on GitHub" : "Visit Site"}
-                        <ExternalLink className="w-3 h-3" />
-                      </Button>
-                    </a>
                   </div>
-                </motion.div>
-              </Reveal>
+
+                  <p className="mobile-justify-text text-muted-foreground leading-relaxed">
+                    {project.description}
+                  </p>
+
+                  <div className="flex flex-wrap gap-2">
+                    {project.tech.map((tech) => (
+                      <Badge
+                        key={tech}
+                        variant="secondary"
+                        className="bg-white/5 text-foreground/80 border border-white/10 backdrop-blur"
+                      >
+                        {tech}
+                      </Badge>
+                    ))}
+                  </div>
+
+                  <a
+                    href={project.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      className="premium-button mt-2 gap-2 rounded-full glass border-border/60 group-hover:border-primary group-hover:text-primary transition-colors"
+                    >
+                      {project.github ? (
+                        <Github className="w-4 h-4" />
+                      ) : (
+                        <ExternalLink className="w-4 h-4" />
+                      )}
+                      {project.github ? "View on GitHub" : "Visit Site"}
+                      <ExternalLink className="w-3 h-3" />
+                    </Button>
+                  </a>
+                </div>
+              </motion.div>
             ))}
-          </div>
+          </StaggerReveal>
         </div>
       </div>
     </section>

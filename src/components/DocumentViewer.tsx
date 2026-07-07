@@ -1,5 +1,7 @@
 import { Card } from "@/components/ui/card";
 import { FileText } from "lucide-react";
+import Reveal from "./Reveal";
+import StaggerReveal from "./StaggerReveal";
 import certComtech from "@/assets/cert-comtech.jpg";
 import diplomaBisu from "@/assets/diploma-bisu.jpg";
 import diplomaHighschool from "@/assets/diploma-highschool.jpg";
@@ -34,23 +36,24 @@ const DocumentViewer = () => {
     <section className="py-12">
       <div className="max-w-6xl mx-auto space-y-8">
         {/* Section Header */}
-        <div className="text-center space-y-4">
-          <div className="flex items-center justify-center gap-3">
-            <FileText className="w-8 h-8 text-google-blue" />
-            <h3 className="text-3xl font-bold text-foreground">Official Documents</h3>
+        <Reveal variant="up">
+          <div className="text-center space-y-4">
+            <div className="flex items-center justify-center gap-3">
+              <FileText className="w-8 h-8 text-google-blue" />
+              <h3 className="text-3xl font-bold text-foreground">Official Documents</h3>
+            </div>
+            <p className="text-muted-foreground">
+              View certificates and diplomas
+            </p>
           </div>
-          <p className="text-muted-foreground">
-            View certificates and diplomas
-          </p>
-        </div>
+        </Reveal>
 
         {/* Documents Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-5xl mx-auto">
+        <StaggerReveal className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-5xl mx-auto" childClassName="h-full" stagger={0.08}>
           {documents.map((doc, index) => (
             <Card
               key={index}
-              className="border-border p-6 shadow-google-lg hover:shadow-google-xl transition-all duration-300 animate-slide-up overflow-hidden"
-              style={{ animationDelay: `${index * 0.1}s` }}
+              className="group depth-card shine-card h-full border-border p-6 shadow-google-lg hover:shadow-google-xl transition-all duration-300 overflow-hidden transform-gpu"
             >
               <div className="space-y-4">
                 <div>
@@ -59,12 +62,11 @@ const DocumentViewer = () => {
                 </div>
 
                 {/* Document Image */}
-                <div className="relative rounded-lg overflow-hidden bg-muted group aspect-[11/8.5] select-none">
+                <div className="relative rounded-lg overflow-hidden bg-muted group/document aspect-[11/8.5] select-none">
                   <img
                     src={doc.image}
                     alt={doc.title}
-                    className="w-full h-full object-contain select-none pointer-events-none rotate-90"
-                    style={{ transform: "rotate(90deg) scale(0.85)" }}
+                    className="w-full h-full object-contain select-none pointer-events-none rotate-90 scale-[0.85] transition-transform duration-700 ease-out group-hover/document:scale-[0.875]"
                     draggable="false"
                     onContextMenu={(e) => e.preventDefault()}
                   />
@@ -84,7 +86,7 @@ const DocumentViewer = () => {
               </div>
             </Card>
           ))}
-        </div>
+        </StaggerReveal>
       </div>
     </section>
   );

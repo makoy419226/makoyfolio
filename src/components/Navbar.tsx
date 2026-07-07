@@ -93,15 +93,15 @@ const Navbar = () => {
           {links.map((l) => {
             const isActive = active === l.href;
             return (
-              <li
-                key={l.href}
-                className="relative"
-              >
-                <a
+              <li key={l.href} className="relative">
+                <motion.a
                   href={l.href}
                   onClick={() => holdActive(l.href)}
+                  whileHover={{ y: -1 }}
+                  whileTap={{ scale: 0.98 }}
                   className={cn(
                     "relative z-10 inline-block whitespace-nowrap px-3 py-1.5 text-sm rounded-full transition-colors duration-300",
+                    !isActive && "hover-link-line",
                     isActive ? "text-primary-foreground" : "text-muted-foreground hover:text-foreground"
                   )}
                 >
@@ -113,7 +113,7 @@ const Navbar = () => {
                     />
                   )}
                   {l.label}
-                </a>
+                </motion.a>
               </li>
             );
           })}
@@ -121,7 +121,7 @@ const Navbar = () => {
         <a
           href="#contact"
           onClick={() => holdActive("#contact")}
-          className="ml-1 hidden sm:inline-flex items-center gap-1.5 text-xs font-medium px-3 py-1.5 rounded-full border border-border bg-background/70 hover:bg-primary hover:text-primary-foreground hover:border-primary hover:shadow-[0_0_24px_hsl(var(--primary)/0.32)] transition-all"
+          className="premium-button ml-1 hidden sm:inline-flex items-center gap-1.5 text-xs font-medium px-3 py-1.5 rounded-full border border-border bg-background/70 hover:bg-primary hover:text-primary-foreground hover:border-primary hover:shadow-[0_0_24px_hsl(var(--primary)/0.32)] transition-all"
         >
           Let's talk
           <span aria-hidden>→</span>

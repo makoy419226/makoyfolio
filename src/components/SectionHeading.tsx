@@ -9,7 +9,7 @@ interface Props {
 
 const SectionHeading = ({ eyebrow, title, description, align = "center" }: Props) => (
   <div className={align === "center" ? "text-center max-w-2xl mx-auto" : "max-w-2xl"}>
-    <Reveal variant="up">
+    <Reveal variant="fade">
       <div
         className={
           "inline-flex items-center gap-2 px-3 py-1 rounded-full glass text-[11px] font-mono uppercase tracking-[0.18em] text-primary shadow-[0_0_22px_hsl(var(--primary)/0.18)]"
@@ -19,7 +19,7 @@ const SectionHeading = ({ eyebrow, title, description, align = "center" }: Props
         {eyebrow}
       </div>
     </Reveal>
-    <Reveal variant="up" delay={0.05}>
+    <Reveal variant="lift" delay={0.05} amount={0.35}>
       <h2 className="mt-4 font-display text-4xl md:text-5xl lg:text-6xl font-semibold text-balance drop-shadow-[0_0_18px_hsl(var(--primary)/0.16)]">
         {title}
       </h2>

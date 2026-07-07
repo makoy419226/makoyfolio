@@ -2,6 +2,7 @@ import { Calendar, GraduationCap, Award } from "lucide-react";
 import DocumentViewer from "./DocumentViewer";
 import SectionHeading from "./SectionHeading";
 import Reveal from "./Reveal";
+import StaggerReveal from "./StaggerReveal";
 
 const Education = () => {
   const education = [
@@ -34,7 +35,7 @@ const Education = () => {
   };
 
   return (
-    <section id="education" className="relative py-32 px-4">
+    <section id="education" className="section-atmosphere relative py-32 px-4">
       <div className="max-w-6xl mx-auto space-y-16">
         <SectionHeading
           eyebrow="05 · Education"
@@ -42,45 +43,44 @@ const Education = () => {
           description="Computer Engineering education with ICT and computer programming foundations."
         />
 
-        <div className="space-y-5">
+        <StaggerReveal className="space-y-5" stagger={0.08}>
           {education.map((edu, index) => (
-            <Reveal key={index} variant="up" delay={index * 0.06}>
-              <div
-                className="glass rounded-3xl p-7 md:p-8 group transition-colors hover:border-primary/40"
-              >
-                <div className="flex flex-col md:flex-row md:items-start gap-6">
-                  {/* Icon */}
-                  <div className={`w-14 h-14 rounded-2xl flex items-center justify-center flex-shrink-0 transition-colors ${colorClasses[edu.color as keyof typeof colorClasses]}`}>
-                    <GraduationCap className="w-7 h-7" />
-                  </div>
+            <div
+              key={index}
+              className="group depth-card shine-card glass rounded-3xl p-7 md:p-8 transition-colors hover:border-primary/40 overflow-hidden transform-gpu"
+            >
+              <div className="flex flex-col md:flex-row md:items-start gap-6">
+                {/* Icon */}
+                <div className={`soft-icon-pop w-14 h-14 rounded-2xl flex items-center justify-center flex-shrink-0 ${colorClasses[edu.color as keyof typeof colorClasses]}`}>
+                  <GraduationCap className="w-7 h-7" />
+                </div>
 
-                  {/* Content */}
-                  <div className="flex-1 space-y-3">
-                    <div>
-                      <h3 className="font-display text-xl md:text-2xl font-semibold text-foreground mb-2">{edu.degree}</h3>
-                      <p className="text-lg text-primary mb-3 font-medium">{edu.institution}</p>
-                      <div className="flex flex-wrap gap-4 text-muted-foreground">
-                        <span className="flex items-center gap-2">
-                          <Calendar className="w-4 h-4" />
-                          {edu.date}
-                        </span>
-                        <span className="px-3 py-1 rounded-full bg-background/70 text-sm border border-border/45 font-medium">
-                          {edu.type}
-                        </span>
-                      </div>
+                {/* Content */}
+                <div className="flex-1 space-y-3">
+                  <div>
+                    <h3 className="font-display text-xl md:text-2xl font-semibold text-foreground mb-2">{edu.degree}</h3>
+                    <p className="text-lg text-primary mb-3 font-medium">{edu.institution}</p>
+                    <div className="flex flex-wrap gap-4 text-muted-foreground">
+                      <span className="flex items-center gap-2">
+                        <Calendar className="w-4 h-4" />
+                        {edu.date}
+                      </span>
+                      <span className="px-3 py-1 rounded-full bg-background/70 text-sm border border-border/45 font-medium">
+                        {edu.type}
+                      </span>
                     </div>
                   </div>
                 </div>
               </div>
-            </Reveal>
+            </div>
           ))}
-        </div>
+        </StaggerReveal>
 
         {/* Certifications */}
-        <Reveal variant="up">
-          <div className="glass-strong rounded-3xl p-8">
+        <Reveal variant="lift">
+          <div className="group depth-card shine-card glass-strong rounded-3xl p-8 overflow-hidden transform-gpu">
             <div className="flex items-start gap-4 mb-6">
-              <div className="w-12 h-12 bg-google-yellow/20 rounded-2xl flex items-center justify-center flex-shrink-0">
+              <div className="soft-icon-pop w-12 h-12 bg-google-yellow/20 rounded-2xl flex items-center justify-center flex-shrink-0">
                 <Award className="w-6 h-6 text-google-yellow" />
               </div>
               <div>
