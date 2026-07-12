@@ -3,6 +3,7 @@ import DocumentViewer from "./DocumentViewer";
 import SectionHeading from "./SectionHeading";
 import Reveal from "./Reveal";
 import StaggerReveal from "./StaggerReveal";
+import CVViewer from "./CVViewer";
 
 const Education = () => {
   const education = [
@@ -100,6 +101,9 @@ const Education = () => {
 
         {/* Documents Viewer */}
         <DocumentViewer />
+
+        {/* Live CV Viewer */}
+        <CVViewer />
       </div>
     </section>
   );

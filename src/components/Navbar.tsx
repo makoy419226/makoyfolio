@@ -118,14 +118,6 @@ const Navbar = () => {
             );
           })}
         </ul>
-        <a
-          href="#contact"
-          onClick={() => holdActive("#contact")}
-          className="premium-button ml-1 hidden sm:inline-flex items-center gap-1.5 text-xs font-medium px-3 py-1.5 rounded-full border border-border bg-background/70 hover:bg-primary hover:text-primary-foreground hover:border-primary hover:shadow-[0_0_24px_hsl(var(--primary)/0.32)] transition-all"
-        >
-          Let's talk
-          <span aria-hidden>→</span>
-        </a>
       </nav>
     </motion.header>
   );
