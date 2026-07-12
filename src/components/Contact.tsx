@@ -16,7 +16,7 @@ const Contact = () => (
       <SectionHeading
         eyebrow="06 · Contact"
         title="Available to join immediately."
-        description="Open to entry-level IT Support, Technical Support, Help Desk, Junior IT, and web support roles in the UAE."
+        description="Open to entry-level IT opportunities supporting business operations and modern technology environments in the UAE."
       />
 
       <Reveal variant="scale">

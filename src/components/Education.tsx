@@ -24,8 +24,8 @@ const Education = () => {
 
   const certifications = [
     "Computer Literacy Training (Module 2)",
-    "Technical-Vocational-Livelihood Track in ICT with specialization in Computer Programming",
-    "Certificate of Recognition - Research Assistant"
+    "Google Developer Student Clubs (GDSC) — Member, Bohol Island State University",
+    "Research Assistant — Cenama–Cebuano Translator Research Project (Certified Research Assistant)"
   ];
 
   const colorClasses = {
@@ -39,7 +39,7 @@ const Education = () => {
       <div className="max-w-6xl mx-auto space-y-16">
         <SectionHeading
           eyebrow="05 · Education"
-          title="Education and certifications."
+          title="Education and professional development."
           description="Computer Engineering education with ICT and computer programming foundations."
         />
 
@@ -84,7 +84,7 @@ const Education = () => {
                 <Award className="w-6 h-6 text-google-yellow" />
               </div>
               <div>
-                <h3 className="font-display text-2xl font-semibold text-foreground">Certifications</h3>
+                <h3 className="font-display text-2xl font-semibold text-foreground">Professional Development</h3>
               </div>
             </div>
             <ul className="space-y-3 list-none">

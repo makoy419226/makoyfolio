@@ -97,8 +97,9 @@ const Hero = () => {
             transition={{ duration: 0.7, delay: 0.5 }}
             className="mobile-justify-text text-lg md:text-xl text-muted-foreground max-w-xl leading-relaxed"
           >
-            Fresh Computer Engineering graduate with hands-on experience in IT support,
-            troubleshooting, full-stack web development, and business systems.
+            Computer Engineering graduate with 6 months of UAE experience in IT support
+            and web development, including technical support, troubleshooting, business
+            systems, and full-stack applications.
           </motion.p>
 
           <motion.div

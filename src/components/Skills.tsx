@@ -8,27 +8,29 @@ const skillGroups = [
     items: [
       "Desktop and Laptop Support",
       "Hardware Diagnostics",
-      "Software Troubleshooting",
-      "OS and Application Installation",
+      "Hardware & Software Troubleshooting",
+      "Windows Installation & Configuration",
+      "Application Installation",
       "System Configuration",
       "Peripheral Support",
       "Preventive Maintenance",
-      "End-User Assistance",
+      "End-User Support",
     ],
   },
   {
     label: "Networking & Systems",
     items: [
-      "TCP/IP Basics",
+      "TCP/IP",
       "LAN/Wi-Fi Troubleshooting",
-      "DNS Concepts",
-      "DHCP Concepts",
-      "Router and Connectivity Troubleshooting",
+      "DNS",
+      "DHCP",
+      "Router Configuration",
+      "Basic Network Diagnostics",
       "Windows",
       "Microsoft Office",
       "Outlook",
       "Google Workspace",
-      "File and Folder Management",
+      "File & Document Management",
     ],
   },
   {
@@ -41,7 +43,7 @@ const skillGroups = [
   },
   {
     label: "Database & Version Control",
-    items: ["PostgreSQL", "Drizzle ORM", "Database Design", "Data Modeling", "Git", "GitHub", "Branch Management"],
+    items: ["SQL", "PostgreSQL", "Drizzle ORM", "Database Design", "Data Modeling", "Git", "GitHub"],
   },
   {
     label: "Web Operations",
@@ -65,7 +67,7 @@ const skillGroups = [
   {
     label: "Business Systems",
     items: [
-      "Custom CRM & Operations Systems",
+      "ERP Development",
       "Business Process Automation",
       "Workflow Optimization",
       "Reporting",

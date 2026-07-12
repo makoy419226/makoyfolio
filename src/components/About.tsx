@@ -9,7 +9,7 @@ const values = [
     icon: Target,
     title: "Target roles",
     body:
-      "Seeking an entry-level IT Support, Technical Support, Help Desk, or Junior IT role where practical problem-solving can support modern IT operations.",
+      "Seeking an entry-level IT opportunity where practical problem-solving can support business operations and modern technology environments.",
     tone: "text-google-blue",
   },
   {
@@ -33,8 +33,8 @@ const About = () => (
     <div className="max-w-6xl mx-auto space-y-16">
       <SectionHeading
         eyebrow="01 · About"
-        title="Fresh Computer Engineering graduate ready for IT support."
-        description="Hands-on experience across IT support, computer troubleshooting, web development, and business systems."
+        title="Computer Engineering graduate with UAE IT experience."
+        description="Six months of UAE experience across IT support, troubleshooting, web development, and business systems."
       />
 
       <Reveal variant="up">
@@ -49,13 +49,12 @@ const About = () => (
             Professional summary
           </h3>
           <p className="professional-summary mobile-justify-text relative text-muted-foreground leading-relaxed text-lg max-w-3xl mx-auto">
-            Fresh Computer Engineering graduate with an exploratory mindset and hands-on
-            experience across IT support, computer troubleshooting, web development, and
-            business systems. Experienced in supporting users, diagnosing hardware and
-            software issues, maintaining digital systems, and developing full-stack web
-            applications for real business operations. Brings practical knowledge of React,
-            TypeScript, Node.js, PostgreSQL, Git, deployment, and basic network
-            troubleshooting.
+            Computer Engineering graduate with 6 months of UAE experience in IT support and
+            web development, providing technical support, troubleshooting hardware and
+            software issues, maintaining business systems, and developing full-stack web
+            applications. Skilled in user support, system configuration, business operations,
+            and digital solutions, with a proactive and adaptable approach to learning new
+            technologies.
           </p>
         </motion.div>
       </Reveal>
