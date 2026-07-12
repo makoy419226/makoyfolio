@@ -40,7 +40,7 @@ const DocumentViewer = () => {
           <div className="text-center space-y-4">
             <div className="flex items-center justify-center gap-3">
               <FileText className="w-8 h-8 text-google-blue" />
-              <h3 className="text-3xl font-bold text-foreground">Official Documents</h3>
+              <h3 className="font-display text-2xl font-semibold text-foreground">Official Documents</h3>
             </div>
             <p className="text-muted-foreground">
               View certificates and diplomas

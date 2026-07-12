@@ -1,4 +1,4 @@
-import { Mail, Phone, MapPin, ArrowUpRight } from "lucide-react";
+import { Mail, Phone, MapPin, ArrowUpRight, MessageCircle } from "lucide-react";
 import { motion } from "framer-motion";
 import SectionHeading from "./SectionHeading";
 import Reveal from "./Reveal";
@@ -26,15 +26,20 @@ const Contact = () => (
 
           <div className="relative grid md:grid-cols-[1.2fr_1fr] gap-10 items-center">
             <div>
-              <h3 className="font-display text-3xl md:text-4xl font-semibold leading-tight text-balance">
+              <h3 className="font-display text-2xl md:text-3xl font-semibold leading-tight text-balance">
                 Need IT support, technical support, or junior web support? <span className="text-gradient">Say hello.</span>
               </h3>
               <p className="mobile-justify-text text-muted-foreground mt-4 max-w-md text-left">
                 Available to join immediately and currently under residence visa status.
               </p>
-              <a href="mailto:idusma0010@gmail.com" className="inline-block mt-6">
+              <a
+                href="https://wa.me/971509317400"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block mt-6"
+              >
                 <Button size="lg" className="premium-button rounded-full bg-gradient-accent border-0 ring-glow hover:brightness-110">
-                  Send an email <ArrowUpRight />
+                  Message me on WhatsApp <MessageCircle />
                 </Button>
               </a>
             </div>

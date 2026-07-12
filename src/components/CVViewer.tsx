@@ -72,7 +72,7 @@ const CVViewer = () => {
 
   return (
     <Reveal variant="up">
-      <div className="group depth-card shine-card glass-strong rounded-3xl p-5 md:p-8 overflow-hidden transform-gpu">
+      <div id="cv" className="group depth-card shine-card glass-strong scroll-mt-28 rounded-3xl p-5 md:p-8 overflow-hidden transform-gpu">
         <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between mb-6">
           <div className="flex items-center gap-4">
             <div className="soft-icon-pop w-12 h-12 bg-google-blue/20 rounded-2xl flex items-center justify-center flex-shrink-0">

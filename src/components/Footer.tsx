@@ -11,7 +11,7 @@ const Footer = () => {
           <div className="flex flex-col items-center text-center gap-6">
             <a
               href="#top"
-              className="font-display text-5xl md:text-7xl font-semibold text-gradient leading-none transition-transform duration-500 ease-out hover:scale-[1.025]"
+              className="font-display text-4xl md:text-5xl font-semibold text-gradient leading-none"
             >
               Idusma.
             </a>

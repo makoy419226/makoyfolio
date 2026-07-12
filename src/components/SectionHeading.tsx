@@ -20,7 +20,7 @@ const SectionHeading = ({ eyebrow, title, description, align = "center" }: Props
       </div>
     </Reveal>
     <Reveal variant="lift" delay={0.05} amount={0.35}>
-      <h2 className="mt-4 font-display text-4xl md:text-5xl lg:text-6xl font-semibold text-balance drop-shadow-[0_0_18px_hsl(var(--primary)/0.16)]">
+      <h2 className="mt-4 font-display text-3xl md:text-4xl lg:text-[2.75rem] leading-tight font-semibold text-balance drop-shadow-[0_0_18px_hsl(var(--primary)/0.16)]">
         {title}
       </h2>
     </Reveal>

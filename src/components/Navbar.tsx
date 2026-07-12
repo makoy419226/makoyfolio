@@ -3,11 +3,12 @@ import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 const links = [
-  { label: "About", href: "#about" },
+  { label: "About", href: "#top" },
   { label: "Skills", href: "#skills" },
   { label: "Experience", href: "#experience" },
   { label: "Projects", href: "#projects" },
   { label: "Education", href: "#education" },
+  { label: "CV", href: "#cv" },
   { label: "Contact", href: "#contact" },
 ];
 
@@ -47,8 +48,9 @@ const Navbar = () => {
 
       const marker = window.scrollY + 140;
       const current = sections.reduce((match, section) => {
-        return section.offsetTop <= marker ? `#${section.id}` : match;
-      }, "#about");
+        const sectionTop = section.getBoundingClientRect().top + window.scrollY;
+        return sectionTop <= marker ? `#${section.id}` : match;
+      }, "#top");
       setActive(current);
     };
 

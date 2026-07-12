@@ -45,7 +45,7 @@ const About = () => (
         >
           <div className="absolute -top-24 -right-24 w-64 h-64 rounded-full bg-primary/30 blur-3xl" />
           <div className="absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
-          <h3 className="relative font-display text-2xl md:text-3xl font-semibold mb-4 text-center">
+          <h3 className="relative font-display text-xl md:text-2xl font-semibold mb-4 text-center">
             Professional summary
           </h3>
           <p className="professional-summary mobile-justify-text relative text-muted-foreground leading-relaxed text-lg max-w-3xl mx-auto">

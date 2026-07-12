@@ -1,5 +1,3 @@
-import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
-
 const circuitPaths = [
   "M48 118 H178 V74 H326",
   "M78 252 H226 V326 H376",
@@ -43,33 +41,25 @@ const binaryRows = [
 ];
 
 const EngineeringBackground = () => {
-  const reduce = useReducedMotion();
-  const { scrollYProgress } = useScroll();
-  const depthY = useTransform(scrollYProgress, [0, 1], ["0%", "3.5%"]);
-  const schematicY = useTransform(scrollYProgress, [0, 1], ["0%", "-2.5%"]);
-  const schematicScale = useTransform(scrollYProgress, [0, 1], [1, 1.035]);
-
   return (
     <div aria-hidden className="computer-engineering-background pointer-events-none fixed inset-0 z-0 overflow-hidden">
-      <motion.div className="ce-depth" style={reduce ? undefined : { y: depthY }} />
+      <div className="ce-depth" />
       <div className="ce-grid" />
-      <div className="ce-scanline" />
 
-      <motion.svg
+      <svg
         className="ce-schematic"
         viewBox="0 0 960 540"
         preserveAspectRatio="xMidYMid slice"
-        style={reduce ? undefined : { y: schematicY, scale: schematicScale }}
       >
         <defs>
           <linearGradient id="ce-line" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0%" stopColor="hsl(225 73% 57%)" stopOpacity="0.2" />
-            <stop offset="52%" stopColor="hsl(215 30% 44%)" stopOpacity="0.13" />
-            <stop offset="100%" stopColor="hsl(142 64% 42%)" stopOpacity="0.16" />
+            <stop offset="0%" stopColor="hsl(190 45% 34%)" stopOpacity="0.17" />
+            <stop offset="52%" stopColor="hsl(211 24% 42%)" stopOpacity="0.11" />
+            <stop offset="100%" stopColor="hsl(203 42% 43%)" stopOpacity="0.13" />
           </linearGradient>
           <radialGradient id="ce-core" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stopColor="hsl(225 73% 57%)" stopOpacity="0.18" />
-            <stop offset="100%" stopColor="hsl(0 0% 100%)" stopOpacity="0.16" />
+            <stop offset="0%" stopColor="hsl(190 45% 34%)" stopOpacity="0.15" />
+            <stop offset="100%" stopColor="hsl(210 30% 98%)" stopOpacity="0.15" />
           </radialGradient>
         </defs>
 
@@ -124,7 +114,7 @@ const EngineeringBackground = () => {
             </text>
           ))}
         </g>
-      </motion.svg>
+      </svg>
     </div>
   );
 };

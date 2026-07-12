@@ -9,7 +9,7 @@ import {
   useTransform,
 } from "framer-motion";
 import { useRef, type PointerEvent } from "react";
-import profilePhoto from "@/assets/profile.jpg";
+import profilePhoto from "@/assets/profile-transparent.png";
 
 const headlineWords = ["Mark", "Angelou", "Egam", "Idusma, CpE"];
 
@@ -72,9 +72,9 @@ const Hero = () => {
             Abu Dhabi, UAE · Available immediately
           </motion.div>
 
-          <h1 className="font-display text-[clamp(2.75rem,6vw,5rem)] leading-[0.95] font-semibold text-balance">
+          <h1 className="tracking-in-contract-back font-display text-[40px] leading-tight font-semibold lg:whitespace-nowrap">
             {headlineWords.map((word, i) => (
-              <span key={word} className="inline-block overflow-hidden align-bottom mr-3">
+              <span key={word} className="inline-block overflow-hidden align-bottom mr-1.5 last:mr-0">
                 <motion.span
                   initial={{ y: "110%" }}
                   animate={{ y: 0 }}
@@ -109,7 +109,7 @@ const Hero = () => {
             className="flex flex-col sm:flex-row gap-3 pt-2"
           >
             <a href="#contact">
-              <Button size="lg" className="premium-button group rounded-full bg-gradient-accent border-0 text-primary-foreground ring-glow hover:brightness-125">
+              <Button size="lg" className="pulse-cta premium-button group rounded-full bg-gradient-accent border-0 text-primary-foreground ring-glow hover:brightness-125">
                 Let's talk
                 <ArrowRight className="group-hover:translate-x-1 transition-transform" />
               </Button>
@@ -168,7 +168,7 @@ const Hero = () => {
           >
             <motion.div
               style={reduce ? undefined : { y: imageY, scale: imageScale }}
-              className="relative overflow-hidden rounded-[1.5rem] bg-white aspect-[5/4]"
+              className="relative overflow-hidden rounded-[1.5rem] bg-transparent aspect-[5/4]"
             >
               <motion.img
                 src={profilePhoto}
