@@ -10,6 +10,7 @@ import Navbar from "@/components/Navbar";
 import SmoothScroll from "@/components/SmoothScroll";
 import ScrollProgress from "@/components/ScrollProgress";
 import EngineeringBackground from "@/components/EngineeringBackground";
+import LivelyBackground from "@/components/LivelyBackground";
 import { motion } from "framer-motion";
 
 const Index = () => {
@@ -17,6 +18,7 @@ const Index = () => {
     <div id="top" className="min-h-screen relative isolate overflow-x-hidden">
       <SmoothScroll />
       <ScrollProgress />
+      <LivelyBackground />
       <EngineeringBackground />
       <motion.div
         initial={{ opacity: 0, y: 12 }}
