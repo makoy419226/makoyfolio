@@ -13,7 +13,7 @@ import {
   ClipboardList, AlertTriangle, HardHat, Phone, List,
   CircleDollarSign, Plus, Eye, Printer, Edit, Trash2,
   ChevronDown, LogOut, Shield, ArrowUpDown, Menu,
-  Lock, User, Droplets, Tag, Home, MoreHorizontal,
+  Lock, User, Droplets, Tag, Home, MoreHorizontal, Star,
 } from "lucide-react";
 
 type Screen =
@@ -918,7 +918,10 @@ const LWLAppPreview = () => {
               <h3 className="text-xl font-bold text-foreground">
                 LWL — Custom CRM & Operations Management System
               </h3>
-              <span className="text-sm text-google-yellow">⭐ Full-Stack Production App</span>
+              <span className="mt-1 inline-flex items-center gap-1 text-sm font-medium text-google-yellow">
+                <Star className="h-3.5 w-3.5 fill-current" aria-hidden />
+                Full-Stack Production App
+              </span>
             </div>
           </div>
 
@@ -983,36 +986,20 @@ const LWLAppPreview = () => {
 
           {/* Buttons */}
           <div className="flex flex-wrap gap-3">
-            <a
-              href="http://77.37.44.92/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Button
-                variant="default"
-                size="sm"
-                className="premium-button gap-2 rounded-full"
-              >
+            <Button asChild variant="default" size="sm" className="premium-button gap-2 rounded-full">
+              <a href="http://77.37.44.92/" target="_blank" rel="noopener noreferrer">
                 <Monitor className="w-4 h-4" />
                 Open Live App
                 <ExternalLink className="w-3 h-3" />
-              </Button>
-            </a>
-            <a
-              href="https://github.com/mclasstourism/Liquid-Washes-Laundry"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Button
-                variant="outline"
-                size="sm"
-                className="premium-button gap-2 rounded-full hover:border-google-blue hover:text-google-blue transition-colors"
-              >
+              </a>
+            </Button>
+            <Button asChild variant="outline" size="sm" className="premium-button gap-2 rounded-full hover:border-google-blue hover:text-google-blue transition-colors">
+              <a href="https://github.com/mclasstourism/Liquid-Washes-Laundry" target="_blank" rel="noopener noreferrer">
                 <Github className="w-4 h-4" />
                 View on GitHub
                 <ExternalLink className="w-3 h-3" />
-              </Button>
-            </a>
+              </a>
+            </Button>
             <Button
               variant="outline"
               size="sm"
@@ -1034,7 +1021,7 @@ const LWLAppPreview = () => {
             initial={{ opacity: 0, y: 26, scale: 0.985 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 18, scale: 0.985 }}
-            transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 0.42, ease: [0.2, 0, 0, 1] }}
             className={`${isFullscreen ? "fixed inset-0 z-50 bg-background/95 backdrop-blur-sm flex items-center justify-center p-2 md:p-4" : ""}`}
           >
             <div className={`${isFullscreen ? "w-full h-full max-w-[1400px] flex flex-col" : ""} ${viewMode === "mobile" && !isFullscreen ? "max-w-[375px] mx-auto" : ""}`}>

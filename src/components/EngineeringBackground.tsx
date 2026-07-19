@@ -53,13 +53,13 @@ const EngineeringBackground = () => {
       >
         <defs>
           <linearGradient id="ce-line" x1="0" y1="0" x2="1" y2="1">
-            <stop offset="0%" stopColor="hsl(190 45% 34%)" stopOpacity="0.17" />
-            <stop offset="52%" stopColor="hsl(211 24% 42%)" stopOpacity="0.11" />
-            <stop offset="100%" stopColor="hsl(203 42% 43%)" stopOpacity="0.13" />
+            <stop offset="0%" stopColor="hsl(217 72% 43%)" stopOpacity="0.22" />
+            <stop offset="52%" stopColor="hsl(207 82% 47%)" stopOpacity="0.14" />
+            <stop offset="100%" stopColor="hsl(194 82% 43%)" stopOpacity="0.16" />
           </linearGradient>
           <radialGradient id="ce-core" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stopColor="hsl(190 45% 34%)" stopOpacity="0.15" />
-            <stop offset="100%" stopColor="hsl(210 30% 98%)" stopOpacity="0.15" />
+            <stop offset="0%" stopColor="hsl(217 72% 43%)" stopOpacity="0.18" />
+            <stop offset="100%" stopColor="hsl(210 70% 98%)" stopOpacity="0.15" />
           </radialGradient>
         </defs>
 

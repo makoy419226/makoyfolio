@@ -1,198 +1,163 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Phone, Mail, Github, Sparkles } from "lucide-react";
 import {
-  motion,
-  useMotionValue,
-  useReducedMotion,
-  useScroll,
-  useSpring,
-  useTransform,
-} from "framer-motion";
-import { useRef, type PointerEvent } from "react";
+  ArrowRight,
+  BadgeCheck,
+  Code2,
+  Github,
+  Mail,
+  MapPin,
+  Phone,
+} from "lucide-react";
+import { motion, useReducedMotion } from "framer-motion";
 import profilePhoto from "@/assets/profile-transparent.png";
 
-const headlineWords = ["Mark", "Angelou", "Egam", "Idusma, CpE"];
+const contactLinks = [
+  {
+    icon: Phone,
+    label: "+971 50 931 7400",
+    href: "tel:+971509317400",
+  },
+  {
+    icon: Mail,
+    label: "idusma0010@gmail.com",
+    href: "mailto:idusma0010@gmail.com",
+  },
+  {
+    icon: Github,
+    label: "@makoy419226",
+    href: "https://github.com/makoy419226",
+    external: true,
+  },
+];
 
 const Hero = () => {
-  const ref = useRef<HTMLElement>(null);
-  const cardRef = useRef<HTMLDivElement>(null);
-  const reduce = useReducedMotion();
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start start", "end start"],
-  });
-  const y = useTransform(scrollYProgress, [0, 1], [0, 180]);
-  const imageY = useTransform(scrollYProgress, [0, 1], [0, -60]);
-  const imageScale = useTransform(scrollYProgress, [0, 1], [1, 1.06]);
-  const opacity = useTransform(scrollYProgress, [0, 0.6], [1, 0]);
-  const pointerX = useMotionValue(0);
-  const pointerY = useMotionValue(0);
-  const smoothX = useSpring(pointerX, { stiffness: 110, damping: 22, mass: 0.35 });
-  const smoothY = useSpring(pointerY, { stiffness: 110, damping: 22, mass: 0.35 });
-  const rotateY = useTransform(smoothX, [-0.5, 0.5], [-6, 6]);
-  const rotateX = useTransform(smoothY, [-0.5, 0.5], [5, -5]);
-  const photoLift = useTransform(smoothY, [-0.5, 0.5], [-8, 8]);
-
-  const handlePointerMove = (event: PointerEvent<HTMLDivElement>) => {
-    if (reduce || event.pointerType === "touch") return;
-    const bounds = cardRef.current?.getBoundingClientRect();
-    if (!bounds) return;
-
-    pointerX.set((event.clientX - bounds.left) / bounds.width - 0.5);
-    pointerY.set((event.clientY - bounds.top) / bounds.height - 0.5);
-  };
-
-  const handlePointerLeave = () => {
-    pointerX.set(0);
-    pointerY.set(0);
-  };
+  const reduceMotion = useReducedMotion();
 
   return (
-    <section
-      ref={ref}
-      className="relative min-h-[100svh] flex items-center px-4 pt-32 pb-24 overflow-hidden"
-    >
-      <motion.div
-        style={reduce ? undefined : { y, opacity }}
-        className="max-w-6xl mx-auto w-full grid lg:grid-cols-[0.86fr_1.14fr] gap-10 items-center relative z-10"
-      >
-        {/* Left — copy */}
-        <div className="space-y-8 max-w-[34rem]">
+    <section className="hero-section relative flex min-h-[100svh] items-center overflow-hidden px-4 pb-20 pt-32 sm:px-6 lg:pt-36">
+      <div className="material-shape material-shape--hero" aria-hidden />
+      <div className="relative z-10 mx-auto grid w-full max-w-7xl items-center gap-14 lg:grid-cols-[1.08fr_0.92fr]">
+        <div className="max-w-3xl">
           <motion.div
-            initial={{ opacity: 0, y: 16 }}
+            initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full glass text-xs font-medium uppercase shadow-[0_16px_40px_-30px_hsl(var(--primary)/0.8)]"
+            transition={{ duration: 0.45 }}
+            className="material-status-chip mb-7 inline-flex min-h-10 items-center gap-2 rounded-full px-4 text-xs font-semibold uppercase tracking-[0.12em]"
           >
-            <span className="relative flex h-2 w-2">
-              <span className="absolute inline-flex h-full w-full rounded-full bg-google-green opacity-70 animate-ping" />
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-google-green" />
-            </span>
-            <Sparkles className="w-3.5 h-3.5 text-primary" />
-            Abu Dhabi, UAE · Available immediately
+            <span className="material-status-dot" aria-hidden />
+            Available immediately · Abu Dhabi, UAE
           </motion.div>
 
-          <h1 className="tracking-in-contract-back font-display text-[40px] leading-tight font-semibold lg:whitespace-nowrap">
-            {headlineWords.map((word, i) => (
-              <span key={word} className="inline-block overflow-hidden align-bottom mr-1.5 last:mr-0">
-                <motion.span
-                  initial={{ y: "110%" }}
-                  animate={{ y: 0 }}
-                  transition={{ duration: 0.9, delay: 0.15 + i * 0.08, ease: [0.22, 1, 0.36, 1] }}
-                  className={
-                    i === headlineWords.length - 1
-                      ? "inline-block text-gradient"
-                      : "inline-block text-foreground"
-                  }
-                >
-                  {word}
-                </motion.span>
-              </span>
-            ))}
-          </h1>
+          <motion.h1
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.45, delay: 0.08 }}
+            className="material-overline hero-name mb-4"
+          >
+            Mark Angelou Egam Idusma, CpE
+          </motion.h1>
 
           <motion.p
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.5 }}
-            className="mobile-justify-text text-lg md:text-xl text-muted-foreground max-w-xl leading-relaxed"
+            transition={{ duration: 0.55, delay: 0.24 }}
+            className="mt-4 max-w-2xl text-lg leading-relaxed text-muted-foreground md:text-xl"
           >
-            Computer Engineering graduate with 6 months of UAE experience in IT support
-            and web development, including technical support, troubleshooting, business
-            systems, and full-stack applications.
+            Computer Engineering graduate with UAE experience across IT support,
+            troubleshooting, business systems, and full-stack web development.
           </motion.p>
 
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.65 }}
-            className="flex flex-col sm:flex-row gap-3 pt-2"
+            transition={{ duration: 0.5, delay: 0.34 }}
+            className="mt-8 flex flex-col gap-3 sm:flex-row"
           >
-            <a href="#contact">
-              <Button size="lg" className="pulse-cta premium-button group rounded-full bg-gradient-accent border-0 text-primary-foreground ring-glow hover:brightness-125">
-                Let's talk
-                <ArrowRight className="group-hover:translate-x-1 transition-transform" />
-              </Button>
-            </a>
-            <a href="#projects">
-              <Button size="lg" variant="outline" className="premium-button rounded-full glass border-border/60 hover:border-primary/60">
-                View projects
-              </Button>
-            </a>
+            <Button asChild size="lg" className="material-filled-button min-h-14 rounded-full px-7">
+              <a href="#contact">
+                Let&apos;s talk
+                <ArrowRight className="h-4 w-4" />
+              </a>
+            </Button>
+            <Button asChild size="lg" variant="outline" className="material-outlined-button min-h-14 rounded-full px-7">
+              <a href="#projects">Explore projects</a>
+            </Button>
           </motion.div>
 
-          {/* Contact rail */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.85 }}
-            className="flex flex-wrap gap-x-6 gap-y-2 pt-4 text-sm text-muted-foreground"
+            transition={{ duration: 0.55, delay: 0.45 }}
+            className="mt-8 flex flex-wrap gap-x-6 gap-y-3"
           >
-            <a href="tel:+971509317400" className="group flex items-center gap-2 hover:text-foreground transition-colors">
-              <Phone className="w-3.5 h-3.5 text-primary" />
-              +971 50 931 7400
-            </a>
-            <a href="mailto:idusma0010@gmail.com" className="group flex items-center gap-2 hover:text-foreground transition-colors">
-              <Mail className="w-3.5 h-3.5 text-primary" />
-              idusma0010@gmail.com
-            </a>
-            <a
-              href="https://github.com/makoy419226"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group flex items-center gap-2 hover:text-foreground transition-colors"
-            >
-              <Github className="w-3.5 h-3.5 text-primary" />
-              @makoy419226
-            </a>
+            {contactLinks.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                target={link.external ? "_blank" : undefined}
+                rel={link.external ? "noopener noreferrer" : undefined}
+                className="material-contact-link inline-flex min-h-11 items-center gap-2 rounded-full px-1 text-sm font-medium text-muted-foreground"
+              >
+                <link.icon className="h-4 w-4 text-primary" />
+                {link.label}
+              </a>
+            ))}
           </motion.div>
         </div>
 
         <motion.div
-          initial={{ opacity: 0, scale: 0.92 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 1, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-          className="perspective-stage relative order-first lg:order-none mx-auto w-full max-w-[18rem] sm:max-w-[22rem] lg:max-w-[30rem]"
+          initial={{ opacity: 0, scale: 0.94, y: 24 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          className="relative mx-auto w-full max-w-[32rem]"
         >
-          <motion.div
-            aria-hidden
-            style={reduce ? undefined : { y: imageY, scale: imageScale }}
-            className="absolute -inset-5 rounded-[2.25rem] bg-gradient-to-br from-primary/18 via-background/40 to-google-green/12 blur-2xl"
-          />
-          <motion.div
-            ref={cardRef}
-            onPointerMove={handlePointerMove}
-            onPointerLeave={handlePointerLeave}
-            style={reduce ? undefined : { rotateX, rotateY, y: photoLift, transformPerspective: 1200 }}
-            className="group shine-card relative overflow-hidden rounded-[2rem] border border-border/70 bg-background/72 p-2 shadow-google-xl backdrop-blur-xl transform-gpu"
-          >
-            <motion.div
-              style={reduce ? undefined : { y: imageY, scale: imageScale }}
-              className="relative overflow-hidden rounded-[1.5rem] bg-transparent aspect-[5/4]"
-            >
+          <div className="material-portrait-halo" aria-hidden />
+          <div className="material-portrait-card relative overflow-hidden">
+            <div className="material-portrait-topline" aria-hidden />
+            <div className="relative aspect-[4/4.5] overflow-hidden rounded-[2rem] bg-secondary">
               <motion.img
                 src={profilePhoto}
                 alt="Mark Angelou Egam Idusma"
                 className="h-full w-full object-cover object-[50%_42%]"
-                whileHover={reduce ? undefined : { scale: 1.035 }}
-                transition={{ duration: 0.6 }}
+                whileHover={reduceMotion ? undefined : { scale: 1.025 }}
+                transition={{ duration: 0.3 }}
               />
-              <div className="pointer-events-none absolute inset-0 bg-gradient-to-tr from-primary/10 via-transparent to-white/25 opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
-            </motion.div>
+            </div>
+          </div>
+
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.45, delay: 0.72 }}
+            className="material-floating-card absolute -right-2 top-10 hidden items-center gap-3 rounded-2xl p-3 sm:flex"
+          >
+            <span className="material-icon-container">
+              <Code2 className="h-5 w-5" />
+            </span>
+            <span>
+              <span className="block text-xs font-semibold">IT & Web</span>
+              <span className="block text-[11px] text-muted-foreground">Support to deployment</span>
+            </span>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.45, delay: 0.82 }}
+            className="material-floating-card absolute -bottom-5 -left-2 hidden items-center gap-3 rounded-2xl p-3 sm:flex"
+          >
+            <span className="material-icon-container material-icon-container--sky">
+              <BadgeCheck className="h-5 w-5" />
+            </span>
+            <span>
+              <span className="block text-xs font-semibold">UAE experience</span>
+              <span className="flex items-center gap-1 text-[11px] text-muted-foreground">
+                <MapPin className="h-3 w-3" /> Abu Dhabi
+              </span>
+            </span>
           </motion.div>
         </motion.div>
-      </motion.div>
-
-      {/* scroll cue */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.4, duration: 0.6 }}
-        className="absolute bottom-6 left-1/2 -translate-x-1/2 hidden md:flex flex-col items-center gap-2 text-[10px] tracking-[0.3em] uppercase text-muted-foreground"
-      >
-        Scroll
-        <span className="block h-10 w-px bg-gradient-to-b from-primary to-transparent" />
-      </motion.div>
+      </div>
     </section>
   );
 };

@@ -5,28 +5,28 @@ type Variant = "up" | "fade" | "scale" | "left" | "right" | "lift" | "blur";
 
 const variants: Record<Variant, Variants> = {
   up: {
-    hidden: { opacity: 0, y: 44, filter: "blur(10px)" },
-    visible: { opacity: 1, y: 0, filter: "blur(0px)" },
+    hidden: { opacity: 0, y: 28, scale: 0.99 },
+    visible: { opacity: 1, y: 0, scale: 1 },
   },
   fade: {
-    hidden: { opacity: 0, filter: "blur(8px)" },
-    visible: { opacity: 1, filter: "blur(0px)" },
+    hidden: { opacity: 0 },
+    visible: { opacity: 1 },
   },
   scale: {
-    hidden: { opacity: 0, scale: 0.96, filter: "blur(10px)" },
-    visible: { opacity: 1, scale: 1, filter: "blur(0px)" },
+    hidden: { opacity: 0, scale: 0.94 },
+    visible: { opacity: 1, scale: 1 },
   },
   left: {
-    hidden: { opacity: 0, x: -36, filter: "blur(8px)" },
-    visible: { opacity: 1, x: 0, filter: "blur(0px)" },
+    hidden: { opacity: 0, x: -28 },
+    visible: { opacity: 1, x: 0 },
   },
   right: {
-    hidden: { opacity: 0, x: 36, filter: "blur(8px)" },
-    visible: { opacity: 1, x: 0, filter: "blur(0px)" },
+    hidden: { opacity: 0, x: 28 },
+    visible: { opacity: 1, x: 0 },
   },
   lift: {
-    hidden: { opacity: 0, y: 52, scale: 0.985, rotateX: 4, filter: "blur(12px)" },
-    visible: { opacity: 1, y: 0, scale: 1, rotateX: 0, filter: "blur(0px)" },
+    hidden: { opacity: 0, y: 32, scale: 0.97 },
+    visible: { opacity: 1, y: 0, scale: 1 },
   },
   blur: {
     hidden: { opacity: 0, filter: "blur(14px)" },
@@ -51,7 +51,7 @@ const Reveal = ({
   className,
   amount = 0.2,
   once = true,
-  duration = 0.82,
+  duration = 0.44,
 }: Props) => {
   const reduce = useReducedMotion();
   return (
@@ -60,7 +60,7 @@ const Reveal = ({
       whileInView="visible"
       viewport={{ once, amount, margin: "0px 0px -8% 0px" }}
       variants={reduce ? { hidden: { opacity: 1 }, visible: { opacity: 1 } } : variants[variant]}
-      transition={{ duration, delay, ease: [0.16, 1, 0.3, 1] }}
+      transition={{ duration, delay, ease: [0.2, 0, 0, 1] }}
       className={className}
     >
       {children}

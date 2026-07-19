@@ -1,6 +1,6 @@
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { ExternalLink, Github, Globe, Smartphone } from "lucide-react";
+import { ExternalLink, Github, Globe, Smartphone, Star } from "lucide-react";
 import { motion } from "framer-motion";
 import LWLAppPreview from "./LWLAppPreview";
 import SectionHeading from "./SectionHeading";
@@ -102,8 +102,9 @@ const Projects = () => {
                         {project.title}
                       </h3>
                       {project.stars > 0 && (
-                        <span className="text-sm text-google-yellow">
-                          ⭐ {project.stars} star
+                        <span className="mt-1 inline-flex items-center gap-1 text-sm font-medium text-google-yellow">
+                          <Star className="h-3.5 w-3.5 fill-current" aria-hidden />
+                          {project.stars} star
                         </span>
                       )}
                     </div>
@@ -125,16 +126,13 @@ const Projects = () => {
                     ))}
                   </div>
 
-                  <a
-                    href={project.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
+                  <Button
+                    asChild
+                    variant="outline"
+                    size="sm"
+                    className="premium-button mt-2 gap-2 rounded-full glass border-border/60 group-hover:border-primary group-hover:text-primary transition-colors"
                   >
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      className="premium-button mt-2 gap-2 rounded-full glass border-border/60 group-hover:border-primary group-hover:text-primary transition-colors"
-                    >
+                    <a href={project.url} target="_blank" rel="noopener noreferrer">
                       {project.github ? (
                         <Github className="w-4 h-4" />
                       ) : (
@@ -142,8 +140,8 @@ const Projects = () => {
                       )}
                       {project.github ? "View on GitHub" : "Visit Site"}
                       <ExternalLink className="w-3 h-3" />
-                    </Button>
-                  </a>
+                    </a>
+                  </Button>
                 </div>
               </motion.div>
             ))}

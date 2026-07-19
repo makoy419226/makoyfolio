@@ -12,7 +12,7 @@ const queryClient = new QueryClient();
 const App = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
-      <MotionConfig reducedMotion="user" transition={{ ease: [0.22, 1, 0.36, 1] }}>
+      <MotionConfig reducedMotion="user" transition={{ ease: [0.2, 0, 0, 1] }}>
         <Toaster />
         <Sonner />
         <BrowserRouter>

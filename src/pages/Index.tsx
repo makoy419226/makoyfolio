@@ -10,24 +10,25 @@ import Navbar from "@/components/Navbar";
 import SmoothScroll from "@/components/SmoothScroll";
 import ScrollProgress from "@/components/ScrollProgress";
 import EngineeringBackground from "@/components/EngineeringBackground";
-import LivelyBackground from "@/components/LivelyBackground";
 import { motion } from "framer-motion";
 
 const Index = () => {
   return (
     <div id="top" className="min-h-screen relative isolate overflow-x-hidden">
+      <a href="#main-content" className="skip-link">
+        Skip to main content
+      </a>
       <SmoothScroll />
       <ScrollProgress />
-      <LivelyBackground />
       <EngineeringBackground />
       <motion.div
         initial={{ opacity: 0, y: 12 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.72 }}
+        transition={{ duration: 0.42, ease: [0.2, 0, 0, 1] }}
         className="relative z-10"
       >
         <Navbar />
-        <main>
+        <main id="main-content">
           <Hero />
           <About />
           <Skills />

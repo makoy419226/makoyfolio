@@ -7,7 +7,7 @@ import { Button } from "@/components/ui/button";
 const channels = [
   { icon: Mail, label: "Email", value: "idusma0010@gmail.com", href: "mailto:idusma0010@gmail.com", tone: "text-google-blue" },
   { icon: Phone, label: "Phone", value: "+971 50 931 7400", href: "tel:+971509317400", tone: "text-google-red" },
-  { icon: MapPin, label: "Location", value: "Abu Dhabi, UAE", href: "#", tone: "text-google-green" },
+  { icon: MapPin, label: "Location", value: "Abu Dhabi, UAE", href: "https://www.openstreetmap.org/search?query=Abu%20Dhabi%2C%20UAE", tone: "text-google-green" },
 ];
 
 const Contact = () => (
@@ -32,16 +32,11 @@ const Contact = () => (
               <p className="mobile-justify-text text-muted-foreground mt-4 max-w-md text-left">
                 Available to join immediately and currently under residence visa status.
               </p>
-              <a
-                href="https://wa.me/971509317400"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-block mt-6"
-              >
-                <Button size="lg" className="premium-button rounded-full bg-gradient-accent border-0 ring-glow hover:brightness-110">
+              <Button asChild size="lg" className="premium-button mt-6 rounded-full border-0 bg-gradient-accent ring-glow hover:brightness-110">
+                <a href="https://wa.me/971509317400" target="_blank" rel="noopener noreferrer">
                   Message me on WhatsApp <MessageCircle />
-                </Button>
-              </a>
+                </a>
+              </Button>
             </div>
 
             <div className="space-y-3">
@@ -49,6 +44,8 @@ const Contact = () => (
                 <motion.a
                   key={c.label}
                   href={c.href}
+                  target={c.label === "Location" ? "_blank" : undefined}
+                  rel={c.label === "Location" ? "noopener noreferrer" : undefined}
                   whileHover={{ x: 6, y: -2 }}
                   whileTap={{ scale: 0.985 }}
                   className="group group/channel depth-card shine-card flex items-center gap-4 glass rounded-2xl p-4 overflow-hidden transform-gpu"

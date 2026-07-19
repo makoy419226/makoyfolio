@@ -6,16 +6,16 @@ type Variant = "up" | "scale" | "fade";
 
 const childVariants: Record<Variant, Variants> = {
   up: {
-    hidden: { opacity: 0, y: 34, filter: "blur(9px)" },
-    visible: { opacity: 1, y: 0, filter: "blur(0px)" },
+    hidden: { opacity: 0, y: 24, scale: 0.99 },
+    visible: { opacity: 1, y: 0, scale: 1 },
   },
   scale: {
-    hidden: { opacity: 0, y: 24, scale: 0.96, filter: "blur(10px)" },
-    visible: { opacity: 1, y: 0, scale: 1, filter: "blur(0px)" },
+    hidden: { opacity: 0, y: 18, scale: 0.95 },
+    visible: { opacity: 1, y: 0, scale: 1 },
   },
   fade: {
-    hidden: { opacity: 0, filter: "blur(8px)" },
-    visible: { opacity: 1, filter: "blur(0px)" },
+    hidden: { opacity: 0 },
+    visible: { opacity: 1 },
   },
 };
 
@@ -36,7 +36,7 @@ const StaggerReveal = ({
   childClassName,
   variant = "up",
   delay = 0,
-  stagger = 0.07,
+  stagger = 0.055,
   amount = 0.15,
   once = true,
 }: StaggerRevealProps) => {
@@ -69,7 +69,7 @@ const StaggerReveal = ({
       {Children.map(children, (child) => (
         <motion.div
           variants={itemVariants}
-          transition={{ duration: 0.72, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 0.42, ease: [0.2, 0, 0, 1] }}
           className={cn("min-w-0", childClassName)}
         >
           {child}

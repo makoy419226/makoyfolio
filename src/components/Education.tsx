@@ -1,4 +1,4 @@
-import { Calendar, GraduationCap, Award } from "lucide-react";
+import { Calendar, GraduationCap, Award, CheckCircle2 } from "lucide-react";
 import DocumentViewer from "./DocumentViewer";
 import SectionHeading from "./SectionHeading";
 import Reveal from "./Reveal";
@@ -91,7 +91,7 @@ const Education = () => {
             <ul className="space-y-3 list-none">
               {certifications.map((cert, i) => (
                 <li key={i} className="text-muted-foreground leading-relaxed flex items-start gap-3">
-                  <span className="text-primary mt-1 font-bold">✓</span>
+                  <CheckCircle2 className="mt-1 h-4 w-4 flex-none text-primary" aria-hidden />
                   <span className="mobile-justify-text">{cert}</span>
                 </li>
               ))}
