@@ -34,9 +34,9 @@ const Hero = () => {
   const reduceMotion = useReducedMotion();
 
   return (
-    <section className="hero-section relative flex min-h-[100svh] items-center overflow-hidden px-4 pb-20 pt-32 sm:px-6 lg:pt-36">
+    <section className="hero-section relative flex min-h-[100svh] items-center overflow-hidden px-4 pb-20 pt-24 sm:px-6 sm:pt-28 lg:pt-36">
       <div className="material-shape material-shape--hero" aria-hidden />
-      <div className="relative z-10 mx-auto grid w-full max-w-7xl items-center gap-14 lg:grid-cols-[1.08fr_0.92fr]">
+      <div className="relative z-10 mx-auto grid w-full max-w-7xl items-center gap-8 sm:gap-10 lg:grid-cols-[1.08fr_0.92fr] lg:gap-14">
         <div className="max-w-3xl">
           <motion.div
             initial={{ opacity: 0, y: 12 }}
@@ -109,7 +109,7 @@ const Hero = () => {
           initial={{ opacity: 0, scale: 0.94, y: 24 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="relative mx-auto w-full max-w-[32rem]"
+          className="relative order-first w-full max-w-[15rem] justify-self-start sm:max-w-[18rem] lg:order-none lg:max-w-[26rem] lg:justify-self-center"
         >
           <div className="material-portrait-halo" aria-hidden />
           <div className="material-portrait-card relative overflow-hidden">

@@ -113,7 +113,7 @@ const skillGroups: SkillGroup[] = [
 ];
 
 const totalSkills = skillGroups.reduce((total, group) => total + group.items.length, 0);
-const pages: Array<SkillGroup | null> = [...skillGroups, null];
+const pages = skillGroups;
 const totalSpreads = Math.ceil(pages.length / 2);
 
 const SkillPage = ({ group, pageNumber }: { group: SkillGroup; pageNumber: number }) => {
@@ -151,25 +151,128 @@ const SkillPage = ({ group, pageNumber }: { group: SkillGroup; pageNumber: numbe
   );
 };
 
-const EndPage = () => (
-  <article className="skills-book__page-content skills-book__end-page">
-    <span className="skills-book__end-mark" aria-hidden>MI</span>
-    <p className="material-overline">Across the stack</p>
-    <h3>{totalSkills} practical capabilities.</h3>
-    <p>
-      From hands-on troubleshooting to production web systems, every chapter supports one goal:
-      dependable technology that works for people and businesses.
-    </p>
-    <a href="#experience" className="skills-book__continue-link">
-      Continue to experience
-      <ArrowRight className="h-4 w-4" />
-    </a>
-    <footer className="skills-book__page-footer">
-      <span>End of skills</span>
-      <span>{pages.length}</span>
-    </footer>
-  </article>
-);
+const MobileSkillsBook = ({ reduceMotion }: { reduceMotion: boolean | null }) => {
+  const [pageIndex, setPageIndex] = useState(0);
+  const [direction, setDirection] = useState<1 | -1>(1);
+  const currentPage = pages[pageIndex];
+  const canGoBack = pageIndex > 0;
+  const canGoForward = pageIndex < pages.length - 1;
+  const pageLabel = currentPage.label;
+
+  const goToPage = useCallback((nextIndex: number) => {
+    const safeIndex = Math.max(0, Math.min(pages.length - 1, nextIndex));
+    if (safeIndex === pageIndex) return;
+
+    setDirection(safeIndex > pageIndex ? 1 : -1);
+    setPageIndex(safeIndex);
+  }, [pageIndex]);
+
+  const goBack = useCallback(() => goToPage(pageIndex - 1), [goToPage, pageIndex]);
+  const goForward = useCallback(() => goToPage(pageIndex + 1), [goToPage, pageIndex]);
+
+  const handleKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
+    if (event.key === "ArrowLeft" && canGoBack) {
+      event.preventDefault();
+      goBack();
+    }
+
+    if (event.key === "ArrowRight" && canGoForward) {
+      event.preventDefault();
+      goForward();
+    }
+
+    if (event.key === "Home") {
+      event.preventDefault();
+      goToPage(0);
+    }
+
+    if (event.key === "End") {
+      event.preventDefault();
+      goToPage(pages.length - 1);
+    }
+  };
+
+  return (
+    <div
+      className="skills-book-mobile-shell"
+      role="region"
+      tabIndex={0}
+      onKeyDown={handleKeyDown}
+      aria-label="Mobile skills book. Swipe or use the previous and next buttons to turn pages."
+    >
+      <div className="skills-book-mobile__instruction">
+        <span>Skills volume · {totalSkills} capabilities</span>
+        <span>Swipe pages</span>
+      </div>
+
+      <div className="skills-book-mobile">
+        <span className="sr-only" role="status" aria-live="polite" aria-atomic="true">
+          Page {pageIndex + 1} of {pages.length}: {pageLabel}
+        </span>
+
+        <div className="skills-book-mobile__cover" aria-hidden />
+        <motion.div
+          key={`mobile-page-${pageIndex}`}
+          className="skills-book-mobile__page"
+          role="group"
+          aria-roledescription="book page"
+          aria-label={`Page ${pageIndex + 1}: ${pageLabel}`}
+          drag={reduceMotion ? false : "x"}
+          dragConstraints={{ left: 0, right: 0 }}
+          dragElastic={0.14}
+          dragMomentum={false}
+          initial={reduceMotion ? false : { opacity: 0.6, x: direction * 32, rotateY: direction * -5 }}
+          animate={{ opacity: 1, x: 0, rotateY: 0 }}
+          whileDrag={reduceMotion ? undefined : { scale: 0.99 }}
+          transition={{ duration: reduceMotion ? 0 : 0.26, ease: [0.2, 0, 0, 1] }}
+          onDragEnd={(_, info) => {
+            const shouldGoForward = info.offset.x < -48 || info.velocity.x < -500;
+            const shouldGoBack = info.offset.x > 48 || info.velocity.x > 500;
+
+            if (shouldGoForward && canGoForward) goForward();
+            if (shouldGoBack && canGoBack) goBack();
+          }}
+        >
+          <SkillPage group={currentPage} pageNumber={pageIndex + 1} />
+        </motion.div>
+      </div>
+
+      <div className="skills-book-mobile__controls" aria-label="Mobile skills book pagination">
+        <button
+          type="button"
+          className="material-ripple skills-book-mobile__button"
+          onClick={goBack}
+          disabled={!canGoBack}
+          aria-label="Turn to the previous skill page"
+        >
+          <ArrowLeft className="h-5 w-5" aria-hidden />
+        </button>
+
+        <div className="skills-book-mobile__position">
+          <span>Page {pageIndex + 1} of {pages.length}</span>
+          <div className="skills-book-mobile__progress" aria-hidden>
+            {pages.map((_, index) => (
+              <span
+                key={index}
+                className={cn(index === pageIndex && "skills-book-mobile__progress-mark--active")}
+              />
+            ))}
+          </div>
+        </div>
+
+        <button
+          type="button"
+          className="material-ripple skills-book-mobile__button"
+          onClick={goForward}
+          disabled={!canGoForward}
+          aria-label="Turn to the next skill page"
+        >
+          <ArrowRight className="h-5 w-5" aria-hidden />
+        </button>
+      </div>
+    </div>
+  );
+};
 
 const Skills = () => {
   const [spreadIndex, setSpreadIndex] = useState(0);
@@ -216,7 +319,7 @@ const Skills = () => {
     }
   };
 
-  const spreadLabel = [leftPage?.label, rightPage?.label ?? "Skills summary"]
+  const spreadLabel = [leftPage?.label, rightPage?.label]
     .filter(Boolean)
     .join(" and ");
 
@@ -230,8 +333,10 @@ const Skills = () => {
         />
 
         <Reveal variant="up" amount={0.15}>
+          <MobileSkillsBook reduceMotion={reduceMotion} />
+
           <div
-            className="skills-book-shell"
+            className="skills-book-shell skills-book-shell--desktop"
             role="region"
             tabIndex={0}
             onKeyDown={handleKeyDown}
@@ -261,13 +366,11 @@ const Skills = () => {
                 <div className="skills-book__page skills-book__page--left">
                   {leftPage && <SkillPage group={leftPage} pageNumber={spreadIndex * 2 + 1} />}
                 </div>
-                <div className="skills-book__page skills-book__page--right">
-                  {rightPage ? (
+                {rightPage && (
+                  <div className="skills-book__page skills-book__page--right">
                     <SkillPage group={rightPage} pageNumber={spreadIndex * 2 + 2} />
-                  ) : (
-                    <EndPage />
-                  )}
-                </div>
+                  </div>
+                )}
               </motion.div>
 
               {!reduceMotion && turnCount > 0 && (
