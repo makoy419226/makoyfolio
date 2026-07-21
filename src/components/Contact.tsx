@@ -1,5 +1,5 @@
 import { Mail, Phone, MapPin, ArrowUpRight, MessageCircle } from "lucide-react";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import SectionHeading from "./SectionHeading";
 import Reveal from "./Reveal";
 import { Button } from "@/components/ui/button";
@@ -10,9 +10,12 @@ const channels = [
   { icon: MapPin, label: "Location", value: "Abu Dhabi, UAE", href: "https://www.openstreetmap.org/search?query=Abu%20Dhabi%2C%20UAE", tone: "text-google-green" },
 ];
 
-const Contact = () => (
-  <section id="contact" className="section-atmosphere relative py-32 px-4">
-    <div className="max-w-6xl mx-auto space-y-16">
+const Contact = () => {
+  const reduceMotion = useReducedMotion();
+
+  return (
+    <section id="contact" className="section-atmosphere relative py-24 px-4">
+    <div className="max-w-6xl mx-auto space-y-12">
       <SectionHeading
         eyebrow="06 · Contact"
         title="Available to join immediately."
@@ -20,11 +23,11 @@ const Contact = () => (
       />
 
       <Reveal variant="scale">
-        <div className="group depth-card shine-card relative glass-strong rounded-[2.5rem] p-10 md:p-16 overflow-hidden transform-gpu">
+        <div className="group depth-card shine-card relative glass-strong rounded-[2.5rem] p-10 md:p-16 overflow-hidden">
           <div className="absolute -top-20 -left-20 w-72 h-72 rounded-full bg-primary/40 blur-3xl" />
           <div className="absolute -bottom-20 -right-20 w-72 h-72 rounded-full bg-google-yellow/30 blur-3xl" />
 
-          <div className="relative grid md:grid-cols-[1.2fr_1fr] gap-10 items-center">
+          <div className="relative grid md:grid-cols-[1.2fr_1fr] gap-8 items-center">
             <div>
               <h3 className="font-display text-2xl md:text-3xl font-semibold leading-tight text-balance">
                 Need IT support, technical support, or junior web support? <span className="text-gradient">Say hello.</span>
@@ -46,13 +49,13 @@ const Contact = () => (
                   href={c.href}
                   target={c.label === "Location" ? "_blank" : undefined}
                   rel={c.label === "Location" ? "noopener noreferrer" : undefined}
-                  whileHover={{ x: 6, y: -2 }}
-                  whileTap={{ scale: 0.985 }}
-                  className="group group/channel depth-card shine-card flex items-center gap-4 glass rounded-2xl p-4 overflow-hidden transform-gpu"
-                  initial={{ opacity: 0, x: 20 }}
+                  whileHover={reduceMotion ? undefined : { x: 6, y: -2 }}
+                  whileTap={reduceMotion ? undefined : { scale: 0.985 }}
+                  className="group group/channel depth-card shine-card flex items-center gap-4 glass rounded-2xl p-4 overflow-hidden"
+                  initial={reduceMotion ? false : { opacity: 0, x: 20 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
-                  transition={{ delay: i * 0.08, duration: 0.5 }}
+                  transition={{ delay: i * 0.06, duration: 0.4, ease: [0.2, 0, 0, 1] }}
                 >
                   <div className={`soft-icon-pop w-11 h-11 rounded-xl bg-background/70 border border-border/45 flex items-center justify-center ${c.tone}`}>
                     <c.icon className="w-5 h-5" />
@@ -69,7 +72,8 @@ const Contact = () => (
         </div>
       </Reveal>
     </div>
-  </section>
-);
+    </section>
+  );
+};
 
 export default Contact;

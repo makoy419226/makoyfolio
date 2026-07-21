@@ -71,12 +71,12 @@ const CVViewer = () => {
   }, []);
 
   return (
-    <Reveal variant="up">
-      <div id="cv" className="group depth-card shine-card glass-strong scroll-mt-28 rounded-3xl p-5 md:p-8 overflow-hidden transform-gpu">
-        <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between mb-6">
-          <div className="flex items-center gap-4">
-            <div className="soft-icon-pop w-12 h-12 bg-google-blue/20 rounded-2xl flex items-center justify-center flex-shrink-0">
-              <FileText className="w-6 h-6 text-google-blue" />
+    <Reveal variant="up" amount={0.03}>
+      <div id="cv" className="group depth-card shine-card scroll-mt-28 overflow-hidden rounded-2xl p-3 glass-strong md:rounded-3xl md:p-8">
+        <div className="mb-4 flex items-center justify-between gap-3 md:mb-6">
+          <div className="flex min-w-0 items-center gap-3 md:gap-4">
+            <div className="soft-icon-pop flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl bg-google-blue/20 md:h-12 md:w-12 md:rounded-2xl">
+              <FileText className="h-5 w-5 text-google-blue md:h-6 md:w-6" />
             </div>
             <div>
               <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-primary">
@@ -91,14 +91,15 @@ const CVViewer = () => {
           <a
             href={cvPath}
             download="Mark-Angelou-Idusma-CV.pdf"
-            className="premium-button inline-flex w-fit items-center gap-2 rounded-full border border-border bg-background/70 px-4 py-2 text-sm font-medium hover:border-primary hover:text-primary transition-colors"
+            className="premium-button inline-flex min-h-11 min-w-11 flex-none items-center justify-center gap-2 rounded-full border border-border bg-background/70 px-3 text-sm font-medium transition-colors hover:border-primary hover:text-primary sm:px-4"
+            aria-label="Download CV as a PDF"
           >
-            Download PDF
+            <span className="hidden sm:inline">Download PDF</span>
             <Download className="w-4 h-4" />
           </a>
         </div>
 
-        <div className="min-h-[420px] rounded-2xl border border-border/70 bg-muted/40 p-3 shadow-google-lg sm:p-5">
+        <div className="min-h-[420px] rounded-xl border border-border/70 bg-muted/40 p-2 shadow-google-lg sm:rounded-2xl sm:p-5">
           {!pages.length && !error && (
             <div className="flex min-h-[390px] items-center justify-center gap-3 text-muted-foreground">
               <LoaderCircle className="h-5 w-5 animate-spin text-primary" />
@@ -117,7 +118,7 @@ const CVViewer = () => {
           )}
 
           {!!pages.length && (
-            <div className="mx-auto max-w-4xl space-y-6">
+            <div className="mx-auto max-w-4xl space-y-4 sm:space-y-6">
               {pages.map((page, index) => (
                 <CVPage key={page.pageNumber} page={page} pageNumber={index + 1} />
               ))}

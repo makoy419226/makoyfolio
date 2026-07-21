@@ -908,7 +908,7 @@ const LWLAppPreview = () => {
   return (
     <div className="space-y-6">
       {/* Project Header Card */}
-      <Card className="group depth-card shine-card border-border p-6 shadow-google-lg overflow-hidden transform-gpu">
+      <Card className="group depth-card shine-card border-border p-6 shadow-google-lg overflow-hidden">
         <div className="space-y-4">
           <div className="flex items-start gap-4">
             <div className="w-12 h-12 bg-google-blue/15 rounded-2xl flex items-center justify-center flex-shrink-0 overflow-hidden p-1.5">
@@ -1025,7 +1025,7 @@ const LWLAppPreview = () => {
             className={`${isFullscreen ? "fixed inset-0 z-50 bg-background/95 backdrop-blur-sm flex items-center justify-center p-2 md:p-4" : ""}`}
           >
             <div className={`${isFullscreen ? "w-full h-full max-w-[1400px] flex flex-col" : ""} ${viewMode === "mobile" && !isFullscreen ? "max-w-[375px] mx-auto" : ""}`}>
-              <Card className={`border-border shadow-google-xl overflow-hidden flex flex-col transform-gpu ${isFullscreen ? "flex-1 h-full" : "depth-card shine-card"}`}>
+              <Card className={`border-border shadow-google-xl overflow-hidden flex flex-col ${isFullscreen ? "flex-1 h-full" : "depth-card shine-card"}`}>
                 {/* Browser Chrome Bar */}
                 <div className="bg-secondary/80 border-b border-border px-3 md:px-4 py-2 flex items-center justify-between shrink-0">
                   <div className="flex items-center gap-2">

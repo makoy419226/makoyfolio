@@ -1,3 +1,7 @@
+import { motion, useReducedMotion, useScroll, useSpring, useTransform } from "framer-motion";
+import { type ReactNode } from "react";
+import { useIsMobile } from "@/hooks/use-mobile";
+
 const circuitPaths = [
   "M48 118 H178 V74 H326",
   "M78 252 H226 V326 H376",
@@ -40,17 +44,53 @@ const binaryRows = [
   { x: 610, y: 492, text: "0011 1001 0110 0101" },
 ];
 
+const ActiveEngineeringLayers = ({ children }: { children: ReactNode }) => {
+  const { scrollYProgress } = useScroll();
+  const gridOffset = useTransform(scrollYProgress, [0, 1], [0, 28]);
+  const schematicOffset = useTransform(scrollYProgress, [0, 1], [0, -48]);
+  const gridY = useSpring(gridOffset, { stiffness: 90, damping: 24, mass: 0.35 });
+  const schematicY = useSpring(schematicOffset, { stiffness: 90, damping: 24, mass: 0.35 });
+
+  return (
+    <>
+      <motion.div className="ce-grid" style={{ y: gridY }} />
+      <motion.div className="ce-schematic-motion" style={{ y: schematicY }}>
+        {children}
+      </motion.div>
+    </>
+  );
+};
+
+const EngineeringLayers = ({
+  children,
+  disabled,
+}: {
+  children: ReactNode;
+  disabled: boolean;
+}) =>
+  disabled ? (
+    <>
+      <div className="ce-grid" />
+      <div className="ce-schematic-motion">{children}</div>
+    </>
+  ) : (
+    <ActiveEngineeringLayers>{children}</ActiveEngineeringLayers>
+  );
+
 const EngineeringBackground = () => {
+  const reduceMotion = useReducedMotion();
+  const isMobile = useIsMobile();
+  const motionDisabled = Boolean(reduceMotion || isMobile);
+
   return (
     <div aria-hidden className="computer-engineering-background pointer-events-none fixed inset-0 z-0 overflow-hidden">
       <div className="ce-depth" />
-      <div className="ce-grid" />
-
-      <svg
-        className="ce-schematic"
-        viewBox="0 0 960 540"
-        preserveAspectRatio="xMidYMid slice"
-      >
+      <EngineeringLayers disabled={motionDisabled}>
+        <svg
+          className="ce-schematic"
+          viewBox="0 0 960 540"
+          preserveAspectRatio="xMidYMid slice"
+        >
         <defs>
           <linearGradient id="ce-line" x1="0" y1="0" x2="1" y2="1">
             <stop offset="0%" stopColor="hsl(217 72% 43%)" stopOpacity="0.22" />
@@ -114,7 +154,8 @@ const EngineeringBackground = () => {
             </text>
           ))}
         </g>
-      </svg>
+        </svg>
+      </EngineeringLayers>
     </div>
   );
 };

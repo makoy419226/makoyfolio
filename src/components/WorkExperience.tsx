@@ -1,5 +1,6 @@
 import { Briefcase, MapPin } from "lucide-react";
-import { motion } from "framer-motion";
+import { useRef, type RefObject } from "react";
+import { motion, useReducedMotion, useScroll, useSpring } from "framer-motion";
 import SectionHeading from "./SectionHeading";
 import Reveal from "./Reveal";
 
@@ -25,8 +26,8 @@ const roles = [
       "Designed, developed, and maintained custom websites and web applications for businesses across multiple industries.",
       "Built responsive corporate websites, business landing pages, and SEO-optimized blog platforms to strengthen clients' online presence and support customer acquisition.",
       "Gathered client requirements and translated business needs into practical digital solutions.",
-      "Managed website deployment, hosting, domain and DNS configuration, maintenance, and technical support.",
-      "Developed full-stack applications using React, TypeScript, Node.js, Express.js, and PostgreSQL.",
+      "Managed website deployment, hosting, domain & DNS configuration, maintenance, and technical support.",
+      "Developed full-stack applications using React, TypeScript, Node.js, Express.js, and SQL.",
     ],
   },
   {
@@ -35,71 +36,112 @@ const roles = [
     company: "Idusma General Merchandise & Construction Supplies Business",
     location: "Bohol, Philippines",
     responsibilities: [
-      "Built upon years of involvement in the family-owned business by taking on regular responsibilities in sales, procurement, inventory management, and customer service.",
+      "Built upon years of involvement in our family-owned business by taking on regular responsibilities in sales, procurement, inventory management, and customer service.",
       "Assisted customers, suppliers, and contractors with product inquiries and order processing.",
       "Coordinated inventory replenishment and supplier communication to support daily operations.",
     ],
   },
 ];
 
-const WorkExperience = () => (
-  <section id="experience" className="section-atmosphere relative py-32 px-4">
-    <div className="max-w-5xl mx-auto space-y-16">
-      <SectionHeading
-        eyebrow="03 · Experience"
-        title="Work experience across IT, web development, and operations."
-        description="Practical roles covering technical support, full-stack development, computer servicing, customer service, procurement, inventory, and business coordination."
-      />
+const timelineLineClass =
+  "absolute bottom-0 left-4 top-0 w-px origin-top bg-gradient-to-b from-primary via-google-blue to-google-green shadow-[0_0_16px_hsl(var(--primary)/0.4)] md:left-1/2";
 
-      <div className="relative">
-        <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-primary/50 to-transparent" aria-hidden />
+const ActiveTimelineLine = ({ target }: { target: RefObject<HTMLDivElement> }) => {
+  const { scrollYProgress } = useScroll({
+    target,
+    offset: ["start 78%", "end 30%"],
+  });
+  const timelineProgress = useSpring(scrollYProgress, {
+    stiffness: 110,
+    damping: 24,
+    mass: 0.25,
+  });
 
-        <div className="space-y-12">
-          {roles.map((r, i) => {
-            const flip = i % 2 === 1;
-            return (
-              <Reveal key={r.title + i} variant={flip ? "right" : "left"} delay={i * 0.05} amount={0.18}>
-                <div className="relative md:grid md:grid-cols-2 md:gap-12">
-                  <div className={`${flip ? "md:order-2 md:text-left md:pl-10" : "md:text-right md:pr-10"} pl-12 md:pl-0`}>
-                    <span className="font-mono text-xs uppercase tracking-[0.2em] text-primary">{r.period}</span>
-                    <h3 className="font-display text-2xl font-semibold mt-2">{r.title}</h3>
-                    <p className="text-primary font-medium">{r.company}</p>
-                    <p className={`text-sm text-muted-foreground flex items-center gap-1.5 mt-1 ${flip ? "" : "md:justify-end"}`}>
-                      <MapPin className="w-3.5 h-3.5" /> {r.location}
-                    </p>
-                  </div>
+  return (
+    <motion.div
+      className={timelineLineClass}
+      style={{ scaleY: timelineProgress }}
+      aria-hidden
+    />
+  );
+};
 
-                  <motion.span
-                    className="absolute left-4 md:left-1/2 -translate-x-1/2 top-2 w-3 h-3 rounded-full bg-gradient-accent ring-4 ring-background shadow-[0_0_24px_hsl(var(--primary)/0.42)]"
-                    initial={{ scale: 0, opacity: 0 }}
-                    whileInView={{ scale: 1, opacity: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ type: "spring", stiffness: 320, damping: 22, delay: 0.08 }}
-                  />
+const WorkExperience = () => {
+  const timelineRef = useRef<HTMLDivElement>(null);
+  const reduceMotion = useReducedMotion();
 
-                  <div className={`mt-4 md:mt-0 pl-12 ${flip ? "md:order-1 md:pr-10 md:pl-0" : "md:pl-10"}`}>
-                    <div className="group depth-card shine-card glass rounded-2xl p-6 overflow-hidden transform-gpu">
-                      <div className="soft-icon-pop w-10 h-10 rounded-xl bg-primary/15 flex items-center justify-center mb-3">
-                        <Briefcase className="w-5 h-5 text-primary" />
+  return (
+    <section id="experience" className="section-atmosphere relative py-24 px-4">
+      <div className="max-w-5xl mx-auto space-y-12">
+        <SectionHeading
+          eyebrow="03 · Experience"
+          title="Work experience across IT, web development, and operations."
+          description="Six months of UAE experience in IT support and web development, alongside freelance full-stack delivery and hands-on business operations."
+        />
+
+        <div ref={timelineRef} className="relative">
+          <div
+            className="absolute bottom-0 left-4 top-0 w-px bg-border/70 md:left-1/2"
+            aria-hidden
+          />
+          {reduceMotion ? (
+            <div className={timelineLineClass} aria-hidden />
+          ) : (
+            <ActiveTimelineLine target={timelineRef} />
+          )}
+
+          <div className="space-y-10">
+            {roles.map((r, i) => {
+              const flip = i % 2 === 1;
+              return (
+                <Reveal key={r.title + i} variant={flip ? "right" : "left"} delay={i * 0.05} amount={0.18}>
+                  <div className="relative md:grid md:grid-cols-2 md:gap-12">
+                    <div className={`${flip ? "md:order-2 md:text-left md:pl-10" : "md:text-right md:pr-10"} pl-12 md:pl-0`}>
+                      <span className="font-mono text-xs uppercase tracking-[0.2em] text-primary">{r.period}</span>
+                      <h3 className="font-display text-2xl font-semibold mt-2">{r.title}</h3>
+                      <p className="text-primary font-medium">{r.company}</p>
+                      <p className={`text-sm text-muted-foreground flex items-center gap-1.5 mt-1 ${flip ? "" : "md:justify-end"}`}>
+                        <MapPin className="w-3.5 h-3.5" /> {r.location}
+                      </p>
+                    </div>
+
+                    <motion.span
+                      className="absolute left-4 md:left-1/2 top-2 w-3 h-3 rounded-full bg-gradient-accent ring-4 ring-background shadow-[0_0_24px_hsl(var(--primary)/0.42)]"
+                      style={{ x: "-50%" }}
+                      initial={reduceMotion ? false : { scale: 0, opacity: 0 }}
+                      whileInView={{ scale: 1, opacity: 1 }}
+                      viewport={{ once: true }}
+                      transition={
+                        reduceMotion
+                          ? { duration: 0 }
+                          : { type: "spring", stiffness: 320, damping: 22, delay: 0.08 }
+                      }
+                    />
+
+                    <div className={`mt-4 md:mt-0 pl-12 ${flip ? "md:order-1 md:pr-10 md:pl-0" : "md:pl-10"}`}>
+                      <div className="group depth-card shine-card glass rounded-2xl p-6 overflow-hidden">
+                        <div className="soft-icon-pop w-10 h-10 rounded-xl bg-primary/15 flex items-center justify-center mb-3">
+                          <Briefcase className="w-5 h-5 text-primary" />
+                        </div>
+                        <ul className="space-y-2 text-sm text-foreground/90 leading-relaxed">
+                          {r.responsibilities.map((item) => (
+                            <li key={item} className="flex items-start gap-2">
+                              <span className="mt-2 h-1.5 w-1.5 flex-none rounded-full bg-primary/70" />
+                              <span className="mobile-justify-text">{item}</span>
+                            </li>
+                          ))}
+                        </ul>
                       </div>
-                      <ul className="space-y-2 text-sm text-foreground/90 leading-relaxed">
-                        {r.responsibilities.map((item) => (
-                          <li key={item} className="flex items-start gap-2">
-                            <span className="mt-2 h-1.5 w-1.5 flex-none rounded-full bg-primary/70" />
-                            <span className="mobile-justify-text">{item}</span>
-                          </li>
-                        ))}
-                      </ul>
                     </div>
                   </div>
-                </div>
-              </Reveal>
-            );
-          })}
+                </Reveal>
+              );
+            })}
+          </div>
         </div>
       </div>
-    </div>
-  </section>
-);
+    </section>
+  );
+};
 
 export default WorkExperience;

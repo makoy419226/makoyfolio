@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 const links = [
@@ -13,6 +13,7 @@ const links = [
 ];
 
 const Navbar = () => {
+  const reduceMotion = useReducedMotion();
   const [scrolled, setScrolled] = useState(false);
   const [active, setActive] = useState<string>("#top");
   const activeLockUntil = useRef(0);
@@ -116,7 +117,7 @@ const Navbar = () => {
 
   return (
     <motion.header
-      initial={{ y: -40, opacity: 0 }}
+      initial={reduceMotion ? false : { y: -40, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.38, ease: [0.2, 0, 0, 1] }}
       className="fixed left-0 right-0 top-0 z-50 px-3 pt-3 sm:px-5"

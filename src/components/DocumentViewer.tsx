@@ -33,31 +33,31 @@ const DocumentViewer = () => {
   ];
 
   return (
-    <section className="py-12">
-      <div className="max-w-6xl mx-auto space-y-8">
+    <section className="py-2 md:py-6">
+      <div className="mx-auto max-w-6xl space-y-4 md:space-y-6">
         {/* Section Header */}
         <Reveal variant="up">
-          <div className="text-center space-y-4">
-            <div className="flex items-center justify-center gap-3">
-              <FileText className="w-8 h-8 text-google-blue" />
-              <h3 className="font-display text-2xl font-semibold text-foreground">Official Documents</h3>
+          <div className="space-y-2 text-center md:space-y-3">
+            <div className="flex items-center justify-center gap-2 md:gap-3">
+              <FileText className="h-6 w-6 text-google-blue md:h-8 md:w-8" />
+              <h3 className="font-display text-xl font-semibold text-foreground md:text-2xl">Official Documents</h3>
             </div>
-            <p className="text-muted-foreground">
+            <p className="text-sm text-muted-foreground md:text-base">
               View certificates and diplomas
             </p>
           </div>
         </Reveal>
 
         {/* Documents Grid */}
-        <StaggerReveal className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-5xl mx-auto" childClassName="h-full" stagger={0.08}>
+        <StaggerReveal className="mx-auto grid max-w-5xl grid-cols-1 gap-3 lg:grid-cols-2 lg:gap-6" childClassName="h-full" stagger={0.08}>
           {documents.map((doc, index) => (
             <Card
               key={index}
-              className="group depth-card shine-card h-full border-border p-6 shadow-google-lg hover:shadow-google-xl transition-all duration-300 overflow-hidden transform-gpu"
+              className="group depth-card shine-card h-full overflow-hidden border-border p-3 shadow-google-lg transition-all duration-300 hover:shadow-google-xl md:p-6"
             >
-              <div className="space-y-4">
+              <div className="space-y-3 md:space-y-4">
                 <div>
-                  <h4 className="text-lg font-bold text-foreground">{doc.title}</h4>
+                  <h4 className="text-base font-bold leading-snug text-foreground md:text-lg">{doc.title}</h4>
                   <p className="text-sm text-muted-foreground">{doc.institution}</p>
                 </div>
 

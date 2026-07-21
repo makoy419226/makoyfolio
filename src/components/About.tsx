@@ -1,6 +1,7 @@
 import { Target, Heart, MapPin } from "lucide-react";
-import { motion } from "framer-motion";
+import { motion, useReducedMotion } from "framer-motion";
 import SectionHeading from "./SectionHeading";
+import ImmersiveCard from "./ImmersiveCard";
 import Reveal from "./Reveal";
 import StaggerReveal from "./StaggerReveal";
 
@@ -28,9 +29,12 @@ const values = [
   },
 ];
 
-const About = () => (
-  <section id="about" className="section-atmosphere relative py-32 px-4">
-    <div className="max-w-6xl mx-auto space-y-16">
+const About = () => {
+  const reduceMotion = useReducedMotion();
+
+  return (
+    <section id="about" className="section-atmosphere relative py-24 px-4">
+    <div className="max-w-6xl mx-auto space-y-8 md:space-y-12">
       <SectionHeading
         eyebrow="01 · About"
         title="Computer Engineering graduate with UAE IT experience."
@@ -39,9 +43,9 @@ const About = () => (
 
       <Reveal variant="up">
         <motion.div
-          whileHover={{ y: -4, scale: 1.01 }}
+          whileHover={reduceMotion ? undefined : { y: -4, scale: 1.01 }}
           transition={{ type: "spring", stiffness: 220, damping: 24 }}
-          className="group depth-card shine-card relative glass-strong clean-panel rounded-3xl p-8 md:p-12 overflow-hidden transform-gpu"
+          className="group depth-card shine-card relative glass-strong clean-panel rounded-3xl p-8 md:p-12 overflow-hidden"
         >
           <div className="absolute -top-24 -right-24 w-64 h-64 rounded-full bg-primary/30 blur-3xl" />
           <div className="absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
@@ -59,26 +63,30 @@ const About = () => (
         </motion.div>
       </Reveal>
 
-      <StaggerReveal className="grid md:grid-cols-3 gap-5" childClassName="h-full">
-        {values.map((v, i) => (
-          <motion.div
+      <StaggerReveal className="grid gap-3 md:grid-cols-3 md:gap-5" childClassName="h-full">
+        {values.map((v) => (
+          <ImmersiveCard
             key={v.title}
-            whileHover={{ y: -8, rotateX: 2, rotateY: i % 2 === 0 ? -2 : 2 }}
-            whileTap={{ scale: 0.98 }}
-            transition={{ type: "spring", stiffness: 250, damping: 20 }}
-            className="group depth-card shine-card relative h-full glass clean-panel rounded-3xl p-6 overflow-hidden transform-gpu"
+            intensity={3.25}
+            perspective={1000}
+            className="group depth-card shine-card relative h-full overflow-hidden rounded-2xl p-4 glass clean-panel md:rounded-3xl md:p-6"
           >
             <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-br from-primary/10 via-background/55 to-transparent" />
-            <div className={`soft-icon-pop relative w-11 h-11 rounded-2xl bg-background/70 border border-border/45 flex items-center justify-center mb-5 ${v.tone}`}>
-              <v.icon className="w-5 h-5 transition-transform duration-300 group-hover:-translate-y-0.5" />
+            <div className="relative flex items-start gap-3 md:block">
+              <div className={`soft-icon-pop flex h-10 w-10 flex-none items-center justify-center rounded-xl border border-border/45 bg-background/70 md:mb-5 md:h-11 md:w-11 md:rounded-2xl ${v.tone}`}>
+                <v.icon className="h-5 w-5 transition-transform duration-300 group-hover:-translate-y-0.5" />
+              </div>
+              <div className="min-w-0">
+                <h4 className="font-display text-base font-semibold md:mb-2 md:text-lg">{v.title}</h4>
+                <p className="mobile-justify-text relative mt-1 text-left text-sm leading-5 text-muted-foreground md:mt-0 md:leading-relaxed">{v.body}</p>
+              </div>
             </div>
-            <h4 className="relative font-display text-lg font-semibold mb-2">{v.title}</h4>
-            <p className="mobile-justify-text relative text-sm text-muted-foreground leading-relaxed text-left">{v.body}</p>
-          </motion.div>
+          </ImmersiveCard>
         ))}
       </StaggerReveal>
     </div>
-  </section>
-);
+    </section>
+  );
+};
 
 export default About;

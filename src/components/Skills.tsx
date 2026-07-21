@@ -5,6 +5,7 @@ import {
   ArrowRight,
   Braces,
   CloudCog,
+  Code2,
   Database,
   MonitorSmartphone,
   Network,
@@ -25,38 +26,52 @@ type SkillGroup = {
 
 const skillGroups: SkillGroup[] = [
   {
-    label: "IT Support",
+    label: "IT Support & Troubleshooting",
     kicker: "Hardware · Software · Users",
     icon: Wrench,
     items: [
-      "Desktop and Laptop Support",
-      "Hardware Diagnostics",
+      "Desktop & Laptop Support",
+      "End-User Support",
       "Hardware & Software Troubleshooting",
       "Windows Installation & Configuration",
       "Application Installation",
       "System Configuration",
-      "Peripheral Support",
-      "Preventive Maintenance",
-      "End-User Support",
     ],
   },
   {
-    label: "Networking & Systems",
-    kicker: "Connectivity · Platforms · Office",
+    label: "Networking Fundamentals",
+    kicker: "Connectivity · Diagnostics · Fundamentals",
     icon: Network,
     items: [
-      "TCP/IP",
       "LAN/Wi-Fi Troubleshooting",
       "DNS",
-      "DHCP",
-      "Router Configuration",
+      "DHCP Concept",
       "Basic Network Diagnostics",
-      "Windows",
-      "Microsoft Office",
-      "Outlook",
-      "Google Workspace",
-      "File & Document Management",
     ],
+  },
+  {
+    label: "Business Systems & Digital Solutions",
+    kicker: "ERP · Automation · Reporting",
+    icon: Workflow,
+    items: [
+      "ERP Development",
+      "Business Process Automation",
+      "Reporting",
+      "Data Management",
+      "Technical Documentation",
+    ],
+  },
+  {
+    label: "Database & Data Management",
+    kicker: "SQL · Modeling · Data",
+    icon: Database,
+    items: ["SQL", "Drizzle ORM", "Database Design"],
+  },
+  {
+    label: "Backend Development & APIs",
+    kicker: "Services · APIs · Data flow",
+    icon: Braces,
+    items: ["Node.js", "Express.js", "RESTful APIs"],
   },
   {
     label: "Frontend Development",
@@ -65,49 +80,23 @@ const skillGroups: SkillGroup[] = [
     items: ["React", "TypeScript", "JavaScript (ES6+)", "HTML5", "CSS3", "Tailwind CSS", "Vite"],
   },
   {
-    label: "Backend & APIs",
-    kicker: "Services · Integrations · Data flow",
-    icon: Braces,
-    items: ["Node.js", "Express.js", "RESTful API Development", "API Integration"],
+    label: "Development Tools",
+    kicker: "Workflow · Testing · Version control",
+    icon: Code2,
+    items: ["Git", "GitHub", "VS Code", "Postman", "npm", "ESLint"],
   },
   {
-    label: "Database & Version Control",
-    kicker: "Modeling · Storage · Collaboration",
-    icon: Database,
-    items: ["SQL", "PostgreSQL", "Drizzle ORM", "Database Design", "Data Modeling", "Git", "GitHub"],
-  },
-  {
-    label: "Web Operations",
-    kicker: "Tools · Deployment · Maintenance",
+    label: "Deployment & Web Operations",
+    kicker: "Hosting · Domains · Production",
     icon: CloudCog,
     items: [
-      "VS Code",
-      "Postman",
-      "npm",
       "Vercel",
       "Hostinger",
       "GoDaddy",
-      "ESLint",
-      "Application Deployment",
-      "Environment Configuration",
-      "Build Management",
-      "Domain and DNS Configuration",
-      "Production Maintenance",
-      "System Monitoring",
-      "Technical Troubleshooting",
-    ],
-  },
-  {
-    label: "Business Systems",
-    kicker: "Automation · Reporting · Operations",
-    icon: Workflow,
-    items: [
-      "ERP Development",
-      "Business Process Automation",
-      "Workflow Optimization",
-      "Reporting",
-      "Data Management",
-      "Technical Documentation",
+      "Website Deployment",
+      "Website Maintenance",
+      "Domain & DNS Configuration",
+      "Production Support",
     ],
   },
 ];
@@ -324,12 +313,12 @@ const Skills = () => {
     .join(" and ");
 
   return (
-    <section id="skills" className="section-atmosphere relative px-4 py-32">
-      <div className="mx-auto max-w-7xl space-y-14">
+    <section id="skills" className="section-atmosphere relative px-4 py-24">
+      <div className="mx-auto max-w-7xl space-y-12">
         <SectionHeading
           eyebrow="02 · Skills"
           title="A practical toolkit, chapter by chapter."
-          description="Open the skills book and turn through IT support, systems, development, deployment, and business operations."
+          description="Open the skills book and turn through IT support, networking, business systems, development, tooling, and deployment."
         />
 
         <Reveal variant="up" amount={0.15}>

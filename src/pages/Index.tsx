@@ -10,7 +10,7 @@ import Navbar from "@/components/Navbar";
 import SmoothScroll from "@/components/SmoothScroll";
 import ScrollProgress from "@/components/ScrollProgress";
 import EngineeringBackground from "@/components/EngineeringBackground";
-import { motion } from "framer-motion";
+import SwipeSection from "@/components/SwipeSection";
 
 const Index = () => {
   return (
@@ -21,24 +21,33 @@ const Index = () => {
       <SmoothScroll />
       <ScrollProgress />
       <EngineeringBackground />
-      <motion.div
-        initial={{ opacity: 0, y: 12 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.42, ease: [0.2, 0, 0, 1] }}
-        className="relative z-10"
-      >
+      <div className="relative z-10">
         <Navbar />
         <main id="main-content">
-          <Hero />
-          <About />
-          <Skills />
-          <WorkExperience />
-          <Projects />
-          <Education />
-          <Contact />
+          <SwipeSection index={0} eager>
+            <Hero />
+          </SwipeSection>
+          <SwipeSection index={1}>
+            <About />
+          </SwipeSection>
+          <SwipeSection index={2}>
+            <Skills />
+          </SwipeSection>
+          <SwipeSection index={3}>
+            <WorkExperience />
+          </SwipeSection>
+          <SwipeSection index={4}>
+            <Projects />
+          </SwipeSection>
+          <SwipeSection index={5}>
+            <Education />
+          </SwipeSection>
+          <SwipeSection index={6}>
+            <Contact />
+          </SwipeSection>
         </main>
         <Footer />
-      </motion.div>
+      </div>
     </div>
   );
 };

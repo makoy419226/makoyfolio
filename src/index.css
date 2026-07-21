@@ -468,7 +468,6 @@
   .shine-card {
     position: relative;
     isolation: isolate;
-    transform: none !important;
     transition:
       border-color var(--duration-medium) var(--motion-standard),
       box-shadow var(--duration-medium) var(--motion-standard),
@@ -480,6 +479,34 @@
   .shine-card:hover {
     border-color: hsl(var(--primary) / 0.3);
     box-shadow: var(--shadow-lg);
+  }
+
+  .immersive-card {
+    transform-style: preserve-3d;
+    transform-origin: center;
+    backface-visibility: hidden;
+  }
+
+  .immersive-card:focus-within {
+    border-color: hsl(var(--primary) / 0.42);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .hero-motion-scene .material-portrait-card {
+    transform: translateZ(14px);
+  }
+
+  @media (hover: hover) and (pointer: fine) {
+    .immersive-card .soft-icon-pop {
+      transition:
+        transform var(--duration-medium) var(--motion-standard),
+        background-color var(--duration-short) var(--motion-standard),
+        color var(--duration-short) var(--motion-standard);
+    }
+
+    .immersive-card:hover .soft-icon-pop {
+      transform: translateY(-2px) scale(1.02);
+    }
   }
 
   .shine-card::after {
@@ -577,6 +604,33 @@
 
   .section-atmosphere {
     position: relative;
+  }
+
+  .swipe-page {
+    position: relative;
+    isolation: isolate;
+    transform-origin: 50% 0;
+  }
+
+  .swipe-page:not(.swipe-page--first)::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    z-index: 2;
+    width: min(72rem, 88vw);
+    height: 1px;
+    pointer-events: none;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      hsl(var(--primary) / 0.14) 24%,
+      hsl(var(--primary) / 0.24) 50%,
+      hsl(var(--primary) / 0.14) 76%,
+      transparent
+    );
+    box-shadow: 0 -18px 42px 8px hsl(var(--primary) / 0.07);
+    transform: translateX(-50%);
   }
 
   .section-atmosphere::before {
@@ -1161,7 +1215,7 @@
 
   .ce-grid {
     position: absolute;
-    inset: 0;
+    inset: -3rem 0;
     opacity: 0.22;
     background-image:
       linear-gradient(hsl(var(--primary) / 0.09) 1px, transparent 1px),
@@ -1169,6 +1223,11 @@
     background-size: 96px 96px;
     mask-image: linear-gradient(180deg, transparent 0%, black 12%, black 72%, transparent 100%);
     -webkit-mask-image: linear-gradient(180deg, transparent 0%, black 12%, black 72%, transparent 100%);
+  }
+
+  .ce-schematic-motion {
+    position: absolute;
+    inset: -3rem 0;
   }
 
   .ce-schematic {
@@ -1283,9 +1342,14 @@
     text-align: left;
   }
 
-  .section-atmosphere {
-    padding-top: 6rem !important;
-    padding-bottom: 6rem !important;
+  .swipe-page:not(.swipe-page--first)::after {
+    width: 78vw;
+    box-shadow: 0 -14px 32px 6px hsl(var(--primary) / 0.055);
+  }
+
+  section.section-atmosphere {
+    padding-top: 4.5rem !important;
+    padding-bottom: 4.5rem !important;
   }
 
   .ce-schematic {
@@ -1377,6 +1441,19 @@
   }
 }
 
+@media (max-width: 767px) and (prefers-reduced-motion: no-preference),
+  (max-width: 1023px) and (pointer: coarse) and (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-padding-top: 1.5rem;
+    scroll-snap-type: y proximity;
+  }
+
+  .swipe-page {
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+  }
+}
+
 @media (min-width: 960px) {
   .skills-book__list--dense {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1392,5 +1469,16 @@
     animation-iteration-count: 1 !important;
     scroll-behavior: auto !important;
     transition-duration: 0.001ms !important;
+  }
+
+  .immersive-card .soft-icon-pop,
+  .immersive-card:hover .soft-icon-pop,
+  .hero-motion-scene .material-portrait-card {
+    transform: none !important;
+  }
+
+  .swipe-page {
+    opacity: 1 !important;
+    transform: none !important;
   }
 }

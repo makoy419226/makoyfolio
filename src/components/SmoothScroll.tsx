@@ -1,20 +1,24 @@
 import { useEffect } from "react";
 import Lenis from "lenis";
+import Snap from "lenis/snap";
 
 const NAV_OFFSET = 24;
 const scrollEasing = (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t));
 
 /**
  * Mounts a global Lenis instance for buttery scroll.
- * Disabled automatically when the user prefers reduced motion.
+ * Disabled automatically for native mobile scrolling and reduced motion.
  */
 const SmoothScroll = () => {
   useEffect(() => {
     const prefersReduced =
       typeof window !== "undefined" &&
       window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const prefersNativeMobileScroll = window.matchMedia(
+      "(max-width: 767px), (max-width: 1023px) and (pointer: coarse)",
+    ).matches;
 
-    const lenis = prefersReduced
+    const lenis = prefersReduced || prefersNativeMobileScroll
       ? null
       : new Lenis({
           duration: 1.15,
@@ -30,6 +34,32 @@ const SmoothScroll = () => {
       rafId = requestAnimationFrame(raf);
     };
     if (lenis) rafId = requestAnimationFrame(raf);
+
+    const snapMedia = window.matchMedia("(min-width: 768px) and (pointer: fine)");
+    let sectionSnap: Snap | null = null;
+    let snapSetupFrame = 0;
+
+    const configureSectionSnap = () => {
+      sectionSnap?.destroy();
+      sectionSnap = null;
+
+      if (!lenis || !snapMedia.matches) return;
+
+      const sections = Array.from(document.querySelectorAll<HTMLElement>("[data-swipe-page]"));
+      if (!sections.length) return;
+
+      sectionSnap = new Snap(lenis, {
+        type: "proximity",
+        duration: 0.68,
+        easing: scrollEasing,
+        distanceThreshold: "24%",
+        debounce: 140,
+      });
+      sectionSnap.addElements(sections, { align: "start", ignoreTransform: true });
+    };
+
+    if (lenis) snapSetupFrame = requestAnimationFrame(configureSectionSnap);
+    snapMedia.addEventListener("change", configureSectionSnap);
 
     const scrollToHash = (hash: string) => {
       const id = decodeURIComponent(hash.slice(1));
@@ -83,6 +113,9 @@ const SmoothScroll = () => {
 
     return () => {
       document.removeEventListener("click", onClick, { capture: true });
+      snapMedia.removeEventListener("change", configureSectionSnap);
+      if (snapSetupFrame) cancelAnimationFrame(snapSetupFrame);
+      sectionSnap?.destroy();
       if (rafId) cancelAnimationFrame(rafId);
       lenis?.destroy();
     };

@@ -1,8 +1,8 @@
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ExternalLink, Github, Globe, Smartphone, Star } from "lucide-react";
-import { motion } from "framer-motion";
 import LWLAppPreview from "./LWLAppPreview";
+import ImmersiveCard from "./ImmersiveCard";
 import SectionHeading from "./SectionHeading";
 import Reveal from "./Reveal";
 import StaggerReveal from "./StaggerReveal";
@@ -49,8 +49,8 @@ const otherProjects = [
 
 const Projects = () => {
   return (
-    <section id="projects" className="section-atmosphere relative py-32 px-4">
-      <div className="max-w-6xl mx-auto space-y-16">
+    <section id="projects" className="section-atmosphere relative py-24 px-4">
+      <div className="max-w-6xl mx-auto space-y-12">
         <SectionHeading
           eyebrow="04 · Projects"
           title="Selected work, shipped and live."
@@ -72,12 +72,12 @@ const Projects = () => {
           </div>
 
           <StaggerReveal className="grid md:grid-cols-2 lg:grid-cols-3 gap-5" childClassName="h-full" stagger={0.08}>
-            {otherProjects.map((project, index) => (
-              <motion.div
+            {otherProjects.map((project) => (
+              <ImmersiveCard
                 key={project.title}
-                whileHover={{ y: -6, rotateX: 1.5 }}
-                transition={{ type: "spring", stiffness: 220, damping: 20 }}
-                className="group depth-card shine-card relative glass rounded-3xl p-6 h-full overflow-hidden transform-gpu"
+                intensity={3.5}
+                perspective={1000}
+                className="group depth-card shine-card relative glass rounded-3xl p-6 h-full overflow-hidden"
               >
                 <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-br from-primary/15 via-transparent to-google-yellow/10" />
                 <div className="relative space-y-4">
@@ -143,7 +143,7 @@ const Projects = () => {
                     </a>
                   </Button>
                 </div>
-              </motion.div>
+              </ImmersiveCard>
             ))}
           </StaggerReveal>
         </div>
