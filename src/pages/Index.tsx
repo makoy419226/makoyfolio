@@ -10,7 +10,6 @@ import Navbar from "@/components/Navbar";
 import SmoothScroll from "@/components/SmoothScroll";
 import ScrollProgress from "@/components/ScrollProgress";
 import EngineeringBackground from "@/components/EngineeringBackground";
-import SwipeSection from "@/components/SwipeSection";
 
 const Index = () => {
   return (
@@ -24,27 +23,13 @@ const Index = () => {
       <div className="relative z-10">
         <Navbar />
         <main id="main-content">
-          <SwipeSection index={0} eager>
-            <Hero />
-          </SwipeSection>
-          <SwipeSection index={1}>
-            <About />
-          </SwipeSection>
-          <SwipeSection index={2}>
-            <Skills />
-          </SwipeSection>
-          <SwipeSection index={3}>
-            <WorkExperience />
-          </SwipeSection>
-          <SwipeSection index={4}>
-            <Projects />
-          </SwipeSection>
-          <SwipeSection index={5}>
-            <Education />
-          </SwipeSection>
-          <SwipeSection index={6}>
-            <Contact />
-          </SwipeSection>
+          <Hero />
+          <About />
+          <Skills />
+          <WorkExperience />
+          <Projects />
+          <Education />
+          <Contact />
         </main>
         <Footer />
       </div>

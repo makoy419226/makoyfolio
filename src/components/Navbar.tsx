@@ -55,7 +55,7 @@ const Navbar = () => {
 
       container.scrollTo({
         left: safeLeft,
-        behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth",
+        behavior: "auto",
       });
     };
 
@@ -76,6 +76,8 @@ const Navbar = () => {
     if (!sections.length) return;
 
     let rafId = 0;
+    let sectionPositions: Array<{ id: string; top: number }> = [];
+
     const updateActive = () => {
       rafId = 0;
       if (performance.now() < activeLockUntil.current) return;
@@ -86,9 +88,8 @@ const Navbar = () => {
       }
 
       const marker = window.scrollY + 140;
-      const current = sections.reduce((match, section) => {
-        const sectionTop = section.getBoundingClientRect().top + window.scrollY;
-        return sectionTop <= marker ? `#${section.id}` : match;
+      const current = sectionPositions.reduce((match, section) => {
+        return section.top <= marker ? `#${section.id}` : match;
       }, "#top");
       setActive(current);
     };
@@ -97,21 +98,26 @@ const Navbar = () => {
       if (!rafId) rafId = requestAnimationFrame(updateActive);
     };
 
-    const onSectionChange = (event: Event) => {
-      const hash = (event as CustomEvent<string>).detail;
-      if (hash) holdActive(hash);
+    const measureSections = () => {
+      sectionPositions = sections.map((section) => ({
+        id: section.id,
+        top: section.getBoundingClientRect().top + window.scrollY,
+      }));
+      scheduleUpdate();
     };
 
-    updateActive();
+    const layoutObserver = new ResizeObserver(measureSections);
+    sections.forEach((section) => layoutObserver.observe(section));
+
+    measureSections();
     window.addEventListener("scroll", scheduleUpdate, { passive: true });
-    window.addEventListener("resize", scheduleUpdate);
-    window.addEventListener("portfolio:section-change", onSectionChange);
+    window.addEventListener("resize", measureSections);
 
     return () => {
       if (rafId) cancelAnimationFrame(rafId);
+      layoutObserver.disconnect();
       window.removeEventListener("scroll", scheduleUpdate);
-      window.removeEventListener("resize", scheduleUpdate);
-      window.removeEventListener("portfolio:section-change", onSectionChange);
+      window.removeEventListener("resize", measureSections);
     };
   }, []);
 

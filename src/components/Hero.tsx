@@ -125,12 +125,14 @@ const Hero = () => {
             transition={{ duration: 0.42, delay: 0.24, ease: [0.2, 0, 0, 1] }}
             className="mt-6 flex flex-col gap-3 sm:flex-row"
           >
-            <Button asChild size="lg" className="material-filled-button min-h-14 rounded-full px-7">
-              <a href="#contact">
-                Let&apos;s talk
-                <ArrowRight className="h-4 w-4" />
-              </a>
-            </Button>
+            <span className="cta-pulse-shell inline-flex rounded-full">
+              <Button asChild size="lg" className="material-filled-button min-h-14 w-full rounded-full px-7 sm:w-auto">
+                <a href="#contact">
+                  Let&apos;s talk
+                  <ArrowRight className="h-4 w-4" />
+                </a>
+              </Button>
+            </span>
             <Button asChild size="lg" variant="outline" className="material-outlined-button min-h-14 rounded-full px-7">
               <a href="#projects">Explore projects</a>
             </Button>

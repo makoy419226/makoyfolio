@@ -1,6 +1,4 @@
 import { Briefcase, MapPin } from "lucide-react";
-import { useRef, type RefObject } from "react";
-import { motion, useReducedMotion, useScroll, useSpring } from "framer-motion";
 import SectionHeading from "./SectionHeading";
 import Reveal from "./Reveal";
 
@@ -46,30 +44,7 @@ const roles = [
 const timelineLineClass =
   "absolute bottom-0 left-4 top-0 w-px origin-top bg-gradient-to-b from-primary via-google-blue to-google-green shadow-[0_0_16px_hsl(var(--primary)/0.4)] md:left-1/2";
 
-const ActiveTimelineLine = ({ target }: { target: RefObject<HTMLDivElement> }) => {
-  const { scrollYProgress } = useScroll({
-    target,
-    offset: ["start 78%", "end 30%"],
-  });
-  const timelineProgress = useSpring(scrollYProgress, {
-    stiffness: 110,
-    damping: 24,
-    mass: 0.25,
-  });
-
-  return (
-    <motion.div
-      className={timelineLineClass}
-      style={{ scaleY: timelineProgress }}
-      aria-hidden
-    />
-  );
-};
-
 const WorkExperience = () => {
-  const timelineRef = useRef<HTMLDivElement>(null);
-  const reduceMotion = useReducedMotion();
-
   return (
     <section id="experience" className="section-atmosphere relative py-24 px-4">
       <div className="max-w-5xl mx-auto space-y-12">
@@ -79,16 +54,12 @@ const WorkExperience = () => {
           description="Six months of UAE experience in IT support and web development, alongside freelance full-stack delivery and hands-on business operations."
         />
 
-        <div ref={timelineRef} className="relative">
+        <div className="relative">
           <div
             className="absolute bottom-0 left-4 top-0 w-px bg-border/70 md:left-1/2"
             aria-hidden
           />
-          {reduceMotion ? (
-            <div className={timelineLineClass} aria-hidden />
-          ) : (
-            <ActiveTimelineLine target={timelineRef} />
-          )}
+          <div className={timelineLineClass} aria-hidden />
 
           <div className="space-y-10">
             {roles.map((r, i) => {
@@ -105,18 +76,7 @@ const WorkExperience = () => {
                       </p>
                     </div>
 
-                    <motion.span
-                      className="absolute left-4 md:left-1/2 top-2 w-3 h-3 rounded-full bg-gradient-accent ring-4 ring-background shadow-[0_0_24px_hsl(var(--primary)/0.42)]"
-                      style={{ x: "-50%" }}
-                      initial={reduceMotion ? false : { scale: 0, opacity: 0 }}
-                      whileInView={{ scale: 1, opacity: 1 }}
-                      viewport={{ once: true }}
-                      transition={
-                        reduceMotion
-                          ? { duration: 0 }
-                          : { type: "spring", stiffness: 320, damping: 22, delay: 0.08 }
-                      }
-                    />
+                    <span className="absolute left-4 top-2 h-3 w-3 -translate-x-1/2 rounded-full bg-gradient-accent shadow-[0_0_24px_hsl(var(--primary)/0.42)] ring-4 ring-background md:left-1/2" />
 
                     <div className={`mt-4 md:mt-0 pl-12 ${flip ? "md:order-1 md:pr-10 md:pl-0" : "md:pl-10"}`}>
                       <div className="group depth-card shine-card glass rounded-2xl p-6 overflow-hidden">

@@ -43,7 +43,7 @@ const Contact = () => {
             </div>
 
             <div className="space-y-3">
-              {channels.map((c, i) => (
+              {channels.map((c) => (
                 <motion.a
                   key={c.label}
                   href={c.href}
@@ -52,10 +52,6 @@ const Contact = () => {
                   whileHover={reduceMotion ? undefined : { x: 6, y: -2 }}
                   whileTap={reduceMotion ? undefined : { scale: 0.985 }}
                   className="group group/channel depth-card shine-card flex items-center gap-4 glass rounded-2xl p-4 overflow-hidden"
-                  initial={reduceMotion ? false : { opacity: 0, x: 20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.06, duration: 0.4, ease: [0.2, 0, 0, 1] }}
                 >
                   <div className={`soft-icon-pop w-11 h-11 rounded-xl bg-background/70 border border-border/45 flex items-center justify-center ${c.tone}`}>
                     <c.icon className="w-5 h-5" />
