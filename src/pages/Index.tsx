@@ -10,6 +10,8 @@ import Navbar from "@/components/Navbar";
 import SmoothScroll from "@/components/SmoothScroll";
 import ScrollProgress from "@/components/ScrollProgress";
 import EngineeringBackground from "@/components/EngineeringBackground";
+import { PerformanceMode } from "@/hooks/use-performance-mode";
+import WhatsAppWidget from "@/components/WhatsAppWidget";
 
 const Index = () => {
   return (
@@ -17,9 +19,11 @@ const Index = () => {
       <a href="#main-content" className="skip-link">
         Skip to main content
       </a>
+      <PerformanceMode />
       <SmoothScroll />
       <ScrollProgress />
       <EngineeringBackground />
+      <WhatsAppWidget />
       <div className="relative z-10">
         <Navbar />
         <main id="main-content">

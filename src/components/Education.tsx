@@ -1,9 +1,19 @@
 import { Calendar, GraduationCap, Award, CheckCircle2 } from "lucide-react";
-import DocumentViewer from "./DocumentViewer";
+import { lazy, Suspense } from "react";
 import SectionHeading from "./SectionHeading";
 import Reveal from "./Reveal";
 import StaggerReveal from "./StaggerReveal";
-import CVViewer from "./CVViewer";
+import DeferredContent from "./DeferredContent";
+
+const DocumentViewer = lazy(() => import("./DocumentViewer"));
+const CVViewer = lazy(() => import("./CVViewer"));
+
+const DeferredFallback = ({ label }: { label: string }) => (
+  <div className="deferred-placeholder" role="status" aria-label={`Preparing ${label}`}>
+    <span className="deferred-placeholder__icon" aria-hidden />
+    <span>Preparing {label}…</span>
+  </div>
+);
 
 const Education = () => {
   const education = [
@@ -100,10 +110,18 @@ const Education = () => {
         </Reveal>
 
         {/* Documents Viewer */}
-        <DocumentViewer />
+        <DeferredContent fallback={<DeferredFallback label="official documents" />}>
+          <Suspense fallback={<DeferredFallback label="official documents" />}>
+            <DocumentViewer />
+          </Suspense>
+        </DeferredContent>
 
         {/* Live CV Viewer */}
-        <CVViewer />
+        <DeferredContent fallback={<DeferredFallback label="CV viewer" />}>
+          <Suspense fallback={<DeferredFallback label="CV viewer" />}>
+            <CVViewer />
+          </Suspense>
+        </DeferredContent>
       </div>
     </section>
   );

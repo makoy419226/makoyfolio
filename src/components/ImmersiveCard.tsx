@@ -16,6 +16,7 @@ import {
   type MotionStyle,
 } from "framer-motion";
 import { cn } from "@/lib/utils";
+import { usePerformanceMode } from "@/hooks/use-performance-mode";
 
 const FINE_HOVER_POINTER = "(hover: hover) and (pointer: fine)";
 
@@ -70,6 +71,8 @@ const ImmersiveCard = forwardRef<HTMLDivElement, ImmersiveCardProps>(
     ref,
   ) => {
     const prefersReducedMotion = useReducedMotion();
+    const { lowPower } = usePerformanceMode();
+    const motionDisabled = Boolean(prefersReducedMotion || lowPower);
     const boundsRef = useRef<DOMRect | null>(null);
     const finePointerRef = useRef<MediaQueryList | null>(null);
     const trackingBoundsRef = useRef(false);
@@ -125,11 +128,11 @@ const ImmersiveCard = forwardRef<HTMLDivElement, ImmersiveCardProps>(
     );
 
     useEffect(() => {
-      if (prefersReducedMotion) {
+      if (motionDisabled) {
         reset();
         stopTrackingBounds();
       }
-    }, [prefersReducedMotion, reset, stopTrackingBounds]);
+    }, [motionDisabled, reset, stopTrackingBounds]);
 
     useEffect(
       () => () => {
@@ -145,7 +148,7 @@ const ImmersiveCard = forwardRef<HTMLDivElement, ImmersiveCardProps>(
     }, []);
 
     const handlePointerEnter: PointerEventHandler<HTMLDivElement> = (event) => {
-      if (supportsFineHover(event) && !prefersReducedMotion) {
+      if (supportsFineHover(event) && !motionDisabled) {
         boundsRef.current = event.currentTarget.getBoundingClientRect();
         startTrackingBounds();
 
@@ -158,7 +161,7 @@ const ImmersiveCard = forwardRef<HTMLDivElement, ImmersiveCardProps>(
     };
 
     const handlePointerMove: PointerEventHandler<HTMLDivElement> = (event) => {
-      if (supportsFineHover(event) && !prefersReducedMotion) {
+      if (supportsFineHover(event) && !motionDisabled) {
         const bounds = boundsRef.current ?? event.currentTarget.getBoundingClientRect();
         boundsRef.current = bounds;
 
@@ -200,8 +203,8 @@ const ImmersiveCard = forwardRef<HTMLDivElement, ImmersiveCardProps>(
       "--pointer-x": "50%",
       "--pointer-y": "50%",
       transformPerspective: Math.max(1, perspective),
-      rotateX: prefersReducedMotion ? 0 : rotateX,
-      rotateY: prefersReducedMotion ? 0 : rotateY,
+      rotateX: motionDisabled ? 0 : rotateX,
+      rotateY: motionDisabled ? 0 : rotateY,
     };
 
     return (
@@ -223,7 +226,7 @@ const ImmersiveCard = forwardRef<HTMLDivElement, ImmersiveCardProps>(
               inset: 0,
               borderRadius: "inherit",
               pointerEvents: "none",
-              opacity: prefersReducedMotion ? 0 : glowOpacity,
+              opacity: motionDisabled ? 0 : glowOpacity,
               background:
                 "radial-gradient(circle at var(--pointer-x, 50%) var(--pointer-y, 50%), hsl(var(--primary, 217 72% 43%) / 0.2) 0%, transparent 62%)",
             }}

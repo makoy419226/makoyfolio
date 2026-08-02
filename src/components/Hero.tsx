@@ -18,7 +18,8 @@ import {
 } from "framer-motion";
 import { useIsMobile } from "@/hooks/use-mobile";
 import ImmersiveCard from "./ImmersiveCard";
-import profilePhoto from "@/assets/profile-transparent.png";
+import profilePhoto from "@/assets/profile-transparent.webp";
+import { usePerformanceMode } from "@/hooks/use-performance-mode";
 
 const contactLinks = [
   {
@@ -80,7 +81,8 @@ const Hero = () => {
   const sectionRef = useRef<HTMLElement>(null);
   const reduceMotion = useReducedMotion();
   const isMobile = useIsMobile();
-  const motionDisabled = Boolean(reduceMotion || isMobile);
+  const { lowPower } = usePerformanceMode();
+  const motionDisabled = Boolean(reduceMotion || isMobile || lowPower);
 
   return (
     <section
@@ -178,6 +180,10 @@ const Hero = () => {
                   <motion.img
                     src={profilePhoto}
                     alt="Mark Angelou Egam Idusma"
+                    width={900}
+                    height={900}
+                    decoding="async"
+                    fetchPriority="high"
                     className="h-full w-full object-cover object-[50%_42%]"
                     whileHover={reduceMotion ? undefined : { scale: 1.025 }}
                     transition={{ duration: 0.3 }}

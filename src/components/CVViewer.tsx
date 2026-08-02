@@ -7,19 +7,28 @@ import {
 } from "pdfjs-dist";
 import pdfWorker from "pdfjs-dist/build/pdf.worker.min.mjs?url";
 import Reveal from "./Reveal";
+import { usePerformanceMode } from "@/hooks/use-performance-mode";
 
 const cvPath = "/documents/mark-angelou-idusma-cv.pdf";
 
 GlobalWorkerOptions.workerSrc = pdfWorker;
 
-const CVPage = ({ page, pageNumber }: { page: PDFPageProxy; pageNumber: number }) => {
+const CVPage = ({
+  page,
+  pageNumber,
+  renderScale,
+}: {
+  page: PDFPageProxy;
+  pageNumber: number;
+  renderScale: number;
+}) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
 
-    const viewport = page.getViewport({ scale: 1.6 });
+    const viewport = page.getViewport({ scale: renderScale });
     const context = canvas.getContext("2d");
     if (!context) return;
 
@@ -28,7 +37,7 @@ const CVPage = ({ page, pageNumber }: { page: PDFPageProxy; pageNumber: number }
 
     const renderTask = page.render({ canvas, canvasContext: context, viewport });
     return () => renderTask.cancel();
-  }, [page]);
+  }, [page, renderScale]);
 
   return (
     <figure className="space-y-2">
@@ -48,6 +57,8 @@ const CVPage = ({ page, pageNumber }: { page: PDFPageProxy; pageNumber: number }
 const CVViewer = () => {
   const [pages, setPages] = useState<PDFPageProxy[]>([]);
   const [error, setError] = useState(false);
+  const { lowPower } = usePerformanceMode();
+  const renderScale = lowPower ? 1.1 : 1.5;
 
   useEffect(() => {
     let active = true;
@@ -90,7 +101,7 @@ const CVViewer = () => {
 
           <a
             href={cvPath}
-            download="Mark-Angelou-Idusma-CV.pdf"
+            download="MARK_IDUSMA_CV.pdf"
             className="premium-button inline-flex min-h-11 min-w-11 flex-none items-center justify-center gap-2 rounded-full border border-border bg-background/70 px-3 text-sm font-medium transition-colors hover:border-primary hover:text-primary sm:px-4"
             aria-label="Download CV as a PDF"
           >
@@ -120,7 +131,12 @@ const CVViewer = () => {
           {!!pages.length && (
             <div className="mx-auto max-w-4xl space-y-4 sm:space-y-6">
               {pages.map((page, index) => (
-                <CVPage key={page.pageNumber} page={page} pageNumber={index + 1} />
+                <CVPage
+                  key={page.pageNumber}
+                  page={page}
+                  pageNumber={index + 1}
+                  renderScale={renderScale}
+                />
               ))}
             </div>
           )}

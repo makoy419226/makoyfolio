@@ -2,10 +2,10 @@ import { Card } from "@/components/ui/card";
 import { FileText } from "lucide-react";
 import Reveal from "./Reveal";
 import StaggerReveal from "./StaggerReveal";
-import certComtech from "@/assets/cert-comtech.jpg";
-import diplomaBisu from "@/assets/diploma-bisu.jpg";
-import diplomaHighschool from "@/assets/diploma-highschool.jpg";
-import recognitionSama from "@/assets/recognition-sama.jpg";
+import certComtech from "@/assets/cert-comtech.webp";
+import diplomaBisu from "@/assets/diploma-bisu.webp";
+import diplomaHighschool from "@/assets/diploma-highschool.webp";
+import recognitionSama from "@/assets/recognition-sama.webp";
 
 const DocumentViewer = () => {
   const documents = [
@@ -66,6 +66,10 @@ const DocumentViewer = () => {
                   <img
                     src={doc.image}
                     alt={doc.title}
+                    width={1000}
+                    height={1270}
+                    loading="lazy"
+                    decoding="async"
                     className="w-full h-full object-contain select-none pointer-events-none rotate-90 scale-[0.85] transition-transform duration-700 ease-out group-hover/document:scale-[0.875]"
                     draggable="false"
                     onContextMenu={(e) => e.preventDefault()}

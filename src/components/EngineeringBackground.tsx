@@ -1,6 +1,7 @@
 import { motion, useReducedMotion, useScroll, useSpring, useTransform } from "framer-motion";
 import { type ReactNode } from "react";
 import { useIsMobile } from "@/hooks/use-mobile";
+import { usePerformanceMode } from "@/hooks/use-performance-mode";
 
 const circuitPaths = [
   "M48 118 H178 V74 H326",
@@ -80,7 +81,8 @@ const EngineeringLayers = ({
 const EngineeringBackground = () => {
   const reduceMotion = useReducedMotion();
   const isMobile = useIsMobile();
-  const motionDisabled = Boolean(reduceMotion || isMobile);
+  const { lowPower } = usePerformanceMode();
+  const motionDisabled = Boolean(reduceMotion || isMobile || lowPower);
 
   return (
     <div aria-hidden className="computer-engineering-background pointer-events-none fixed inset-0 z-0 overflow-hidden">

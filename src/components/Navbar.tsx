@@ -26,10 +26,22 @@ const Navbar = () => {
   };
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24);
-    onScroll();
+    let frameId = 0;
+    const update = () => {
+      frameId = 0;
+      const next = window.scrollY > 24;
+      setScrolled((current) => current === next ? current : next);
+    };
+    const onScroll = () => {
+      if (!frameId) frameId = requestAnimationFrame(update);
+    };
+
+    update();
     window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    return () => {
+      if (frameId) cancelAnimationFrame(frameId);
+      window.removeEventListener("scroll", onScroll);
+    };
   }, []);
 
   useEffect(() => {

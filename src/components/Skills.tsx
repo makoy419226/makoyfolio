@@ -1,12 +1,12 @@
 import { useCallback, useState, type KeyboardEvent } from "react";
 import { motion, useReducedMotion } from "framer-motion";
+import { usePerformanceMode } from "@/hooks/use-performance-mode";
 import {
   ArrowLeft,
   ArrowRight,
-  Braces,
   CloudCog,
-  Code2,
   Database,
+  Sparkles,
   MonitorSmartphone,
   Network,
   Workflow,
@@ -19,84 +19,67 @@ import { cn } from "@/lib/utils";
 
 type SkillGroup = {
   label: string;
-  kicker: string;
   icon: LucideIcon;
   items: string[];
 };
 
 const skillGroups: SkillGroup[] = [
   {
-    label: "IT Support & Troubleshooting",
-    kicker: "Hardware · Software · Users",
+    label: "IT Support",
     icon: Wrench,
     items: [
-      "Desktop & Laptop Support",
+      "Desktop and Laptop Support",
       "End-User Support",
-      "Hardware & Software Troubleshooting",
-      "Windows Installation & Configuration",
-      "Application Installation",
-      "System Configuration",
+      "Software Troubleshooting",
+      "Windows Configuration",
     ],
   },
   {
-    label: "Networking Fundamentals",
-    kicker: "Connectivity · Diagnostics · Fundamentals",
+    label: "Networking",
     icon: Network,
     items: [
-      "LAN/Wi-Fi Troubleshooting",
       "DNS",
-      "DHCP Concept",
+      "Static IP and DHCP Concepts",
       "Basic Network Diagnostics",
     ],
   },
   {
-    label: "Business Systems & Digital Solutions",
-    kicker: "ERP · Automation · Reporting",
+    label: "Systems and Operations",
     icon: Workflow,
     items: [
       "ERP Development",
+      "CRM Features",
       "Business Process Automation",
       "Reporting",
       "Data Management",
-      "Technical Documentation",
     ],
   },
   {
-    label: "Database & Data Management",
-    kicker: "SQL · Modeling · Data",
-    icon: Database,
-    items: ["SQL", "Drizzle ORM", "Database Design"],
-  },
-  {
-    label: "Backend Development & APIs",
-    kicker: "Services · APIs · Data flow",
-    icon: Braces,
-    items: ["Node.js", "Express.js", "RESTful APIs"],
-  },
-  {
-    label: "Frontend Development",
-    kicker: "Interfaces · Accessibility · Performance",
+    label: "Web Development",
     icon: MonitorSmartphone,
-    items: ["React", "TypeScript", "JavaScript (ES6+)", "HTML5", "CSS3", "Tailwind CSS", "Vite"],
+    items: ["React", "TypeScript", "JavaScript", "Node.js", "Express.js", "API Integration"],
   },
   {
-    label: "Development Tools",
-    kicker: "Workflow · Testing · Version control",
-    icon: Code2,
-    items: ["Git", "GitHub", "VS Code", "Postman", "npm", "ESLint"],
+    label: "Database and Tools",
+    icon: Database,
+    items: ["SQL", "Git", "GitHub", "VS Code"],
   },
   {
-    label: "Deployment & Web Operations",
-    kicker: "Hosting · Domains · Production",
+    label: "Deployment",
     icon: CloudCog,
     items: [
       "Vercel",
       "Hostinger",
       "GoDaddy",
-      "Website Deployment",
-      "Website Maintenance",
-      "Domain & DNS Configuration",
+      "Domain and DNS Configuration",
       "Production Support",
+    ],
+  },
+  {
+    label: "AI-Assisted Development",
+    icon: Sparkles,
+    items: [
+      "Use of generative AI tools for rapid prototyping, debugging, code review, technical documentation, and workflow optimization",
     ],
   },
 ];
@@ -119,7 +102,6 @@ const SkillPage = ({ group, pageNumber }: { group: SkillGroup; pageNumber: numbe
       </header>
 
       <div className="skills-book__title-block">
-        <p>{group.kicker}</p>
         <h3>{group.label}</h3>
       </div>
 
@@ -268,6 +250,8 @@ const Skills = () => {
   const [direction, setDirection] = useState<1 | -1>(1);
   const [turnCount, setTurnCount] = useState(0);
   const reduceMotion = useReducedMotion();
+  const { lowPower } = usePerformanceMode();
+  const simplifiedMotion = Boolean(reduceMotion || lowPower);
 
   const leftPage = pages[spreadIndex * 2];
   const rightPage = pages[spreadIndex * 2 + 1];
@@ -316,13 +300,12 @@ const Skills = () => {
     <section id="skills" className="section-atmosphere relative px-4 py-24">
       <div className="mx-auto max-w-7xl space-y-12">
         <SectionHeading
-          eyebrow="02 · Skills"
-          title="A practical toolkit, chapter by chapter."
-          description="Open the skills book and turn through IT support, networking, business systems, development, tooling, and deployment."
+          eyebrow="02"
+          title="Areas of Expertise"
         />
 
         <Reveal variant="up" amount={0.15}>
-          <MobileSkillsBook reduceMotion={reduceMotion} />
+          <MobileSkillsBook reduceMotion={simplifiedMotion} />
 
           <div
             className="skills-book-shell skills-book-shell--desktop"
@@ -348,9 +331,9 @@ const Skills = () => {
               <motion.div
                 key={`spread-${spreadIndex}`}
                 className="skills-book__spread"
-                initial={reduceMotion ? false : { opacity: 0.55, x: direction * 18, rotateY: direction * -3 }}
+                initial={simplifiedMotion ? false : { opacity: 0.55, x: direction * 18, rotateY: direction * -3 }}
                 animate={{ opacity: 1, x: 0, rotateY: 0 }}
-                transition={{ duration: reduceMotion ? 0 : 0.26, ease: [0.2, 0, 0, 1] }}
+                transition={{ duration: simplifiedMotion ? 0 : 0.26, ease: [0.2, 0, 0, 1] }}
               >
                 <div className="skills-book__page skills-book__page--left">
                   {leftPage && <SkillPage group={leftPage} pageNumber={spreadIndex * 2 + 1} />}
@@ -362,7 +345,7 @@ const Skills = () => {
                 )}
               </motion.div>
 
-              {!reduceMotion && turnCount > 0 && (
+              {!simplifiedMotion && turnCount > 0 && (
                 <motion.div
                   key={`turn-${turnCount}`}
                   aria-hidden

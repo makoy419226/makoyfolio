@@ -1,13 +1,13 @@
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ExternalLink, Github, Globe, Smartphone, Star } from "lucide-react";
-import LWLAppPreview from "./LWLAppPreview";
+import FeaturedProject from "./FeaturedProject";
 import ImmersiveCard from "./ImmersiveCard";
 import SectionHeading from "./SectionHeading";
 import Reveal from "./Reveal";
 import StaggerReveal from "./StaggerReveal";
-import almullaHoldingLogo from "@/assets/almulla-holding-logo.png";
-import samaCebuLogo from "@/assets/sama-cebu-logo.png";
+import almullaHoldingLogo from "@/assets/almulla-holding-logo.webp";
+import samaCebuLogo from "@/assets/sama-cebu-logo.webp";
 
 const otherProjects = [
   {
@@ -62,7 +62,7 @@ const Projects = () => {
             <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-primary">Featured</span>
             <span className="h-px flex-1 bg-gradient-to-r from-primary/40 to-transparent" />
           </div>
-          <LWLAppPreview />
+          <FeaturedProject />
         </Reveal>
 
         <div className="space-y-5">
@@ -87,8 +87,11 @@ const Projects = () => {
                         <img
                           src={project.logo}
                           alt={`${project.title} logo`}
+                          width={256}
+                          height={256}
                           className="w-full h-full object-contain"
                           loading="lazy"
+                          decoding="async"
                         />
                       </div>
                     ) : (
