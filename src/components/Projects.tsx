@@ -1,6 +1,6 @@
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { ExternalLink, Github, Globe, Smartphone, Star } from "lucide-react";
+import { ExternalLink, Github, Globe, Mic, Star } from "lucide-react";
 import FeaturedProject from "./FeaturedProject";
 import ImmersiveCard from "./ImmersiveCard";
 import SectionHeading from "./SectionHeading";
@@ -29,8 +29,8 @@ const otherProjects = [
     tech: ["Kotlin", "Android", "Gradle"],
     url: "https://github.com/makoy419226/RECORDER",
     github: true,
-    icon: <Smartphone className="w-6 h-6" />,
-    iconClass: "bg-google-green/20 text-google-green",
+    icon: <Mic className="w-6 h-6" strokeWidth={2.8} />,
+    iconClass: "bg-gradient-to-b from-[#ff182d] to-[#d90e24] text-white",
     stars: 0,
   },
   {

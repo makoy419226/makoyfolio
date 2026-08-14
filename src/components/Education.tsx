@@ -4,6 +4,8 @@ import SectionHeading from "./SectionHeading";
 import Reveal from "./Reveal";
 import StaggerReveal from "./StaggerReveal";
 import DeferredContent from "./DeferredContent";
+import cristalLogo from "@/assets/cec-logo.png";
+const bisuLogo = "https://bisucandijay.edu.ph/wp-content/uploads/2025/06/bisu_logo.png";
 
 const DocumentViewer = lazy(() => import("./DocumentViewer"));
 const CVViewer = lazy(() => import("./CVViewer"));
@@ -21,13 +23,17 @@ const Education = () => {
       degree: "Bachelor of Science in Computer Engineering",
       institution: "Bohol Island State University",
       date: "June 2025",
-      color: "google-blue"
+      color: "google-blue",
+      logo: bisuLogo,
+      logoAlt: "Bohol Island State University seal"
     },
     {
       degree: "TVL–ICT Specialization in Computer Programming",
-      institution: "Cristal-E College",
+      institution: "Cristal e-College",
       date: "March 2020",
-      color: "google-red"
+      color: "google-red",
+      logo: cristalLogo,
+      logoAlt: "Cristal e-College seal"
     }
   ];
 
@@ -58,20 +64,28 @@ const Education = () => {
               className="group depth-card shine-card overflow-hidden rounded-2xl p-4 glass transition-colors hover:border-primary/40 md:rounded-3xl md:p-8"
             >
               <div className="flex items-start gap-3 md:gap-6">
-                {/* Icon */}
-                <div className={`soft-icon-pop flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-xl md:h-14 md:w-14 md:rounded-2xl ${colorClasses[edu.color as keyof typeof colorClasses]}`}>
-                  <GraduationCap className="h-5 w-5 md:h-7 md:w-7" />
+                {/* School mark */}
+                <div className="flex h-16 w-16 flex-shrink-0 items-center justify-center rounded-2xl border border-border/80 bg-transparent p-2 shadow-sm md:h-24 md:w-24 md:rounded-3xl md:p-3">
+                  <img
+                    src={edu.logo}
+                    alt={edu.logoAlt}
+                    className="h-full w-full object-contain mix-blend-multiply"
+                  />
                 </div>
 
                 {/* Content */}
                 <div className="min-w-0 flex-1 space-y-2 md:space-y-3">
                   <div>
                     <h3 className="mb-1 font-display text-lg font-semibold leading-snug text-foreground md:mb-2 md:text-2xl">{edu.degree}</h3>
-                    <p className="mb-2 text-sm font-medium text-primary md:mb-3 md:text-lg">{edu.institution}</p>
+                    <p className={`mb-2 text-sm font-medium md:mb-3 md:text-lg ${colorClasses[edu.color as keyof typeof colorClasses].split(" ")[1]}`}>{edu.institution}</p>
                     <div className="flex flex-wrap items-center gap-2 text-sm text-muted-foreground md:gap-4">
                       <span className="flex items-center gap-2">
                         <Calendar className="w-4 h-4" />
                         {edu.date}
+                      </span>
+                      <span className="hidden items-center gap-2 md:flex">
+                        <GraduationCap className="w-4 h-4" />
+                        Academic credential
                       </span>
                     </div>
                   </div>
