@@ -10,6 +10,7 @@ import Navbar from "@/components/Navbar";
 import SmoothScroll from "@/components/SmoothScroll";
 import ScrollProgress from "@/components/ScrollProgress";
 import EngineeringBackground from "@/components/EngineeringBackground";
+import CircuitBackground from "@/components/CircuitBackground";
 import { PerformanceMode } from "@/hooks/use-performance-mode";
 import WhatsAppWidget from "@/components/WhatsAppWidget";
 
@@ -23,6 +24,7 @@ const Index = () => {
       <SmoothScroll />
       <ScrollProgress />
       <EngineeringBackground />
+      <CircuitBackground />
       <WhatsAppWidget />
       <div className="relative z-10">
         <Navbar />

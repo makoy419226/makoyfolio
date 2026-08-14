@@ -99,14 +99,14 @@ const Hero = () => {
             className="material-status-chip mb-5 inline-flex min-h-10 items-center gap-2 rounded-full px-4 text-xs font-semibold uppercase tracking-[0.12em]"
           >
             <span className="material-status-dot" aria-hidden />
-            Available immediately · Abu Dhabi, UAE
+            Available to join immediately · Abu Dhabi, UAE
           </motion.div>
 
           <motion.h1
             initial={reduceMotion ? false : { opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, delay: 0.06, ease: [0.2, 0, 0, 1] }}
-            className="material-overline hero-name mb-4"
+            className="material-overline hero-name mb-4 font-bold"
           >
             Mark Angelou Egam Idusma, CpE
           </motion.h1>
@@ -117,8 +117,8 @@ const Hero = () => {
             transition={{ duration: 0.44, delay: 0.16, ease: [0.2, 0, 0, 1] }}
             className="mt-4 max-w-2xl text-lg leading-relaxed text-muted-foreground md:text-xl"
           >
-            Computer Engineering graduate with UAE experience across IT support,
-            troubleshooting, business systems, and full-stack web development.
+            Early-career professional with 6 months of UAE work experience supporting IT,
+            business operations, and administrative activities.
           </motion.p>
 
           <motion.div
@@ -165,7 +165,7 @@ const Hero = () => {
           initial={reduceMotion ? false : { opacity: 0, scale: 0.94, y: 24 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           transition={{ duration: 0.44, delay: 0.14, ease: [0.2, 0, 0, 1] }}
-          className="relative order-first w-full max-w-[15rem] justify-self-start sm:max-w-[18rem] lg:order-none lg:max-w-[26rem] lg:justify-self-center"
+          className="relative order-first w-full max-w-[15rem] justify-self-start sm:max-w-[18rem] lg:order-none lg:max-w-[22rem] lg:justify-self-center"
         >
           <HeroParallax disabled={motionDisabled} target={sectionRef}>
             <ImmersiveCard

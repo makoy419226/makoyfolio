@@ -8,7 +8,7 @@ const Footer = () => {
         <Reveal variant="up">
           <div className="flex flex-col items-center text-center gap-6">
             <p className="mobile-justify-text text-sm text-muted-foreground max-w-md text-center">
-              Mark Angelou Egam, CpE · Abu Dhabi, UAE · Available to join immediately.
+              Mark Angelou Egam Idusma, CpE · Abu Dhabi, UAE · Available to join immediately.
             </p>
 
             <div className="flex items-center gap-3">

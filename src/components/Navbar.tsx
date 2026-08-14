@@ -145,19 +145,18 @@ const Navbar = () => {
         className={cn(
           "material-app-bar mx-auto flex max-w-7xl flex-nowrap items-center gap-2 px-3 py-2 transition-all duration-300 sm:px-4",
           scrolled
-            ? "material-app-bar--raised"
+            ? "material-app-bar--raised material-app-bar--scrolled"
             : "material-app-bar--resting"
         )}
       >
         <a
           href="#top"
           onClick={() => holdActive("#top")}
-          className="material-brand hidden min-h-12 items-center gap-3 rounded-2xl px-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring lg:flex"
+          className="material-brand hidden min-h-12 items-center rounded-2xl px-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring lg:flex"
           aria-label="Mark Angelou Egam Idusma — home"
         >
-          <span className="material-brand__mark">MI</span>
           <span className="block">
-            <span className="block whitespace-nowrap font-display text-sm font-semibold leading-tight">Mark Angelou Egam Idusma</span>
+            <span className="block whitespace-nowrap font-display text-sm font-bold leading-tight">Mark Angelou Egam Idusma</span>
             <span className="block text-[10px] font-medium uppercase tracking-[0.16em] text-muted-foreground">Computer Engineer</span>
           </span>
         </a>

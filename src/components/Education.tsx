@@ -21,20 +21,17 @@ const Education = () => {
       degree: "Bachelor of Science in Computer Engineering",
       institution: "Bohol Island State University",
       date: "June 2025",
-      type: "Degree",
       color: "google-blue"
     },
     {
-      degree: "TVL - Information and Communication Technology",
+      degree: "TVL–ICT Specialization in Computer Programming",
       institution: "Cristal-E College",
       date: "March 2020",
-      type: "Computer Programming",
       color: "google-red"
     }
   ];
 
   const certifications = [
-    "Computer Literacy Training (Module 2)",
     "Google Developer Student Clubs (GDSC) — Member, Bohol Island State University",
     "Research Assistant — Cenama–Cebuano Translator Research Project (Certified Research Assistant)"
   ];
@@ -75,9 +72,6 @@ const Education = () => {
                       <span className="flex items-center gap-2">
                         <Calendar className="w-4 h-4" />
                         {edu.date}
-                      </span>
-                      <span className="rounded-full border border-border/45 bg-background/70 px-2.5 py-0.5 text-xs font-medium md:px-3 md:py-1 md:text-sm">
-                        {edu.type}
                       </span>
                     </div>
                   </div>
