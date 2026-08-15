@@ -8,7 +8,6 @@ import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Navbar";
 import SmoothScroll from "@/components/SmoothScroll";
-import ScrollProgress from "@/components/ScrollProgress";
 import EngineeringBackground from "@/components/EngineeringBackground";
 import CircuitBackground from "@/components/CircuitBackground";
 import { PerformanceMode } from "@/hooks/use-performance-mode";
@@ -22,7 +21,6 @@ const Index = () => {
       </a>
       <PerformanceMode />
       <SmoothScroll />
-      <ScrollProgress />
       <EngineeringBackground />
       <CircuitBackground />
       <WhatsAppWidget />
