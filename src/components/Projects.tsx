@@ -8,6 +8,7 @@ import Reveal from "./Reveal";
 import StaggerReveal from "./StaggerReveal";
 import almullaHoldingLogo from "@/assets/almulla-holding-logo.webp";
 import samaCebuLogo from "@/assets/sama-cebu-logo.webp";
+import ImmersiveSection from "./ImmersiveSection";
 
 const otherProjects = [
   {
@@ -49,7 +50,7 @@ const otherProjects = [
 
 const Projects = () => {
   return (
-    <section id="projects" className="section-atmosphere relative py-24 px-4">
+    <ImmersiveSection id="projects" className="section-atmosphere relative py-24 px-4">
       <div className="max-w-6xl mx-auto space-y-12">
         <SectionHeading
           eyebrow="04 · Projects"
@@ -151,7 +152,7 @@ const Projects = () => {
           </StaggerReveal>
         </div>
       </div>
-    </section>
+    </ImmersiveSection>
   );
 };
 

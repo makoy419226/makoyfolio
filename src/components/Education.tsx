@@ -5,6 +5,7 @@ import Reveal from "./Reveal";
 import StaggerReveal from "./StaggerReveal";
 import DeferredContent from "./DeferredContent";
 import cristalLogo from "@/assets/cec-logo.png";
+import ImmersiveSection from "./ImmersiveSection";
 const bisuLogo = "https://bisucandijay.edu.ph/wp-content/uploads/2025/06/bisu_logo.png";
 
 const DocumentViewer = lazy(() => import("./DocumentViewer"));
@@ -49,7 +50,7 @@ const Education = () => {
   };
 
   return (
-    <section id="education" className="section-atmosphere relative py-24 px-4">
+    <ImmersiveSection id="education" className="section-atmosphere relative py-24 px-4">
       <div className="max-w-6xl mx-auto space-y-8 md:space-y-12">
         <SectionHeading
           eyebrow="05 · Education"
@@ -131,7 +132,7 @@ const Education = () => {
           </Suspense>
         </DeferredContent>
       </div>
-    </section>
+    </ImmersiveSection>
   );
 };
 

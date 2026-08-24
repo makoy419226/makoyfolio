@@ -1,5 +1,6 @@
 import SectionHeading from "./SectionHeading";
 import Reveal from "./Reveal";
+import ImmersiveSection from "./ImmersiveSection";
 
 const skills = [
   "IT Support & Web Software Support",
@@ -17,7 +18,7 @@ const skills = [
 
 const Skills = () => {
   return (
-    <section id="skills" className="section-atmosphere relative px-4 py-24">
+    <ImmersiveSection id="skills" className="section-atmosphere relative px-4 py-24">
       <div className="mx-auto max-w-7xl space-y-10 md:space-y-12">
         <SectionHeading eyebrow="02" title="Skills" />
 
@@ -38,7 +39,7 @@ const Skills = () => {
           </div>
         </Reveal>
       </div>
-    </section>
+    </ImmersiveSection>
   );
 };
 

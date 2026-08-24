@@ -1,6 +1,7 @@
 import { Briefcase, MapPin } from "lucide-react";
 import SectionHeading from "./SectionHeading";
 import Reveal from "./Reveal";
+import ImmersiveSection from "./ImmersiveSection";
 
 const roles = [
   {
@@ -42,7 +43,7 @@ const roles = [
 
 const WorkExperience = () => {
   return (
-    <section id="experience" className="section-atmosphere relative px-4 py-24">
+    <ImmersiveSection id="experience" className="section-atmosphere relative px-4 py-24">
       <div className="mx-auto max-w-5xl space-y-10 md:space-y-12">
         <SectionHeading
           eyebrow="03 · Experience"
@@ -90,7 +91,7 @@ const WorkExperience = () => {
           ))}
         </div>
       </div>
-    </section>
+    </ImmersiveSection>
   );
 };
 

@@ -1,5 +1,11 @@
-import { motion, useReducedMotion, useScroll, useSpring, useTransform } from "framer-motion";
-import { type ReactNode } from "react";
+import {
+  motion,
+  useReducedMotion,
+  useScroll,
+  useSpring,
+  useTransform,
+} from "framer-motion";
+import { useEffect, useState, type ReactNode } from "react";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { usePerformanceMode } from "@/hooks/use-performance-mode";
 
@@ -45,19 +51,34 @@ const binaryRows = [
   { x: 610, y: 492, text: "0011 1001 0110 0101" },
 ];
 
+const engineeringStates = [
+  { code: "BOOT", title: "System boot", section: "HOME", signal: "READY" },
+  { code: "IDENT", title: "Profile scan", section: "ABOUT", signal: "LINKED" },
+  { code: "STACK", title: "Skill matrix", section: "SKILLS", signal: "SYNC" },
+  { code: "OPS", title: "Operations log", section: "EXPERIENCE", signal: "RUNNING" },
+  { code: "BUILD", title: "Project render", section: "PROJECTS", signal: "LIVE" },
+  { code: "CERT", title: "Credential check", section: "EDUCATION", signal: "VERIFIED" },
+  { code: "LINK", title: "Open channel", section: "CONTACT", signal: "AVAILABLE" },
+] as const;
+
+const engineeringSectionIds = ["top", "about", "skills", "experience", "projects", "education", "contact"];
+
 const ActiveEngineeringLayers = ({ children }: { children: ReactNode }) => {
   const { scrollYProgress } = useScroll();
   const gridOffset = useTransform(scrollYProgress, [0, 1], [0, 28]);
   const schematicOffset = useTransform(scrollYProgress, [0, 1], [0, -48]);
+  const schematicRotate = useTransform(scrollYProgress, [0, 0.5, 1], [-1.5, 0.5, 1.5]);
+  const scanlineOffset = useTransform(scrollYProgress, [0, 1], ["-28%", "128%"]);
   const gridY = useSpring(gridOffset, { stiffness: 90, damping: 24, mass: 0.35 });
   const schematicY = useSpring(schematicOffset, { stiffness: 90, damping: 24, mass: 0.35 });
 
   return (
     <>
       <motion.div className="ce-grid" style={{ y: gridY }} />
-      <motion.div className="ce-schematic-motion" style={{ y: schematicY }}>
+      <motion.div className="ce-schematic-motion" style={{ y: schematicY, rotate: schematicRotate }}>
         {children}
       </motion.div>
+      <motion.div className="ce-scanline" style={{ top: scanlineOffset }} />
     </>
   );
 };
@@ -73,19 +94,106 @@ const EngineeringLayers = ({
     <>
       <div className="ce-grid" />
       <div className="ce-schematic-motion">{children}</div>
+      <div className="ce-scanline ce-scanline--static" />
     </>
   ) : (
     <ActiveEngineeringLayers>{children}</ActiveEngineeringLayers>
   );
+
+const EngineeringHud = ({
+  phaseIndex,
+  progress,
+  disabled,
+}: {
+  phaseIndex: number;
+  progress: ReturnType<typeof useScroll>["scrollYProgress"];
+  disabled: boolean;
+}) => {
+  const phase = engineeringStates[phaseIndex];
+  const progressLabel = useTransform(progress, (value) => `${Math.round(value * 100).toString().padStart(2, "0")}%`);
+
+  return (
+    <div className={`ce-hud${disabled ? " ce-hud--static" : ""}`}>
+      <div className="ce-hud__topline">
+        <span>COMPUTER ENGINEERING / SCROLL SYSTEM</span>
+        <motion.span>{progressLabel}</motion.span>
+      </div>
+
+      <div className="ce-hud__rail" aria-hidden>
+        <span className="ce-hud__rail-line" />
+        {engineeringStates.map((state, index) => (
+          <span
+            key={state.code}
+            className={`ce-hud__node${index === phaseIndex ? " ce-hud__node--active" : ""}${index < phaseIndex ? " ce-hud__node--complete" : ""}`}
+          >
+            <span className="ce-hud__node-dot" />
+            <span className="ce-hud__node-copy">
+              <strong>{state.code}</strong>
+              <small>{state.section}</small>
+            </span>
+          </span>
+        ))}
+      </div>
+
+      <div className="ce-hud__readout">
+        <span className="ce-hud__readout-label">CURRENT MODULE</span>
+        <strong>{phase.title}</strong>
+        <span className="ce-hud__readout-meta">
+          <span>{phase.signal}</span>
+          <motion.span>{progressLabel}</motion.span>
+        </span>
+      </div>
+    </div>
+  );
+};
 
 const EngineeringBackground = () => {
   const reduceMotion = useReducedMotion();
   const isMobile = useIsMobile();
   const { lowPower } = usePerformanceMode();
   const motionDisabled = Boolean(reduceMotion || isMobile || lowPower);
+  const { scrollYProgress } = useScroll();
+  const [phaseIndex, setPhaseIndex] = useState(0);
+
+  useEffect(() => {
+    let frameId = 0;
+
+    const updatePhase = () => {
+      frameId = 0;
+      const marker = window.scrollY + window.innerHeight * 0.38;
+      let nextPhase = 0;
+
+      engineeringSectionIds.forEach((id, index) => {
+        const section = document.getElementById(id);
+        if (section && section.getBoundingClientRect().top + window.scrollY <= marker) {
+          nextPhase = index;
+        }
+      });
+
+      setPhaseIndex((currentPhase) => currentPhase === nextPhase ? currentPhase : nextPhase);
+    };
+
+    const scheduleUpdate = () => {
+      if (!frameId) frameId = requestAnimationFrame(updatePhase);
+    };
+
+    updatePhase();
+    window.addEventListener("scroll", scheduleUpdate, { passive: true });
+    window.addEventListener("resize", scheduleUpdate);
+
+    return () => {
+      if (frameId) cancelAnimationFrame(frameId);
+      window.removeEventListener("scroll", scheduleUpdate);
+      window.removeEventListener("resize", scheduleUpdate);
+    };
+  }, []);
 
   return (
-    <div aria-hidden className="computer-engineering-background pointer-events-none fixed inset-0 z-0 overflow-hidden">
+    <div
+      aria-hidden
+      data-engineering-phase={engineeringStates[phaseIndex].code.toLowerCase()}
+      className="computer-engineering-background pointer-events-none fixed inset-0 z-0 overflow-hidden"
+    >
       <div className="ce-depth" />
       <EngineeringLayers disabled={motionDisabled}>
         <svg
@@ -158,6 +266,7 @@ const EngineeringBackground = () => {
         </g>
         </svg>
       </EngineeringLayers>
+      <EngineeringHud phaseIndex={phaseIndex} progress={scrollYProgress} disabled={motionDisabled} />
     </div>
   );
 };

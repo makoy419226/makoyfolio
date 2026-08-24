@@ -3,6 +3,7 @@ import { motion, useReducedMotion } from "framer-motion";
 import SectionHeading from "./SectionHeading";
 import Reveal from "./Reveal";
 import { Button } from "@/components/ui/button";
+import ImmersiveSection from "./ImmersiveSection";
 
 const channels = [
   { icon: Mail, label: "Email", value: "idusma0010@gmail.com", href: "mailto:idusma0010@gmail.com", tone: "text-google-blue" },
@@ -14,7 +15,7 @@ const Contact = () => {
   const reduceMotion = useReducedMotion();
 
   return (
-    <section id="contact" className="section-atmosphere relative py-24 px-4">
+    <ImmersiveSection id="contact" className="section-atmosphere relative py-24 px-4">
     <div className="max-w-6xl mx-auto space-y-12">
       <SectionHeading
         eyebrow="06 · Contact"
@@ -68,7 +69,7 @@ const Contact = () => {
         </div>
       </Reveal>
     </div>
-    </section>
+    </ImmersiveSection>
   );
 };
 

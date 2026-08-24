@@ -2,12 +2,13 @@ import { motion, useReducedMotion } from "framer-motion";
 import SectionHeading from "./SectionHeading";
 import ImmersiveCard from "./ImmersiveCard";
 import Reveal from "./Reveal";
+import ImmersiveSection from "./ImmersiveSection";
 
 const About = () => {
   const reduceMotion = useReducedMotion();
 
   return (
-    <section id="about" className="section-atmosphere relative py-24 px-4">
+    <ImmersiveSection id="about" className="section-atmosphere relative py-24 px-4">
     <div className="max-w-6xl mx-auto space-y-8 md:space-y-12">
       <SectionHeading
         eyebrow="01 · About"
@@ -40,7 +41,7 @@ const About = () => {
       </Reveal>
 
     </div>
-    </section>
+    </ImmersiveSection>
   );
 };
 

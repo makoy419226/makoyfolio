@@ -20,6 +20,7 @@ import { useIsMobile } from "@/hooks/use-mobile";
 import ImmersiveCard from "./ImmersiveCard";
 import profilePhoto from "@/assets/profile-transparent.webp";
 import { usePerformanceMode } from "@/hooks/use-performance-mode";
+import ImmersiveSection from "./ImmersiveSection";
 
 const contactLinks = [
   {
@@ -85,7 +86,7 @@ const Hero = () => {
   const motionDisabled = Boolean(reduceMotion || isMobile || lowPower);
 
   return (
-    <section
+    <ImmersiveSection
       ref={sectionRef}
       className="hero-section relative flex min-h-[min(100svh,42rem)] items-center overflow-hidden px-4 pb-12 pt-24 sm:px-6 sm:pt-28 lg:pt-32"
     >
@@ -228,7 +229,7 @@ const Hero = () => {
           </HeroParallax>
         </motion.div>
       </div>
-    </section>
+    </ImmersiveSection>
   );
 };
 
