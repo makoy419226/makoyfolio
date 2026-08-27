@@ -19,8 +19,10 @@ const CircuitBackground = () => {
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
     mount.appendChild(renderer.domElement);
 
-    const accent = new THREE.Color(0x2877cf);
-    const ink = new THREE.Color(0x24558b);
+    const accent = new THREE.Color(0x2563eb);
+    const ink = new THREE.Color(0x0f3a7a);
+    const teal = new THREE.Color(0x0d9488);
+    const amber = new THREE.Color(0xf59e0b);
 
     const nodeCount = 58;
     const nodeGeo = new THREE.BufferGeometry();
@@ -57,14 +59,15 @@ const CircuitBackground = () => {
     ];
     const shapes: THREE.Mesh[] = [];
 
+    const palette = [accent, teal, amber, ink];
     for (let i = 0; i < 7; i++) {
       const mesh = new THREE.Mesh(
         geometries[i % geometries.length],
         new THREE.MeshBasicMaterial({
-          color: i % 3 === 0 ? accent : ink,
+          color: palette[i % palette.length],
           wireframe: true,
           transparent: true,
-          opacity: i % 3 === 0 ? 0.2 : 0.08,
+          opacity: i % 4 === 0 ? 0.22 : i % 4 === 1 ? 0.14 : 0.09,
         }),
       );
       mesh.position.set((Math.random() - 0.5) * 26, (Math.random() - 0.5) * 16, (Math.random() - 0.5) * 10 - 3);

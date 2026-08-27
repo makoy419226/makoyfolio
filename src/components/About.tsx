@@ -22,7 +22,9 @@ const About = () => {
           transition={{ type: "spring", stiffness: 220, damping: 24 }}
           className="group depth-card shine-card relative glass-strong clean-panel rounded-3xl p-8 md:p-12 overflow-hidden"
         >
-          <div className="absolute -top-24 -right-24 w-64 h-64 rounded-full bg-primary/30 blur-3xl" />
+          <div className="absolute -top-24 -right-24 w-64 h-64 rounded-full bg-primary/20 blur-3xl" />
+          <div className="absolute -bottom-24 -left-24 w-72 h-72 rounded-full bg-[hsl(173_58%_39%/0.14)] blur-3xl" />
+          <div className="absolute -top-10 left-1/2 h-32 w-32 -translate-x-1/2 rounded-full bg-[hsl(38_92%_50%/0.08)] blur-2xl" />
           <div className="absolute inset-x-8 top-0 h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
           <h3 className="relative font-display text-xl md:text-2xl font-semibold mb-4 text-center">
             Professional summary

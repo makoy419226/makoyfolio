@@ -10,6 +10,7 @@ import Navbar from "@/components/Navbar";
 import SmoothScroll from "@/components/SmoothScroll";
 import EngineeringBackground from "@/components/EngineeringBackground";
 import CircuitBackground from "@/components/CircuitBackground";
+import LivelyBackground from "@/components/LivelyBackground";
 import { PerformanceMode } from "@/hooks/use-performance-mode";
 import WhatsAppWidget from "@/components/WhatsAppWidget";
 
@@ -21,6 +22,7 @@ const Index = () => {
       </a>
       <PerformanceMode />
       <SmoothScroll />
+      <LivelyBackground />
       <EngineeringBackground />
       <CircuitBackground />
       <WhatsAppWidget />

@@ -25,8 +25,10 @@ const Contact = () => {
 
       <Reveal variant="scale">
         <div className="group depth-card shine-card relative glass-strong rounded-[2.5rem] p-10 md:p-16 overflow-hidden">
-          <div className="absolute -top-20 -left-20 w-72 h-72 rounded-full bg-primary/40 blur-3xl" />
-          <div className="absolute -bottom-20 -right-20 w-72 h-72 rounded-full bg-google-yellow/30 blur-3xl" />
+          <div className="absolute -top-20 -left-20 w-72 h-72 rounded-full bg-primary/22 blur-3xl" />
+          <div className="absolute -bottom-20 -right-20 w-72 h-72 rounded-full bg-google-yellow/22 blur-3xl" />
+          <div className="absolute top-1/2 left-1/2 h-64 w-64 -translate-x-1/2 -translate-y-1/2 rounded-full bg-[hsl(173_58%_39%/0.10)] blur-3xl" />
+          <div className="absolute -bottom-10 left-10 h-40 w-40 rounded-full bg-[hsl(199_89%_48%/0.12)] blur-2xl" />
 
           <div className="relative grid md:grid-cols-[1.2fr_1fr] gap-8 items-center">
             <div>

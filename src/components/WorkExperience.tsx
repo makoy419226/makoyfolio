@@ -41,6 +41,18 @@ const roles = [
   },
 ];
 
+const iconTokens = [
+  "bg-primary/10 text-primary ring-1 ring-primary/10",
+  "bg-[hsl(173_58%_39%/0.10)] text-[hsl(173_58%_39%)] ring-1 ring-[hsl(173_58%_39%/0.14)]",
+  "bg-[hsl(38_92%_50%/0.12)] text-[hsl(25_95%_45%)] ring-1 ring-[hsl(38_92%_50%/0.18)]",
+] as const;
+
+const dotTokens = [
+  "bg-primary/70",
+  "bg-[hsl(173_58%_39%/0.75)]",
+  "bg-[hsl(38_92%_50%/0.85)]",
+] as const;
+
 const WorkExperience = () => {
   return (
     <ImmersiveSection id="experience" className="section-atmosphere relative px-4 py-24">
@@ -54,9 +66,9 @@ const WorkExperience = () => {
         <div className="space-y-4 md:space-y-5">
           {roles.map((role, index) => (
             <Reveal key={`${role.title}-${index}`} variant="up" delay={index * 0.05} amount={0.12}>
-              <article className="work-experience-card rounded-2xl border border-border/65 bg-card/55 p-5 shadow-sm backdrop-blur-sm transition-shadow duration-200 hover:shadow-md md:p-7">
+              <article className="work-experience-card rounded-2xl border border-border/65 bg-card/70 p-5 shadow-sm backdrop-blur-sm transition-shadow duration-200 hover:shadow-md md:p-7">
                 <div className="flex items-start gap-4">
-                  <div className="hidden h-10 w-10 flex-none items-center justify-center rounded-xl bg-primary/10 text-primary sm:flex">
+                  <div className={`hidden h-10 w-10 flex-none items-center justify-center rounded-xl sm:flex ${iconTokens[index % iconTokens.length]}`}>
                     <Briefcase className="h-5 w-5" aria-hidden />
                   </div>
 
@@ -79,7 +91,7 @@ const WorkExperience = () => {
                     <ul className="mt-5 grid gap-2 text-sm leading-relaxed text-foreground/90 md:grid-cols-2 md:gap-x-8">
                       {role.responsibilities.map((responsibility) => (
                         <li key={responsibility} className="flex items-start gap-2">
-                          <span className="mt-2 h-1.5 w-1.5 flex-none rounded-full bg-primary/70" />
+                          <span className={`mt-2 h-1.5 w-1.5 flex-none rounded-full ${dotTokens[index % dotTokens.length]}`} />
                           <span className="mobile-justify-text">{responsibility}</span>
                         </li>
                       ))}
