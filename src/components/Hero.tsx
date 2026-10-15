@@ -118,8 +118,8 @@ const Hero = () => {
             transition={{ duration: 0.44, delay: 0.16, ease: [0.2, 0, 0, 1] }}
             className="mt-4 max-w-2xl text-lg leading-relaxed text-muted-foreground md:text-xl"
           >
-            Early-career professional with 6 months of UAE work experience supporting IT,
-            business operations, and administrative activities.
+            Full-stack web developer specializing in TypeScript and modern web technologies,
+            building responsive applications and practical business solutions.
           </motion.p>
 
           <motion.div

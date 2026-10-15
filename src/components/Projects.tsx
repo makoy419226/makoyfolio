@@ -2,6 +2,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ExternalLink, Github, Globe, Mic, Star } from "lucide-react";
 import FeaturedProject from "./FeaturedProject";
+import ConcordProject from "./ConcordProject";
 import ImmersiveCard from "./ImmersiveCard";
 import SectionHeading from "./SectionHeading";
 import Reveal from "./Reveal";
@@ -55,7 +56,7 @@ const Projects = () => {
         <SectionHeading
           eyebrow="04 · Projects"
           title="Selected work, shipped and live."
-          description="A featured custom CRM and operations platform, plus mobile, language, and corporate web projects."
+          description="Business operations, project coordination, language tools, and corporate web projects."
         />
 
         <Reveal variant="up">
@@ -64,6 +65,10 @@ const Projects = () => {
             <span className="h-px flex-1 bg-gradient-to-r from-primary/40 to-transparent" />
           </div>
           <FeaturedProject />
+        </Reveal>
+
+        <Reveal variant="up" delay={0.08}>
+          <ConcordProject />
         </Reveal>
 
         <div className="space-y-5">

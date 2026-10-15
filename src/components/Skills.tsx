@@ -3,17 +3,20 @@ import Reveal from "./Reveal";
 import ImmersiveSection from "./ImmersiveSection";
 
 const skills = [
-  "IT Support & Web Software Support",
-  "Sales Assistance & Customer Support",
-  "Office Administration & Clerical Support",
-  "Data Entry & Record Management",
-  "Business Operations Assistance",
-  "Customer Service & Client Communication",
-  "Microsoft Office Suite (Excel, Word, PowerPoint)",
-  "Document Processing & Filing",
-  "Communication & Team Collaboration",
-  "Problem Solving & Adaptability",
-  "Willingness to Learn & Develop New Skills",
+  "React",
+  "TypeScript",
+  "JavaScript",
+  "Node.js & Express.js",
+  "API Integration",
+  "ERP & CRM Development",
+  "Business Process Automation",
+  "Reporting & Data Management",
+  "SQL",
+  "Git & GitHub",
+  "Vercel, Hostinger & GoDaddy",
+  "Cloudflare & DNS Configuration",
+  "Production Support",
+  "AI-Assisted Development",
 ];
 
 const Skills = () => {

@@ -5,38 +5,49 @@ import ImmersiveSection from "./ImmersiveSection";
 
 const roles = [
   {
-    period: "January 2026 - June 2026",
-    title: "IT Support Specialist / Web Developer",
-    company: "Middle Class Tourism",
+    period: "September 2026 - Present",
+    title: "IT Coordinator / Web System Developer",
+    company: "Concord Stars Contracting LLC",
+    location: "Dubai, UAE",
+    responsibilities: [
+      "Coordinate with the IT team on network troubleshooting, software installations, and software issues.",
+      "Developed a web-based project management system for the DS415 project.",
+      "Integrated project department tracking, document control, notifications, and task management.",
+    ],
+  },
+  {
+    period: "January 2026 - September 2026",
+    title: "Web App Developer",
+    company: "Liquide Washes Laundry & Middle Class Tourism LLC",
     location: "Abu Dhabi, UAE",
     responsibilities: [
-      "Supported daily business operations by troubleshooting software issues, configuring user systems, and maintaining business applications.",
-      "Enhanced the company's web application by implementing new features, resolving technical issues, and supporting production operations.",
-      "Organised digital records, data-entry activities, and document-processing workflows to support accurate and accessible business information.",
-      "Coordinated with different departments to identify technical requirements and deliver practical website and system improvements.",
+      "Developed and maintained core business web applications, adding features and resolving issues that supported daily operations.",
+      "Automated document processing and data entry to improve accuracy and operational efficiency.",
+      "Maintained business applications and user systems to support reliable performance across departments.",
+      "Developed web applications for two businesses operated by the employer.",
+    ],
+  },
+  {
+    period: "July 2026 - August 2026",
+    title: "Remote Website Developer",
+    company: "Almulla Holdings LLC",
+    location: "Dubai, UAE",
+    responsibilities: [
+      "Designed and developed a customized corporate website using modern web technologies.",
+      "Built and deployed the company website using GoDaddy hosting.",
+      "Connected a TypeScript front end with a WordPress back end.",
     ],
   },
   {
     period: "September 2024 - Present",
-    title: "Freelance Full-Stack Web Developer",
+    title: "Freelance Web Developer",
     company: "Independent Projects",
-    location: "",
+    location: "UAE and Philippines",
     responsibilities: [
       "Designed and developed websites and full-stack web applications for businesses across multiple industries.",
       "Built corporate websites, landing pages, and SEO-friendly content platforms.",
       "Translated business requirements into practical features, workflows, and digital solutions.",
       "Handled application development, deployment, hosting, DNS configuration, maintenance, and technical support.",
-    ],
-  },
-  {
-    period: "February 2020 - October 2025",
-    title: "Sales Representative and Operations Assistant",
-    company: "",
-    location: "",
-    responsibilities: [
-      "Years of involvement in family-owned business by taking on regular responsibilities in sales, procurement, inventory management, and customer service.",
-      "Assisted customers, suppliers, and contractors with product inquiries and order processing.",
-      "Coordinated inventory replenishment and supplier communication to support daily operations.",
     ],
   },
 ];
@@ -60,7 +71,7 @@ const WorkExperience = () => {
         <SectionHeading
           eyebrow="03 · Experience"
           title="Professional Experience"
-          description="Work experience supporting IT, business operations, web development, and administrative activities."
+          description="Experience in full-stack development, business applications, and IT coordination."
         />
 
         <div className="space-y-4 md:space-y-5">

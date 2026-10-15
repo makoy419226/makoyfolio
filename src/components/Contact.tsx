@@ -20,7 +20,7 @@ const Contact = () => {
       <SectionHeading
         eyebrow="06 · Contact"
         title="Available to join immediately."
-        description="Open to opportunities across IT support, sales assistance, and administrative roles in the UAE."
+        description="Open to web development, business systems, and IT coordination opportunities in the UAE."
       />
 
       <Reveal variant="scale">
@@ -33,10 +33,10 @@ const Contact = () => {
           <div className="relative grid md:grid-cols-[1.2fr_1fr] gap-8 items-center">
             <div>
               <h3 className="font-display text-2xl md:text-3xl font-semibold leading-tight text-balance">
-                Need IT support, technical support, or junior web support? <span className="text-gradient">Say hello.</span>
+                Need a web developer for your next project? <span className="text-gradient">Say hello.</span>
               </h3>
               <p className="mobile-justify-text text-muted-foreground mt-4 max-w-md text-left">
-                Available to join immediately and currently under employment visa status.
+                Available to join immediately. UAE residence visa cancelled on 4 September 2026.
               </p>
               <Button asChild size="lg" className="premium-button contact-whatsapp-button mt-6 rounded-full border-0 ring-glow hover:brightness-110">
                 <a href="https://wa.me/971509317400" target="_blank" rel="noopener noreferrer">

@@ -12,8 +12,8 @@ const About = () => {
     <div className="max-w-6xl mx-auto space-y-8 md:space-y-12">
       <SectionHeading
         eyebrow="01 · About"
-        title="Early-career professional with UAE work experience."
-        description="Six months of UAE experience supporting IT, business operations, and administrative activities."
+        title="Full-stack web developer with a computer engineering background."
+        description="Building responsive web applications and practical digital tools for businesses."
       />
 
       <Reveal variant="up">
@@ -30,14 +30,11 @@ const About = () => {
             Professional summary
           </h3>
           <p className="professional-summary mobile-justify-text relative text-muted-foreground leading-relaxed text-lg max-w-3xl mx-auto">
-            Early-career professional with 6 months of UAE work experience supporting IT,
-            business operations, and administrative activities. Familiar with technical
-            assistance, data entry, customer service, sales support, office administration,
-            and day-to-day business operations. A quick learner who is adaptable, responsible,
-            and willing to take on new responsibilities across IT support, sales assistance,
-            and administrative roles. Seeking an opportunity to gain further professional
-            experience, contribute to the team, and develop new skills in a supportive work
-            environment.
+            Full-stack web developer specializing in TypeScript and modern web technologies.
+            Experienced in building responsive web applications, improving business workflows,
+            and translating requirements into practical technical solutions. Brings a Computer
+            Engineering background and hands-on experience with web development, business
+            systems, and IT coordination.
           </p>
         </motion.div>
       </Reveal>

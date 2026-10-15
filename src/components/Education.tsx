@@ -39,8 +39,8 @@ const Education = () => {
   ];
 
   const certifications = [
-    "Google Developer Student Clubs (GDSC) — Member, Bohol Island State University",
-    "Research Assistant — Cenama–Cebuano Translator Research Project (Certified Research Assistant)"
+    "Google Developer Student Clubs (GDSC) — Member, Bohol Island State University, September 2022",
+    "Researcher — Cenama–Cebuano Translator Research Project (Certified Research Assistant)"
   ];
 
   const colorClasses = {
