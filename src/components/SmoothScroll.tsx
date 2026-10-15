@@ -23,12 +23,12 @@ const SmoothScroll = () => {
 
       lenis = new Lenis({
         autoRaf: true,
-        lerp: 0.14,
+        lerp: 0.2,
         smoothWheel: true,
         syncTouch: false,
         wheelMultiplier: 1,
         anchors: {
-          duration: 0.7,
+          duration: 0.5,
           easing: scrollEasing,
           lock: false,
         },

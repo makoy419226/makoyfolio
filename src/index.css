@@ -901,12 +901,6 @@
 
   .immersive-section {
     isolation: isolate;
-    transform-origin: 50% 18%;
-    will-change: transform, opacity;
-  }
-
-  .immersive-footer {
-    will-change: transform, opacity;
   }
 
   .immersive-section::after {
@@ -919,11 +913,6 @@
     background: linear-gradient(90deg, transparent, hsl(var(--primary) / 0.18) 28%, hsl(var(--aqua) / 0.14) 52%, hsl(var(--tertiary) / 0.12) 72%, transparent);
     opacity: 0.75;
     pointer-events: none;
-  }
-
-  .immersive-section > .mx-auto,
-  .immersive-section > .relative {
-    transform: translateZ(0);
   }
 
   .section-atmosphere::before {

@@ -68,7 +68,7 @@ const ActiveEngineeringLayers = ({ children }: { children: ReactNode }) => {
   const gridOffset = useTransform(scrollYProgress, [0, 1], [0, 28]);
   const schematicOffset = useTransform(scrollYProgress, [0, 1], [0, -48]);
   const schematicRotate = useTransform(scrollYProgress, [0, 0.5, 1], [-1.5, 0.5, 1.5]);
-  const scanlineOffset = useTransform(scrollYProgress, [0, 1], ["-28%", "128%"]);
+  const scanlineOffset = useTransform(scrollYProgress, [0, 1], ["-12vh", "112vh"]);
   const gridY = useSpring(gridOffset, { stiffness: 90, damping: 24, mass: 0.35 });
   const schematicY = useSpring(schematicOffset, { stiffness: 90, damping: 24, mass: 0.35 });
 
@@ -78,7 +78,7 @@ const ActiveEngineeringLayers = ({ children }: { children: ReactNode }) => {
       <motion.div className="ce-schematic-motion" style={{ y: schematicY, rotate: schematicRotate }}>
         {children}
       </motion.div>
-      <motion.div className="ce-scanline" style={{ top: scanlineOffset }} />
+      <motion.div className="ce-scanline" style={{ y: scanlineOffset }} />
     </>
   );
 };

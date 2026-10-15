@@ -1,12 +1,18 @@
 import { useEffect, useRef } from "react";
+import { useReducedMotion } from "framer-motion";
 import * as THREE from "three";
+import { useIsMobile } from "@/hooks/use-mobile";
+import { usePerformanceMode } from "@/hooks/use-performance-mode";
 
 const CircuitBackground = () => {
   const mountRef = useRef<HTMLDivElement>(null);
+  const isMobile = useIsMobile();
+  const reduceMotion = useReducedMotion();
+  const { lowPower } = usePerformanceMode();
 
   useEffect(() => {
     const mount = mountRef.current;
-    if (!mount) return;
+    if (!mount || isMobile || reduceMotion || lowPower) return;
 
     const scene = new THREE.Scene();
     scene.fog = new THREE.FogExp2(0xeaf3fb, 0.045);
@@ -16,7 +22,7 @@ const CircuitBackground = () => {
 
     const renderer = new THREE.WebGLRenderer({ alpha: true, antialias: true });
     renderer.setSize(mount.clientWidth, mount.clientHeight);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.5));
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 1.1));
     mount.appendChild(renderer.domElement);
 
     const accent = new THREE.Color(0x2563eb);
@@ -24,7 +30,7 @@ const CircuitBackground = () => {
     const teal = new THREE.Color(0x0d9488);
     const amber = new THREE.Color(0xf59e0b);
 
-    const nodeCount = 58;
+    const nodeCount = 38;
     const nodeGeo = new THREE.BufferGeometry();
     const positions = new Float32Array(nodeCount * 3);
     const velocities: THREE.Vector3[] = [];
@@ -43,7 +49,7 @@ const CircuitBackground = () => {
     const nodeMat = new THREE.PointsMaterial({ color: ink, size: 0.14, sizeAttenuation: true, transparent: true, opacity: 0.42 });
     scene.add(new THREE.Points(nodeGeo, nodeMat));
 
-    const lineMax = 130;
+    const lineMax = 72;
     const lineGeo = new THREE.BufferGeometry();
     const linePositions = new Float32Array(lineMax * 6);
     lineGeo.setAttribute("position", new THREE.BufferAttribute(linePositions, 3));
@@ -82,7 +88,7 @@ const CircuitBackground = () => {
       scene.add(mesh);
     }
 
-    const pulseCount = 18;
+    const pulseCount = 10;
     const pulseGeo = new THREE.BufferGeometry();
     const pulsePos = new Float32Array(pulseCount * 3);
     const pulses: { a: number; b: number; t: number; speed: number }[] = [];
@@ -107,6 +113,10 @@ const CircuitBackground = () => {
     let raf = 0;
     const clock = new THREE.Clock();
     const animate = () => {
+      if (document.hidden) {
+        raf = 0;
+        return;
+      }
       const time = clock.getElapsedTime();
       mouse.x += (mouse.tx - mouse.x) * 0.04;
       mouse.y += (mouse.ty - mouse.y) * 0.04;
@@ -177,10 +187,21 @@ const CircuitBackground = () => {
       renderer.render(scene, camera);
       raf = requestAnimationFrame(animate);
     };
-    animate();
+    const handleVisibilityChange = () => {
+      if (document.hidden) {
+        cancelAnimationFrame(raf);
+        raf = 0;
+      } else if (!raf) {
+        raf = requestAnimationFrame(animate);
+      }
+    };
+
+    document.addEventListener("visibilitychange", handleVisibilityChange);
+    raf = requestAnimationFrame(animate);
 
     return () => {
       cancelAnimationFrame(raf);
+      document.removeEventListener("visibilitychange", handleVisibilityChange);
       window.removeEventListener("mousemove", onMove);
       window.removeEventListener("resize", onResize);
       renderer.dispose();
@@ -194,7 +215,7 @@ const CircuitBackground = () => {
       shapes.forEach((shape) => (shape.material as THREE.Material).dispose());
       if (renderer.domElement.parentNode) renderer.domElement.parentNode.removeChild(renderer.domElement);
     };
-  }, []);
+  }, [isMobile, lowPower, reduceMotion]);
 
   return <div ref={mountRef} className="circuit-bg" aria-hidden="true" />;
 };

@@ -1,26 +1,10 @@
 import { Github } from "lucide-react";
-import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
 import Reveal from "./Reveal";
-import { usePerformanceMode } from "@/hooks/use-performance-mode";
 import VisitorCounter from "./VisitorCounter";
 
 const Footer = () => {
-  const footerRef = useRef<HTMLElement>(null);
-  const reduceMotion = useReducedMotion();
-  const { lowPower } = usePerformanceMode();
-  const { scrollYProgress } = useScroll({
-    target: footerRef,
-    offset: ["start end", "end start"],
-  });
-  const footerOpacity = useTransform(scrollYProgress, [0, 0.28, 0.72, 1], [0.55, 1, 1, 0.72]);
-  const footerY = useTransform(scrollYProgress, [0, 0.3, 1], [24, 0, -16]);
-  const motionDisabled = Boolean(reduceMotion || lowPower);
-
   return (
-    <motion.footer
-      ref={footerRef}
-      style={motionDisabled ? undefined : { opacity: footerOpacity, y: footerY }}
+    <footer
       className="immersive-footer section-atmosphere relative mt-6 border-t border-border/60 px-4 py-12"
     >
       <div className="max-w-6xl mx-auto">
@@ -50,7 +34,7 @@ const Footer = () => {
           </div>
         </Reveal>
       </div>
-    </motion.footer>
+    </footer>
   );
 };
 
