@@ -3,6 +3,7 @@ import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion
 import { useRef } from "react";
 import Reveal from "./Reveal";
 import { usePerformanceMode } from "@/hooks/use-performance-mode";
+import VisitorCounter from "./VisitorCounter";
 
 const Footer = () => {
   const footerRef = useRef<HTMLElement>(null);
@@ -26,7 +27,7 @@ const Footer = () => {
         <Reveal variant="up">
           <div className="flex flex-col items-center text-center gap-6">
             <p className="mobile-justify-text text-sm text-muted-foreground max-w-md text-center">
-              Mark Angelou Egam Idusma, CpE · Abu Dhabi, UAE · Available to join immediately.
+              Mark Angelou Egam Idusma, CpE · Dubai, UAE · Currently employed, open to opportunities.
             </p>
 
             <div className="flex items-center gap-3">
@@ -41,8 +42,10 @@ const Footer = () => {
               </a>
             </div>
 
+            <VisitorCounter />
+
             <p className="w-full border-t border-border/40 pt-4 text-xs leading-relaxed text-muted-foreground/80">
-              © 2026 Mark Angelou Egam Idusma · Abu Dhabi, UAE
+              © 2026 Mark Angelou Egam Idusma · Dubai, UAE
             </p>
           </div>
         </Reveal>

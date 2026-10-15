@@ -8,7 +8,7 @@ import ImmersiveSection from "./ImmersiveSection";
 const channels = [
   { icon: Mail, label: "Email", value: "idusma0010@gmail.com", href: "mailto:idusma0010@gmail.com", tone: "text-google-blue" },
   { icon: Phone, label: "Phone", value: "+971 50 931 7400", href: "tel:+971509317400", tone: "text-google-red" },
-  { icon: MapPin, label: "Location", value: "Abu Dhabi, UAE", href: "https://www.openstreetmap.org/search?query=Abu%20Dhabi%2C%20UAE", tone: "text-google-green" },
+  { icon: MapPin, label: "Location", value: "Dubai, UAE", href: "https://www.openstreetmap.org/search?query=Dubai%2C%20UAE", tone: "text-google-green" },
 ];
 
 const Contact = () => {
@@ -19,8 +19,8 @@ const Contact = () => {
     <div className="max-w-6xl mx-auto space-y-12">
       <SectionHeading
         eyebrow="06 · Contact"
-        title="Available to join immediately."
-        description="Open to web development, business systems, and IT coordination opportunities in the UAE."
+        title="Currently employed, open to opportunities."
+        description="Open to discussing suitable web development, business systems, and IT coordination opportunities in the UAE."
       />
 
       <Reveal variant="scale">
@@ -36,7 +36,7 @@ const Contact = () => {
                 Need a web developer for your next project? <span className="text-gradient">Say hello.</span>
               </h3>
               <p className="mobile-justify-text text-muted-foreground mt-4 max-w-md text-left">
-                Available to join immediately. UAE residence visa cancelled on 4 September 2026.
+                Currently employed and open to discussing suitable opportunities in the UAE.
               </p>
               <Button asChild size="lg" className="premium-button contact-whatsapp-button mt-6 rounded-full border-0 ring-glow hover:brightness-110">
                 <a href="https://wa.me/971509317400" target="_blank" rel="noopener noreferrer">

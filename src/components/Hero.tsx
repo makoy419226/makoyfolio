@@ -100,7 +100,7 @@ const Hero = () => {
             className="material-status-chip mb-5 inline-flex min-h-10 items-center gap-2 rounded-full px-4 text-xs font-semibold uppercase tracking-[0.12em]"
           >
             <span className="material-status-dot" aria-hidden />
-            Available to join immediately · Abu Dhabi, UAE
+            Currently employed · Open to discussing opportunities · Dubai, UAE
           </motion.div>
 
           <motion.h1
@@ -221,7 +221,7 @@ const Hero = () => {
                 <span>
                   <span className="block text-xs font-semibold">UAE experience</span>
                   <span className="flex items-center gap-1 text-[11px] text-muted-foreground">
-                    <MapPin className="h-3 w-3" /> Abu Dhabi
+                    <MapPin className="h-3 w-3" /> Dubai
                   </span>
                 </span>
               </motion.div>
