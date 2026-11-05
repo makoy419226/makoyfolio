@@ -100,7 +100,7 @@ const Hero = () => {
             className="material-status-chip mb-5 inline-flex min-h-10 items-center gap-2 rounded-full px-4 text-xs font-semibold uppercase tracking-[0.12em]"
           >
             <span className="material-status-dot" aria-hidden />
-            Currently employed · Open to discussing opportunities · Dubai, UAE
+            Currently employed · Dubai, UAE
           </motion.div>
 
           <motion.h1
