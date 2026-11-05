@@ -5,7 +5,7 @@ import ImmersiveSection from "./ImmersiveSection";
 
 const roles = [
   {
-    period: "September 2026 - Present",
+    period: "September 14, 2026 - Present",
     title: "IT Coordinator / Web System Developer",
     company: "Concord Stars Contracting LLC",
     location: "Dubai, UAE",
