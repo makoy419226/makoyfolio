@@ -9,7 +9,7 @@ import pdfWorker from "pdfjs-dist/build/pdf.worker.min.mjs?url";
 import Reveal from "./Reveal";
 import { usePerformanceMode } from "@/hooks/use-performance-mode";
 
-const cvPath = "/documents/mark-angelou-idusma-cv.pdf";
+const cvPath = `${import.meta.env.BASE_URL}documents/mark-angelou-idusma-cv.pdf`;
 
 GlobalWorkerOptions.workerSrc = pdfWorker;
 
