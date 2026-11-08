@@ -5,7 +5,7 @@ import NotFound from "./pages/NotFound";
 
 const App = () => (
   <MotionConfig reducedMotion="user" transition={{ ease: [0.2, 0, 0, 1] }}>
-    <BrowserRouter>
+    <BrowserRouter basename={import.meta.env.BASE_URL}>
       <Routes>
         <Route path="/" element={<Index />} />
         <Route path="*" element={<NotFound />} />

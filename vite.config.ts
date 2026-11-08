@@ -5,6 +5,9 @@ import { componentTagger } from "lovable-tagger";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
+  // GitHub Pages serves this project from /makoyfolio/ instead of the domain root.
+  // Keep the normal root path for local development and other hosts.
+  base: process.env.GITHUB_PAGES === "true" ? "/makoyfolio/" : "/",
   server: {
     host: "::",
     port: 8080,
